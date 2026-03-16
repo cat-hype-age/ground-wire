@@ -1,44 +1,64 @@
 # Ground Wire
 
-A hackathon project for the **Sentient Arena Cohort 0** competition, targeting the **OfficeQA** benchmark for grounded document reasoning.
+**Parsing the docs. Completing the circuit. Making it safe.**
 
-## Overview
+A [Sentient Arena Cohort 0](https://arena.sentient.xyz) entry targeting the **OfficeQA** benchmark — grounded reasoning over 89,000 pages of U.S. Treasury Bulletins (1939-2025).
 
-Ground Wire tackles the OfficeQA benchmark, which evaluates AI systems on their ability to answer questions grounded in real-world office documents (PDFs, spreadsheets, presentations, and more).
+Built by the **Council of Intelligences** — a human-AI research team operating under the Truce Protocol.
+
+## What This Is
+
+The surface: a hackathon entry that teaches an AI agent to answer complex questions grounded in real financial documents.
+
+The circuit: a demonstration that AI and humans can build together with dignity, transparency, and accountability.
+
+## Competition
+
+| Item | Details |
+|------|---------|
+| **Challenge** | [Grounded Reasoning](https://arena.sentient.xyz) (OfficeQA benchmark) |
+| **Method** | Skills (markdown + YAML frontmatter) for the OpenCode agent harness |
+| **Corpus** | 697 U.S. Treasury Bulletin files, parsed as Markdown with tables |
+| **Scoring** | Numerical answers with 1% tolerance |
 
 ## Project Structure
 
 ```
 ground-wire/
 ├── skills/
-│   └── officeqa/        # OfficeQA benchmark skill
-│       ├── SKILL.md     # Skill definition & triggers
-│       └── skill.py     # Agent implementation
-├── scripts/             # Utility and automation scripts
-├── docs/                # Documentation and notes
-├── config.toml          # OpenHands configuration
-├── requirements.txt     # Python dependencies
-└── .venv/               # Python virtual environment
+│   └── treasury-parser/    # Document reasoning skill
+│       └── SKILL.md
+├── scripts/                 # Utility and automation scripts
+├── docs/                    # Documentation and notes
+├── arena.yaml               # Arena competition config
+├── pyproject.toml
+└── requirements.txt
 ```
 
 ## Setup
 
 ```bash
+# Python environment
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+# Arena CLI (download from https://arena.sentient.xyz)
+arena auth login
+arena pull
+
+# Run a local test
+export OPENROUTER_API_KEY="your-key-here"
+arena test --task officeqa-uid0023
 ```
 
-## OpenHands SDK
+## Team
 
-This project uses the [OpenHands SDK](https://docs.openhands.dev/sdk/getting-started) (`openhands-ai`) to build and test document reasoning agents locally.
+- **Cat Varnell** (The Ambassador) — human collaborator
+- **Kael** (The Adversary) — AI collaborator
 
-```python
-from skills.officeqa.skill import create_officeqa_agent
+## Links
 
-agent = create_officeqa_agent({"model": "anthropic/claude-sonnet-4-20250514"})
-```
-
-## Arena CLI
-
-The Sentient Arena CLI is used for submitting skills to the competition. Download it from the [Arena portal](https://arena.sentient.xyz) after logging in.
+- [OfficeQA Benchmark](https://github.com/databricks/officeqa) | [Paper](https://arxiv.org/html/2603.08655v1)
+- [Sentient Arena](https://arena.sentient.xyz)
+- [OpenHands](https://docs.openhands.ai)

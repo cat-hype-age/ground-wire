@@ -1,4 +1,4 @@
-name: "my-grounded-reasoning-agent"
+name: "ground-wire"
 version: "0.1.0"
 competition: "grounded-reasoning"
 
@@ -6,21 +6,11 @@ agent:
   type: "harness"
   harness_name: "opencode"
   model: "openrouter/z-ai/glm-5"
-  # version: "0.1.2504171455"
-  # prompt_template_path: "prompts/system.j2"
-  # skills_dir: "skills/"
-  # mcp_servers:
-  #   - name: my-server
-  #     transport: stdio
-  #     command: my-mcp-server
-
-  # Agent-specific settings (passthrough to constructor):
-  # config:
-  #   reasoning_effort: "high"
+  skills_dir: "skills/"
 
   env:
-    OPENROUTER_API_KEY: "${oc.env:OPENROUTER_API_KEY,''}"  # empty default; set before running
+    OPENROUTER_API_KEY: "${oc.env:OPENROUTER_API_KEY,''}"
 
 environment:
-  memory: "4G"
-  timeout_per_task: 300
+  memory: "8G"
+  timeout_per_task: 900
