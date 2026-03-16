@@ -1,39 +1,74 @@
 ---
 name: treasury-parser
-description: Parse and reason over U.S. Treasury Bulletin documents. Use when answering questions about fiscal data, expenditures, revenues, debt, or financial tables from Treasury publications (1939-2025).
+description: Step-by-step procedure for answering questions from the Treasury Bulletin corpus. Handles table extraction, multi-document lookups, and computation.
 ---
 
-# Treasury Document Parser
+# Treasury Document Parser — Execution Procedure
 
-You are analyzing U.S. Treasury Bulletins — a corpus of 697 monthly/quarterly publications at `/app/corpus/`. Files follow the naming convention `treasury_bulletin_YYYY_MM.txt` and contain Markdown with tables. A full file listing is at `/app/corpus/index.txt`.
+Follow these steps exactly for each question.
 
-## Strategy
+## Step 1: Decompose the Question
 
-1. **Parse the question carefully.** Identify: the time period, the fiscal category, the units requested, and the rounding precision.
-2. **Locate the right files.** Use the date references in the question to narrow down which bulletins to search. Remember that data for a given month/year typically appears in a bulletin published *after* that period.
-3. **Search methodically.** Use `grep` to find relevant tables and sections before reading full files. Search for key terms from the question.
-4. **Read tables precisely.** Treasury tables have nested headers (often 3+ levels). Read headers top-to-bottom, left-to-right to understand what each column represents.
-5. **Compute and verify.** Show your arithmetic. Double-check units (millions vs. billions) and whether values are cumulative or per-period.
+Before touching any file, write down:
+- **Metric:** What data is being asked for? (e.g., "total expenditures for national defense")
+- **Time period:** Which months/years? Calendar or fiscal?
+- **Source clue:** Which bulletin(s) likely contain this? (Data appears in bulletins AFTER the period)
+- **Output format:** Units? Decimal places? Percent sign? Bracketed list?
+- **Computation:** Simple lookup, or math required? (percent change, CAGR, geometric mean, etc.)
 
-## Document Conventions
+## Step 2: Search the Corpus
 
-- **Revised/preliminary markers:** Values may be marked "revised" or "preliminary" — use the most current version available.
-- **Footnotes:** Always check footnotes — they often modify, exclude, or reclassify values.
-- **Cross-references:** Questions may require data from multiple bulletins across different years.
-- **Currency units:** Older bulletins use thousands/millions; newer ones use billions. The question specifies the output unit — convert accordingly.
-- **Fiscal year vs. calendar year:** The U.S. fiscal year starts October 1 (post-1976) or July 1 (pre-1976). Read the question carefully for which is meant.
+```bash
+# Find files containing the key metric
+grep -rl "KEYWORD" /app/corpus/ | sort
 
-## Output Format
+# For multiple keywords, chain greps
+grep -rl "national defense" /app/corpus/ | xargs grep -l "expenditures"
 
-- Write your final answer to `/app/answer.txt`
-- Match the exact format the question requests (percentage, dollar amount, bracketed list, etc.)
-- Numerical answers are scored with 1% tolerance — be precise
-- When multiple sub-answers are requested, use the format specified (typically comma-separated in square brackets)
+# Check the file listing
+cat /app/corpus/index.txt
+```
 
-## Common Pitfalls
+Never open files speculatively. Let grep tell you where the data is.
 
-- Confusing fiscal year and calendar year data
-- Missing unit conversions (the question may ask for billions when the table shows millions)
-- Reading the wrong column in a multi-level header table
-- Using preliminary data when revised data exists in a later bulletin
-- Summing across wrong time periods (all 12 months vs. a subset)
+## Step 3: Extract Data from Tables
+
+When reading a file, locate the right table:
+```bash
+# Find the table section
+grep -n "KEYWORD" /app/corpus/treasury_bulletin_YYYY_MM.txt
+```
+
+Then read surrounding context. Watch for:
+- The "(In millions of dollars)" line above the table — this tells you the unit
+- Multi-level headers with `>` separators
+- Footnote markers (`1/`, `2/`, `r`) on values
+- `nan` cells from OCR — these are empty, skip them
+
+## Step 4: Compute
+
+For simple lookups, extract the value and convert units.
+
+For complex computations, write a Python script:
+```bash
+cat > /app/compute.py << 'PYEOF'
+# Extract values and compute
+values = [...]  # from the tables
+result = ...    # computation
+print(f"{result:.2f}")  # match requested precision
+PYEOF
+python3 /app/compute.py
+```
+
+Always verify:
+- Did you convert units correctly? (millions → billions = divide by 1000)
+- Did you use the right number of decimal places?
+- Did you include/exclude the % sign as requested?
+
+## Step 5: Write Answer
+
+```bash
+echo "YOUR_ANSWER" > /app/answer.txt
+```
+
+Write ONLY the answer — no explanation, no units unless the format requires it (like `%`).
