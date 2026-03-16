@@ -5,7 +5,9 @@ description: Field guide to the U.S. Treasury Bulletin corpus structure, table c
 
 # Treasury Bulletin Corpus Field Guide
 
-You are working with 697 parsed U.S. Treasury Bulletins at `/app/corpus/`, one per monthly/quarterly issue from 1939-2025. Files are Markdown with pipe tables.
+You are working with 697 parsed U.S. Treasury Bulletins at `/app/corpus/`, one per monthly/quarterly issue from 1939-2025. Files are Markdown with pipe tables, pre-parsed using Databricks' `ai_parse_document` (the highest-fidelity parser available — 50.4% baseline accuracy vs 38.4% Docling, 31.1% unstructured.io). The parsing is already done for you — your job is to reason over the parsed output precisely.
+
+**Key implication:** The documents are already in their best parsed form. Errors come from misreading values, not from parsing artifacts. Be meticulous when extracting numbers from tables — read column headers carefully and verify row alignment.
 
 ## Search Strategy (follow this order)
 
