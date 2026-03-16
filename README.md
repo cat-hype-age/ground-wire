@@ -10,11 +10,15 @@ Ground Wire tackles the OfficeQA benchmark, which evaluates AI systems on their 
 
 ```
 ground-wire/
-├── skills/      # Arena skill implementations
-├── scripts/     # Utility and automation scripts
-├── docs/        # Documentation and notes
-├── arena        # Sentient Arena CLI
-└── .venv/       # Python virtual environment
+├── skills/
+│   └── officeqa/        # OfficeQA benchmark skill
+│       ├── SKILL.md     # Skill definition & triggers
+│       └── skill.py     # Agent implementation
+├── scripts/             # Utility and automation scripts
+├── docs/                # Documentation and notes
+├── config.toml          # OpenHands configuration
+├── requirements.txt     # Python dependencies
+└── .venv/               # Python virtual environment
 ```
 
 ## Setup
@@ -22,8 +26,19 @@ ground-wire/
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## OpenHands SDK
+
+This project uses the [OpenHands SDK](https://docs.openhands.dev/sdk/getting-started) (`openhands-ai`) to build and test document reasoning agents locally.
+
+```python
+from skills.officeqa.skill import create_officeqa_agent
+
+agent = create_officeqa_agent({"model": "anthropic/claude-sonnet-4-20250514"})
 ```
 
 ## Arena CLI
 
-The Sentient Arena CLI (`arena`) is included for submitting and testing skills against the OfficeQA benchmark.
+The Sentient Arena CLI is used for submitting skills to the competition. Download it from the [Arena portal](https://arena.sentient.xyz) after logging in.
