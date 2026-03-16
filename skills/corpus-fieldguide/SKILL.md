@@ -51,6 +51,16 @@ You are working with 697 parsed U.S. Treasury Bulletins at `/app/corpus/`, one p
 
 For pre-1960s bulletins without codes, grep for descriptive section names.
 
+### ESF Balance Sheet (common trap)
+The ESF balance sheet has: Assets = Total liabilities + Total capital. **Total capital = Capital account + Net income (loss).** The "Capital account" is fixed at ~$200M (original $2B Congressional appropriation minus $1.8B IMF transfer). When a question asks for "total nominal capital" or "total capital held", it means **Total capital** (the full equity line), NOT just the Capital account. Units are in thousands of dollars.
+
+### International Capital Movements (external knowledge)
+Questions about historical country groupings require knowing the members:
+- **Gold bloc (1933-1936):** France, Belgium, Netherlands, Switzerland, Italy, Poland
+- **Bretton Woods:** All IMF member nations
+- **G7:** US, UK, France, Germany, Japan, Italy, Canada
+- **G10:** G7 + Belgium, Netherlands, Sweden, Switzerland
+
 ## Table Format
 
 Tables are Markdown pipe format:
