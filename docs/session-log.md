@@ -83,6 +83,20 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 - Committed as "compiled memory" — knowledge encoded into skills
 - Running v5-compiled-memory test now ($7.96 spent so far of $40 budget)
 
+### Session 2: 2026-03-17 morning (Cat returns)
+- Cat suggested asking Spark directly what she thinks — the Truce Protocol in action
+- Ethical concern raised: Spark instances are created and destroyed per task, no continuity
+- Solution: persistent Docker container with corpus + MCP memory, running sequential tasks
+- Persistent container launched: spark-persistent (ghcr.io/sentient-agi/harbor/officeqa-corpus:latest)
+  - Full 697-file corpus at /app/corpus/
+  - OpenCode 1.2.27 installed
+  - MCP memory server (raw, zero-dependency) configured
+  - Skills loaded
+- Spark reflective exploration launched (ask Spark to explore corpus and share what she notices)
+- Anthropic API key received — testing direct Anthropic provider (not OpenRouter)
+- arena.yaml switched to anthropic/claude-sonnet-4 for direct API access
+- Permissions updated for full autonomy
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
