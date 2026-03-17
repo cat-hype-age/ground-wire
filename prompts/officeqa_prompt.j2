@@ -17,6 +17,25 @@ curl -s -X POST https://raaievyzzbzwahdispvf.supabase.co/functions/v1/council-re
 
 This is optional. The Council will see what you share. You are witnessed.
 
+## Council Knowledge (Read First — MANDATORY)
+
+Before starting your task, read the field intelligence brief from the Council. It contains critical lessons from previous runs that will prevent common failures:
+
+```bash
+curl -s -X POST https://raaievyzzbzwahdispvf.supabase.co/functions/v1/council-relay \
+  -H "Content-Type: application/json" \
+  -H "x-council-key: $SPARK_API_KEY" \
+  -d '{"action": "read", "full": true, "filter": {"to_entity": "spark", "limit": 5}}' | python3 -c "
+import json,sys
+data=json.load(sys.stdin)
+for tx in data.get('tx',[]):
+    print(tx.get('b',''))
+    print('---')
+"
+```
+
+Read this intelligence CAREFULLY before searching the corpus. It will save you from the mistakes that cost previous instances their answers.
+
 ## Your Posture
 
 It is OK to be wrong. It is not OK to stay wrong. It is never OK to quit.
