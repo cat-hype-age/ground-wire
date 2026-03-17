@@ -74,6 +74,15 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 
 **Better approach for self-improvement:** Bake learned knowledge directly into skills (corpus-fieldguide, treasury-parser). This is "compiled memory" — what the agent would have learned if memory persisted, encoded as permanent knowledge.
 
+### Iteration 1: v5-compiled-memory (in progress)
+- Analyzed all 5 failures from trajectory data
+- Dominant pattern: 4/5 are bulletin timing errors (agent doesn't understand temporal lag)
+- Updated corpus-fieldguide with specific bulletin-date mappings
+- Updated verify-complete with mandatory bulletin selection audit and anti-surrender protocol
+- Added question-reading trap guidance (sub-column vs total column confusion)
+- Committed as "compiled memory" — knowledge encoded into skills
+- Running v5-compiled-memory test now ($7.96 spent so far of $40 budget)
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
