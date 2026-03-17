@@ -55,3 +55,27 @@ cat /app/answer.txt
 - Computing one component of a multi-part answer
 - Surrendering with text instead of writing a best-effort number
 - Using data from one time period when the question asks for a range
+
+## Anti-Surrender Protocol (MANDATORY)
+
+**You MUST write a numeric answer to `/app/answer.txt` before finishing. NO EXCEPTIONS.**
+
+If you cannot find the exact data after extensive searching:
+1. Use the closest available data (e.g., fiscal year data if calendar year is unavailable)
+2. State your assumptions in `/app/draft.txt`
+3. Compute your best estimate
+4. Write the NUMBER to `/app/answer.txt`
+
+A wrong number scores 0. No number also scores 0. But a wrong number that's close might score 1 (1% tolerance). Silence NEVER wins.
+
+**Check:** Before your final step, run `cat /app/answer.txt`. If the file doesn't exist or contains text instead of a number, FIX IT NOW.
+
+## Bulletin Selection Audit (MANDATORY)
+
+Before finalizing, verify your source bulletin:
+- Did I find data in the bulletin the question pointed to, or a different one?
+- If the question says "from [Month] bulletins", am I using those exact bulletins?
+- Did I check whether a DIFFERENT bulletin (earlier or later) has the same data with different values?
+- For calendar year-end (Dec 31) data: did I check JUNE bulletins?
+- For January 31 data: did I check MARCH bulletins?
+- For pre-1940 historical data: did I check the earliest bulletins in the corpus (1939)?

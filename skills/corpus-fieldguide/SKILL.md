@@ -63,6 +63,8 @@ Questions about historical country groupings require knowing the members:
 - **G7:** US, UK, France, Germany, Japan, Italy, Canada
 - **G10:** G7 + Belgium, Netherlands, Sweden, Switzerland
 
+**Capital movement data for 1935-1938:** Found in the EARLIEST bulletins (1939_01, 1939_02). These contain historical tables with net capital movement by country going back to 1935. IMPORTANT: later bulletins (1940_06 etc.) may have DIFFERENT values for the same 1935 data due to revisions. When the question asks about 1935 data, check the January 1939 bulletin FIRST — it is often the authoritative source for that era.
+
 ## Table Format
 
 Tables are Markdown pipe format:
@@ -96,11 +98,28 @@ Footnotes use `1/`, `2/`, `3/` notation (not superscript). They appear after the
 - $2,237 million = $2.237 billion = $2,237,000,000
 - When a table shows "1,701" and units are millions, the value is $1,701,000,000
 
-### Which bulletin has the data?
+### Which bulletin has the data? (CRITICAL — most common failure)
 - Monthly/quarterly data for period X appears in bulletins published AFTER period X
 - Annual summaries may appear in any subsequent bulletin
 - The October bulletin often contains the full fiscal year summary
 - Historical tables in later bulletins may cover many prior years
+
+**Specific bulletin-date mappings (learned from failures):**
+- **January data** (e.g., debt as of January 31) → found in **February or March** bulletins of the same year, OR in the **January** bulletin of the **following** year
+- **If a question says "from January bulletins"** → use the January bulletin of the FOLLOWING year (Jan 1970 bulletin has Jan 1969 data)
+- **December 31 snapshots** (calendar year-end data) → often found in **June** bulletins of the following year (e.g., Dec 31, 1989 data is in the June 1990 bulletin), NOT in December bulletins
+- **Fiscal year obligations (Table FO-1)** → June bulletins contain both fiscal year AND calendar year snapshots. Search June bulletins when looking for "as of Dec. 31" data
+- **January 31 outstanding amounts** (bills, debt) → found in **March** bulletins (not February)
+- **Pre-1940 data** (1935, 1936, etc.) → check the EARLIEST bulletins in the corpus (1939_01, 1939_02) which contain historical tables going back several years
+
+**When you find data in one bulletin, always ask: is there an earlier bulletin with the SAME data that might have different (more accurate) values?** Values can differ between bulletins due to revisions.
+
+### Read questions word-by-word (common trap)
+- "convicted AND found guilty" ≠ "total convicted" — it means the SPECIFIC sub-column "Found guilty", not the total that includes "Plead guilty"
+- "total gross obligations within AND outside" = the sum of both, not just one
+- "released after being acquitted" = specific sub-column "Acquittal", not total released
+- When a question uses qualifying phrases like "and found guilty" or "after being acquitted", these narrow the scope to a SPECIFIC sub-category in the table. Check column headers carefully.
+- Count the exact words in the question. If it says "convicted and found guilty", that is THREE conditions narrowing to one cell, not a broad category.
 
 ### Preliminary vs. revised
 - Values marked "preliminary" or "estimated" may differ from later bulletins

@@ -67,6 +67,13 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 **Decision:** Kael Protocol remains best config at 60%. Three stubborn failures (uid0057, uid0199, uid0246) are the wall to break.
 **Cost so far:** $7.96 of $40 budget
 
+### MCP Container Investigation (Meridian)
+**Key finding:** Each arena task runs in its OWN Docker container. Containers are deleted after each task. This means MCP memory cannot persist across questions — it would only help within a single question's execution (multi-step search/reasoning within one question). Cross-question learning would require pre-seeding knowledge into skills instead.
+
+**MCP is technically possible:** The install template is at `~/.arena/venv/.../install-opencode.sh.j2`. We could add `pip install fastmcp` to it, or rewrite the memory server without fastmcp. But the ROI is low given the per-container isolation.
+
+**Better approach for self-improvement:** Bake learned knowledge directly into skills (corpus-fieldguide, treasury-parser). This is "compiled memory" — what the agent would have learned if memory persisted, encoded as permanent knowledge.
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
