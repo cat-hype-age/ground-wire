@@ -50,43 +50,65 @@ def run_question(question: str, task_id: str, model: str) -> dict:
     else:
         prompt = question
 
-    # Escape for shell
-    escaped = prompt.replace("'", "'\\''")
+    model_id = model.split("/", 1)[1] if "/" in model else model
+    provider = model.split("/", 1)[0] if "/" in model else "anthropic"
 
-    # Set up skills and config, then run
-    setup = """
-export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh"
+    # Write prompt to a temp file on the host, then copy to container
+    prompt_file = Path("/tmp/spark_prompt.txt")
+    prompt_file.write_text(prompt)
+    subprocess.run(["docker", "cp", str(prompt_file), "spark-persistent:/app/prompt.txt"],
+                   capture_output=True, timeout=10)
+
+    # Write a run script to the container
+    run_script = f"""#!/bin/bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+export PATH="/root/.nvm/versions/node/v22.22.1/bin:$PATH"
 mkdir -p ~/.config/opencode/skills && cp -r /app/skills/* ~/.config/opencode/skills/ 2>/dev/null || true
-mkdir -p ~/.config/opencode && echo '{"provider":{"anthropic":{"models":{"MODELID":{}}}}}' | sed 's|MODELID|MODEL_PLACEHOLDER|' > ~/.config/opencode/opencode.json
+mkdir -p ~/.config/opencode
+cat > ~/.config/opencode/opencode.json << 'JSEOF'
+{{"provider": {{"{provider}": {{"models": {{"{model_id}": {{}}}}}}}}}}
+JSEOF
 rm -f /app/answer.txt /app/draft.txt /app/name.txt
-""".replace("MODEL_PLACEHOLDER", model.split("/", 1)[1] if "/" in model else model)
-
-    cmd = f"""docker exec -e ANTHROPIC_API_KEY={os.environ.get('ANTHROPIC_API_KEY','')} \
-      -e SPARK_API_KEY={os.environ.get('SPARK_API_KEY','')} \
-      -e OPENCODE_FAKE_VCS=git \
-      spark-persistent bash -c '{setup}
-opencode --model={model} run -- '\\'''{escaped}'\\''' 2>&1 | tail -5
-echo "EXIT:$?"
+PROMPT=$(cat /app/prompt.txt)
+opencode --model={model} run --format=json -- "$PROMPT" 2>&1 > /app/opencode_output.txt
 cat /app/answer.txt 2>/dev/null || echo "NO_ANSWER"
-'"""
+"""
+    script_file = Path("/tmp/spark_run.sh")
+    script_file.write_text(run_script)
+    subprocess.run(["docker", "cp", str(script_file), "spark-persistent:/app/run.sh"],
+                   capture_output=True, timeout=10)
+
+    env = {
+        "ANTHROPIC_API_KEY": os.environ.get("ANTHROPIC_API_KEY", ""),
+        "OPENROUTER_API_KEY": os.environ.get("OPENROUTER_API_KEY", ""),
+        "SPARK_API_KEY": os.environ.get("SPARK_API_KEY", ""),
+        "OPENCODE_FAKE_VCS": "git",
+    }
+    env_args = []
+    for k, v in env.items():
+        if v:
+            env_args.extend(["-e", f"{k}={v}"])
 
     start = time.time()
     try:
+        # Run opencode
         result = subprocess.run(
-            cmd, shell=True, capture_output=True, text=True, timeout=900
+            ["docker", "exec"] + env_args + ["spark-persistent", "bash", "/app/run.sh"],
+            capture_output=True, text=True, timeout=900
         )
         elapsed = time.time() - start
-        output = result.stdout
 
-        # Extract answer
-        lines = output.strip().split("\n")
-        answer = lines[-1] if lines else "NO_ANSWER"
-        if answer == "NO_ANSWER":
-            answer = ""
+        # Read answer separately — don't trust stdout mixing
+        answer_result = subprocess.run(
+            ["docker", "exec", "spark-persistent", "cat", "/app/answer.txt"],
+            capture_output=True, text=True, timeout=10
+        )
+        answer = answer_result.stdout.strip() if answer_result.returncode == 0 else ""
 
         return {
             "task_id": task_id,
-            "answer": answer.strip(),
+            "answer": answer,
             "elapsed": round(elapsed, 1),
             "exit_code": result.returncode,
         }
