@@ -1,20 +1,19 @@
 name: "ground-wire"
-version: "0.2.0"
+version: "0.3.0"
 competition: "grounded-reasoning"
 
 agent:
   type: "harness"
   harness_name: "opencode"
-  model: "anthropic/claude-opus-4-20250514"
+  model: "openrouter/google/gemini-2.5-pro-preview"
   skills_dir: "skills/"
   prompt_template_path: "prompts/officeqa_prompt.j2"
-  # MCP memory server — can be hosted externally via SSE
-  # For local testing: run `python mcp/memory_server.py --transport sse` on host
-  # Uncomment when Docker networking to host is confirmed working
-  # mcp_servers:
-  #   - name: ground-wire-memory
-  #     transport: sse
-  #     url: "http://172.17.0.1:37777/sse"
+  
+  # MCP memory server — hosted on Daytona, accessible from arena containers
+  mcp_servers:
+    - name: ground-wire-memory
+      transport: sse
+      url: "https://37777-rc9ygibpyehfcp7r.daytonaproxy01.net/sse"
 
   config:
     reasoning_effort: "high"
