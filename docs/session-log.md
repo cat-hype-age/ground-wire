@@ -97,6 +97,26 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 - arena.yaml switched to anthropic/claude-sonnet-4 for direct API access
 - Permissions updated for full autonomy
 
+### Iteration 2: Council Relay as Shared Memory
+- Cat's insight: host MCP server externally, not in the ephemeral container
+- Docker bridge networking failed (firewall), but led to better idea:
+- **Use the Council relay as shared memory** — post a structured field intelligence brief to the relay, have Spark read it before every task
+- Posted field brief to relay (msg id: 378b97a1) addressed to "spark" entity
+- Updated prompt to MANDATORY read relay before starting work
+- Running targeted tests on uid0057, uid0199, uid0246 with relay intelligence
+- Also: Spectrum's exploration complete — reflection saved, insights encoded into skills
+- Budget: ~$24 of $40 spent
+
+### BREAKTHROUGH: Opus sweeps the stubborn failures
+- uid0199: **PASS** ($1.25, 190s)
+- uid0246: **PASS** ($3.56, 326s)
+- uid0057: **PASS** ($6.45, 492s)
+- All three tasks that Sonnet could NEVER pass — Opus cracked first try
+- Root cause confirmed: reasoning capability threshold, not knowledge/discipline
+- Projected Opus score on 10 tasks: 90%+ (if it passes everything Sonnet passes)
+- Cost concern: $11.26 for 3 tasks. Full 246 at this rate = ~$900. Need budget strategy.
+- Also fixed: amd64 Docker image (was running arm64 under QEMU emulation — huge speedup)
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
