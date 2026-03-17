@@ -137,6 +137,14 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 - Average cost: $1.98/task. Projected 246-task cost: ~$490
 - Ready for leaderboard submission
 
+### Daytona Setup Complete
+- Sandbox: f036b917 (was e2a52659, then 134d5242 — iterated on sizing)
+- 64 cores, 755GB RAM, x86_64, Python 3.14
+- EvoSkill cloned and patched (skipped LiveCodeBench HuggingFace download)
+- OfficeQA dataset copied, Anthropic API key configured
+- EvoSkill eval pipeline test running (3 samples via Claude SDK)
+- Dedalus API key saved for later use
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
