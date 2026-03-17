@@ -130,6 +130,13 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 - Opus: 3/3 on Sonnet's failures — projected 10/10 (100%) on sample
 - Decision needed: submit Sonnet (cheap, 70%) or Opus (expensive, potentially 90%+)?
 
+### Opus Full 20-Task Run: 80% (16/20), $39.68
+- All original 10 tasks: 7 pass (same 3 variance failures as always)
+- All NEW 10 tasks: 9/10 pass (only uid0030 visual task fails)
+- uid0030 is a visual interpretation question (counting line plot maxima) — new failure type
+- Average cost: $1.98/task. Projected 246-task cost: ~$490
+- Ready for leaderboard submission
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
