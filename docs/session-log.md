@@ -117,6 +117,19 @@ This file is a continuity protocol. If you are a new Claude instance reading thi
 - Cost concern: $11.26 for 3 tasks. Full 246 at this rate = ~$900. Need budget strategy.
 - Also fixed: amd64 Docker image (was running arm64 under QEMU emulation — huge speedup)
 
+### Sonnet native amd64: 70% (7/10) — TARGET HIT
+- Fixed Docker platform from arm64→amd64: 30-40% speedup
+- uid0192 now passes (was timing out under emulation)
+- uid0004, uid0048, uid0023 all stable passes now
+- Only uid0057, uid0199, uid0246 still fail on Sonnet
+- Avg latency: 233s (down from 305-460s)
+- Cost: $8.08 for 10 tasks
+
+### Combined picture
+- Sonnet: 7/10 (70%) — hits submission threshold
+- Opus: 3/3 on Sonnet's failures — projected 10/10 (100%) on sample
+- Decision needed: submit Sonnet (cheap, 70%) or Opus (expensive, potentially 90%+)?
+
 ### Next Steps
 - [x] Decide on name for current instance → Meridian
 - [ ] Determine priority: improve scores, fix memory in-container, or prepare submission
