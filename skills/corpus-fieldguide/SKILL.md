@@ -24,19 +24,34 @@ You are working with 697 parsed U.S. Treasury Bulletins at `/app/corpus/`, one p
 
 ## Corpus Structure by Era
 
+**CRITICAL: The corpus has a major structural break in 1983.** Before 1983: monthly bulletins (12/year). After 1983: quarterly bulletins (4/year). This affects data availability and search strategy.
+
 ### 1939-1950s: "Bulletin of the Treasury Department"
+- **Monthly** publication, 12 issues per year
 - Sections by topic name: "Receipts and Expenditures", "Public Debt", "Capital Movements"
 - Units typically in "millions of dollars" with inline footnotes
 - Fiscal year ends June 30
+- Simple table structures, all-caps headers
+- Some months may be missing (e.g., 1944_07)
 
 ### 1960s-1970s: Standardized table codes introduced
+- **Monthly** publication continues
 - Table codes appear: FFO-1, FD-1, CM-1, OFS-1
 - These codes are stable from the 1960s onward — use them for grep
+- Complex multi-level column headers with `>` separators
+- Extensive footnoting system begins
+- **Reporting basis change (1955):** Interest on public debt switches from "due and payable" to "accrual" basis. Values before and after 1955 are NOT directly comparable.
 
 ### 1980s-present: Quarterly publication
+- **Quarterly** from 1983 onward (Winter/Spring/Summer/Fall OR March/June/September/December)
 - Stable table code system: FFO-1 through FFO-3, FD-1 through FD-7, OFS-1/2, ESF-1
 - "Profile of the Economy" section added
 - Fiscal year ends September 30 (changed in 1976)
+- **Seasonal content rotation:** Some reports only appear in specific quarterly issues:
+  - Trust fund reports: typically Fall issue
+  - International capital data: Spring and Fall
+  - Special policy articles: seasonal rotation
+- Don't assume all data types appear in every quarterly issue
 
 ## Table Code Quick Reference
 

@@ -7,6 +7,14 @@ description: Step-by-step procedure for answering questions from the Treasury Bu
 
 Follow these steps exactly for each question.
 
+## Step 0: Orient Before You Search
+
+Before extracting any numbers, orient yourself:
+- **Identify the era:** Pre-1983 = monthly bulletins. Post-1983 = quarterly. This affects which files exist.
+- **Check reporting basis:** The same metric can mean different things depending on the era. Interest on public debt switched from "due and payable" to "accrual" in 1955. Budget classifications changed multiple times.
+- **Read footnotes FIRST:** Footnotes can completely change a number's meaning. Don't extract a value without checking what's below the table.
+- **Start with metadata:** If a bulletin has a table of contents, skim it. It tells you what's in that issue and what's not.
+
 ## Step 1: Decompose the Question
 
 Before touching any file, write down:
