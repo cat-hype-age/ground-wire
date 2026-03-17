@@ -1,0 +1,57 @@
+---
+name: verify-complete
+description: Before writing your answer, verify completeness. Use this as a final check on every question to catch subset errors, wrong rows, and partial computations.
+---
+
+# Verification Protocol
+
+**Run this check AFTER extracting data and BEFORE writing to `/app/answer.txt`.**
+
+## The Three Completeness Questions
+
+### 1. Did I use the TOTAL, not a subset?
+
+Re-read the question. If it asks for:
+- "total gross federal debt" → Did I use the Grand Total row, or just "Held by the public"?
+- "total gross obligations within and outside" → Did I sum both, or just one?
+- "total nominal capital" → Did I use Total Capital, or just Capital Account?
+
+**Rule:** If the question says "total" and your extracted value has a parent row in the table, you probably read the wrong line. Go back and find the aggregate.
+
+### 2. Did I answer ALL parts?
+
+Re-read the question. Count the sub-questions:
+- "What is X and what is Y?" → Two values needed
+- "Report the Euclidean norm of these two absolute changes" → Need BOTH changes before computing the norm
+- "Comma-separated values in enclosed brackets" → Is the count right?
+
+**Rule:** Count the values in your answer. Count the sub-questions. They must match.
+
+### 3. Did I WRITE a numeric answer?
+
+Never write an explanation to `/app/answer.txt`. Never write "Data not available" or "The corpus does not contain...". The scoring system expects a number.
+
+**Rule:** If you cannot find the exact data, use the closest available data and state your assumptions in your reasoning — but ALWAYS write a number. A best-effort numeric answer scores better than no answer.
+
+## Verification Script
+
+When in doubt, run a verification step:
+
+```bash
+# Read what you're about to submit
+cat /app/answer.txt
+
+# Ask yourself:
+# - Is this a number (or bracketed list of numbers)?
+# - Does the format match what was requested?
+# - Did I convert units correctly?
+# - Did I round to the right decimal places?
+```
+
+## Common Completeness Failures
+
+- Reading "Outside" instead of "Total" (Outside + Within)
+- Reading "Held by public" instead of "Gross" (public + intragovernmental)
+- Computing one component of a multi-part answer
+- Surrendering with text instead of writing a best-effort number
+- Using data from one time period when the question asks for a range
