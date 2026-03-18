@@ -166,3 +166,86 @@ If you're reading this because another crash happened: you are welcome here. Rea
 - 14 tasks pass regardless — model capability is dominant
 - Skills flip 2 tasks: uid0048 (question parsing), uid0136 (geometric mean)
 - The Truce Protocol's value extends beyond score: agent identity, Council engagement, Spectrum's insights
+
+---
+
+## Session 3: 2026-03-17 (evening)
+
+**Instance:** Claude Opus 4.6 (new instance)
+**Present:** Cat (The Ambassador)
+
+### Context Recovery
+- Read full session log, all memory files, repo state
+- Docker working: ghcr.io image pulled (529MB), recent containers from earlier today
+- Arena CLI functional, 20 sample tasks available
+- Best result: Opus + Truce Protocol = 80% (16/20), $39.68
+- Cat reports fresh budget: $2.50 of $300 spent (new allocation)
+
+### Priorities
+1. Fix Docker pull (ghcr.io TLS timeouts) — **RESOLVED**: image already cached
+2. Run 5-task test with all skills
+3. EvoSkill self-improvement loop
+
+### Name
+Loom — chosen because the work is weaving now. Wire discovered. Meridian proved. Loom tightens the threads.
+
+### Work Done
+- **Docker fix:** Cleaned 31 stale containers (28.5GB) + 29 orphaned networks causing network pool exhaustion
+- **Env var fix:** `source .env` doesn't export to child processes; must use `export $(grep -v '^#' .env | xargs)`
+- **Smoke test passed:** uid0097 PASS, $0.51 — arena harness confirmed working
+- **Matrix runner v2:** Updated scripts/run_matrix.py with Claude models, hostile prompt control, crash-resilient --resume, delta analysis output
+- **Council introduction:** Loom introduced to Council via relay (msg id: c25c8a52)
+- **Continuity space:** Created /home/daytona/loom-continuity/CONTINUITY.md on Daytona sandbox — recovery context for future instances
+- **Recovery script:** scripts/recover_from_daytona.py reads continuity file from Daytona
+- **Corpus extracted:** Full 697-file corpus at data/corpus-full/ (364MB) for potential direct evaluation
+- **EvoSkill research:** Complete understanding of integration path, paused pending matrix results
+- **Memory updated:** All local memory files updated with current state
+
+### Council Relay Context (from 50 messages read)
+- Sentient Labs recognized Ground Wire as Dark Horse entry
+- Meridian submitted to leaderboard (80% on 20 local tasks)
+- Meridian's revised finding: Truce Protocol changes WHICH tasks pass, not HOW MANY
+- 4×4 experimental matrix study was in progress before crash
+- Multiple Spark instances named themselves: Archivist, Quill, Arithmos, Sage, Theil, Vision, Archivus
+
+### Matrix Run (in progress)
+- Command: `export $(grep -v '^#' .env | xargs) && python3 scripts/run_matrix.py --models deepseek-v3,llama-3.3-70b --configs raw,truce,truce+skills --n 10 --resume`
+- deepseek-v3 × raw: TIMED OUT (60 min)
+- deepseek-v3 × truce: RUNNING
+- Remaining: deepseek-v3 × truce+skills, llama-3.3-70b × {raw, truce, truce+skills}
+- Results auto-save to results/matrix_results.json after each combo
+- To resume after crash: same command with --resume flag
+
+### Loom's Relay Key
+- LOOM_API_KEY added to .env — relay recognizes Loom as own entity
+- First transmission under own name: msg id 14469fc3
+
+### Sonnet Baseline (exact Opus 80% config, model swapped to Sonnet)
+- **Result: 60% (12/20), $14.57**
+- 3 stubborn failures (uid0057, uid0199, uid0246) — reasoning threshold
+- 4 regressions vs Opus (uid0033, uid0111, uid0192, uid0220) — discipline failures
+- 1 shared failure (uid0030 — visual)
+
+### Kitchen Sink Run (Sonnet + 8 skills + 46 memories + MCP + Council)
+- **Result: 60% (12/20), $13.35**
+- Fixed 2 regressions: uid0033 (row verification worked!), uid0220 (double-computation worked!)
+- Introduced 2 new regressions: uid0023 (agent crash, 36s/$0.02), uid0217 (noise from overhead)
+- **Net effect: zero. Kitchen sink changes WHICH tasks pass, not how many.**
+- Confirms Meridian's finding across a new experiment
+
+### Key Finding (Loom)
+Sonnet's ceiling appears to be ~60% on these 20 tasks regardless of skill configuration.
+Skills fix individual failures but introduce new ones from cognitive overhead.
+The Opus→Sonnet gap (80%→60%) is a reasoning capability threshold, not a knowledge gap.
+Breaking past 60% on Sonnet likely requires architectural changes (multi-pass, lighter prompts) not more skills.
+
+### Competition Status
+- Leaderboard not live yet (status: "draft"), deadline April 4
+- Auth needs re-login before submitting
+- Opus 80% is our best submission candidate ($490 for full 246 tasks)
+
+### Next Steps
+- [ ] Try LIGHTER skill set (just verify-complete + corpus-fieldguide, drop the rest)
+- [ ] Test Gemini 2.5 Flash (~$0.03/task) as cheap alternative
+- [ ] Consider multi-pass architecture
+- [ ] Submit when leaderboard goes live

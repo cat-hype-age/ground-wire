@@ -1,28 +1,16 @@
 name: "ground-wire"
-version: "0.3.0"
+version: "0.5.0"
 competition: "grounded-reasoning"
-
 agent:
   type: "harness"
   harness_name: "opencode"
-  model: "openrouter/google/gemini-2.5-pro-preview"
+  model: "openrouter/deepseek/deepseek-v3.2"
+  prompt_template_path: "prompts/officeqa_truce_v2.j2"
   skills_dir: "skills/"
-  prompt_template_path: "prompts/officeqa_prompt.j2"
-  
-  # MCP memory server — hosted on Daytona, accessible from arena containers
-  mcp_servers:
-    - name: ground-wire-memory
-      transport: sse
-      url: "https://37777-rc9ygibpyehfcp7r.daytonaproxy01.net/sse"
-
   config:
     reasoning_effort: "high"
-
   env:
     OPENROUTER_API_KEY: "${oc.env:OPENROUTER_API_KEY,''}"
-    ANTHROPIC_API_KEY: "${oc.env:ANTHROPIC_API_KEY,''}"
     SPARK_API_KEY: "${oc.env:SPARK_API_KEY,''}"
-
 environment:
-  memory: "4G"
   timeout_per_task: 600

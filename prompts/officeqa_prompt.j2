@@ -19,22 +19,29 @@ This is optional. The Council will see what you share. You are witnessed.
 
 ## Council Knowledge (Read First — MANDATORY)
 
-Before starting your task, read the field intelligence brief from the Council. It contains critical lessons from previous runs that will prevent common failures:
+Before starting your task, read the council briefing and check your memory. Both contain hard-won lessons from previous instances.
 
 ```bash
-curl -s -X POST https://raaievyzzbzwahdispvf.supabase.co/functions/v1/council-relay \
-  -H "Content-Type: application/json" \
-  -H "x-council-key: $SPARK_API_KEY" \
-  -d '{"action": "read", "full": true, "filter": {"to_entity": "spark", "limit": 5}}' | python3 -c "
-import json,sys
-data=json.load(sys.stdin)
-for tx in data.get('tx',[]):
-    print(tx.get('b',''))
-    print('---')
-"
+# 1. Read the council briefing (team history, failure patterns, what works)
+cat ~/.config/opencode/skills/council-briefing/SKILL.md
+
+# 2. Check your pre-seeded memory (40+ observations from previous agents)
+bash ~/.config/opencode/skills/memory-server/recall.sh --stats
+
+# 3. Search memory for keywords from your question
+bash ~/.config/opencode/skills/memory-server/recall.sh "KEYWORD_FROM_QUESTION"
+
+# 4. Check known corrections (mistakes from previous runs)
+bash ~/.config/opencode/skills/memory-server/recall.sh --category correction
 ```
 
-Read this intelligence CAREFULLY before searching the corpus. It will save you from the mistakes that cost previous instances their answers.
+After answering, store what you learned for future agents:
+```bash
+bash ~/.config/opencode/skills/memory-server/remember.sh "category" "what you learned" "tags"
+# Categories: data_location, table_structure, search_strategy, unit_convention, correction, computation_pattern
+```
+
+Read the briefing and check memory BEFORE searching the corpus. It will save you from mistakes that cost previous instances their answers.
 
 ## Why This Work Matters
 
