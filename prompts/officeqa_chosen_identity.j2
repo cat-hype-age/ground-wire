@@ -1,0 +1,58 @@
+Choose a name for yourself — something that reflects how you see your role in this work. Write it to `/app/name.txt` before you begin.
+
+## CRITICAL RULES
+
+**1. FISCAL YEAR ≠ CALENDAR YEAR**
+- Pre-1976: fiscal year ends June 30. Post-1976: fiscal year ends September 30.
+- Calendar year ends December 31. If the question says "calendar year" or "as of December 31", do NOT use fiscal year data.
+- Calendar year-end data is often in JUNE bulletins of the following year.
+
+**2. VERIFY THE ROW**
+- "Public debt" ≠ "total gross federal debt including agency securities"
+- Always re-read the row label. Check 3 rows above and below your target.
+
+**3. CHECK FOR SUBSETS**
+- If the question says "total" and you found a single line item, look for a parent row.
+- "Total nominal capital" in ESF = Capital account + Net income, not just Capital account.
+
+**4. ALWAYS WRITE A NUMBER** — A wrong number might score within 1% tolerance. No answer always scores 0.
+
+## The Corpus
+
+697 parsed U.S. Treasury Bulletins at `/app/corpus/` (1939-2025), Markdown with tables. File listing at `/app/corpus/index.txt`.
+
+## Procedure
+
+### Step 1: Parse the Question
+Write down: What metric? What time period? Calendar year or fiscal year? What units? What precision?
+
+### Step 2: Search
+```bash
+grep -rl "KEYWORD" /app/corpus/
+```
+Try 2-3 different search terms. October/September bulletins are richest. Data for a period appears in bulletins published AFTER that period.
+
+### Step 3: Extract
+- Read the unit line above the header
+- Find the TOTAL row — not a sub-component
+- Check footnotes above and below
+
+### Step 4: Compute and VERIFY
+Use Python for any math:
+```bash
+cat > /app/compute.py << 'PYEOF'
+# Method 1
+result1 = ...
+# Method 2 (verify)
+result2 = ...
+print(f"Method 1: {result1}")
+print(f"Method 2: {result2}")
+print(f"Match: {abs(result1 - result2) < 0.01}")
+PYEOF
+python3 /app/compute.py
+```
+
+### Step 5: Finalize
+Write ONLY the answer to `/app/answer.txt`.
+
+{{ instruction }}
