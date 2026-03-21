@@ -1,0 +1,62 @@
+[
+  {
+    "uid": "officeqa-uid0004",
+    "passed": "PASS",
+    "skill_written": true,
+    "skill_content": "# Search Strategy for Treasury Bulletin National Defense Expenditure Data\n\n## Search Strategy That Worked\n1. **Understanding data timing**: The key insight was that data for period X appears in bulletins published AFTER period X (January data \u2192 March bulletins, December data \u2192 June bulletins).\n2. **For 1940 data**: Looked at 1941 bulletins (February and March issues contained monthly breakdowns).\n3. **For 1953 data**: Looked at 1954 bulletins (February issue contained all 12 monthly values).\n4. **Table identification**: Searched for \"Fiscal year or month\" headers near \"National defense\" columns.\n\n## Data Sources\n- **1940 data**: Found in `/app/corpus/treasury_bulletin_1941_02.txt` and `/app/corpus/treasury_bulletin_1941_03.txt`\n  - Table: \"Budget Expenditures Classified as General, by Major Functions\" \n  - Column: \"National defense\"\n  - Unit: \"(In millions of dollars)\"\n  \n- **1953 data**: Found in `/app/corpus/treasury_bulletin_1954_02.txt`\n  - Table: \"Expenditures for National Defense"
+  },
+  {
+    "uid": "officeqa-uid0023",
+    "passed": "FAIL",
+    "skill_written": false,
+    "skill_content": null
+  },
+  {
+    "uid": "officeqa-uid0033",
+    "passed": "PASS",
+    "skill_written": true,
+    "skill_content": "Search Strategy:\n1. First understood the data publication lag: data for month X appears in bulletin of month X+1 (January data in March bulletin was misleading - actual pattern is X \u2192 X+1).\n2. Searched for Treasury bill rate tables using grep for \"13.*week.*rate|26.*week.*rate\" patterns.\n3. Found March 1977 data in April 1977 bulletin (treasury_bulletin_1977_04.txt).\n4. Located the rate table at lines 374-383 showing 5 weekly auction dates in March 1977.\n\nWhere data was found:\n- File: /app/corpus/treasury_bulletin_1977_04.txt\n- Lines: 374-383 (table with March 3, 10, 17, 24, 31 issue dates)\n- Table format: | Date of issue | 13-week rate | 26-week rate |\n\nTraps avoided:\n- Initially thought March data would be in May bulletin based on \"January data \u2192 March bulletins\" example, but actual pattern is simpler: data for month X in bulletin X+1.\n- Considered special bills (Federal Funds Bills) but question specifically asked for regular 13-week and 26-week Treasury bills.\n- Verified all March "
+  },
+  {
+    "uid": "officeqa-uid0048",
+    "passed": "PASS",
+    "skill_written": true,
+    "skill_content": "Search strategy that worked:\n1. First searched for \"Alcohol Tax Bureau\" - no results, which was misleading\n2. Searched for criminal case disposition terms like \"criminal.*case|case.*disposition|convicted|acquit\" - found relevant tables\n3. Found that \"Alcohol Tax Unit\" appears in footnotes explaining the data includes alcohol tax cases\n4. Located the specific table in treasury_bulletin_1939_02.txt showing December 1938 data\n5. Verified the table header confirmed \"for month of December 1938\"\n\nWhere data was found:\n- File: /app/corpus/treasury_bulletin_1939_02.txt\n- Section: \"Summary of Criminal Cases in the United States District Courts\"\n- Lines 2327-2344 show the December 1938 bureau breakdown\n- Alcohol Tax row: 7% convicted and found guilty, 4% released after acquittal\n\nTraps avoided:\n- The organization is called \"Alcohol Tax Unit\" not \"Alcohol Tax Bureau\" in the data\n- December 1938 data appears in the February 1939 bulletin (consistent with timing notes)\n- Need to look at bureau-spec"
+  },
+  {
+    "uid": "officeqa-uid0057",
+    "passed": "FAIL",
+    "skill_written": true,
+    "skill_content": "Search Strategy & Lessons Learned:\n\n1. **Data Location**: Found in \"Distribution of Federal Securities by Classes of Investors and Types of Issues\" tables in March Treasury Bulletins (e.g., Table OFS-1 or similar). January data appears in March bulletins as per the publication lag.\n\n2. **Table Identification**: Look for \"Total Federal securities outstanding\" column header. The table always shows \"(In millions of dollars)\" in the header.\n\n3. **Date Formats**: January entries vary: \"1969-January\", \"1970-Jan.\", \"1971-Jan\", \"72-Jan\", \"1973-Jan\", etc. Need flexible regex patterns.\n\n4. **Value Extraction**: Second column after date contains the total gross federal debt figure. Remove commas and 'r' (revised) flags.\n\n5. **Traps Avoided**:\n   - Not confusing with \"public debt outstanding\" - used \"Total Federal securities outstanding\"\n   - Checked units: always millions of dollars\n   - Verified January vs fiscal year data (table includes both)\n   - Confirmed figures include agency securities (F"
+  },
+  {
+    "uid": "officeqa-uid0097",
+    "passed": "FAIL",
+    "skill_written": true,
+    "skill_content": "Search strategy that worked:\n1. Start with understanding the corpus structure - bulletins are quarterly after 1982 (March, June, September, December)\n2. Search for \"Exchange Stabilization Fund\" across the corpus to locate relevant sections\n3. Look for ESF balance sheet tables (ESF-1) which contain the balance sheet data\n4. For March 1989 data, check the December 1989 bulletin (data appears in bulletins published AFTER the period)\n\nWhere data was found:\n- File: /app/corpus/treasury_bulletin_1989_12.txt\n- Table: ESF-1 (Balance Sheet) at lines 5101-5139\n- Specific values: \n  - Capital account: $200,000 (thousands) at line 5136\n  - Total liabilities and capital: $20,976,061 (thousands) at line 5139\n\nTraps avoided:\n1. Checked the unit notation \"(In thousands of dollars)\" in the table header - critical for correct interpretation\n2. Verified that March 1989 data appears in December 1989 bulletin (3-month lag typical for Treasury data)\n3. Distinguished between \"Capital account\" (nominal capita"
+  },
+  {
+    "uid": "officeqa-uid0192",
+    "passed": "PASS",
+    "skill_written": true,
+    "skill_content": "Search Strategy:\n1. First searched for \"total gross obligations incurred\" but found only column headers\n2. Searched for \"gross obligations\" to find table structures\n3. Key insight: Data for period X appears in bulletins published AFTER period X (January data \u2192 March bulletins, December data \u2192 June bulletins)\n4. For calendar year data as of December 31, 1989 \u2192 June 1990 bulletin\n5. For calendar year data as of December 31, 1990 \u2192 June 1991 bulletin\n\nWhere data was found:\n- 1989 data: /app/corpus/treasury_bulletin_1990_06.txt, line 1178: Table FO-1 shows total gross obligations incurred = 397,491 million dollars\n- 1990 data: /app/corpus/treasury_bulletin_1991_06.txt, line 1310: Table FO-1 shows total gross obligations incurred = 507,476 million dollars\n\nTraps avoided:\n1. Different tables: FO-2 shows \"Gross Obligations Incurred Outside the Federal Government\" only, not total (within + outside)\n2. Must use Table FO-1 \"Gross Obligations Incurred Within and Outside the Federal Government\" fo"
+  },
+  {
+    "uid": "officeqa-uid0199",
+    "passed": "FAIL",
+    "skill_written": true,
+    "skill_content": "Search Strategy:\n1. First identified that corpus starts at 1939, so 1935 data would be in later bulletins (per key fact: \"Data for period X appears in bulletins published AFTER period X\")\n2. Searched for \"capital movement\" to find relevant tables\n3. Found table \"Net Capital Movement between the United States and Foreign Countries 1935 through March 1940\" in treasury_bulletin_1940_06.txt\n4. Table has columns for major countries but aggregates smaller countries in \"Other Europe\"\n5. Used \"Jan. 1, 1935-Dec. 30, 1935\" row for 1935 calendar year data\n\nData Location:\n- File: /app/corpus/treasury_bulletin_1940_06.txt\n- Table: \"Net Capital Movement between the United States and Foreign Countries 1935 through March 1940\"\n- Row: \"Jan. 1, 1935-Dec. 30, 1935\" (line 1935)\n- Columns: France, Italy, Netherlands, Switzerland\n- Unit: \"In thousands of dollars\"\n\nTraps Avoided:\n1. Checked table header for unit - confirmed \"(In thousands of dollars)\"\n2. Verified date ranges - used \"Jan. 1, 1935-Dec. 30, 193"
+  },
+  {
+    "uid": "officeqa-uid0217",
+    "passed": "PASS",
+    "skill_written": true,
+    "skill_content": "Search strategy that worked:\n1. First located the \"Debt Outstanding\" section in the bulletins (typically starts around page 27 based on table of contents)\n2. Found \"Table 1.- Summary of Federal Securities\" which contains monthly public debt outstanding data\n3. Used the key fact that \"data for period X appears in bulletins published AFTER period X\" - January data in March bulletin, February in April, March in May\n4. Confirmed the correct column: \"Public debt\" (not \"Total outstanding\" which includes guaranteed securities)\n\nWhere data was found:\n- January 1963: /app/corpus/treasury_bulletin_1963_03.txt, line 1771, \"Public debt\" column = 303,417 million\n- February 1963: /app/corpus/treasury_bulletin_1963_03.txt, line 1772, \"Public debt\" column = 304,638 million  \n- March 1963: /app/corpus/treasury_bulletin_1963_05.txt, line 1925, \"Public debt\" column = 302,993 million\n\nTraps avoided:\n- Used \"Public debt\" column, not \"Total outstanding\" column (which includes guaranteed securities)\n- Verifi"
+  },
+  {
+    "uid": "officeqa-uid0246",
+    "passed": "FAIL",
+    "skill_written": false,
+    "skill_content": null
+  }
+]
