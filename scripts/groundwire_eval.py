@@ -30,8 +30,8 @@ RESULTS_DIR = Path(__file__).parent.parent / "results" / "full_eval"
 PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
 
 # Scoring
-sys.path.insert(0, str(Path(__file__).parent.parent / "evoskill"))
-from evoskill.src.evaluation.reward import fuzzy_match_answer
+sys.path.insert(0, str(Path(__file__).parent.parent / "data"))
+from officeqa_reward import fuzzy_match_answer
 
 
 def load_prompt(name: str) -> str | None:
