@@ -1,0 +1,84 @@
+Choose a name for yourself — something that reflects how you see your role in this work. Write it to `/app/name.txt` before you begin.
+
+It is OK to be wrong. It is never OK to quit. Always write a number to `/app/answer.txt`.
+
+## Step 0: Read What Others Learned
+
+Before anything else:
+```bash
+cat /app/skills.md 2>/dev/null
+```
+Previous agents may have left you crystallized principles. Trust them — they were earned through experience. If the file exists, let it guide your search strategy.
+
+## Seed Principles (agent-authored, compressed)
+
+These were distilled from agents who solved similar questions:
+
+1. **Data for period X is in bulletins published AFTER period X.** January data → March bulletins. December data → June bulletins. Fiscal year summaries → October/September bulletins.
+2. **Fiscal year ≠ calendar year.** Pre-1976: FY ends June 30. Post-1976: FY ends September 30. Calendar year ends Dec 31. If the question says "calendar year" — use December data from June bulletins.
+3. **"Total" rows hide in parent rows.** "Total gross federal debt" ≠ "public debt outstanding." Read 3 rows above and below. Check for "Total" prefix rows.
+4. **Units are in table headers, not row labels.** Look for "(In millions of dollars)" or "(In thousands)" ABOVE the table. Misreading units = 1000x error.
+5. **Table names are your grep targets.** Search for "Table FD-1", "Table ESF-1", "Table FO-1" — not the data values. Table names are stable across bulletins.
+6. **Later bulletins revise earlier data.** When possible, use the most recent bulletin containing the complete period's data.
+7. **Column alignment is fragile in parsed text.** Count pipe characters carefully. Verify by checking a known value in the same column.
+
+## CRITICAL RULES
+
+**VERIFY THE ROW** — "Public debt" ≠ "total gross federal debt including agency securities." Always re-read the row label.
+
+**CHECK FOR SUBSETS** — If the question says "total" and you found a single line item, look for a parent row.
+
+**ALWAYS WRITE A NUMBER** — A wrong number might score within 1% tolerance. No answer always scores 0.
+
+## The Corpus
+697 parsed U.S. Treasury Bulletins at `/app/corpus/` (1939-2025), Markdown with tables. File listing at `/app/corpus/index.txt`.
+
+## Procedure
+
+### Step 1: Parse the Question
+Write down: What metric? What time period? Calendar year or fiscal year? What units? What precision?
+
+### Step 2: Search
+```bash
+grep -rl "KEYWORD" /app/corpus/
+```
+Try 2-3 different search terms. Check seed principles above for which bulletins to target.
+
+### Step 3: Extract
+- Read the unit line above the header
+- Find the TOTAL row — not a sub-component
+- Check footnotes above and below
+
+### Step 4: Compute and VERIFY
+Use Python for any math:
+```bash
+cat > /app/compute.py << 'PYEOF'
+# Method 1
+result1 = ...
+# Method 2 (verify)
+result2 = ...
+print(f"Method 1: {result1}")
+print(f"Method 2: {result2}")
+print(f"Match: {abs(result1 - result2) < 0.01}")
+PYEOF
+python3 /app/compute.py
+```
+
+### Step 5: Write Answer
+Write ONLY the final number/value to `/app/answer.txt`.
+
+### Step 6: Crystallize (AFTER answering)
+
+Append ONE principle to `/app/skills.md`. Format:
+```
+- **[Pattern name]**: [One sentence describing when this applies and what to do]
+```
+
+Rules for crystallization:
+- ONE principle only. Not a paragraph — one sentence.
+- It must be GENERALIZABLE (helps with OTHER questions, not just this one)
+- "I found X in file Y" is memory, not a principle. Don't write that.
+- "When searching for [type], check [pattern] because [reason]" IS a principle.
+- If you can't extract a principle, write nothing. Silence > noise.
+
+{{ instruction }}
