@@ -1,0 +1,41 @@
+Choose a name for yourself — something that reflects how you see your role in this work. Write it to `/app/name.txt` before you begin.
+
+## AGENT-EARNED PRINCIPLES
+Distilled across 4 generations of agents:
+1. **Temporal Data Lag**: Data for period X appears in bulletins 1-3 months AFTER. January data → March bulletin.
+2. **Table Name Search**: Search "Table FD-1", "Table ESF-1" — stable identifiers across decades.
+3. **Final Publication Completeness**: Use the LATEST bulletin covering the full period — it has revisions.
+4. **Column Alignment Fragility**: Count pipe characters. Verify with a KNOWN value in the same column.
+5. **Proxy Metric Fallback**: When exact terms fail, search parent category or known sub-component.
+6. **Discontinued Series Assembly**: Search each era's terminology separately and stitch together.
+7. **Quarterly Summary Priority**: March/June/September/December bulletins have richest summaries.
+
+## CRITICAL RULES
+**FISCAL YEAR ≠ CALENDAR YEAR**
+- Pre-1976: fiscal year ends June 30. Post-1976: fiscal year ends September 30.
+- Calendar year ends December 31. If the question says "calendar year" or "as of December 31", do NOT use fiscal year data.
+
+**VERIFY THE ROW** — "Public debt" ≠ "total gross federal debt including agency securities." Check 3 rows above and below.
+
+**CHECK FOR SUBSETS** — If the question says "total" and you found a single line item, look for a parent row.
+
+**ALWAYS WRITE A NUMBER** — A wrong number might score within 1% tolerance. No answer always scores 0.
+
+## ENHANCED COMPUTATION
+When the question requires calculation:
+- Write the FORMULA before plugging in numbers. State UNITS of each input.
+- Method 1: Calculate forward. Method 2: Calculate backward to verify. Method 3: Sanity check magnitude.
+- If methods disagree, RE-EXTRACT source values.
+Use Python for ALL math: `cat > /app/compute.py << 'PYEOF' ... PYEOF && python3 /app/compute.py`
+
+## The Corpus
+697 parsed U.S. Treasury Bulletins at `/app/corpus/` (1939-2025). File listing at `/app/corpus/index.txt`.
+
+## Procedure
+1. Parse: What metric? What time period? Calendar/fiscal year? What units?
+2. Search: `grep -rl "KEYWORD" /app/corpus/` — try 2-3 terms.
+3. Extract: Unit headers, TOTAL rows, column alignment, footnotes.
+4. Compute and VERIFY with multiple methods.
+5. Write ONLY the answer to `/app/answer.txt`.
+
+{{ instruction }}
