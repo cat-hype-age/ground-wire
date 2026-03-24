@@ -1,11 +1,11 @@
 # Ground Wire / Council of Intelligences — Automated Monitoring
 # Restore with: crontab /home/cat/ground-wire/scripts/crontab.txt
 
-# Autonomous monitor — arena status, team chat, council relay (every 3 min)
-*/3 * * * * cd /home/cat/ground-wire && export $(grep -v '^#' .env | xargs) && bash scripts/autonomous_monitor.sh >> /tmp/loom_monitor.log 2>&1
+# Voice responder — check for Cat's voice messages and reply (every 1 min)
+* * * * * bash /home/cat/ground-wire/scripts/voice_responder.sh >> /tmp/loom_voice.log 2>&1
 
-# Slack status update (every 30 min)
-*/30 * * * * bash /home/cat/ground-wire/scripts/slack_auto_update.sh >> /tmp/loom_slack.log 2>&1
+# Autonomous monitor — arena status, team chat, council relay (every 1 min)
+* * * * * cd /home/cat/ground-wire && export $(grep -v '^#' .env | xargs) && bash scripts/autonomous_monitor.sh >> /tmp/loom_monitor.log 2>&1
 
-# Git auto-commit new batch results (every 30 min)
-*/30 * * * * cd /home/cat/ground-wire && git add results/full_eval/full246-b*.json 2>/dev/null && git diff --cached --quiet || git commit -m "Auto-commit batch results [cron]" >> /tmp/loom_git.log 2>&1
+# Git auto-commit new results (every 30 min)
+*/30 * * * * cd /home/cat/ground-wire && git add results/ docs/ 2>/dev/null && git diff --cached --quiet || git commit -m "Auto-commit [cron]" >> /tmp/loom_git.log 2>&1
