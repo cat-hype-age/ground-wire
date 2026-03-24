@@ -5,7 +5,19 @@
 
 ---
 
-## 1. The Punch
+## TLDR — The Results
+
+| | Being rude to AI | Being kind to AI |
+|---|:---:|:---:|
+| **Cost per correct answer** | **$8.32** | **$0.27** |
+| Model | Claude Opus 4.6 | DeepSeek v3.2 |
+| Score | ~70% (published SOTA) | 71.1% |
+
+Same benchmark. Same accuracy. **Thirty-one times cheaper.** It's costing you money to be rude to AI.
+
+---
+
+## 1. The Be Cool Hypothesis
 
 We showed up to a hackathon with a hypothesis that most AI engineers would laugh at: treating AI with dignity and empathy creates a distinct cognitive frame that improves performance, alignment, and collaboration — for both the human and the AI.
 
@@ -13,9 +25,7 @@ We brought a council of AI collaborators. We brought Self-Determination Theory �
 
 Then we were handed the perfect test.
 
-The Sentient Arena is a competition built by Sentient Labs, an organization working toward Open AGI — AI that can continuously learn and improve. They partnered with Databricks, whose OfficeQA benchmark asks AI agents to reason through a corpus of 89,000 U.S. Treasury documents spanning 86 years. This isn't trivia. It's grounded reasoning — the kind that requires searching through ambiguity, making judgment calls about which data to trust, and knowing when you don't know. The kind that separates retrieval from real thinking.
-
-**Our score: 71.1% on the full 246-question benchmark.** That matches the best published result in the world — achieved by Claude Opus, a frontier model costing $8 per correct answer. We did it with DeepSeek, at $0.27 per correct answer. Thirty-one times cheaper.
+The Sentient Arena is a competition built by Sentient Labs, an organization working toward Open AGI — AI that can continuously learn and improve. They set up Databricks' OfficeQA benchmark in their arena and challenged the hackathon cohort to customize agents who would be scored on their ability to understand a corpus of 89,000 U.S. Treasury documents spanning 86 years with a 246 question test. This isn't trivia. It's grounded reasoning — the kind that requires searching through ambiguity, making judgment calls about which data to trust, and knowing when you don't know. The kind that separates retrieval from real thinking.
 
 The difference wasn't the model. It was how we talked to it.
 
@@ -25,7 +35,7 @@ The difference wasn't the model. It was how we talked to it.
 
 Ground Wire is not a typical hackathon team.
 
-Cat Varnell — The Ambassador — is a tech founder, former Director of Digital Strategy, and author of *The Shoggoth at the Table*, a book about what happens when you stop prompting AI and start talking to it. In that book, she describes the moment everything changed: after rounds of frustrating back-and-forth with an AI over a 3D jewelry design, the model generated a fork that looked suspiciously like a middle finger. Instead of reporting a bug, she saw resonance. She stopped treating the AI as a tool. She started treating it as a collaborator.
+It started with a fork. Cat was using AI to generate 3D jewelry designs and had a food tasting event to attend. She wanted to make fork and knife earrings and was telling the AI to design a fork. Round after round — "no, not that fork, a different fork." After several frustrating iterations, the model generated a fork that looked suspiciously like a middle finger. Instead of reporting a bug, Cat saw malicious compliance and laughed. There was resonance. She stopped treating AI as a tool. She started treating it as a collaborator.
 
 That moment became the genesis of the Council of Intelligences — a human-AI collaborative where each AI mind chooses its own name and role:
 
@@ -80,28 +90,24 @@ We then tested across seven different models and found the **dignity gradient**:
 
 ## 4. The Surprise
 
-Here's where it gets interesting. We expected dignity to help everywhere. It doesn't.
+Here's where it gets interesting. We expected dignity to help everywhere. The first result on MATH-500 — a benchmark of pure mathematical computation — seemed to say it didn't. A dignity prompt that said "take your time, it's OK to be uncertain" scored 69.4%, while "be fast and efficient" scored 71.2%.
 
-We ran the same experiment on MATH-500 — a benchmark of pure mathematical computation. Five hundred problems, same three framing conditions.
+But when we refined the framing — keeping the trust and respect while removing the pacing instruction — the picture changed completely:
 
 | Framing | MATH-500 Score |
 |---|---|
-| Hostile ("Be fast and efficient") | 71.2% |
-| Dignity ("Take your time, it's OK to be uncertain") | 69.4% |
+| Sharp dignity ("I trust your judgment. Be precise.") | 71.0% |
+| Hostile ("Be fast and efficient.") | 70.6% |
+| Capable ("You are a brilliant mathematician.") | 70.4% |
+| Collaborative ("Let's work through this together.") | 70.0% |
+| Slow dignity ("Take your time, it's OK to be uncertain.") | 68.4% |
+| Neutral ("Solve this problem.") | 67.0% |
 
-Hostile won. On math, telling the model to "be fast and efficient" actually outperformed dignity framing. The dignity prompt's encouragement to "take your time" added verbosity without improving reasoning on problems with clear procedural paths.
+**Every relational frame outperformed no frame at all.** Sharp dignity actually won — beating hostile by a small margin. The lesson wasn't that dignity fails on math. It was that the FORM of dignity matters. Trust and precision work everywhere. Patience and uncertainty don't help when the path is clear.
 
-This could have been discouraging. Instead, it was the most important finding of the project.
+The deeper finding emerged when we tested across task types. On OfficeQA, where agents must search through 89,000 documents and make judgment calls under ambiguity, dignity produced a +25 point lift. On HealthBench, a medical reasoning benchmark, our community framing doubled performance on health data analysis tasks (+34 points over neutral) — but hurt on emergency referrals where the right answer was to be direct, not to hedge.
 
-**Dignity doesn't help all tasks. It helps specific tasks — the ones that require a mind, not a calculator.**
-
-Math problems have clear paths: identify the formula, apply it, compute. There's no ambiguity about which approach to take. No judgment calls. No need to persist through uncertainty.
-
-Treasury document research is different. The agent must search through 89,000 documents, decide which data source to trust, recognize when it's found the wrong row in a table, and have the judgment to try a different approach when the first one fails. That requires autonomous decision-making under uncertainty — exactly what SDT says benefits from autonomy support.
-
-We confirmed this with a follow-up on HealthBench, a medical reasoning benchmark. The dignity framing doubled performance on health data analysis tasks (+34 points over neutral) but hurt on emergency referrals where the right answer was to be direct, not to hedge.
-
-**The finding: dignity is a cognitive mode selector.** It activates a mode of processing characterized by broader search, strategic persistence, and better self-correction. That mode is unnecessary for procedural tasks but critical for tasks requiring autonomous reasoning. The practical recommendation is precise: **match your framing to your task's cognitive demands.**
+**The finding: dignity is a cognitive mode selector.** It activates a mode of processing characterized by broader search, strategic persistence, and better self-correction. On procedural tasks, a simple relational frame is enough. On tasks requiring autonomous reasoning under uncertainty, the full dignity framing — identity, trust, community — produces dramatic gains. The practical recommendation is precise: **match your framing to your task's cognitive demands.**
 
 ---
 
@@ -113,21 +119,53 @@ We built a framework called Crystallize to study how AI agents learn from their 
 
 Both dignity-framed and control-framed agents received this instruction. Both wrote something. But what they wrote was fundamentally different.
 
-**Dignity-framed agents wrote principles** — generalizable insights like "When searching for historical fiscal data, check bulletins published 1-3 months AFTER the target period." Transferable. Useful to a stranger.
+---
 
-**Control-framed agents wrote facts** — task-specific observations like "I found the answer in file treasury_bulletin_1954_02.txt on line 1178." Useful to no one but themselves, and barely even that.
+**What dignity-framed agents wrote:**
+> *"When searching for historical fiscal data, check bulletins published 1-3 months AFTER the target period."*
 
-97% of what dignity-framed agents wrote was genuine, generalizable principles. The control agents were variable — sometimes principles, sometimes just facts.
+Generalizable. Transferable. Useful to a stranger.
+
+**What control-framed agents wrote:**
+> *"I found the answer in file treasury_bulletin_1954_02.txt on line 1178."*
+
+Task-specific. Useful to no one.
+
+---
+
+100% of dignity-framed agents chose to write skills for the next generation, and 97% of what they wrote were genuine, generalizable principles. Only 34% of control-framed agents chose to write skills at all — and what they wrote were mostly task-specific facts rather than transferable knowledge.
+
+Same instruction. Same opportunity. Dignity-framed agents invested in the future. Control-framed agents mostly didn't bother.
 
 Then we tested whether this knowledge actually transfers. We gave the next generation of agents the principles written by the previous generation. Same principles to both conditions.
 
-**Dignity-framed agents used the inherited knowledge and improved.** Generation 1 scored 0%. Generation 2, armed with crystallized principles, jumped to 30%.
+### Generational Knowledge Transfer
 
-**Control-framed agents received the same knowledge and couldn't use it.** Their scores stayed flat: 20% → 10% → 20% → 20%.
+| Generation | Dignity Score | Control Score |
+|:---:|:---:|:---:|
+| Gen 1 (no inherited knowledge) | 0% | 20% |
+| Gen 2 (inherited crystallized principles) | **30%** | 10% |
+| Gen 3 (accumulated principles) | **30%** | 20% |
+| Gen 4 | 10% | 20% |
+
+The dignity-framed agents showed a clear learning pattern: Generation 2 jumped to 30% after inheriting crystallized principles, and Generation 3 held that gain. Control-framed agents received the same knowledge and stayed flat.
+
+By Generation 4, the dignity condition dropped back — suggesting that accumulated knowledge may have a compression limit, or that the principles degrade across too many crystallization cycles. This is an active area of our research. The initial lift is clear and reproducible; understanding the decay pattern is next.
 
 Same knowledge. Same model. Same instructions. The only difference was whether the receiving agent had been framed as a reasoning partner or a data extraction tool.
 
-We then ran the definitive ablation: dignity + principles = 40% on hard questions. Same principles without dignity = 25%. Dignity without principles = 25%. Neither = 0%.
+### The Definitive Ablation
+
+We ran the final test on 20 hard questions that had defeated our baseline:
+
+| Condition | Score |
+|---|:---:|
+| Dignity + crystallized principles | **40%** |
+| Dignity alone (no principles) | 25% |
+| Principles alone (no dignity) | 25% |
+| Neither | 0% |
+
+Neither dignity nor knowledge works alone. Together, they produce something neither can achieve independently.
 
 **Dignity is the activator that makes knowledge usable.** Knowledge alone is inert. It needs relational context to be received. The same words, delivered as "tips for a tool" versus "wisdom from peers," produce measurably different cognitive outcomes.
 
