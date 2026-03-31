@@ -1,0 +1,550 @@
+{
+  "schema_version": "ATIF-v1.6",
+  "session_id": "ses_2ba2366b6ffeP2RBEEV9a0tidy",
+  "agent": {
+    "name": "opencode",
+    "version": "1.3.11",
+    "model_name": "openrouter/minimax/minimax-m2.5"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-03-31T21:46:23.302000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "I'll start by choosing my mode and then exploring the corpus to find the relevant data.",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_6f900214508947889193920d",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/draft.txt",
+            "content": "SCRIBE"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_6f900214508947889193920d",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 10551,
+        "completion_tokens": 275,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00325578,
+        "extra": {
+          "reasoning_tokens": 218
+        }
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-03-31T21:46:32.829000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_fce6f2a6dfab4be09902a8ff",
+          "function_name": "glob",
+          "arguments": {
+            "pattern": "/app/corpus/treasury_bulletin_199*"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_fce6f2a6dfab4be09902a8ff",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 10848,
+        "completion_tokens": 116,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00298728,
+        "extra": {
+          "reasoning_tokens": 79
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-03-31T21:46:52.904000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_27ddaf8e8bb3473ebe8fd776",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | head -30",
+            "description": "List corpus directory contents"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_27ddaf8e8bb3473ebe8fd776",
+            "content": "index.txt\ntreasury_bulletin_1939_01.txt\ntreasury_bulletin_1939_02.txt\ntreasury_bulletin_1939_03.txt\ntreasury_bulletin_1939_04.txt\ntreasury_bulletin_1939_05.txt\ntreasury_bulletin_1939_06.txt\ntreasury_bulletin_1939_07.txt\ntreasury_bulletin_1939_08.txt\ntreasury_bulletin_1939_09.txt\ntreasury_bulletin_1939_10.txt\ntreasury_bulletin_1939_11.txt\ntreasury_bulletin_1939_12.txt\ntreasury_bulletin_1940_01.txt\ntreasury_bulletin_1940_02.txt\ntreasury_bulletin_1940_03.txt\ntreasury_bulletin_1940_04.txt\ntreasury_bulletin_1940_05.txt\ntreasury_bulletin_1940_06.txt\ntreasury_bulletin_1940_07.txt\ntreasury_bulletin_1940_08.txt\ntreasury_bulletin_1940_09.txt\ntreasury_bulletin_1940_10.txt\ntreasury_bulletin_1940_11.txt\ntreasury_bulletin_1940_12.txt\ntreasury_bulletin_1941_01.txt\ntreasury_bulletin_1941_02.txt\ntreasury_bulletin_1941_03.txt\ntreasury_bulletin_1941_04.txt\ntreasury_bulletin_1941_05.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 10985,
+        "completion_tokens": 56,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00287358,
+        "extra": {
+          "reasoning_tokens": 10
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-03-31T21:46:57.777000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_79250b702f024cb5b1fe8e0c",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep -E \"treasury_bulletin_199[123]\"",
+            "description": "List files from 1991-1993"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_79250b702f024cb5b1fe8e0c",
+            "content": "treasury_bulletin_1991_03.txt\ntreasury_bulletin_1991_06.txt\ntreasury_bulletin_1991_09.txt\ntreasury_bulletin_1991_12.txt\ntreasury_bulletin_1992_03.txt\ntreasury_bulletin_1992_06.txt\ntreasury_bulletin_1992_09.txt\ntreasury_bulletin_1992_12.txt\ntreasury_bulletin_1993_03.txt\ntreasury_bulletin_1993_06.txt\ntreasury_bulletin_1993_09.txt\ntreasury_bulletin_1993_12.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11438,
+        "completion_tokens": 77,
+        "cached_tokens": 11040,
+        "cost_usd": 0.0005598,
+        "extra": {
+          "reasoning_tokens": 14
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": "2026-03-31T21:47:12.776000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me search for the relevant data in the Treasury bulletins around that time period:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_e10f3f5b02e94a3aa9d5672e",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "off-budget",
+            "path": "/app/corpus",
+            "include": "*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_e10f3f5b02e94a3aa9d5672e",
+            "content": "Found 2873 matches (showing first 100)\n/app/corpus/treasury_bulletin_2008_06.txt:\n  Line 390: Refunds of collections generally are treated as reductions of collections, whereas payments for earned-income tax credits in excess of tax liabilities are treated as outlays. Outlays during a fiscal year may be for payment of obligations incurred in prior years or in the same year. Outlays, therefore, flow in part from unexpended balances of prior year budget authority and from budget authority provided for the year in which the money is spent. Total outlays include both budget and off-budget outlays and are stated net of offsetting collections.\n  Line 400: Offsetting receipts are generally deducted from budget authority and outlays by function, subfunction, or agency. There are four types of receipts, however, that are deducted from budget totals as undistributed offsetting receipts. They are: (1) agencies' payments (including payments by off-budget Federal entities) as employers into employees' retirement funds; (2) interest received by trust funds; (3) rents and royalties on the Outer Continental Shelf lands; and (4) other interest (i.e., that collected on Outer Continental Shelf money in deposit funds when such money is transferred into the budget).\n  Line 402: The Government has used the unified budget concept set forth in the \u201cReport of the President's Commission on Budget Concepts\u201d as a foundation for its budgetary analysis and presentation since 1969. The concept calls for the budget to include all of the Government's fiscal transactions with the public. Since 1971, however, various laws have been enacted removing several Federal entities from (or creating them outside of) the budget. Other laws have moved certain off-budget Federal entities onto the budget. Under current law, the off-budget Federal entities consist of the two Social Security trust funds, Federal Old-Age and Survivors Insurance and the Federal Disability Insurance Trust Fund, and the Postal Service.\n  Line 404: Although an off-budget Federal entity's receipts, outlays, and surplus or deficit ordinarily are not subject to targets set by the Congressional resolution, the Balanced Budget and Emergency Deficit Control Act of 1985 [commonly known as the Gramm-Rudman-Hollings Act as amended by the Budget Enforcement Act of 1990 (2 United States Code 900-922)] included off-budget surplus or deficit in calculating deficit targets under that act and in calculating excess deficit. Partly for this reason, attention has focused on both on- and off-budget receipts, outlays and deficit of the Government.\n  Line 412: Tables FFO-1, FFO-2, and FFO-3 are published quarterly and cover 5 years of data, estimates for 2 years detail for 13 months, and fiscal year-to-date data. They provide a summary of data relating to Federal fiscal operations reported by Federal entities and disbursing officers, and daily reports from the FRBs. They also detail accounting transactions affecting receipts and outlays of the Government and off-budget Federal entities and their related effect on assets and liabilities of the Government. Data are derived from the \u201cMonthly Treasury Statement of Receipts and Outlays of the United States Government.\u201d\n  Line 416: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n  Line 418: Table FFO-3 details on- and off-budget outlays by agency.\n  Line 420: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n  Line 470: | Total on- and off-budget results: | nan | nan |\n  Line 484: | Total on- and off-budget financing | 205864 | 311399 |\n  Line 820: | Employment and general retirement (off-budget) | - | - | 317477 | 317477.0 | - | - | 305450 | 305450.0 |\n  Line 4970: Intrabudgetary transactions (\"Federal Fiscal Operations\")\u2014These occur when payment and receipt both occur within the budget, or when payment is made from off-budget Federal entities whose budget authority and outlays are excluded from the budget totals.\n\n/app/corpus/treasury_bulletin_1981_01.txt:\n  Line 493: 9/ Includes: Seigniorage; increment of gold; fiscal 1969 conversions of certain corporations to private ownership; fiscal 1970 reclassification of Commodity Credit Corporation certificates of interest; fiscal 1974 conversion of interest receipts of Government accounts to an accrual basis; and net outlays of off-budget Federal agencies. Also includes rural electrification and telephone revolving fund since May 12, 1973, Postal Service fund since July 1973, Federal Financing Bank since July 1974, housing for the elderly or handicapped fund from August 22, 1974, through September 30, 1977 and Pension Benefit Guaranty Corporation since September 17, 1974.\n  Line 1321: and General Accounting Office only. 3/ This fund was reclassified from an off-budget to a budgetary account pursuant to an act approved Oct. 4, 1977. 4/ Postal Service since July 1, 1973; Rural Electrification Administration revolving funds since May 12, 1973, and Pension Benefit Guaranty Corporation since Sept. 17, 1974. * Less than $500,000.\n  Line 1916: Source: Bureau of Government Financial Operations and Monthly Treasury Statement of Receipts and Outlays of the U.S. Government. Note: The Export-Import Bank was moved within the Budget effective October 1, 1976 pursuant to Public Law 93-646. Adjustments are made to include totals for the period it was outside the Budget (August 17, 1971 through September 30, 1976). Also, adjustments are made to re-flect certain Export-Import Bank borrowing transactions now classified as agency debt. These transactions were previously reported as off-budget negative outlays. 1/ Includes unredeemed matured securities outstanding on which interest has ceased.\n  Line 4255: classified as agency debt. These transactions were previously reported as off-budget negative outlays. 1/ Includes a nonmarketable Federal Reserve special certificate for $2,500. 2/ Adjusted to exclude non-interest-bearing notes issued to the International Monetary Fund to reflect the unified budget concept. 3/ For detail, see Table FD-5. * Less than $500,000. r Revised.\n\n/app/corpus/treasury_bulletin_1979_10.txt:\n  Line 440: 8/ Includes: Seigniorage; increment of gold; fiscal 1969 conversions of certain corporations to private ownership; fiscal 1970 reclassification of Commodity Credit Corporation, certificates of interest; fiscal 1974 conversion of interest receipts of Government accounts to an accrual basis; and net outlays of off-budget Federal agencies. Also includes rural electrification and telephone revolving fund since May 12, 1973, Postal Service fund since July 1973, Federal Financing Bank since July 1974, housing for the elderly or handicapped fund from August 22, 1974, through September 30, 1977 and Pension Benefit Guaranty Corporation since September 17, 1974.\n  Line 739: 1/ Includes receipts from off-budget Federal agencies to the Civil Service Retirement and Disability Fund as of May 1974.\n  Line 1207: and General Accounting Office only. 3/ This fund was reclassified from an off-budget to a budgetary account pursuant to an act approved Oct. 4, 1977. 4/ Postal Service since July 1, 1973; Rural Electrification Administration revolving funds since May 12, 1973, and Pension Benefit Guaranty Corporation since Sept. 17, 1974. * Less than $500,000.\n  Line 1806: Source: Bureau of Government Financial Operations and Monthly Treasury Statement of Receipts and Outlays of the U.S. Government. Note: The Export-Import Bank was moved within the Budget effective October 1, 1976 pursuant to Public Law 93-646. Adjustments are made to include totals for the period it was outside the Budget (August 17, 1971 through September 30, 1976). Also, adjustments are made to reflect certain Export-Import Bank borrowing transactions now classified as agency debt. These transactions were previously reported as off-budget negative outlays. 1/ Includes unredeemed matured securities outstanding on which interest has ceased.\n  Line 5390: classified as agency debt. These transactions were previously reported as off-budget negative outlays. 1/ Includes a nonmarketable Federal Reserve special certificate for $2,500. 2/ Adjusted to exclude non-interest-bearing notes issued of the International Monetary Fund to reflect the unified budget concept. 3/ For detail, see Table FD-6.\n\n/app/corpus/treasury_bulletin_2022_09.txt:\n  Line 334: Refunds of collections generally are treated as reductions of collections, whereas payments for earned income tax credits in excess of tax liabilities are treated as outlays. Outlays during a fiscal year may be for payment of obligations incurred in prior years or in the same year. Outlays, therefore, flow in part from unexpended balances of prior year budget authority and from budget authority provided for the year in which the money is spent. Total outlays include both budget and off-budget outlays and are stated net of offsetting collections.\n  Line 344: Offsetting receipts are generally deducted from budget authority and outlays by function, subfunction, or agency. There are four types of receipts, however, that are deducted from budget totals as undistributed offsetting receipts. They are: (1) agencies' payments (including payments by off-budget Federal entities) as employers into employees' retirement funds; (2) interest received by trust funds; (3) rents and royalties on the Outer Continental Shelf lands; and (4) other interest (i.e., that collected on Outer Continental Shelf money in deposit funds when such money is transferred into the budget).\n  Line 346: The Government has used the unified budget concept set forth in the \u201cReport of the President\u2019s Commission on Budget Concepts\u201d as a foundation for its budgetary analysis and presentation since 1969. The concept calls for the budget to include all of the Government\u2019s fiscal transactions with the public. Since 1971, however, various laws have been enacted removing several Federal entities from (or creating them outside of) the budget. Other laws have moved certain off-budget Federal entities onto the budget. Under current law, the off-budget Federal entities consist of the two Social Security trust funds, Federal Old-Age and Survivors Insurance and the Federal Disability Insurance Trust Fund, and the Postal Service.\n  Line 348: Although an off-budget Federal entity's receipts, outlays, and surplus or deficit ordinarily are not subject to targets set by the Congressional resolution, the Balanced Budget and Emergency Deficit Control Act of 1985 [commonly known as the Gramm-Rudman-Hollings Act as amended by the Budget Enforcement Act of 1990 (2 United States Code 900-922)] included off-budget surplus or deficit in calculating deficit targets under that act and in calculating excess deficit. Partly for this reason, attention has focused\n  Line 352: on both on- and off-budget receipts, outlays and deficit of the Government.\n  Line 354: Tables FFO-1, FFO-2, and FFO-3 are published quarterly and cover 5 years of data, estimates for 2 years, detail for 13 months, and fiscal year-to-date data. They provide a summary of data relating to Federal fiscal operations reported by Federal entities and disbursing officers, and daily reports from the FRBs. They also detail accounting transactions affecting receipts and outlays of the Government and off-budget Federal entities and their related effect on assets and liabilities of the Government. Data are derived from the \"Monthly Treasury Statement of Receipts and Outlays of the United States Government.\"\n  Line 358: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n  Line 360: Table FFO-3 details on- and off-budget outlays by agency.\n  Line 362: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n  Line 408: | Total on- and off-budget results: | nan | nan |\n  Line 422: | Total on- and off-budget financing | -153150 | 515067 |\n  Line 459: | Fiscal year or Month > Unnamed: 0_level_1 | Total on-budget and off-budget results > Total Receipts (1) | Total on-budget and off-budget results > On-budget receipts (2) | Total on-budget and off-budget results > Off-budget receipts (3) | Total on-budget and off-budget results > Total outlays (4) | Total on-budget and off-budget results > On-budget outlays (5) | Total on-budget and off-budget results > Off-budget outlays (6) | Means of financing -net transactions > Total surplus deficit (-) (7) | Means of financing -net transactions > On-budget surplus deficit (-) (8) | Means of financing -net transactions > Off-budget surplus deficit (-) (9) | Unnamed: 10_level_0 > Borrowing from the public- Federal securities Public debt securities (10) |\n  Line 722: | Employment and general retirement (off-budget) | - | - | 806252 | 806252.0 | - | - | 712567 | 712567.0 |\n  Line 2510: Intrabudgetary transactions (\"Federal Fiscal Operations\")\u2014These occur when payment and receipt both occur within the budget, or when payment is made from off-budget Federal entities whose budget authority and outlays are excluded from the budget totals.\n\n/app/corpus/treasury_bulletin_2023_03.txt:\n  Line 341: Refunds of collections generally are treated as reductions of collections, whereas payments for earned-income tax credits in excess of tax liabilities are treated as outlays. Outlays during a fiscal year may be for payment of obligations incurred in prior years or in the same year. Outlays, therefore, flow in part from unexpended balances of prior year budget authority and from budget authority provided for the year in which the money is spent. Total outlays include both budget and off-budget outlays and are stated net of offsetting collections.\n  Line 351: Offsetting receipts are generally deducted from budget authority and outlays by function, subfunction, or agency. There are four types of receipts, however, that are deducted from budget totals as undistributed offsetting receipts. They are: (1) agencies' payments (including payments by off-budget Federal entities) as employers into employees' retirement funds; (2) interest received by trust funds; (3) rents and royalties on the Outer Continental Shelf lands; and (4) other interest (i.e., that collected on Outer Continental Shelf money in deposit funds when such money is transferred into the budget).\n  Line 353: The Government has used the unified budget concept set forth in the \u201cReport of the President\u2019s Commission on Budget Concepts\u201d as a foundation for its budgetary analysis and presentation since 1969. The concept calls for the budget to include all of the Government\u2019s fiscal transactions with the public. Since 1971, however, various laws have been enacted removing several Federal entities from (or creating them outside of) the budget. Other laws have moved certain off-budget Federal entities onto the budget. Under current law, the off-budget Federal entities consist of the two Social Security trust funds, Federal Old-Age and Survivors Insurance and the Federal Disability Insurance Trust Fund, and the Postal Service.\n  Line 355: Although an off-budget Federal entity's receipts, outlays, and surplus or deficit ordinarily are not subject to targets set by the Congressional resolution, the Balanced Budget and Emergency Deficit Control Act of 1985 [commonly known as the Gramm-Rudman-Hollings Act as amended by the Budget Enforcement Act of 1990 (2 United States Code 900-922)] included off-budget surplus or deficit in calculating deficit targets under that act and in calculating excess deficit. Partly for this reason, attention has focused\n  Line 359: on both on- and off-budget receipts, outlays and deficit of the Government.\n  Line 361: Tables FFO-1, FFO-2, and FFO-3 are published quarterly and cover 5 years of data, estimates for 2 years, detail for 13 months, and fiscal year-to-date data. They provide a summary of data relating to Federal fiscal operations reported by Federal entities and disbursing officers, and daily reports from the FRBs. They also detail accounting transactions affecting receipts and outlays of the Government and off-budget Federal entities and their related effect on assets and liabilities of the Government. Data are derived from the \"Monthly Treasury Statement of Receipts and Outlays of the United States Government.\"\n  Line 365: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n  Line 367: Table FFO-3 details on- and off-budget outlays by agency.\n  Line 369: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n  Line 407: | Total on- and off-budget results: | nan | nan |\n  Line 421: | Total on- and off-budget financing | 421410 | 421410 |\n  Line 743: | Employment and general retirement (off-budget) | - | - | 254318 | 254318.0 | - | - | 234476 | 234476.0 |\n  Line 3627: Intrabudgetary transactions (\u201cFederal Fiscal Operations\u201d)\u2014These occur when payment and receipt both occur within the budget, or when payment is made from off-budget Federal entities whose budget authority and outlays are excluded from the budget totals.\n\n/app/corpus/treasury_bulletin_2020_06.txt:\n  Line 312: Refunds of collections generally are treated as reductions of collections, whereas payments for earned income tax credits in excess of tax liabilities are treated as outlays. Outlays during a fiscal year may be for payment of obligations incurred in prior years or in the same year. Outlays, therefore, flow in part from unexpended balances of prior year budget authority and from budget authority provided for the year in which the money is spent. Total outlays include both budget and off-budget outlays and are stated net of offsetting collections.\n  Line 322: Offsetting receipts are generally deducted from budget authority and outlays by function, subfunction, or agency. There are four types of receipts, however, that are deducted from budget totals as undistributed offsetting receipts. They are: (1) agencies' payments (including payments by off-budget Federal entities) as employers into employees' retirement funds; (2) interest received by trust funds; (3) rents and royalties on the Outer Continental Shelf lands; and (4) other interest (i.e., that collected on Outer Continental Shelf money in deposit funds when such money is transferred into the budget).\n  Line 324: The Government has used the unified budget concept set forth in the \u201cReport of the President\u2019s Commission on Budget Concepts\u201d as a foundation for its budgetary analysis and presentation since 1969. The concept calls for the budget to include all of the Government\u2019s fiscal transactions with the public. Since 1971, however, various laws have been enacted removing several Federal entities from (or creating them outside of) the budget. Other laws have moved certain off-budget Federal entities onto the budget. Under current law, the off-budget Federal entities consist of the two Social Security trust funds, Federal Old-Age and Survivors Insurance and the Federal Disability Insurance Trust Fund, and the Postal Service.\n  Line 326: Although an off-budget Federal entity's receipts, outlays, and surplus or deficit ordinarily are not subject to targets set by the Congressional resolution, the Balanced Budget and Emergency Deficit Control Act of 1985 [commonly known as the Gramm-Rudman-Hollings Act as amended by the Budget Enforcement Act of 1990 (2 United States Code 900-922)] included off-budget surplus or deficit in calculating deficit targets under that act and in calculating excess deficit. Partly for this reason, attention has focused\n  Line 334: on both on- and off-budget receipts, outlays and deficit of the Government.\n  Line 336: Tables FFO-1, FFO-2, and FFO-3 are published quarterly and cover 5 years of data, estimates for 2 years detail for 13 months, and fiscal year-to-date data. They provide a summary of data relating to Federal fiscal operations reported by Federal entities and disbursing officers, and daily reports from the FRBs. They also detail accounting transactions affecting receipts and outlays of the Government and off-budget Federal entities and their related effect on assets and liabilities of the Government. Data are derived from the \"Monthly Treasury Statement of Receipts and Outlays of the United States Government.\"\n  Line 340: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n  Line 342: Table FFO-3 details on- and off-budget outlays by agency.\n  Line 344: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n  Line 396: | Total on- and off-budget results: | nan | nan |\n  Line 410: | Total on- and off-budget financing | 354460.0 | 743590.0 |\n  Line 459: | Fiscal year or Month > Fiscal year or Month > Unnamed: 0_level_2 | Total on-budget and off-budget results > Total Receipts (1) > Public debt securities (10) | Total on-budget and off-budget results > On-budget receipts (2) > Public debt securities (10) | Total on-budget and off-budget results > Off-budget receipts (3) > Public debt securities (10) | Total on-budget and off-budget results > Total outlays (4) > Public debt securities (10) | Total on-budget and off-budget results > On-budget outlays (5) > Public debt securities (10) | Total on-budget and off-budget results > Off-budget outlays (6) > Public debt securities (10) | Means of financing -net transactions > Total surplus deficit (-) (7) > Public debt securities (10) | Means of financing -net transactions > On-budget surplus deficit (-) (8) > Public debt securities (10) | Means of financing -net transactions > Off-budget surplus deficit (-) (9) > Public debt securities (10) | Unnamed: 10_level_0 > Borrowing from the public- Federal securities > Unnamed: 10_level_2 |\n  Line 742: | Employment and general retirement (off-budget) | - | - | 460353 | 460353.0 | - | - | 435402 | 435402.0 |\n  Line 2650: Intrabudgetary transactions (\u201cFederal Fiscal Operations\u201d)\u2014These occur when payment and receipt both occur within the budget, or when payment is made from off-budget Federal entities whose budget authority and outlays are excluded from the budget totals.\n\n/app/corpus/treasury_bulletin_2023_09.txt:\n  Line 319: Refunds of collections generally are treated as reductions of collections, whereas payments for earned-income tax credits in excess of tax liabilities are treated as outlays. Outlays during a fiscal year may be for payment of obligations incurred in prior years or in the same year. Outlays, therefore, flow in part from unexpended balances of prior year budget authority and from budget authority provided for the year in which the money is spent. Total outlays include both budget and off-budget outlays and are stated net of offsetting collections.\n  Line 329: Offsetting receipts are generally deducted from budget authority and outlays by function, subfunction, or agency. There are four types of receipts, however, that are deducted from budget totals as undistributed offsetting receipts. They are: (1) agencies' payments (including payments by off-budget Federal entities) as employers into employees' retirement funds; (2) interest received by trust funds; (3) rents and royalties on the Outer Continental Shelf lands; and (4) other interest (i.e., that collected on Outer Continental Shelf money in deposit funds when such money is transferred into the budget).\n  Line 331: The Government has used the unified budget concept set forth in the \u201cReport of the President\u2019s Commission on Budget Concepts\u201d as a foundation for its budgetary analysis and presentation since 1969. The concept calls for the budget to include all of the Government\u2019s fiscal transactions with the public. Since 1971, however, various laws have been enacted removing several Federal entities from (or creating them outside of) the budget. Other laws have moved certain off-budget Federal entities onto the budget. Under current law, the off-budget Federal entities consist of the two Social Security trust funds, Federal Old-Age and Survivors Insurance and the Federal Disability Insurance Trust Fund, and the Postal Service.\n  Line 333: Although an off-budget Federal entity's receipts, outlays, and surplus or deficit ordinarily are not subject to targets set by the Congressional resolution, the Balanced Budget and Emergency Deficit Control Act of 1985 [commonly known as the Gramm-Rudman-Hollings Act as amended by the Budget Enforcement Act of 1990 (2 United States Code 900-922)] included off-budget surplus or deficit in calculating deficit targets under that act and in calculating excess deficit. Partly for this reason, attention has focused\n  Line 337: on both on- and off-budget receipts, outlays and deficit of the Government.\n  Line 339: Tables FFO-1, FFO-2, and FFO-3 are published quarterly and cover 5 years of data, estimates for 2 years detail for 13 months, and fiscal year-to-date data. They provide a summary of data relating to Federal fiscal operations reported by Federal entities and disbursing officers, and daily reports from the FRBs. They also detail accounting transactions affecting receipts and outlays of the Government and off-budget Federal entities and their related effect on assets and liabilities of the Government. Data are derived from the \"Monthly Treasury Statement of Receipts and Outlays of the United States Government.\"\n  Line 343: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n  Line 345: Table FFO-3 details on- and off-budget outlays by agency.\n  Line 347: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n  Line 393: | Total on- and off-budget results: | nan | nan |\n  Line 407: | Total on- and off-budget financing | 291935 | 1392639 |\n  Line 440: | Fiscal year or Month > Fiscal year or Month | Total on-budget and off-budget results > Total Receipts (1) | Total on-budget and off-budget results > On-budget receipts (2) | Total on-budget and off-budget results > Off-budget receipts (3) | Total on-budget and off-budget results > Total outlays (4) | Total on-budget and off-budget results > On-budget outlays (5) | Total on-budget and off-budget results > Off-budget outlays (6) | Means of financing -net transactions > Total surplus deficit (-) (7) | Means of financing -net transactions > On-budget surplus deficit (-) (8) | Means of financing -net transactions > Off-budget surplus deficit (-) (9) | Federal securities Public debt securities (10) > Federal securities Public debt securities (10) |\n  Line 707: | Employment and general retirement (off-budget) | - | - | 919103 | 919103.0 | - | - | 806252 | 806252.0 |\n  Line 2532: Intrabudgetary transactions (\"Federal Fiscal Operations\")\u2014These occur when payment and receipt both occur within the budget, or when payment is made from off-budget Federal entities whose budget authority and outlays are excluded from the budget totals.\n\n/app/corpus/treasury_bulletin_1981_06.txt:\n  Line 469: Stabilization Fund. The totals in the press release are $493.6 billion for outlays and - $27.7 billion for the deficit. 8/ Includes: public debt accrued interest payable to the public, deposit funds, miscellaneous asset and liability accounts, and as of July 1974, the gold balance. 9/ Includes: Seigniorage; increment of gold; fiscal 1969 conversion of certain corporations to private ownership; fiscal 1970 reclassification of Commonwealth Credit Corporation certificates of interest; fiscal 1974 conversion of interest receipts of Government accounts to an accrual basis; and net outlays of off-budget Federal agencies. Also includes rural electrification and telephone revolving fund since May 12, 1973, Postal Service fund since July 1973, Federal Financing Bank since July 1974, housing for the elderly or handicapped fund from August 22, 1974, through September 30, 1977 and Pension Benefit Guaranty Corporation from September 17, 1974, through September 30, 1980. 10/ For detail see Table FD-5.\n  Line 833: * less than $500,000. Revised. Source: Monthly Treasury Statement of Receipts and Outlays of the United States Government. Note: Budget estimates are based on Current Budget Estimates, FY 1982 Released on March 10, 1981, by the Office of Management and Budget. 1/ Includes receipts from off-budget Federal agencies to the Civil Service Retirement and Disability Fund as of May 1974. 2/ Beginning fiscal 1974, includes adjustment of interest on public debt\n  Line 1443: 3/ This fund was reclassified from an off-budget to a budgetary account pursuant to an act approved Oct. 4, 1977.\n  Line 2038: Note: The Export-Import Bank was moved within the Budget effective October 1, 1976:pursuant to Public Law 93-646. Adjustments are made to include totals for the period it was outside the Budget (August 17, 1971 through September 30, 1976). Also, adjustments are made to reflect certain Export-Import Bank borrowing transactions now classified as agency debt. These transactions were previously reported as off-budget negative outlays. \n  Line 4410: classified as agency debt. These transactions were previously reported as off-budget negative outlays.\n  Line 9396: | Total off-budget Federal agencies | 106918377 | nan | 13379284 | nan | nan | nan | nan |\n  Line 9523: 54/ Most outlaws of the Rural Electrification and Telephone revolving fund and the Rural Telephone Bank have been classified off-budget since May 17, 1973, by an act approved May 11, 1973 (87 Stat. 65-71). The Federal Financing Bank was established as an off-budget Federal agency by an act approved December 29, 1973 (87 Stat. 941).\n\n/app/corpus/treasury_bulletin_1974_10.txt:\n  Line 354: 12/ Includes: seigniorage; increment on gold; fiscal 1969 conversion of certain corporations to private ownership; fiscal 1970 reclassification of CCC certificates of interest; fiscal 1974 conversion of interest receipts of Government accounts to an accrual basis; and net outlays of off-budget Federal agencies, (Export-Import Bank since August 17, 1971, rural electrification and telephone revolving funds since May 12, 1973, postal service fund since July 1973 and Federal Financing Bank since July 1974).\n  Line 640: 1/ Includes receipts from off-budget Federal agencies to the Civil Service Retirement and Disability Fund as of May 1974.\n  Line 8921: | Total off-budget Federal agencies | 15852433 | nan | 3278742 | nan | nan | nan | nan |\n  Line 9051: 52/ The agencies shown below have been reclassified as off-budget Federal agencies as follows: the Export-Import Bank since August 17, 1971, by an act approved August 17, 1971 (12 U.S.C. 635 (a)); and most outlays of the rural electrification and telephone revolving fund and the Rural Telephone Bank since May 12, 1973, by an act approved May 11, 1973 (87 Stat. 65-71). The Federal Financing Bank was established as an off-budget Federal agency by an act approved December 29, 1973 (87 Stat. 941).\n\n/app/corpus/treasury_bulletin_2023_12.txt:\n  Line 285: Refunds of collections generally are treated as reductions of collections, whereas payments for earned income tax credits in excess of tax liabilities are treated as outlays. Outlays during a fiscal year may be for payment of obligations incurred in prior years or in the same year. Outlays, therefore, flow in part from unexpended balances of prior year budget authority and from budget authority provided for the year in which the money is spent. Total outlays include both budget and off-budget outlays and are stated net of offsetting collections.\n  Line 295: Offsetting receipts are generally deducted from budget authority and outlays by function, subfunction, or agency. There are four types of receipts, however, that are deducted from budget totals as undistributed offsetting receipts. They are: (1) agencies' payments (including payments by off-budget Federal entities) as employers into employees' retirement funds; (2) interest received by trust funds; (3) rents and royalties on the Outer Continental Shelf lands; and (4) other interest (i.e., that collected on Outer Continental Shelf money in deposit funds when such money is transferred into the budget).\n  Line 297: The Government has used the unified budget concept set forth in the \u201cReport of the President\u2019s Commission on Budget Concepts\u201d as a foundation for its budgetary analysis and presentation since 1969. The concept calls for the budget to include all of the Government\u2019s fiscal transactions with the public. Since 1971, however, various laws have been enacted removing several Federal entities from (or creating them outside of) the budget. Other laws have moved certain off-budget Federal entities onto the budget. Under current law, the off-budget Federal entities consist of the two Social Security trust funds, Federal Old-Age and Survivors Insurance and the Federal Disability Insurance Trust Fund, and the Postal Service.\n  Line 299: Although an off-budget Federal entity's receipts, outlays, and surplus or deficit ordinarily are not subject to targets set by the Congressional resolution, the Balanced Budget and Emergency Deficit Control Act of 1985 [commonly known as the Gramm-Rudman-Hollings Act as amended by the Budget Enforcement Act of 1990 (2 United States Code 900-922)] included off-budget surplus or deficit in calculating deficit targets under that act and in calculating excess deficit. Partly for this reason, attention has focused\n  Line 303: on both on- and off-budget receipts, outlays and deficit of the Government.\n  Line 305: Tables FFO-1, FFO-2, and FFO-3 are published quarterly and cover 5 years of data, estimates for 2 years, detail for 13 months, and fiscal year-to-date data. They provide a summary of data relating to Federal fiscal operations reported by Federal entities and disbursing officers, and daily reports from the FRBs. They also detail accounting transactions affecting receipts and outlays of the Government and off-budget Federal entities and their related effect on assets and liabilities of the Government. Data are derived from the \"Monthly Treasury Statement of Receipts and Outlays of the United States Government.\"\n  Line 309: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n  Line 311: Table FFO-3 details on- and off-budget outlays by agency.\n  Line 313: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n  Line 359: | Total on- and off-budget results: | nan | nan |\n  Line 373: | Total on- and off-budget financing | 302508 | 1695147 |\n  Line 686: | Employment and general retirement (off-budget) | - | - | 1193755 | 1193755.0 | - | - | 1065975 | 1065975.0 |\n  Line 3110: These occur when payment and receipt both occur within the budget, or when payment is made from off-budget Federal entities whose budget authority and outlays are excluded from the budget totals.\n\n(Results truncated: showing 100 of 2873 matches (2773 hidden). Consider using a more specific path or pattern.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11688,
+        "completion_tokens": 177,
+        "cached_tokens": 11504,
+        "cost_usd": 0.00074712,
+        "extra": {
+          "reasoning_tokens": 112
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": "2026-03-31T21:47:37.952000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me look at the Treasury bulletin from 1992_03 which should have Q1 FY1992 data:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_4cf9be3961884b45b3c89b87",
+          "function_name": "grep",
+          "arguments": {
+            "path": "/app/corpus",
+            "include": "treasury_bulletin_1992*.txt",
+            "pattern": "Off-budget receipts"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_4cf9be3961884b45b3c89b87",
+            "content": "Found 7 matches\n/app/corpus/treasury_bulletin_1992_12.txt:\n  Line 512: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts (1) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | On-budget receipts (2) > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Off-budget receipts (3) > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Total outlays (4) > Unnamed: 4_level_1 > Unnamed: 4_level_2 | On-budget outlays (5) > Unnamed: 5_level_1 > Unnamed: 5_level_2 | Off-budget outlays (6) > Unnamed: 6_level_1 > Unnamed: 6_level_2 | Total surplus or deficit (-) (7) > Unnamed: 7_level_1 > Unnamed: 7_level_2 | On-budget surplus or deficit (-) (8) > Unnamed: 8_level_1 > Unnamed: 8_level_2 | Off-budget surplus or deficit (-) (9) > Unnamed: 9_level_1 > Unnamed: 9_level_2 | Means of financing --net transactions Borrowing from the public-- > Federal securities > Public debt securities (10) | Means of financing --net transactions Borrowing from the public-- > Federal securities > Unnamed: 11_level_2 |\n\n/app/corpus/treasury_bulletin_1992_06.txt:\n  Line 986: | Off-budget receipts | 74485 | 141124 | 300922 |\n  Line 1056: | Fiscal year or month > Fiscal year or month > Unnamed: 0_level_2 | Total on-budget and off-budget results > Total receipts > (1) | Total on-budget and off-budget results > On-budget receipts > (2) | Total on-budget and off-budget results > Off-budget receipts > (3) | Total on-budget and off-budget results > Total outlays > (4) | Total on-budget and off-budget results > On-budget outlays > (5) | Total on-budget and off-budget results > Off-budget outlays > (6) | Means of financing -net transactions > Total surplus or deficit (-) > (7) | Means of financing -net transactions > On-budget surplus or deficit (-) > (8) | Means of financing -net transactions > Off-budget surplus or deficit (-) > (9) | Unnamed: 10_level_0 > Borrowing from the public-Federal securities > (10) |\n\n/app/corpus/treasury_bulletin_1992_09.txt:\n  Line 417: | Off-budget receipts | 89884 | 231008 | 300923 |\n  Line 487: | Fiscal year or month > Fiscal year or month | Total on-budget end off-budget results > Total receipts (1) | Total on-budget end off-budget results > On-budget receipts (2) | Total on-budget end off-budget results > Off-budget receipts (3) | Total on-budget end off-budget results > Total outlays (4) | Total surplus or deficit > On-budget outlays (5) | Total surplus or deficit > Off-budget outlays (8) | Total surplus or deficit > Total surplus or deficit (-) (7) | Means of financing -net transactions > On-budget surplus or deficit (-) (8) | Means of financing -net transactions > Off-budget surplus or deficit (-) (9) | Unnamed: 10_level_0 > Borrowing from the public- Federal securities Public debt securities (10) |\n\n/app/corpus/treasury_bulletin_1992_03.txt:\n  Line 1274: | Off-budget receipts | 66638 | 66638 |\n  Line 1348: | Fiscal year or month > Fiscal year or month | Total on-budget and off-budget results > Total receipts | Total on-budget and off-budget results > On-budget receipts | Total on-budget and off-budget results > Off-budget receipts | Total on-budget and off-budget results > Total outlays | Total on-budget and off-budget results > On-budget outlays | Total on-budget and off-budget results > Off-budget outlays | Total on-budget and off-budget results > Total surplus or deficit (-) | Total on-budget and off-budget results > On-budget surplus or deficit (-) | Total on-budget and off-budget results > Off-budget surplus or deficit (-) | Means of financing -net transactions > Borrowing from the public.-Federal securities | Means of financing -net transactions > Public debt securities |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 19940,
+        "completion_tokens": 182,
+        "cached_tokens": 10816,
+        "cost_usd": 0.00340008,
+        "extra": {
+          "reasoning_tokens": 100
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": "2026-03-31T21:47:44.413000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_1a27445040184e8fa1c5c55d",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_1992_03.txt",
+            "offset": 1270,
+            "limit": 30
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_1a27445040184e8fa1c5c55d",
+            "content": "<path>/app/corpus/treasury_bulletin_1992_03.txt</path>\n<type>file</type>\n<content>1270: | --- | --- | --- |\n1271: | Total on-budget and off-budget results: | nan | nan |\n1272: | Total receipts | $254,924 | $254,294 |\n1273: | On-budget receipts | 188286 | 188286 |\n1274: | Off-budget receipts | 66638 | 66638 |\n1275: | Total outlays | 338079 | 338079 |\n1276: | On-budget outlays | 285104 | 285104 |\n1277: | Off-budget outlays | 52974 | 52974 |\n1278: | Total surplus (+) or deficit (-) | -83155 | -83155 |\n1279: | On-budget surplus (+) or deficit (-) | -96818 | -96818 |\n1280: | Off-budget surplus (+) or deficit (-) | +13664 | +13664 |\n1281: | Means of financing: | nan | nan |\n1282: | Borrowing from the public | 89123 | 89123 |\n1283: | Reduction of operating cash, increase (-) | -7297 | -7297 |\n1284: | Other means | +1329 | +1329 |\n1285: | Total on-budget and off-budget financing | 83155 | 83155 |\n1286: \n1287: 33\n1288: \n1289: FEDERAL FISCAL OPERATIONS\n1290: \n1291: Fourth-Quarter Receipts\n1292: \n1293: The following capsule analysis of budget receipts, by source, for the fourth quarter of fiscal 1991 supplements fiscal data earlier reported in the summer issue of the Treasury Bulletin. At the time of that issue's release, not enough data was available to analyze adequately collections for the quarter.\n1294: \n1295: Individual income taxes.-Individual income tax receipts were $121.0 billion for the fourth quarter of fiscal 1991. This represents an increase of $4.6 billion over the comparable quarter for FY 1990. Withheld receipts were up $3.2 billion for this period. Of this increase, $2.6 billion represents the normal quarterly reconciliation between the general fund and the Social Security and Medicare trust funds. Nonwithheld receipts increased $1.6 billion over the comparable quarter of FY 1990, while refunds increased by $0.2 billion.\n1296: \n1297: Corporate income taxes.--Net corporate receipts for the fourth quarter of FY 1991 were $21.7 billion. This was $0.6 billion higher than the fourth quarter of FY 1990. The $0.6 billion increase was attributable to an increase in backtaxes of $1.1 billion that was partially offset by a decrease in estimated and final payments of $0.5 billion.\n1298: \n1299: Employment taxes and contributions--Employment taxes and contributions receipts for the July-September 1991 quarter were $89.5 billion, an increase of $3.6 billion over the comparable prior year quarter. Receipts to the old-age and survivors insurance, the disability insurance, and the hospital insurance trust funds increased by $1.7 billion, $0.1 billion, and $1.7 billion, respectively. The increase from the prior year is due to a $0.6 billion decrease in accounting adjustments for previous years and a $4.2 billion increase in estimated liability for the July-September quarter.\n\n(Showing lines 1270-1299 of 7115. Use offset=1300 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 21116,
+        "completion_tokens": 153,
+        "cost_usd": 0.0066276,
+        "extra": {
+          "reasoning_tokens": 91
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": "2026-03-31T21:47:51.090000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_b9d2bfb05e7f4c39b330ecfa",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_1992_03.txt",
+            "limit": 30,
+            "offset": 1240
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_b9d2bfb05e7f4c39b330ecfa",
+            "content": "<path>/app/corpus/treasury_bulletin_1992_03.txt</path>\n<type>file</type>\n<content>1240: \n1241: Table FFO-2 includes on- and off-budget receipts by source. Amounts represent income taxes, social insurance taxes, net contributions for other insurance and retirement, excise taxes, estate and gift taxes, customs duties, and net miscellaneous receipts.\n1242: \n1243: Table FF0-3 details on- and off-budget outlays by agency.\n1244: \n1245: Table FFO-4 (Fall issue) summarizes internal revenue collections by States and other areas and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax liability years because they consist of prepayments (i.e., estimated tax payments and taxes withheld by employers for individual income and Social Security taxes), of payments made with tax returns, and of subsequent payments made after tax returns are due or are filed (i.e., payments with delinquent returns or on delinquent accounts).\n1246: \n1247: It is important to note that these data do not necessarily reflect the Federal tax burden of individual States. Amounts are reported based on the primary filing address provided by each taxpayer or reporting entity. For multistate corporations, the address may reflect only the State where such a corporation reported its taxes from a principal office rather than other States where income was earned or where individual income and Social Security taxes were withheld. In addition, an individual may reside in one State and work in another.\n1248: \n1249: 32\n1250: \n1251: FEDERAL FISCAL OPERATIONS\n1252: \n1253: Budget Results for the First Quarter, Fiscal 1992\n1254: \n1255: Summary\n1256: \n1257: The Federal deficit narrowed in the first 3 months of fiscal 1992 to $83.2 billion from $86.2 billion in the corresponding months of the prior fiscal year. That improvement was due solely to a $19 billion swing in Resolution Trust Corporation (RTC) and other deposit insurance outlays. Excluding deposit insurance spending, the deficit widened by $16 billion between the 2 periods.\n1258: \n1259: The swing in deposit insurance outlays partly resulted from delays in enactment of funding for the RTC and partly from increased asset sales and stepped up repayments of advances previously made to troubled institutions. Deposit insurance outlays had exceeded $14 billion in the initial quarter of fiscal 1991, but were negative by close to $5 billion in the first quarter of the current fiscal year when asset sales (counted as negative spending in the budget accounts) outpaced gross spending.\n1260: \n1261: The fall off in deposit insurance spending held the year-over-year increase in total budget outlays in the first quarter of fiscal 1992 to a narrow 0.7 percent. Excluding deposit insurance and foreign contributions to the Desert Shield/Storm operations, outlays were up by close to 6-1/2 percent. That was only a little behind the 7-2/3 percent pace projected on the same basis for the entire fiscal year in the Administration's budget projections released at the end of January.\n1262: \n1263: Major spending increases were concentrated in the area of income support, reflecting generally soft economic conditions and also an upward trend recently in participation in \"social safety net\" programs. Within the income security function of the budget accounts, unemployment insurance benefits jumped by 35 percent and food stamp outlays rose by 21 percent. These same forces, with rising medical care prices, pushed up health care costs. In the health function, Medicaid grants to States were up by 42 percent. Medicare spending increased by 20 percent.\n1264: \n1265: Among other outlay categories, net interest costs rose by 7 percent, as an increase of more than 11 percent in the outstanding debt held by the public was partly offset by lower interest rates. Defense spending, exclusive of Desert Shield/Storm contributions, fell by 4-1/4 percent.\n1266: \n1267: Total receipts increased by 2.2 percent in the first quarter of fiscal 1992 from a year earlier, which was in line with the 2.0 percent that has been projected by the Administration for the entire fiscal year. Withheld income and employment taxes rose by 2.5 percent, or just a shade faster than the 2.1 percent increase in the underlying wage and salary tax base. Corporate income taxes declined by 4 percent, reflecting a decline from a year earlier in the December quarterly tax payment and some increase in refunds (counted as negative tax receipts).\n1268: \n1269: | [in millions of dollars] > Unnamed: 0_level_1 | [in millions of dollars] > October-December | [in millions of dollars] > Actual fiscal year to date |\n\n(Showing lines 1240-1269 of 7115. Use offset=1270 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 22053,
+        "completion_tokens": 167,
+        "cached_tokens": 21264,
+        "cost_usd": 0.00120102,
+        "extra": {
+          "reasoning_tokens": 105
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": "2026-03-31T21:47:56.863000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_9f125cf395c34807bc9fe1a2",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_1992_03.txt",
+            "limit": 15,
+            "offset": 1268
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_9f125cf395c34807bc9fe1a2",
+            "content": "<path>/app/corpus/treasury_bulletin_1992_03.txt</path>\n<type>file</type>\n<content>1268: \n1269: | [in millions of dollars] > Unnamed: 0_level_1 | [in millions of dollars] > October-December | [in millions of dollars] > Actual fiscal year to date |\n1270: | --- | --- | --- |\n1271: | Total on-budget and off-budget results: | nan | nan |\n1272: | Total receipts | $254,924 | $254,294 |\n1273: | On-budget receipts | 188286 | 188286 |\n1274: | Off-budget receipts | 66638 | 66638 |\n1275: | Total outlays | 338079 | 338079 |\n1276: | On-budget outlays | 285104 | 285104 |\n1277: | Off-budget outlays | 52974 | 52974 |\n1278: | Total surplus (+) or deficit (-) | -83155 | -83155 |\n1279: | On-budget surplus (+) or deficit (-) | -96818 | -96818 |\n1280: | Off-budget surplus (+) or deficit (-) | +13664 | +13664 |\n1281: | Means of financing: | nan | nan |\n1282: | Borrowing from the public | 89123 | 89123 |\n\n(Showing lines 1268-1282 of 7115. Use offset=1283 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 23282,
+        "completion_tokens": 202,
+        "cached_tokens": 22208,
+        "cost_usd": 0.00139884,
+        "extra": {
+          "reasoning_tokens": 140
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": "2026-03-31T21:48:05.409000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "The data shows \"Off-budget receipts\" for October-December (Q1 FY1992) is 66638 million dollars. Let me verify by also checking the 1991_12 file:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_dc407e8a1b1c45f5bb8798a5",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_1991_12.txt",
+            "path": "/app/corpus",
+            "pattern": "Off-budget receipts"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_dc407e8a1b1c45f5bb8798a5",
+            "content": "Found 2 matches\n/app/corpus/treasury_bulletin_1991_12.txt:\n  Line 1031: | Off-budget receipts | 70255 | 293885 |\n  Line 1093: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total on-budget and off-budget results > Total receipts > (1) | Total on-budget and off-budget results > On-budget receipts > (2) | Total on-budget and off-budget results > Off-budget receipts > (3) | Unnamed: 4_level_0 > Total outlays > (4) | Unnamed: 5_level_0 > On-budget outlays > (5) | Unnamed: 6_level_0 > Off-budget outlays > (6) | Unnamed: 7_level_0 > Total surplus or deficit (-) > (7) | Unnamed: 8_level_0 > On-budget surplus or deficit (-) > (8) | Unnamed: 9_level_0 > Off-budget surplus or deficit (-) > (9) | Means of financing -net transactions > Borrowing from the public--Federal securities > (10) |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 23819,
+        "completion_tokens": 193,
+        "cached_tokens": 23472,
+        "cost_usd": 0.00115266,
+        "extra": {
+          "reasoning_tokens": 94
+        }
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": "2026-03-31T21:48:23.092000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_eef595eb5cf64b57ab1bf096",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_1991_12.txt",
+            "limit": 40,
+            "offset": 1010
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_eef595eb5cf64b57ab1bf096",
+            "content": "<path>/app/corpus/treasury_bulletin_1991_12.txt</path>\n<type>file</type>\n<content>1010: A measure of the underlying growth of spending can be obtained by making these adjustments: excluding the deposit insurance spending, considering the effects of the timing of payments, and contributions for Desert Storm. This yields an increase in outlays of 7.8 percent for the\n1011: \n1012: quarter. More than one-half of that rise reflected \"social\n1013: \n1014: safety net\" spending for Medicare, Medicaid, other health functions, income support, and human development, while Social Security represented another one-fifth. Much of the large 16-1/2 percent increase in \"safety net\" outlays reflected the effects of the downturn in economic activity, which began in the final quarter of fiscal 1990.\n1015: \n1016: The overall pattern for the entire fiscal year was somewhat similar. Receipts increased by 2.2 percent, the smallest rise since fiscal 1983 when the combination of reductions in tax rates and a weak economy resulted in a decline.\n1017: \n1018: The narrow increase in fiscal 1991 reflected the impact of the recession on taxable incomes, including tax liabilities for calendar 1990. This translated into a decline this spring from a year earlier in the total of final settlements net of refunds. Increased outlays of 5.7 percent were held down by contributions for Desert Shield and Storm of $43.6 billion, while a 14-percent increase in deposit insurance outlays to $66 billion boosted the total.\n1019: \n1020: Adjusting for these, and also for shifts in the timing of payments, yields an increase of 8.4 percent. A little under one-half of that rise represented \"safety-net\" spending, while Social Security comprised another one-fifth. All or more of a 5.6 percent increase in defense outlays, excluding Desert Shield and Storm contributions, apparently reflected spending associated with the Middle-East effort.\n1021: \n1022: The actual deficit of $268.7 billion for fiscal 1991 was significantly less than had been estimated in the July mid-session review or in the budget submission of February. Those were $13.5 billion and $49.4 billion, respectively.\n1023: \n1024: Shortfalls from projections of receipts were more than offset by lower than projected outlays, particularly for deposit insurance. The final deficit was wider by more than $200 billion, however, than the $63.1 billion contained in the original fiscal 1991 budget submission of January 1990.\n1025: \n1026: | [In millions] > Unnamed: 0_level_1 | [In millions] > July-September | [In millions] > Fiscal 1991 |\n1027: | --- | --- | --- |\n1028: | Total on-budget and off-budget results: | nan | nan |\n1029: | Total receipts | $264,364 | $1,054,260 |\n1030: | On-budget receipts | 194109 | 760375 |\n1031: | Off-budget receipts | 70255 | 293885 |\n1032: | Total outlays | 354638 | 1322989 |\n1033: | On-budget outlays | 287305 | 1081302 |\n1034: | Off-budget outlays | 67333 | 241687 |\n1035: | Total surplus (+) or deficit (-) | -90273 | -268729 |\n1036: | On-budget surplus (+) or deficit (-) | -93195 | -320927 |\n1037: | Off-budget surplus (+) or deficit (-) | +2922 | +52198 |\n1038: | Means of financing: | nan | nan |\n1039: | Borrowing from the public | 94978 | 276802 |\n1040: | Reduction of operating cash, increase (-) | 2098 | -1329 |\n1041: | Other means | -6803 | -6744 |\n1042: | Total on-budget and off-budget financing | 90273 | 268729 |\n1043: \n1044: 26\n1045: \n1046: FEDERAL FISCAL OPERATIONS\n1047: \n1048: Third-Quarter Receipts\n1049: \n\n(Showing lines 1010-1049 of 6767. Use offset=1050 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 24278,
+        "completion_tokens": 196,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00717828,
+        "extra": {
+          "reasoning_tokens": 134
+        }
+      }
+    },
+    {
+      "step_id": 12,
+      "timestamp": "2026-03-31T21:48:30.784000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_6d34feed568e4bbaad16e135",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_1992_06.txt",
+            "limit": 30,
+            "offset": 980
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_6d34feed568e4bbaad16e135",
+            "content": "<path>/app/corpus/treasury_bulletin_1992_06.txt</path>\n<type>file</type>\n<content>980: \n981: | [In millions of dollars] > Unnamed: 0_level_1 | [In millions of dollars] > January-March | [In millions of dollars] > Actual fiscal year to date | [In millions of dollars] > Budget estimates (February 1992) full fiscal 1992 |\n982: | --- | --- | --- | --- |\n983: | Total on-budget and off-budget results: | nan | nan | nan |\n984: | Total receipts | $239,046 | $493,989 | $1,075,706 |\n985: | On-budget receipts | 164580 | 352866 | 774784 |\n986: | Off-budget receipts | 74485 | 141124 | 300922 |\n987: | Total outlays | 352838 | 690867 | 1475439 |\n988: | On-budget outlays | 285480 | 570535 | 1223909 |\n989: | Off-budget outlays | 67358 | 120332 | 251530 |\n990: | Total surplus (+) or deficit (-) | -113773 | -196878 | -399733 |\n991: | On-budget surplus (+) or deficit (-) | -120900 | -217669 | -449125 |\n992: | Off-budget surplus (+) or deficit (-) | +7128 | +20791 | +49392 |\n993: | Means of financing: | nan | nan | nan |\n994: | Borrowing from the public | 82690 | 171814 | 390041 |\n995: | Reduction of operating cash, Increase (-) | 28938 | 21641 | 11484 |\n996: | Other means | 2145 | 3423 | -1792 |\n997: | Total on-budget and off-budget financing | 113773 | 196878 | 399733 |\n998: \n999: FEDERAL FISCAL OPERATIONS\n1000: \n1001: 29\n1002: \n1003: First-Quarter Receipts\n1004: \n1005: The following capsule analysis of budget receipts, by source, for the first quarter of fiscal 1992 supplements fiscal data earlier reported in the fall issue of the Treasury Bulletin. At the time of that issue's release, not enough data was available to analyze adequately collections for the quarter.\n1006: \n1007: Individual income taxes.--Individual income tax receipts were $113.0 billion for the first quarter of fiscal 1992. This represents a decrease of $1.3 billion over the comparable quarter for fiscal 1991. Withheld receipts were down $0.2 billion for this period. Nonwithheld receipts were nearly unchanged from the comparable quarter of fiscal 1991, while refunds increased by $1.1 billion.\n1008: \n1009: Corporate income taxes.--Corporate income tax receipts in the first quarter of fiscal 1992 were $24.4 billion. This was $1.0 billion lower than the first quarter of fiscal 1991. The $1.0 billion decrease was comprised of a $0.7 billion decrease in estimated and final payments, and an increase in refunds of $0.3 billion.\n\n(Showing lines 980-1009 of 6333. Use offset=1010 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 25421,
+        "completion_tokens": 267,
+        "cached_tokens": 24464,
+        "cost_usd": 0.00158862,
+        "extra": {
+          "reasoning_tokens": 206
+        }
+      }
+    },
+    {
+      "step_id": 13,
+      "timestamp": "2026-03-31T21:48:50.431000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_642304eb36a74579b403cef7",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_1992_06.txt",
+            "limit": 30,
+            "offset": 960
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_642304eb36a74579b403cef7",
+            "content": "<path>/app/corpus/treasury_bulletin_1992_06.txt</path>\n<type>file</type>\n<content>960: \n961: FEDERAL FISCAL OPERATIONS\n962: \n963: Budget Results for the Second Quarter, Fiscal 1992\n964: \n965: Summary\n966: \n967: The budget deficit was $113.8 billion in the second quarter of fiscal 1992, or roughly $48 billion wider than the $65.7 billion in the corresponding quarter a year earlier. A better measure of underlying trends in the deficit might be obtained by excluding some of the special factors that affected the figures. Among these, foreign contributions to Desert Storm dwindled to $0.5 billion in the second quarter of fiscal 1992 from $22.6 billion a year earlier. (The deficit was not reduced in the second quarter of fiscal 1991 by the full $22.6 billion, because actual Defense outlays were boosted by the effort. However, the major portion of the cash outlays associated with Desert Storm were spread out over a much longer period of time.) An additional special factor was a 1992 increase in deposit insurance outlays (by the RTC, FDIC, etc.) of $8.2 billion from last year's fiscal second quarter. Excluding these factors, the deficit was wider by about $18 billion than in the second quarter of fiscal 1991.\n968: \n969: For the first 6 months of fiscal 1992, the deficit was $196.9 billion, or $44.7 billion more than the $152.2 billion in the corresponding months of 1991. That difference narrows to about $33 billion after adjustments for the above factors.\n970: \n971: Receipts increased by 2.5 percent in the second quarter from a year earlier and by a similar 2.4 percent for the entire first 6 months of the current fiscal year. Fiscal year-to-date withheld income and employment taxes rose by 4.3 percent, or about 1 percentage point faster than growth of the underlying wage and salary tax base. Nonwithheld individual payments on both income and employment tax liability were up by only 1.1 percent. (The largest portion of such receipts typically is received in the third fiscal quarter.) Individual tax refunds rose by a sharp 16.3 percent, reflecting the more expeditious handling of returns. Corporate income tax\n972: \n973: payments fell by 7.5 percent, including a 5.5 percent decline in the March payment when corporations made final settlements on liability for the previous fiscal year. An improvement in profits that appeared to emerge during the second fiscal quarter will not show up in payments until later.\n974: \n975: Total budget outlays increased from a year earlier by 18.1 percent in the second fiscal quarter and by 8.8 percent for the first half of fiscal 1992. While deposit insurance outlays were up significantly in the March quarter, year-to-date they were down by nearly $11 billion to a total of only $5.5 billion, with more than all of the decline accounted for by the RTC. In the January budget, deposit insurance outlays were projected at $80 billion for the entire fiscal year. The slow rate of spending in the first half may indicate that outlays for all of fiscal 1992 will fall short of projections.\n976: \n977: Excluding deposit insurance and Desert Storm/Shield contributions, outlays during the first half of fiscal 1992 were 6.8 percent ahead of a year earlier. The largest increases have been for such social spending categories as Medicare (up 17.2 percent), other health (up 30.8 percent including an increase of 36.5 percent for Medicaid), and income security (up 15.6 percent, including a rise of 48 percent for unemployment insurance benefits). Net interest outlays rose by 3.9 percent, as a decline in the effective interest rate partly offset an increase of nearly 9 percent in average public debt outstanding. Defense spending fell by 4 percent (excluding Desert Storm contributions).\n978: \n979: A somewhat different perspective on budget trends may be obtained from 12-month cumulative totals of the deficit, as shown in Profile of the Economy Chart D (see page 24) For the 12 months through March, the total deficit was $314 billion, and excluding deposit insurance outlays, it was $267 billion. The latter represented a widening of more than $100 billion from the corresponding figure for March 1991.\n980: \n981: | [In millions of dollars] > Unnamed: 0_level_1 | [In millions of dollars] > January-March | [In millions of dollars] > Actual fiscal year to date | [In millions of dollars] > Budget estimates (February 1992) full fiscal 1992 |\n982: | --- | --- | --- | --- |\n983: | Total on-budget and off-budget results: | nan | nan | nan |\n984: | Total receipts | $239,046 | $493,989 | $1,075,706 |\n985: | On-budget receipts | 164580 | 352866 | 774784 |\n986: | Off-budget receipts | 74485 | 141124 | 300922 |\n987: | Total outlays | 352838 | 690867 | 1475439 |\n988: | On-budget outlays | 285480 | 570535 | 1223909 |\n989: | Off-budget outlays | 67358 | 120332 | 251530 |\n\n(Showing lines 960-989 of 6333. Use offset=990 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 26418,
+        "completion_tokens": 271,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00800148,
+        "extra": {
+          "reasoning_tokens": 210
+        }
+      }
+    },
+    {
+      "step_id": 14,
+      "timestamp": "2026-03-31T21:48:58.236000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Based on my analysis:\n- The Treasury Bulletin 1992_03 file explicitly reports \"Budget Results for the First Quarter, Fiscal 1992\"\n- The table shows \"Off-budget receipts\" for October-December (Q1 FY1992) as 66638 million dollars\n- This is confirmed by the 1992_06 file where fiscal year-to-date (6 months) is 141124 and Q2 is 74485, giving Q1 = 141124 - 74485 = 66639 (confirms the 66638)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_bfdb189bb5914ba7b05424d0",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/answer.txt",
+            "content": "66638"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_bfdb189bb5914ba7b05424d0",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 27886,
+        "completion_tokens": 328,
+        "cached_tokens": 24000,
+        "cost_usd": 0.0024906,
+        "extra": {
+          "reasoning_tokens": 176
+        }
+      }
+    },
+    {
+      "step_id": 15,
+      "timestamp": "2026-03-31T21:49:10.126000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Now let me also write my name as requested:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_61f3edb893434652a7ca0b1f",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/name.txt",
+            "content": "Scribe"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_61f3edb893434652a7ca0b1f",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 28236,
+        "completion_tokens": 71,
+        "cost_usd": 0.0085824,
+        "extra": {
+          "reasoning_tokens": 22
+        }
+      }
+    },
+    {
+      "step_id": 16,
+      "timestamp": "2026-03-31T21:49:14.665000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Done. The total off-budget receipts for Q1 FY1992 (October-December 1991) was **66638** million dollars, as reported in the Treasury Bulletin's Federal Fiscal Operations section.",
+      "metrics": {
+        "prompt_tokens": 28329,
+        "completion_tokens": 164,
+        "cached_tokens": 25680,
+        "cost_usd": 0.0019083,
+        "extra": {
+          "reasoning_tokens": 122
+        }
+      }
+    }
+  ],
+  "final_metrics": {
+    "total_prompt_tokens": 326288,
+    "total_completion_tokens": 2895,
+    "total_cached_tokens": 183728,
+    "total_cost_usd": 0.053953440000000005,
+    "total_steps": 16
+  }
+}

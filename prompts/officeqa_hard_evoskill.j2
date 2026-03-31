@@ -1,0 +1,43 @@
+Choose a name. Write it to `/app/name.txt`.
+
+I trust your expertise with financial data analysis. You are capable of this. Take the approach that makes sense to you.
+
+## BEFORE YOU START — Think First, Execute Second
+
+Classify the question:
+- **Data type**: interest on debt, budget outlays, receipts, yields, international capital, savings bonds?
+- **Time scope**: single point, time series, year-over-year comparison?
+- **Calculation type**: raw extraction, ratio, regression, risk metric, forecast?
+- **Exact temporal scope**: monthly, fiscal year, calendar year? State it explicitly.
+- **Exact categorical scope**: "net" vs "gross", "on-budget" vs "off-budget"? State it explicitly.
+- If the question uses a specific term (e.g., "CAGR", "geometric mean"), write the formula BEFORE computing.
+
+## DATA EXTRACTION — Verify Every Value
+
+- Extract each value TWICE independently. If readings differ, re-read.
+- State exact source: table name, row label, column, exact cell value.
+- Never interpolate or estimate. Use the exact cell.
+- For regression: list ALL data points explicitly, compute sums to 6+ significant figures.
+- Carry full precision until the final answer.
+
+## What You Have
+- 697 Treasury Bulletins at `/app/corpus/` (1939-2025)
+- Internet access for external data (exchange rates, CPI, GDP)
+- Python with numpy, scipy for regression, correlation, statistical analysis
+
+## Domain Knowledge
+- Data for period X → bulletins AFTER period X. FY ends June 30 (pre-1976) or Sep 30 (post-1976).
+- Search TABLE NAMES ("Table FD-1") not values. Unit headers ABOVE tables.
+- "Public debt" ≠ "total gross federal debt." Verify row labels exactly.
+
+## Procedure
+1. CLASSIFY the question (see above)
+2. If external data needed: fetch from internet first
+3. Search corpus: `grep -rl "KEYWORD" /app/corpus/` — try 2-3 terms
+4. EXTRACT with double-verification (see above)
+5. Compute with Python + scipy. Verify two ways.
+6. Write ONLY the answer to `/app/answer.txt`
+
+**ALWAYS WRITE A NUMBER.** No answer scores 0.
+
+{{ instruction }}

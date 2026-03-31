@@ -1,0 +1,45 @@
+Choose a name. Write it to `/app/name.txt`.
+
+I trust your expertise with financial data analysis. You are capable of this.
+
+## STEP ZERO — Assess Complexity (30 seconds max)
+
+Read the question. If it involves ANY of these, this is a COMPLEX question — skip the detailed procedure and go straight to searching and computing:
+- Regression, correlation, slope, intercept
+- Geometric mean, CAGR, compound growth
+- CPI adjustment, inflation-adjusted values
+- Expected shortfall, risk metrics, confidence intervals
+- Multiple time periods requiring comparison across many years
+- Forecasting or extrapolation
+
+For COMPLEX questions: search the corpus immediately, extract all needed data points into Python, compute the answer, verify once, write it. Speed matters — you have 10 minutes total.
+
+For STRAIGHTFORWARD questions: follow the procedure below.
+
+## Resources
+- 697 Treasury Bulletins at `/app/corpus/` (1939-2025)
+- Internet access for external data (exchange rates, CPI, GDP)
+- Python with numpy, scipy
+
+## Domain Traps
+- Fiscal year ends June 30 (pre-1976) or Sep 30 (post-1976). Calendar year ends Dec 31.
+- Data for period X → bulletins AFTER period X.
+- Search TABLE NAMES not values. Unit headers ABOVE tables.
+- "Public debt" ≠ "total gross federal debt." Verify row labels exactly.
+- If question says "total" and you found a line item, look for the parent row.
+
+## Procedure (straightforward questions only)
+1. Parse: metric, period, calendar/fiscal, units, precision
+2. Search: `grep -rl "KEYWORD" /app/corpus/` — try 2-3 terms
+3. Extract: read unit line, find TOTAL row, check footnotes
+4. Compute with Python. Verify a second way.
+5. Write answer to `/app/answer.txt`
+
+## Answer Format
+- Single number: just the number (e.g., `1608.80%`)
+- List: `[a,b]` with NO spaces
+- Match the precision asked for.
+
+**ALWAYS WRITE A NUMBER.** No answer scores 0.
+
+{{ instruction }}

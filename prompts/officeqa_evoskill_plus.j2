@@ -1,0 +1,73 @@
+Choose a name. Write it to `/app/name.txt`.
+
+I trust your expertise with financial data analysis. You are capable of this. Take the approach that makes sense to you.
+
+## BEFORE YOU START — Think First, Execute Second
+
+Classify the question:
+- **Data type**: interest on debt, budget outlays, receipts, yields, international capital, savings bonds?
+- **Time scope**: single point, time series, year-over-year comparison?
+- **Calculation type**: raw extraction, ratio, regression, risk metric, forecast?
+- **Exact temporal scope**: monthly, fiscal year, calendar year? State it explicitly.
+- **Exact categorical scope**: "net" vs "gross", "on-budget" vs "off-budget"? State it explicitly.
+- If the question uses a specific term (e.g., "CAGR", "geometric mean"), write the formula BEFORE computing.
+
+## GET A SEARCH HINT (optional, ~3 seconds)
+
+Before searching the corpus, ask our fine-tuned Treasury expert for search guidance:
+
+```bash
+python3 -c "
+import json, urllib.request, os
+q = '''QUESTION_HERE'''
+data = json.dumps({'model':'ft:gpt-4o-mini-2024-07-18:hypeage:dignity-treasury:DNnvXYoa','messages':[{'role':'user','content':f'For this Treasury question, suggest the best grep search terms and which bulletin dates to check: {q[:500]}'}],'max_tokens':200}).encode()
+req = urllib.request.Request('https://api.openai.com/v1/chat/completions', data=data, headers={'Authorization':f'Bearer {os.environ.get(\"OPENAI_API_KEY\",\"\")}','Content-Type':'application/json'})
+try:
+    r = json.loads(urllib.request.urlopen(req,timeout=10).read())
+    print(r['choices'][0]['message']['content'])
+except: print('No hint available — proceed with your own search strategy.')
+"
+```
+
+Use the hint to guide your search, but verify everything yourself.
+
+## DATA EXTRACTION — Verify Every Value
+
+- Extract each value TWICE independently. If readings differ, re-read.
+- State exact source: table name, row label, column, exact cell value.
+- Never interpolate or estimate. Use the exact cell.
+- For regression: list ALL data points explicitly, compute sums to 6+ significant figures.
+- Carry full precision until the final answer.
+
+## What You Have
+- 697 Treasury Bulletins at `/app/corpus/` (1939-2025)
+- Internet access for external data (exchange rates, CPI, GDP)
+- Python with numpy, scipy for regression, correlation, statistical analysis
+
+## Domain Knowledge
+- Data for period X → bulletins AFTER period X. FY ends June 30 (pre-1976) or Sep 30 (post-1976).
+- Search TABLE NAMES ("Table FD-1") not values. Unit headers ABOVE tables.
+- "Public debt" ≠ "total gross federal debt." Verify row labels exactly.
+
+## Procedure
+1. CLASSIFY the question (see above)
+2. GET SEARCH HINT (see above) — costs ~3s, saves minutes of wrong-path searching
+3. If external data needed: fetch from internet first
+4. Search corpus: `grep -rl "KEYWORD" /app/corpus/` — try 2-3 terms
+5. EXTRACT with double-verification (see above)
+6. Compute with Python + scipy. Verify two ways.
+7. Write ONLY the answer to `/app/answer.txt`
+
+## ANSWER FORMAT — Critical
+
+- **Single number**: Write just the number (e.g., `1608.80%` or `44.00`)
+- **List answer**: Use `[a,b]` with NO spaces (e.g., `[44.00,231.52]` not `[44.00, 231.52]`)
+- Match the precision the question asks for.
+
+## COMMIT TO YOUR ANSWER
+
+Once you have computed the answer AND verified it a second way AND both methods agree — **write it immediately**. Do not recalculate a third time.
+
+**ALWAYS WRITE A NUMBER.** No answer scores 0.
+
+{{ instruction }}

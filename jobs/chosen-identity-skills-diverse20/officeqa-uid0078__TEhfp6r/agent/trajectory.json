@@ -1,0 +1,1071 @@
+{
+  "schema_version": "ATIF-v1.6",
+  "session_id": "ses_2bee1568bffeKZG132qqGEpzdM",
+  "agent": {
+    "name": "opencode",
+    "version": "1.3.8",
+    "model_name": "openrouter/minimax/minimax-m2.5"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-03-30T23:40:26.429000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "I'll solve this step by step. Let me first understand the task:\n\n1. Find actual internal revenue collections in New York for FY 2010 and FY 2015\n2. Calculate CAGR from FY 2010 to FY 2015\n3. Project FY 2024 collections using FY 2015 as base\n4. Find actual FY 2024 collections\n5. Calculate percentage difference\n\nLet me start by searching the corpus for internal revenue collections data.",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_ef6c0a4950374688ad98c7bd",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "internal revenue.*New York|New York.*internal revenue",
+            "path": "/app/corpus",
+            "include": "*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_ef6c0a4950374688ad98c7bd",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 10716,
+        "completion_tokens": 337,
+        "cached_tokens": 10464,
+        "cost_usd": 0.00101592,
+        "extra": {
+          "reasoning_tokens": 185
+        }
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-03-30T23:40:38.282000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_13ef19a4a839465285fb0af3",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*collections|collections.*New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_13ef19a4a839465285fb0af3",
+            "content": "Found 1 matches\n/app/corpus/treasury_bulletin_1988_03.txt:\n  Line 1091: Collections of individual income tax not withheld include old-age, survivors, disability, and hospital insurance taxes on self-employment income. (Ca. similarly, the collections of individual income tax withheld are reported to the State of New York by old-age, survivors, disability, and hospital insurance taxes (FICA) on salaries and wages. Includes taxes on unrelated business income of exempt organizations."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11074,
+        "completion_tokens": 64,
+        "cached_tokens": 10464,
+        "cost_usd": 0.00058332,
+        "extra": {
+          "reasoning_tokens": 8
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-03-30T23:40:41.729000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_19d629a2ab2a45c785b856e4",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "Internal revenue collections.*State|State.*internal revenue"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_19d629a2ab2a45c785b856e4",
+            "content": "Found 455 matches (showing first 100)\n/app/corpus/treasury_bulletin_1960_03.txt:\n  Line 3620: 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods include amounts of budgetary receipts when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes, the amounts of budgetary receipts in most taxes and many excises, these taxes are paid currently into Treasury depositories and the depository receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1962_08.txt:\n  Line 4811: Differences between the amounts of Internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositories and the depository receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts\n\n/app/corpus/treasury_bulletin_1961_07.txt:\n  Line 3915: Source: Internal Revenue Service reports for detail of collections by type of tax; monthly statement of receipts and expenditures of the Government for budget receipts from internal revenue (for explanation of reporting bases in this publication, see page II). Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis, but those for 1953 include only amounts collected at ports of entry into the United States. Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in Internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1954_11.txt:\n  Line 2392: Source: Internal Revenue Service for detail of collections by type of tax; Daily Treasury Statement for budget receipts from internal revenue through the fiscal year 1953, and the new \"Monthly Statement of Receipts and Expenditures of the United States Government\" for receipts thereafter. Certain detail by type of tax is available only on the basis of returns filed with the Internal Revenue Service\n  Line 2395: 2/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arise because of differences in the time when payments are included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under arrangements begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payment, are attested to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts in the month in which the depositary receipts are leaved to the taxpayers. Revised accounting procedures\n  Line 2552: Source: Internal Revenue Service for detail of collections by type of tax; Daily Treasury Statement for budget receipts from internal revenue through the fiscal year 1953, and the new \"Monthly Statement of Receipts and Expenditures of the United States Government\" for receipts thereafter. Certain detail by type of tax is available only on the basis of returns filed with the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1958_04.txt:\n  Line 2852: Source: Internal Revenue Service reports for detail of collections by type of tax; daily Treasury statement for budget receipts from internal revenue through the end of fiscal year 1955; and statement of receipts and expenditures of the Government for receipts therefrom (for explanation of reporting bases in these publications, see page II). Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit, as specified in the Treasury Department's instructions, and by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis. Figures for previous years include only amounts collected at ports of entry into the United States. 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements for the same periods are due to the same cause because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collections. Since July 1954, these collections have been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury deposit accounts, and the necessary receipts, in cases where no payments are attached to quarterly returns, are in Internal Revenue Service. Under this procedure, the payments are included in budget receipts in the\n\n/app/corpus/treasury_bulletin_1961_11.txt:\n  Line 4608: Source: Internal Revenue Service reports for detail of collections by type of tax; monthly statement of receipts and expenditures of the Government for budget receipts from internal revenue (for explanation of reporting bases in this publication, see page II). Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954, have been revised to the same basis. Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts:\n\n/app/corpus/treasury_bulletin_1949_04.txt:\n  Line 2473: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits | Income and profits taxes > Individual income | Income and profits taxes > Corporation income and profits 2/ | Employment taxes > Total employment | Employment taxes > Social security Old-age insurance | Employment taxes > Unemployment insurance | Unnamed: 10_level_0 > Railroad retirement |\n  Line 2509: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax 1/ Excludes collections for credit to certain trust accounts for Territories and insular possessions, etc.; includes corporation income tax on Alaska Railroad.\n  Line 2663: Source: Daily Treasury Statement for total receipts from internal revenue; reporte by collectors of internal revenue for collections by type of tax. 1/ Excludes collections for credit to certain trust accounts for Territories and insular possessions, etc.; includes corporation income tax on Alaska Railroad. 2/ Current collections consist in general of taxes paid within\n\n/app/corpus/treasury_bulletin_1952_12.txt:\n  Line 2917: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment of collections to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Corporation income and profits taxes 2/ > Unnamed: 4_level_1 | individual income tax and employment taxes > Total | individual income tax and employment taxes > Individual income tax not withheld 3/ | individual income tax and employment taxes > Individual income tax withheld 4/ | individual income tax and employment taxes > Old-age insurance taxes on employers and employees 4/ | individual income tax and employment taxes > Railroad retirement | individual income tax and employment taxes > Unemployment insurance |\n  Line 2965: Source: Daily Treasury Statement for total receipts from internal revenue reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 3116: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1960_05.txt:\n  Line 3890: Source: Internal Revenue Service reports for detail of collections by type of tax; daily Treasury statement for budget receipts from internal revenue for the fiscal year 1952, and the monthly statement of receipts and expenditures of the Government for receipts thereafter (for explanation of reporting bases in these publications, see page II). Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis. Figures for previous years include only amounts collected at ports of entry into the United States. Differences between the amounts of Internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1950_03.txt:\n  Line 2853: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profit taxes > Total income and profit | Income and profit taxes > Individual income | Income and profit taxes > Corporation income and profit 2/ | Employment taxes > Total employment | Employment taxes > Social security Old-age insurance | Employment taxes > Unemployment insurance | Employment taxes > Railroad retirement |\n  Line 2899: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries. Reports of collections do not coincide because of a lag in deposits of collections. Detail by tax is reported on a collection basis because it is not available on the basis of deposits. Excludes collections for credit to certain trust accounts for Territories\n  Line 3058: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries. Reports of collections do not coincide because of a lag in deposits of collections. Detail by tax is reported on a collection basis because it is not available on the basis of deposits.\n\n/app/corpus/treasury_bulletin_1946_04.txt:\n  Line 5876: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excess profits 3/ | Income and profits taxes > Miscellaneous profits taxes 4/ | Employment taxes > Total employment taxes | Employment taxes > Social Security taxes Old-age insurance 5/ | Employment taxes > Unemployment insurance 6/ | Employment taxes > Railroad retirement 7/ |\n  Line 5930: (1) Total receipts from internal revenue: Daily Treasury Statements; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue. 1/ Excludes collections for credit to certain trust accounts for territories and insular possessions, etc. 2/ Includes collection of taxes withheld by employers pursuant to the Revenue Act of 1942 and the Current Tax Payment Act of 1943. 3/ Includes income tax collections on Alaskan Railroads. The excess profits tax included in this column is that imposed under the Second Revenue Act of 1940, as amended. 4/ Consists of the declared value excess profits tax, the profit limit-\n  Line 6098: Source: (1) Total receipts from internal revenues: Daily Treasury Statement; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue. Revised. * Less than $500. 1/ Excludes collections for credit to certain trust accounts for territories and insular possessions, etc. 2/ Consists only of collections for which returns have been filed with the Collector of Internal Revenue. Collections under this act as shown in Daily Treasury Statements consist of withholdings deposited in Government depositaries in addition to payments accompanying returns filed with the Collector of Internal Revenue.\n\n/app/corpus/treasury_bulletin_1949_05.txt:\n  Line 2505: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profit taxes > Total income and profits | Income and profit taxes > Individual income | Income and profit taxes > Corporation income and profits 2/ | Total employment > Unnamed: 7_level_1 | Employment taxes > Social security | Employment taxes > Old-age insurance | Employment taxes > Unemployment insurance | Unnamed: 11_level_0 > Railroad retirement |\n  Line 2543: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax.\n  Line 2715: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax.\n\n/app/corpus/treasury_bulletin_1962_07.txt:\n  Line 4092: 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts\n\n/app/corpus/treasury_bulletin_1939_02.txt:\n  Line 85: Figures on receipts on a collections basis do not reflect all payments made to collectors at rush periods when some mail may not be opened on immediate receipt. On the other hand, the \"collections\" basis includes certain trust items which do not appear in the general and special revenue items on the Daily Treasury Statement. Current and historical tables on internal revenue by detailed sources are the only ones in this Bulletin compiled from collectors' reports.\n\n/app/corpus/treasury_bulletin_1954_02.txt:\n  Line 3097: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Total receipts from internal revenue (Daily Treasury Statement) > Adjustment of collections to Daily Treasury Statement | Total receipts from internal revenue (Daily Treasury Statement) > Total internal revenue collections | Individual income tax and employment taxes > Corporation income and profit taxe 2/ | Individual income tax and employment taxes > Total | Individual income tax and employment taxes > Individual income tax not withheld 3/ | Individual income tax and employment taxes > Individual income tax withheld 4/ | Individual income tax and employment taxes > Old-age insurance taxes 4/ | Individual income tax and employment taxes > Railroad retirement | Individual income tax and employment taxes > Unemployment insurance |\n  Line 3144: Source: Daily Treasury Statement for total receipts from internal revenue; reporte by the Internal Revenue Service for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositories; they do not coincide with amounts reported by the Internal Revenue Service because of the lag in deposits of collections and because certain taxes are paid directly into the depositories.\n\n/app/corpus/treasury_bulletin_1949_07.txt:\n  Line 2623: | Fiscal year or month > Fiscal year or month > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement > Unnamed: 2_level_2 | Total internal revenue collections > Total internal revenue collections > Unnamed: 3_level_2 | Income and profits taxes > Total income and profits > Unnamed: 4_level_2 | Income and profits taxes > Individual income > Unnamed: 5_level_2 | Income and profits taxes > Corporation income and profits 2/ > Unnamed: 6_level_2 | Employment taxes > Total employment > Unnamed: 7_level_2 | Employment taxes > Social security > Old-age insurance | Employment taxes > Social security > Unemployment insurance | Employment taxes > Railroad retirement > Unnamed: 10_level_2 |\n  Line 2665: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax.\n  Line 2825: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax.\n\n/app/corpus/treasury_bulletin_1951_06.txt:\n  Line 2998: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excess profits taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Withheld taxes > Railroad retirement | Unnamed: 9_level_0 > Unemployment insurance > Unnamed: 9_level_2 |\n  Line 3040: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 3184: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1957_07.txt:\n  Line 2757: 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to rail- railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1952_07.txt:\n  Line 2978: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustments of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and excess profits taxes 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld | Old-age insurance taxes on employers and employees 4/ | Railroad retirement | Unemployment insurance |\n  Line 3026: Source: Daily Treasury Statement for total receipts from internal revenue reports by the Bureau of Internal Revenue for collections by type of tax. Detailed type of tax available only on a collection basis. Receipts on the Daily Treasury Statement include all collections, except the reports from Government depositories; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositories. Excludes collections from the Internal Revenue Service accounts on Guam and the possessions; includes corporation income tax on Alaska Railroad. 2/ Includes excess profits taxes formerly shown separately as follows: un-just enrichment through 1947 (thereafter these collections are included in the Miscellaneous Account); income tax for 1946 and years ending after June 30, 1946, Excess Profits Tax Act of 1940 (Title II of the Second Revenue Act of 1940, which was repealed for years ending after December 31, 1945), and Vinson Act as amended (34 U.S.C. 496).\n  Line 3172: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the separately reported from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositories.\n\n/app/corpus/treasury_bulletin_1953_04.txt:\n  Line 2911: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment of collections to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Corporation income and profits taxes 2/ > Unnamed: 4_level_1 | Individual income tax and employment taxes > Total | Individual income tax and employment taxes > Individual income tax not withheld 3/ | Individual income tax and employment taxes > Individual income tax withheld 4/ | Individual income tax and employment taxes > Old-age insurance taxes 4/ | Individual income tax and employment taxes > Railroad retirement | Individual income tax and employment taxes > Unemployment insurance |\n  Line 2953: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 3095: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1950_02.txt:\n  Line 2999: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profits taxes > Total income and profits | Income and profits taxes > Individual income | Income and profits taxes > Corporation income and profits 2/ | Employment taxes > Total employment | Employment taxes > Social security | Employment taxes > Unemployment insurance | Employment taxes > Railroad retirement |\n  Line 3043: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries. Reports of collections do not coincide because of a lag in deposits of collections. Detail by tax is reported on a collection basis because it is not available on the basis of deposits.\n  Line 3204: Source: Daily Treasury Statement for total receipte from internal revenue; reporte by collectors of internal revenue for collections by type of tax. Receipts on the Daily Treasury Statement baes are compiled from the latest daily reports from Government depositories. Reports of collections do not coincide because of a lag in depoiste of collections. Detail by tax is reported on a collection baae because it is not avail- eble on the baae of depoiste.\n\n/app/corpus/treasury_bulletin_1958_02.txt:\n  Line 3428: Sources: Internal Revenue Service reports for detail of collections by type of tax; generally a necessary statement for budget receipts from internal revenue; and the Internal Revenue Service statement of the receipts and expenditures of the Government for receipts thereafter. For explanation of reporting bases in these publications, see page III. Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for which no tax is levied, as well as by the Internal Revenue Service. Beginning with the fiscal year 1959, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Prior to 1959, they have been revised to the same basis. Figures for previous years include only amounts collected at ports of entry into the United States. 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported by the Treasury Department for the same periods arise because of differences in the treatment of payments made in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collections. For this and other reasons, much of the credit received in internal revenue offices. Under procedures for dealing with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositories and the depository receipts, as evidence of such payments, are stated in the quarterly and monthly Internal Revenue Service. Under this procedure, the payments are included in budget receipts\n\n/app/corpus/treasury_bulletin_1956_05.txt:\n  Line 3000: 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments are included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payment, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts in the month in which the depositary receipts are issued to the taxpayers. Revised accounting procedures effective\n  Line 3084: Source: Internal Revenue Service reports for detail of collections by type of tax; \"Monthly Statement of Receipts and Expenditures of the United States Government\" for budget receipts from internal revenue. Certain detail by type of tax is available only on the basis of returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico on merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis.\n\n/app/corpus/treasury_bulletin_1960_11.txt:\n  Line 4097: Source: Internal Revenue Service reports for detail of collections by type of tax; monthly statement of receipts and expenditures of the Government for budget receipts from Internal revenue (for explanation of reporting basea in this publication, see page 11). Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis, but those for 1953 include only amounts collected at ports of entry into the United States. Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1955_08.txt:\n  Line 2911: Source: Internal Revenue Service reports for detail of collections by type of tax; Daily Treasury Statement for budget receipts from internal revenue through the fiscal year 1952, and the new \"Monthly Statement of Receipts and Expenditures of the United States Government\" for receipts thereafter. Certain detail by type of tax is available only on the basis of returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service.\n  Line 2913: Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasurys statements as budget receipts for the same periods arise because of differences in the time when payments are included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payment, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts in the month in which the depositary receipts are issued to the taxpayers.\n  Line 3069: Source: Internal Revenue Service reports for detail of collections by type of tax; Daily Treasury Statement for budget receipts from internal revenue through the fiscal year 1952, and the new \"Monthly Statement of Receipts and Expenditures of the United States Government\" for receipts thereafter. Certain detail by type of tax is available only on the basis of returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. \n\n/app/corpus/treasury_bulletin_1953_02.txt:\n  Line 4206: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustment of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and profit taxes 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld 4/ | Old-age insurance taxes 4/ | Railroad retirement | Unemployment insurance |\n  Line 4256: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 4398: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1956_04.txt:\n  Line 2667: 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments are included in the respective reports. Tax payments are included in budget receipts when they are reported as credit to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payment, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts in the month in which the depositary receipts are issued to the taxpayer. Revised accounting procedures effective\n\n/app/corpus/treasury_bulletin_1957_09.txt:\n  Line 2918: 1/ Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to reir-relied retirement taxes and many excises, these taxes are paid currently into Treasury depositories and the depository receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1954_07.txt:\n  Line 2316: Source: Internal Revenue Service for collections by type of tax; Daily Treasury Statement for budget receipts from internal revenue through\n  Line 2318: the fiscal year 1953, and the new \"Monthly Statement of Receipts and Expenditures of the United States Government\" for receipts there-after. Certain detail by type of tax is available only in Internal Revenue Service reports. Differences in the amounts reported for a given period by the two sources arise because of differences in the timing of the reports. Under arrangements begun in 1959, certain taxes are paid currently into Treasury depositaries, and the depositary receipts, as evidence of payment, are attached to quarterly tax returns to the Internal Revenue Service. These deposits are included currently in Treasury reports of internal revenue receipts but are taken into the accounts of the Internal Revenue Service after the returns are filed.\n  Line 2460: Source: Internal Revenue Service for collections by type of tax; Daily Treasury Statement for budget receipts from internal revenue through the fiscal year 1953, and the new \"Monthly Statement of Receipts and Expenditures of the United States Government\" for receipts there-after. Certain detail by type of tax is available only in Internal Revenue Service reports. Differences in the amounts reported for a given period by the two sources arise because certain taxes are paid currently into Treasury depositaries, and the depositary receipts, as evidence of payment, are attached to quarterly returns to the Internal Revenue Service. These deposits are included currently in Treasury reports of internal revenue receipts but are taken into the accounts of the Internal Revenue Service after the returns are filed.\n\n/app/corpus/treasury_bulletin_1960_08.txt:\n  Line 4201: Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1953_10.txt:\n  Line 2167: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustment of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and profit taxe 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld 3/ | Old-age insurance taxes 3/ | Railroad retirement | Unemployment insurance |\n  Line 2209: Source: Daily Treasury Statement for total receipts from internal revenue; reports by the Internal Revenue Service for collections by type of tax. Detail by type of tax is available only on a collection basis. Report on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositories; they do not coincide with amounts reported by the Internal Revenue Service because of the lag in deposits of collections and because certain taxes are paid directly into the depositories. 1/ Excludes collections for credit to certain trust accounts for island possessions; includes corporation income tax on Alaska Railroad (repealed by Public Law 38C, approved June 10, 1952, for taxable years ending after that date). 2/ Includes excess profits taxes formerly shown separately as follows: under the general excess profits (characterized as a collection of an included under Miscellaneous Income) tax, repealed for taxable years ending after June 30, 1946); Excess Profits tax Act of 1940 (Title II of the Second Revenue Act of 1940, which was repealed for\n\n/app/corpus/treasury_bulletin_1947_09.txt:\n  Line 4511: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excess profits 3/ | Income and profits taxes > Wiece-lanceous profits 4/ | Employment taxes > Total employment taxes | Employment taxes > Social Security taxes | Employment taxes > Railroad retirement 1/ | Employment taxes > Unnamed: 11_level_1 |\n  Line 4552: (1) Total receipts from internal revenue: Daily Treasury Statement; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue. 1/ Excludes collections for credit to certain trust accounts for territories and insular possessions, etc. 2/ Includes collection of taxes withheld by employers pursuant to the Revenue Act of 1942 and the Current Tax Payment Act of 1943. 3/ Includes income tax collections on Alaska Railroad. The excess profite tax included in this column is that imposed under the Second Revenue Act of 1940, as amended. 4/ Consists of the declared value excess profite tax, the profit limit-\n  Line 4722: (1) Total receipts from internal revenue; Daily Treasury Statements; (2) Detailed collections by type of tax; Reports of collections made by collectors of internal revenue. Less than $500. 1/ Exclude collections for credit to certain trust accounts for territories and insular possessions, etc. 2/ Collections under the Current Tax Payment Act of 1943 as shown in this table consist of those for which returns have been filed with the Collector of Internal Revenue; receipts under this Act as shown in Daily Treasury Statements consist of withholding taxes deposited in Government depositaries in addition to pay-\n\n/app/corpus/treasury_bulletin_1951_08.txt:\n  Line 3225: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excise profits taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Withheld taxes > Railroad retirement | Unnamed: 9_level_0 > Unemployment insurance > Unnamed: 9_level_2 |\n  Line 3271: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 3479: Sources: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries. 1/ Excludes collections for credit to certain trust accounts for island possessions; includes corporation income tax on Alaska Railroad. 2/ Includes excess profits taxes formerly shown separately as follows: declared value (repealed for years ending after June 30, 1946), Excess Profit Tax Act of 1940 (Title II of the Second Revenue Act of 1940, which was repealed for years ending after December 31, 1945),\n\n/app/corpus/treasury_bulletin_1952_06.txt:\n  Line 2804: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustment of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and excess profit taxes 2/ | Total | Individual income tax not with-held 3/ | Individual income tax withheld and old-age insurance 4/ | Railroad retirement | Unemployment insurance |\n  Line 2848: Source: Daily Treasury Statement for total receipts from internal revenue reports by the Bureau of Internal Revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on a daily collection basis are for the day of the date of latest daily reports from Government depositaries; they do not coincide with amounts reported by the Bureau because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries. Excluded collections: (1) for credit on return of tax accounts for island possessions; includes corporation income tax. (2) for the month of July 1927. (3) Includes excess profits taxes formerly shown separately as follows: unjust enrichment through 1947 (thereafter these collections are included under \"Miscellaneous taxes\"), declared value (repealed for years ending after December 31, 1945), and excise taxes (repealed for the last half of the Second Revenue Act of 1940, which was repealed for years ending after December 31, 1945), and Vinson Act as amended (34 U.S.C. 496).\n\n/app/corpus/treasury_bulletin_1962_06.txt:\n  Line 4084: Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget receipts\n\n/app/corpus/treasury_bulletin_1948_05.txt:\n  Line 2402: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excess profits 3/ | Income and profits taxes > Miscellaneous profit taxes 4/ | Employment taxes > Total employment taxes | Employment taxes > Social security taxes | Employment taxes > Old-age insurance | Employment taxes > Unemployment insurance | Unnamed: 12_level_0 > Railroad retirement |\n  Line 2440: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax.\n  Line 2564: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax.\n\n/app/corpus/treasury_bulletin_1949_08.txt:\n  Line 2932: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Income and profits taxes > Total income and profits > Unnamed: 4_level_2 | Income and profits taxes > Individual income > Unnamed: 5_level_2 | Income and profits taxes > Corporation income and profits 2/ > Unnamed: 6_level_2 | Employment taxes > Total employment > Unnamed: 7_level_2 | Employment taxes > Social security > Old-age insurance | Employment taxes > Social security > Unemployment insurance | Employment taxes > Railroad retirement > Unnamed: 10_level_2 |\n  Line 2976: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. 1/ Excludes collections for credit to certain trust accounts for Territories and insular possessions, etc.; includes corporation income tax on Alaska Railroad.\n  Line 3132: Source: Dally Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. 1/ Excludes collections for credit to certain trust accounts for Territories and insular possessions, etc.; includes corporation income tax on Alaska Railroad. 2/ Current collections consist in general of taxes paid within twelve months after the close of the taxable year for which the return was filed.\n\n/app/corpus/treasury_bulletin_1948_12.txt:\n  Line 2555: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profits taxes > Total income and profits | Income and profits taxes > Individual income | Income and profits taxes > Corporation income and profits 2/ | Employment taxes > Total employment | Employment taxes > Social security Old-age insurance | Employment taxes > Unemployment insurance | Employment taxes > Railroad retirement |\n  Line 2597: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. 1/ Excludes collections for credit to certain trust accounts for Territories and insular possessions, etc.; includes corporation income tax on Alaska Railroad.\n  Line 2754: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. 1/ Excludes collections for credit to certain trust accounts for Territories and inlunar possessions, etc.; includes corporation income tax on Alaska Railroad. 2/ Current collections consist in general of taxes paid within\n\n/app/corpus/treasury_bulletin_1956_11.txt:\n  Line 3017: Source: Internal Revenue Service reports for detail of collections by type of tax; daily Treasury statement for budget receipts from internal revenue through the fiscal year 1952, and the monthly statement of receipts and expenditures of the Government for receipts thereafter (for explanation of reporting basese in these publications, see page II). Certain detail by type of tax is available only from returns filled with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis. Figures for previous years include only amounts collected at ports of entry into the United States. Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositaries and the depositary receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service. Under this procedure, the payments are included in budget\n\n/app/corpus/treasury_bulletin_1947_03.txt:\n  Line 4205: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excise profits 3/ | Income and profits taxes > Miscellaneous profits taxes 4/ | Total employment taxes > Unnamed: 8_level_1 | Employment taxes > Social Security taxes | Employment taxes > Old-age insurance 5/ | Employment taxes > Unemployment insurance 6/ | Unnamed: 12_level_0 > Railroad retirement 7/ |\n  Line 4259: Source: (1) Total receipts from internal revenue: Daily Treasury Statement; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue.\n  Line 4438: Source: (1) Total receipts from internal revenue; Daily Treasury Statements; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue. Less than $500. 1/ Excludes collections for credit to certain trust accounts for territories and insular possessions, etc. 2/ Collections under the Current Tax Payment Act of 1943 as shown in this table consist of those for which returns have been filed with the Collector of Internal Revenue; receipts under this act as shown in Daily Treasury Statements consist of withholding taxes deposited in Government depositaries in addition to payments accompanying returns filed with the Collector of Internal Revenue.\n\n/app/corpus/treasury_bulletin_1960_12.txt:\n  Line 3706: Source: Internal Revenue Service reports for detail of collections by type of tax; monthly statement of receipts and expenditures of the Government for budget receipts from internal revenue (for explanation of reporting bases in this publication, see page II). Certain detail by type of tax is available only from returns filed with the Internal Revenue Service. The figures shown include collections for credit to special accounts for certain island possessions, as reported by the Internal Revenue Service. Beginning with the fiscal year 1955, they include the amounts of tax collected in Puerto Rico upon articles of merchandise of Puerto Rican manufacture coming into the United States. Figures for 1954 have been revised to the same basis, but those for 1953 include only amounts collected at ports of entry into the United States. Differences between the amounts of internal revenue reported by the Internal Revenue Service as collections for given periods and the amounts reported in Treasury statements as budget receipts for the same periods arose because of differences in the time when payments were included in the respective reports. Tax payments are included in budget receipts when they are reported as credits to the account of the Treasurer of the United States. Prior to July 1954, they were included in Internal Revenue Service collection reports after the returns to which they applied had been received in Internal revenue offices. Under procedure begun in 1950 with withheld income tax and old-age insurance taxes and later extended to railroad retirement taxes and many excises, these taxes are paid currently into Treasury depositories and the depository receipts, as evidence of such payments, are attached to quarterly returns to the Internal Revenue Service.\n\n/app/corpus/treasury_bulletin_1951_09.txt:\n  Line 2892: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excise profits taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Withheld taxes > Railroad retirement | Unnamed: 9_level_0 > Unemployment insurance > Unnamed: 9_level_2 |\n  Line 2942: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 3086: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1951_11.txt:\n  Line 2911: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excisee profit taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Unemployment insurance > Railroad retirement | Unnamed: 9_level_0 > Unnamed: 9_level_1 > Unnamed: 9_level_2 |\n  Line 2953: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries. 1/ Excludes collections for credit to certain trust accounts for island post-execlues; includes corporation income tax on Alaska Railroad. 2/ Include excess profits taxes formerly shown separately as follows: un-just enrichment through 1947 (thereafter these collections are included under \"Miscellaneous\"), declared value (repealed for years ending after\n  Line 3095: Source: Daily Treasury Statement for total receipts from internal revenue; reporte by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1951_05.txt:\n  Line 2915: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excess profits taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Withheld taxes > Railroad retirement | Unnamed: 9_level_0 > Unemployment insurance > Unnamed: 9_level_2 |\n  Line 2955: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n  Line 3099: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries.\n\n/app/corpus/treasury_bulletin_1951_07.txt:\n  Line 3071: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Corporation income and excise profits taxes $ > Unnamed: 4_level_1 | Total > Unnamed: 5_level_1 | Individual income tax and employment taxes > Individual income tax not withheld | Individual income tax and employment taxes > Withheld taxes Individual income and old-age insurance $ | Individual income tax and employment taxes > Railroad retirement | Individual income tax and employment taxes > Unemployment insurance |\n  Line 3115: Source: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax; December 31, 1947, balance available only on a collection basis. Receipts on the Daily Treasury Statement are corrected to reflect daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries. Exempt collections withheld to meet obligations for state and local police sessions; includes corporation income tax on Alaska Railroad, 2/3. Includes excess profits taxes formerly shown separately as follows: unused enrichment through 1947 (thereafter these collections are included under \"Miscellaneous\"), declared value (repealed for years ending after\n  Line 3256: Sources: Daily Treasury Statement for total receipts from internal revenue; reports by collectors of internal revenue for collections by type of tax. Detail by type of tax is available only on a collection basis. Receipts on the Daily Treasury Statement basis are compiled from the latest daily reports from Government depositaries; they do not coincide with amounts reported by collectors because of the lag in deposits of collections and because certain taxes are paid directly into the depositaries. 1/ Excludes collections for credit to certain trust accounts for island possessions; includes corporation income tax on Alaska Railroad. 2/ Includes excess profits taxes formerly shown separately as follows: declared value (repealed for years ending after June 30, 1946). Excess Profite Tax Act of 1940 (Title II of the Second Revenue Act of 1940), which was repealed for years ending after December 31, 1945), and Vinson Act an amended (34 U.S.C. 496).\n\n/app/corpus/treasury_bulletin_1947_01.txt:\n  Line 5236: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excess profits 3/ | Income and profits taxes > Miscellaneous profits 4/ | Employment taxes > Total employment taxes | Employment taxes > Social Security taxes Old-age insurance 5/ | Employment taxes > Unemployment insurance 6/ | Employment taxes > Railroad retirement 1/ |\n  Line 5290: Source: (1) Total receipts from internal revenue: Daily Treasury Statement; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue. 1/ Excludes collections for credit to certain trust accounts for territories and insular possessions, etc. 2/ Includes collection of taxes withheld by employers pursuant to the Revenue Act of 1942 and the Current Tax Payment Act of 1943. 3/ Includes income tax collections on Alaskan Railroads. The excess profit tax included in this column is that imposed under the Second Revenue Act of 1940, as amended. 4/ Consists of the declared value excess profits tax, the profit limit-\n  Line 5460: (1) Total receipts from internal revenue: Daily Treasury Statements; (2) Detailed collections by type of tax: Reports of collections made by collectors of internal revenue. Less than $500. Excludes collections for credit to certain trust accounts for territories and insular possessions, etc. Collections under the Current Tax Payment Act of 1943 as shown in this table consist of those for which returns have been filed with the Collector of Internal Revenue; receipts under this act as shown in Daily Treasury Statements consist of withholding taxes deposited in Government depositaries in addition to payments accompanying returns filed with the Collector of Internal Revenue.\n\n(Results truncated: showing 100 of 455 matches (355 hidden). Consider using a more specific path or pattern.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11258,
+        "completion_tokens": 83,
+        "cached_tokens": 10464,
+        "cost_usd": 0.00068292,
+        "extra": {
+          "reasoning_tokens": 26
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-03-30T23:40:47.886000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_86904eb448c94c7a926fc4f7",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "by State|state data|collections by state"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_86904eb448c94c7a926fc4f7",
+            "content": "Found 2843 matches (showing first 100)\n/app/corpus/treasury_bulletin_1940_06.txt:\n  Line 1141: | Cumulative as of end of fiscal year or month > Unnamed: 0_level_1 | Receipts > Deposits by States 5/ | Receipts > Railroad Unemployment Insurance Account Deposits by Railroad Retirement Board | Receipts > Advanced from appropriations 6/ | Receipts > Interest on investments | Expenditures > Total receipts 7/ | Expenditures > With-drawals by States | Expenditures > Railroad Unemployment Insurance Account unemployment benefit payments | Balance > Repayment of advances | Balance > Total expenditures 7/ | Balance > Total | Unnamed: 11_level_0 > Investments | Unnamed: 12_level_0 > Trust account | Unnamed: 13_level_0 > Unexpended balances Disbursing account (Railroad unemployment benefits and refunds) |\n  Line 1243: | Unemployment trust fund (deposite by States) | 137 | 17 | 43 | 154.0 | 13.0 | 54.0 | 144 | 29 | 62 | 155 | 30 | 53 | 144 | nan |\n\n/app/corpus/treasury_bulletin_1966_10.txt:\n  Line 7004: | Summary of internal revenue receipts by States, calendar year 1965 | nan | nan | nan | nan | nan | 10 | nan | nan | nan | nan | nan | nan |\n  Line 7067: | Sales by States, Series E and H combined | nan | nan | nan | 70.0 | nan | nan | nan | nan | nan | 75.0 | nan | nan |\n\n/app/corpus/treasury_bulletin_1963_02.txt:\n  Line 1043: | Fiscal year or month > Fiscal year or month | Receipts > Total 2/ | Receipts > Appropriations 3/ | Receipts > Deposits by States 4/ | Receipts > Net earnings on investments | Expenditures other than investments > Payments from Railroad Retirement Account 5/ | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Unnamed: 8_level_0 > Payments to HR Retirement Account 5/ |\n  Line 1111: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > Approximations 1/ | Receipts > Deposits by States 2/ | Receipts > Payments from Railroad Retirement Account 3/ | Receipts > Interest on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefits payments | Expenditures other than investments > Payments to Railroad Retirement Account 3/ | Expenditures other than investments > Administrative: Reimbursement to- FOASI Trust Fund 4/ General fund 5/ | Expenditures other than investments > Total.1 | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Investments | Assets, end of period > Unexpended balance 6/ | Assets, end of period > Unnamed: 14_level_1 |\n  Line 1194: | Fiscal year or month > Fiscal year or month | Total > Total | Employment security program > State accounts 1/ Deposits by States | Employment security program > Employment Security Admin. Account 2/ Appropriations | Employment security program > Advances from general fund 3/ | Employment security program > Federal Unemployment Account 4/ | Railroad unemployment insurance > Federal Extended Compensation Account 5/ | Railroad unemployment insurance > Deposits by R. R. Retirement Board 7/ | Railroad unemployment insurance > Advances from- R. R. Retirement Account 8/ | Railroad unemployment insurance > Transfers from admin- istration fund 2/ | Interest and profits > Interest and profits | Expenditures other than investments > Admin. fund 10/ Deposits on by R. R. Retirement Board | Expenditures other than investments > Total | Expenditures other than investments > State accounts 1/ With drawals by States | Unnamed: 14_level_0 > Employment Security Admin. Account 2/ Grants to States | Unnamed: 15_level_0 > Unnamed: 15_level_1 |\n  Line 1301: 1/ State unemployment funds; used for benefit payments mainly. Beginning August 1961, withdrawals by States have been reduced by reimbursements to State accounts from Federal Extended Compensation Account.\n  Line 3875: Table 6.- Sales by States, Series E and H 1/ Combined\n  Line 9035: | Sales by States, Series E and H combined | ... | ... | ... | ... | ... | 64 | ... | ... | ... | ... | ... | 67 | 67 |\n  Line 9066: | Summary by States, calendar year 1961. | ... | 68 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan | nan |\n\n/app/corpus/treasury_bulletin_1973_01.txt:\n  Line 8004: | Summary of internal revenue collections by States, and other areas. | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n  Line 8040: | Sales by States, Series E and H combined. | 65 | ... | ... | ... | ... | ... | 67 | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1960_03.txt:\n  Line 7707: | Sales by States, Series E and H combined. | nan | nan | nan | nan | 51.0 | nan | nan | nan | nan | nan | 52.0 | nan | nan |\n\n/app/corpus/treasury_bulletin_1962_08.txt:\n  Line 137: Of the certificates applied for, there was allotted in full, as provided in the offering circular, about $4,760 million, the amount subscribed by States, political subdivisions or instrumentalities thereof, public pension and retirement and other public funds, international organizations in which the United States holds membership, foreign central banks and foreign states, Government investment accounts, and Federal Reserve Banks. Subscriptions from all others totaled about $15,395 million and were allotted 12-1/2 percent with subscriptions for $50,000 or less allotted in full and those for more than $50,000 allotted not less than $50,000.\n  Line 1038: | Fiscal year or month > Unnamed: 0_level_1 | Receipts > Total 2/ | Receipts > Appropriations 3/ | Receipts > Deposits by States 4/ | Receipts > Net earnings on investments | Receipts > Payments from Railroad Retirement Account 5/ | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Refunds of taxes 6/ |\n  Line 1121: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > Appropriations 1/ | Receipts > Deposits by States 2/ | Receipts > Payments from Railroad Retirement Account 3/ | Receipts > Interest on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Refunds of taxes 4/ | Expenditures other than investments > Payments to Railroad Retirement Account 3/ | Expenditures other than investments > Administrative: Reimbursement to- FOASI Trust Fund 5/ General fund 6/ | Expenditures other than investments > Total.1 | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Investments | Assets, end of period > Unexpended balance 7/ | Assets, end of period > Unnamed: 15_level_1 |\n  Line 1300: 1/ State unemployment funds; used for benefit payments mainly. Beginning August 1961, withdrawals by States have been reduced by reimbursements to State accounts from Federal Extended Compensation Account.\n  Line 3691: Table 6.- Sales by States, Series E and H 1/ Combined\n  Line 6078: | Sales by States, Series E and H combined | nan | nan | nan | nan | 60 | nan | nan | nan | nan | nan | 64 | nan | nan |\n  Line 6108: | Summary by States, calendar year 1961. | nan | nan | nan | nan | nan | nan | 68.0 | 68.0 | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_2008_06.txt:\n  Line 228: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |\n\n/app/corpus/treasury_bulletin_1970_08.txt:\n  Line 813: | 1/ Amounts are stated net of refunds. 2/ Includes payment for military service credits and special benefits. 3/ Includes interest payments from other funds and interest on uninvested funds. 4/ Includes deposits by States. 5/ Excludes advances from and repayments to the Railroad Retirement Account. 6/ Excludes receipts not yet on insurance. 7/ Less than $500,000. p Preliminary. | 1/ Amounts are stated net of refunds. 2/ Includes payment for military service credits and special benefits. 3/ Includes interest payments from other funds and interest on uninvested funds. 4/ Includes deposits by States. 5/ Excludes advances from and repayments to the Railroad Retirement Account. 6/ Excludes receipts not yet on insurance. 7/ Less than $500,000. p Preliminary. | 1/ Amounts are stated net of refunds. 2/ Includes payment for military service credits and special benefits. 3/ Includes interest payments from other funds and interest on uninvested funds. 4/ Includes deposits by States. 5/ Excludes advances from and repayments to the Railroad Retirement Account. 6/ Excludes receipts not yet on insurance. 7/ Less than $500,000. p Preliminary. | 1/ Amounts are stated net of refunds. 2/ Includes payment for military service credits and special benefits. 3/ Includes interest payments from other funds and interest on uninvested funds. 4/ Includes deposits by States. 5/ Excludes advances from and repayments to the Railroad Retirement Account. 6/ Excludes receipts not yet on insurance. 7/ Less than $500,000. p Preliminary. | 1/ Amounts are stated net of refunds. 2/ Includes payment for military service credits and special benefits. 3/ Includes interest payments from other funds and interest on uninvested funds. 4/ Includes deposits by States. 5/ Excludes advances from and repayments to the Railroad Retirement Account. 6/ Excludes receipts not yet on insurance. 7/ Less than $500,000. p Preliminary. | 1/ Amounts are stated net of refunds. 2/ Includes payment for military service credits a...\n  Line 4129: Table SB-6. - Sales by States, Series E and H1/ Combined\n  Line 8365: | Fiscal year or month > Fiscal year or month | Receipts > Total 1/ | Receipts > Appropriations 2/ | Receipts > Deposits by States 4/ | Receipts > Net earnings on investments | Expenditures other than investments > Total 5/ | Expenditures other than investments > Benefit payments | Expenditures other than investments > Payments to Railroad Retirement Accounts 6/ |\n  Line 8445: | Fiscal year or month > Unnamed: 0_level_1 | Receipts > Total 1/ | Receipts > Appropriations 2/ | Receipts > Deposits by States 3/ | Receipts > Interest and profits on investments | Expenditures other than investments > Total 4/ | Expenditures other than investments > Benefit payments | Expenditures other than investments > Payments to Railroad Retirement Accounts 5/ | Expenditures other than investments > Administrative: Reimbursement to SSA Trust Funds 6/ | Expenditures other than investments > General fund | Expenditures other than investments > Total | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Investments | Assets, end of period > Unexpended balance 2/ | Assets, end of period > Unnamed: 14_level_1 |\n  Line 8489: | Fiscal year or month > Fiscal year or month | Receipts > Total 1/ 2/ | Receipts > Appropriations | Receipts > Federal payment 2/ | Receipts > Deposits by States | Receipts > Interest and profits on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Administrative expenses | Expenditures other than investments > Construction | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Total | Assets, end of period > Investments | Assets, end of period > Unexpended balance |\n  Line 8611: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > State accounts 1/ Deposits by States | Receipts > Employment Security Administration Account 2/ Appropriations | Receipts > Advances from general fund 2/ | Receipts > Federal Unemployment Account Board 4/ | Railroad unemployment insurance > Federal Extended Compensation Account 5/ | Railroad unemployment insurance > Deposits by Railroad Retirement Accounts 7/ | Railroad unemployment insurance > Advances from Railroad Retirement Accounts 8/ | Interest and profits on investments > Interest and profits on investments | Expenditures other than investments > Adminis- tration fund 2/ General fund | Expenditures other than investments > Total | Expenditures other than investments > Employment Security program State accounts 1/ With drawals by States | Unnamed: 13_level_0 > Employment Security Administra- tion Account 2/ Grants to States | Unnamed: 14_level_0 > Unnamed: 14_level_1 |\n  Line 8716: 1/ State unemployment funds; used for benefit payments. For the period August 1961 to February 1964, withdrawals by States were reduced by reimbursements to State accounts from the Federal Extended Compensation Account.\n  Line 8858: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | nan |\n  Line 8897: | Sales by States, Series E and H combined | ... | ... | ... | 71 | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1971_08.txt:\n  Line 825: Includes deposits by States.\n  Line 3823: Table SB-6. - Sales by States, Series E and H 1/Combined\n  Line 8190: | Fiscal year or month > Fiscal year or month | Receipts > Total 2/ | Receipts > Appropriations 2/ | Receipts > Deposits by States 4/ | Receipts > Net earnings on investments | Expenditures other than investments > Total 5/ | Expenditures other than investments > Benefit payments | Expenditures other than investments > Payments to Railroad Retirement Accounts 6/ |\n  Line 8269: | Fiscal year or month > Fiscal year or month | Receipts > Total 1/ | Receipts > Appropriations 2/ | Receipts > Deposits by States 3/ | Receipts > Interest and profits on investments | Expenditures other than investments > Total 4/ | Expenditures other than investments > Benefit payments | Expenditures other than investments > Payments to Railroad Retirement Accounts 5/ | Expenditures other than investments > Administrative: Reimbursement to SSA Trust Funds 6/ | Expenditures other than investments > General fund | Net increase, or decrease (\u2212), in assets > Net increase, or decrease (\u2212), in assets | Assets, end of period > Total | Assets, end of period > Investments | Assets, end of period > Unexpended balance 2/ |\n  Line 8313: | Fiscal year or month > Fiscal year or month | Receipts > Total 1/2/ | Receipts > Appropriations | Receipts > Federal payment 3/ | Receipts > Deposits by States | Receipts > Interest and profits on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Administrative expenses | Expenditures other than investments > Construction | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Total | Assets, end of period > Investments | Assets, end of period > Unexpended balance |\n  Line 8461: | nan | nan | Withdrawals by States | Grants to States | Reimbursements and recoveries | Interest on advances 13/ | Salaries and expenses | nan | nan | nan | nan | nan |\n  Line 8528: Source: See Table FFO-1. 1/ State unemployment funds; used for benefit payments. For the period August 1961 to February 1964, withdrawals by States were reduced by\n  Line 8731: | Summary of internal revenue collections by States, calendar year 1970 | ... | ... | ... | ... | ... | ... | ... | ... | ... | 14 | ... | ... | nan |\n  Line 8769: | Sales by States, Series E and H combined | ... | ... | ... | ... | ... | 65 | ... | ... | ... | ... | ... | 60 | nan |\n\n/app/corpus/treasury_bulletin_1981_01.txt:\n  Line 8968: | Summary of internal revenue collections by States and other areas | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n  Line 9007: | Sales by States, Series E and H combined | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1941_08.txt:\n  Line 446: | End of fiscal year or month > End of fiscal year or month | Receipts > Total receipts | Receipts > Deposits by States | Receipts > Deposits by Railroad Retirement Board | Receipts > Advanced from appropriations | Receipts > Transfere from Railroad Unemployment Insurance Administration Fund | Expenditures > Interest on investments | Expenditures > Total expenditures | Expenditures > Withdrawals by States | Expenditures > Railroad Unemployment Insurance Account | Balance > Repayment of advance | Balance > Total investments | Balance > Investments | Unnamed: 13_level_0 > Unexpended balance | Unnamed: 14_level_0 > Unnamed: 14_level_1 |\n  Line 474: | Unemployment trust fund (deposite by States). | 59.0 | 143.0 | 23.0 | 57.0 | 144.0 | 28.0 | 68.0 | 146.0 | 28.0 | 67.0 | 166.0 | 25 | 78.0 | nan |\n\n/app/corpus/treasury_bulletin_1961_07.txt:\n  Line 5161: | Sales by States, Series E and H combined. | 53 | ... | ... | ... | ... | ... | 56 | ... | ... | ... | ... | ... | nan |\n  Line 5178: | Summary by States, calendar year 1960. | ... | 68 | ... | ... | 63 | ... | ... | 67 | ... | 69 | ... | 63 | nan |\n\n/app/corpus/treasury_bulletin_1979_10.txt:\n  Line 10061: | Summary of internal revenue collections by States and other areas | nan | nan | nan | nan | nan | 13 | nan | nan | 13 | nan | 13 | nan | nan |\n  Line 10099: | Sales by States, Series E and H combined | nan | nan | nan | nan | nan | 69 | nan | nan | nan | 78 | nan | 78 | nan |\n\n/app/corpus/treasury_bulletin_2022_09.txt:\n  Line 149: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | nan | \u2714 |\n\n/app/corpus/treasury_bulletin_1943_09.txt:\n  Line 37: | Second War Loan, April 1943: Sales of Series E savings bonds by States. Sales of securities classified by type of investor. Comparison of features of securities offered. | nan | nan | nan | 2 | 2-6 | 2-3 | nan | nan | nan | nan | nan | nan | nan |\n  Line 39: | Bank deposits: Maps showing deposits by counties, as of December 31, 1942 and increases during 1942. Amounts by Federal Reserve Districts and by States, December 31, 1941 and 1942. | nan | nan | nan | nan | 4-5 | 2-3 | nan | nan | nan | nan | nan | nan | nan |\n  Line 100: | Sales reported by series, classified by States | 34-35 | 37-38 | 40-41 | 35-36 | 40-41 | 39-40 | 36-37 | 33-34 | 42-43 | 33-34 | 33-34 | 35-36 | nan |\n  Line 109: | Sales, classified by States | 41 | 44 | 44 | 39 | 44 | 43 | 40 | 37 | 46 | 37 | 37 | 39 | nan |\n  Line 1018: | End of fiscal year or month > End of fiscal year or month > Unnamed: 0_level_2 | Receipts > Total receipts > Unnamed: 1_level_2 | Receipts > State unemployment insurance activities > Deposits by States | Receipts > Railroad Unemployment Insurance Account 1/ > Unnamed: 3_level_2 | Receipts > Transfers from Railroad Unemployment Insurance Administration Fund 2/ > Unnamed: 4_level_2 | Expenditures > Interest on investments > Unnamed: 5_level_2 | Expenditures > Total expenditures > Unnamed: 6_level_2 | Expenditures > State unemployment insurance activities > With-drawals by States | Balance > Transfers to Railroad Unemployment Insurance Account 3/ > Unnamed: 8_level_2 | Balance > Railroad Unemployment Insurance Account 1/ > Benefit payments | Balance > Total investments > Unnamed: 10_level_2 | Unnamed: 11_level_0 > Unexpended balance > In General Fund (Special Deposit account) | Unnamed: 12_level_0 > Unnamed: 12_level_1 > In die-bursing officer's account 5/ | Unnamed: 13_level_0 > Unnamed: 13_level_1 > Unnamed: 13_level_2 |\n  Line 1066: | Unemployment trust fund (deposits by States and Railroad Retirement Board) | 217 | 29 | 50.0 | 243.0 | 35.0 | 40.0 | 262.0 | 34.0 | 35.0 | 277.0 | 36.0 | 44.0 | 301.0 |\n  Line 1924: Table 3.- Sales Reported by Series, Classified by States\n  Line 1987: Table 3.- Sales Reported by Series, Classified by States - (Continued)\n  Line 2279: Table 3.- Sales by States\n  Line 2334: Source: (1) Total sales: Daily Treasury Statements; (2) Sales by States: Post Office Department. p Preliminary.\n\n/app/corpus/treasury_bulletin_1968_04.txt:\n  Line 297: | Fiscal year or month > Fiscal year or month | Custom duties > Custom duties | Railroad Unemployment Insurance Act > Railroad Unemployment Insurance Act | Deposits by States > Old-age survivors, disability and health insurance | Deposits by States > Unemployment insurance | Insurance premiums Medical insurance for the aged > Insurance premiums Medical insurance for the aged | Federal employees retirement contributions > Federal employees retirement contributions | Miscellaneous receipts > Miscellaneous receipts | Deduct: Refunds > Deduct: Refunds | Net budget receipts > Net budget receipts |\n  Line 9313: | Summary of internal revenue receipts by States, calendar year 1966 | 10 | ... | ... | 15 | ... | 14 | ... | ... | 5 | ... | ... | ... |\n  Line 9396: | Sales by States, Series E and H combined. | ... | ... | ... | 65 | ... | ... | ... | ... | ... | 64 | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_2023_03.txt:\n  Line 160: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u221a |\n\n/app/corpus/treasury_bulletin_1960_06.txt:\n  Line 7658: | Sales by States, Series E and H combined | ... | 51 | ... | ... | ... | ... | ... | 52 | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_2020_06.txt:\n  Line 121: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u221a |\n\n/app/corpus/treasury_bulletin_1954_11.txt:\n  Line 4926: | Sales by States, Series E and H combined | ... | ... | 32 | ... | ... | ... | ... | ... | 29 | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1958_04.txt:\n  Line 6402: | Sales by States, Series E and E combined | ... | ... | ... | 38 | ... | ... | ... | 43 | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_2023_09.txt:\n  Line 144: | FFO-5.\u2014Internal Revenue Receipts by State | \u221a | \u221a | \u221a | \u221a |\n\n/app/corpus/treasury_bulletin_1961_11.txt:\n  Line 1109: | Fiscal year or month > Unnamed: 0_level_1 | Receipts > Total 2/ | Receipts > Appropriations 3/ | Receipts > Deposits by States 4/ | Receipts > Net earnings on investments | Receipts > Payments from Railroad Retirement Account 5/ | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Refunds of taxes 6/ | Expenditures other than investments > Unnamed: 9_level_1 |\n  Line 1183: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > Appropriations 1/ | Receipts > Deposits by States 2/ | Receipts > Payments from Railroad Retirement Account 3/ | Expenditures other than investments > Interest on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Refunds of taxes 4/ | Expenditures other than investments > Payments to Railroad Retirement Account 2/ | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Administrative: Reimbursement to: FOASI Trust Fund 5/ | Assets, end of period > General fund 6/ | Assets, end of period > Total | Unnamed: 14_level_0 > Investments | Unnamed: 15_level_0 > Unexpended balance 7/ |\n  Line 1255: | Fiscal year or month > Fiscal year or month > Unnamed: 0_level_2 | Receipts > Total > Deposits by States | Receipts > State accounts 1/ > Approp-riations | Receipts > Employment Security Admin. Account 2/ > Advances from general fund 3/ | Receipts > Federal Unemployment Account 4/ > Unnamed: 4_level_2 | Receipts > Federal Extended Compensation Account 5/ > Unnamed: 5_level_2 | Receipts > Deposits by R. R. Retirement Board 7/ > Unnamed: 6_level_2 | Receipts > Railroad Unemployment Insurance Account 6/ > Deposits by R. R. Retirement Board | Expenditures other than investments > Advances from - R. R. Retirement Account 8/ > General fund | Expenditures other than investments > Transfers from admin-istration fund 9/ > Deposits by R. R. Retirement Board | Expenditures other than investments > Admin. fund 10/ > Unnamed: 10_level_2 | Expenditures other than investments > Interest and profits on investments > Withdrawals by States | Expenditures other than investments > Total > Grants to States | Expenditures other than investments > State accounts 1/ > Unnamed: 13_level_2 | Expenditures other than investments > Employment Security Admin. Account 2/ > Unnamed: 14_level_2 | Unnamed: 15_level_0 > Unnamed: 15_level_1 > Unnamed: 15_level_2 |\n  Line 1346: 1/ State unemployment funds; used for benefits payments mainly. Beginning August 1961, withdrawals by States have been reduced by reimbursements to State accounts from Federal Extended Compensation Account.\n  Line 5872: | Sales by States, Series E and H combined | ... | ... | 56 | ... | ... | ... | ... | ... | 58 | ... | ... | ... | nan |\n  Line 5889: | Summary by States, calendar year 1960 | ... | ... | ... | 67 | ... | 69 | ... | ... | ... | 69 | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1969_11.txt:\n  Line 764: 5/ Includes deposits by States. 6/ Premiums on insurance. 7/ Excludes advances from and less than $500,000.\n  Line 7822: | Fiscal year or month > Unnamed: 0_level_1 | Receipts > Total 2/ | Receipts > Appropriations 3/ | Receipts > Deposits by States 4/ | Receipts > Net earnings on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Payments to Railroad Retirement Accounts 5/ |\n  Line 7896: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > Appropriations 1/ | Receipts > Deposits by States 2/ | Receipts > Interest and profits on investments | Expenditures other than investments > Total 2/ | Expenditures other than investments > Benefit payments | Expenditures other than investments > Payments to Railroad Retirement Accounts 4/ | Expenditures other than investments > Administrative: FOASI Trust Fund 5/ | Expenditures other than investments > General fund | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Total | Assets, end of period > Investments | Assets, end of period > Unexpended balance 1/ |\n  Line 7934: | Fiscal year or month > Unnamed: 0_level_1 | Receipts > Total 1/ | Receipts > Appropriations | Receipts > Federal payments | Receipts > Deposits by States | Receipts > Interest and profits on investments | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Administrative expenses | Expenditures other than investments > Construction | Net increase, or decrease (-), in assets > Unnamed: 10_level_1 | Assets, end of period > Total | Assets, end of period > Investments | Assets, end of period > Unexpended balance |\n  Line 8051: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > State accounts 1/ Deposits by States | Receipts > Employment Security Administration Account 2/ Appropriations | Receipts > Advances from general fund 3/ | Receipts > Federal Unemployment Account 4/ | Railroad unemployment insurance > Federal Extended Compensation Account 5/ | Railroad unemployment insurance > Deposits by Railroad Retirement Board 7/ | Railroad unemployment insurance > Advances from Railroad Retirement Accounts 8/ | Interest and profits on investments > Interest and profits on investments | Expenditures other than investments > General fund | Expenditures other than investments > State accounts 1/ Total | Expenditures other than investments > Employment security program | Expenditures other than investments > Employment Security Administration Account 2/ Grants to States | Unnamed: 14_level_0 > Unnamed: 14_level_1 | Unnamed: 15_level_0 > Unnamed: 15_level_1 |\n  Line 8152: 1/ State unemployment funds; used for benefit payments. For the period August 1961 to February 1964, withdrawals by States were reduced by reimbursements to State accounts from the Federal Extended Compensation Account.\n  Line 8313: | Summary of internal revenue collections by States, calendar year 1968. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n  Line 8353: | Sales by States, Series E and H combined. | ... | ... | 69 | ... | ... | ... | 72 | ... | 72 | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1949_04.txt:\n  Line 711: | Fiscal year or month > Fiscal year or month > Unnamed: 0_level_2 | Receipts > Total > Unnamed: 1_level_2 | Receipts > State accounts > Deposits by State | Receipts > Railroad Unemployment Insurance Account 1/ > Contributions from State 2/ | Receipts > Interest on investments > Transfers from Administering Fund 4/ | Expenditures other than investments > Total > Unnamed: 5_level_2 | Expenditures other than investments > State accounts > Withdrawals by State | Expenditures other than investments > Railroad Unemployment Insurance Account 1/ > Transfers to Railroad Unemployment Insurance Account 1/ | Expenditures other than investments > Benefit payments > Unnamed: 8_level_2 | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets > Unnamed: 9_level_2 | Assets, end of period > Total > Unnamed: 10_level_2 | Assets, end of period > Investments > Unnamed: 11_level_2 | Assets, end of period > In trust account > In disbursing officer's account 5/ | Assets, end of period > Unexpended balance > Unnamed: 13_level_2 | Unnamed: 14_level_0 > Unnamed: 14_level_1 > Unnamed: 14_level_2 |\n  Line 1582: United States savings bonds were first offered for sale in March 1935. Series A-D were sold from March 1935 to April 1941. Series E, F, and G bonds have been on sale since May 1, 1941. For information on the terms and conditions of these bonds, see \"Treasury Bulletin\" issues for December 1947, page 31, and October 1945, pages A-4 and A-5. Sales and redemptions data by States are published at the end of each calendar and each fis- ocal year after June 30, 1947. Sales by denominations are also published semiannually after December 31, 1947.\n  Line 4294: | Redemptions of Series A-E by States. | nan | nan | 31 | nan | nan | nan | nan | nan | nan | 31 | nan | nan |\n\n/app/corpus/treasury_bulletin_1981_06.txt:\n  Line 1086: 3/ Includes net taxes and other receipts, mainly deposits by States and Federal employee retirement contributions.\n  Line 4220: Table SB-6. - Sales by States, Series E and H Combined 1/\n  Line 9557: | Summary of internal revenue collections by States and other areas | ... | ... | 15 | ... | 13 | ... | 13 | 13 | 15 | 14 | 13 | 15 |\n  Line 9594: | Sales by States, Series E and H combined | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 57 |\n\n/app/corpus/treasury_bulletin_1952_12.txt:\n  Line 698: | Fiscal year or month > Fiscal year or month | Receipts > Total | Receipts > Appropriations by Congress 2/ | Receipts > Interest and profits on investments | Receipts > Transfers from General Fund | Receipts > Deposits by States 3/ | Expenditures other than investments > Total | Expenditures other than investments > Benefit payments | Expenditures other than investments > Administrative expense Reimbursement to General Fund 4/ Salaries and expense 5/ | Net increase, or decrease (-), in assets > Net increase, or decrease (-), in assets | Assets, end of period > Total | Assets, end of period > Investments | Assets, end of period > Unexpended balance |\n  Line 770: | Fiscal year or month > Fiscal year or month > Unnamed: 0_level_2 | Receipts > Total > Unnamed: 1_level_2 | Receipts > State accounts > Deposits by States | Receipts > Railroad Unemployment Insurance Account 1/ > Contributions 2/ | Receipts > Railroad Unemployment Insurance Account 1/ > Transfers from States 3/ | Receipts > Railroad Unemployment Insurance Account 1/ > Transfers from Administration Fund 4/ | Expenditures other than investments > Interest on investments > Unnamed: 6_level_2 | Expenditures other than investments > Total > Unnamed: 7_level_2 | Expenditures other than investments > State accounts > With-drawals by States | Expenditures other than investments > Railroad Unemployment Insurance Account 1/ > Transfers to Railroad Unemployment Insurance Account 3/ | Net increase, or decrease (-), in assets > Railroad Unemployment Insurance Account 1/ > Benefit payments | Assets, end of period > Net increase, or decrease (-), in assets > Unnamed: 11_level_2 | Assets, end of period > Total > Unnamed: 12_level_2 | Assets, end of period > Investments > Unnamed: 13_level_2 | Unnamed: 14_level_0 > Unexpended balance > Unnamed: 14_level_2 |\n  Line 1817: In the tables which follow, Series A-F and J sales are shown at issue price and total redemptions and amounts outstanding at current redemption values. Series G, H, and K are shown at face value throughout. Matured bonds which have been redeemed are included in redemptions. Data by denominations and sales by States are published on a monthly basis but not in each issue of the \"Treasury Bulletin\".\n  Line 4968: | Sales by States, Series E and H and Series F and G............. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1974_10.txt:\n  Line 840: 3/ Includes net taxes and other receipts, mainly deposits by States and Federal employee retirement contributions.\n  Line 874: 3/ Includes net taxes and other receipts, mainly deposits by States and Federal employee retirement contributions.\n  Line 9094: | Summary of internal revenue collections by State, and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n  Line 9129: | Sales by States, Series E and H combined | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_2023_12.txt:\n  Line 43: | FFO-5\u2014Internal Revenue Receipts by State | 21 |\n  Line 132: | FFO-5.\u2014Internal Revenue Receipts by State | \u221a | \u221a | \u221a | \u221a |\n  Line 746: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2023\n\n(Results truncated: showing 100 of 2843 matches (2743 hidden). Consider using a more specific path or pattern.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 26571,
+        "completion_tokens": 89,
+        "cached_tokens": 10464,
+        "cost_usd": 0.00529242,
+        "extra": {
+          "reasoning_tokens": 33
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": "2026-03-30T23:40:53.926000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_790b77d5b56f4cd89ddba25e",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "FFO-5.*New York|New York.*FFO-5"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_790b77d5b56f4cd89ddba25e",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 35463,
+        "completion_tokens": 103,
+        "cached_tokens": 10464,
+        "cost_usd": 0.00798762,
+        "extra": {
+          "reasoning_tokens": 42
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": "2026-03-30T23:41:04.358000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me check one of the more recent bulletins with the FFO-5 table format:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_94e9d161303d4f7c898a97fa",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2023_12.txt",
+            "offset": 740,
+            "limit": 100
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_94e9d161303d4f7c898a97fa",
+            "content": "<path>/app/corpus/treasury_bulletin_2023_12.txt</path>\n<type>file</type>\n<content>740: * Less than $500,000\n741: \n742: Note.\u2014Detail may not add to totals due to rounding\n743: \n744: 21\n745: \n746: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2023\n747: \n748: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n749: \n750: | State or area | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual income tax withheld and FICA tax 3 (4) | Individual income tax payments and SECA tax 3 (5) |\n751: | --- | --- | --- | --- | --- | --- |\n752: | United States, total | 4694335168 | 456940780 | 4127711362 | 3199581711 | 860714188 |\n753: | Alabama | 35829649 | 2069107 | 33131160 | 24989156 | 7733285 |\n754: | Alaska | 6739371 | 142410 | 6501190 | 4706115 | 1591278 |\n755: | Arizona | 70752416 | 6280671 | 63279233 | 46012971 | 16628929 |\n756: | Arkansas | 39361615 | 3689004 | 34717602 | 29582743 | 4793917 |\n757: | California | 568978229 | 52424035 | 507735806 | 424341574 | 80226492 |\n758: | Colorado | 85856658 | 4744074 | 80172876 | 60342709 | 18923291 |\n759: | Connecticut | 72077657 | 11406922 | 59577152 | 43062111 | 15338137 |\n760: | Delaware | 25469728 | 6177219 | 18559399 | 14503073 | 1973330 |\n761: | District of Columbia | 37536242 | 3992629 | 33365642 | 28867143 | 3664604 |\n762: | Florida | 310666692 | 19759015 | 286098475 | 191082427 | 89476667 |\n763: | Georgia | 133534121 | 17455474 | 110351503 | 85493826 | 22973018 |\n764: | Hawaii | 11322743 | 629150 | 10388992 | 6995394 | 3271038 |\n765: | Idaho | 17757032 | 1106142 | 16525835 | 11682487 | 4726982 |\n766: | Illinois | 213398814 | 26542392 | 181464685 | 142935106 | 33582798 |\n767: | Indiana | 79769020 | 9085820 | 69841335 | 57638735 | 11821778 |\n768: | Iowa | 33644400 | 1570360 | 31654356 | 25063616 | 6435830 |\n769: | Kansas | 32530342 | 2467611 | 28789789 | 22058491 | 6276049 |\n770: | Kentucky | 48163831 | 4024704 | 43813417 | 37244757 | 6114917 |\n771: | Louisiana | 44633551 | 2423775 | 41704938 | 32950158 | 8357928 |\n772: | Maine | 11632475 | 872010 | 10615560 | 7855049 | 2664737 |\n773: | Maryland | 74778539 | 4484199 | 69775758 | 53837101 | 14990231 |\n774: | Massachusetts | 153675537 | 13359788 | 138456640 | 107474848 | 29435628 |\n775: | Michigan | 105697501 | 7706802 | 96644717 | 77168223 | 17856165 |\n776: | Minnesota | 119248590 | 13050615 | 105219762 | 91388498 | 13216193 |\n777: | Mississippi | 15150586 | 1031136 | 13827922 | 10132697 | 3571234 |\n778: | Missouri | 113088629 | 10724573 | 101324343 | 88711715 | 11439940 |\n779: | Montana | 9953853 | 263480 | 9598108 | 6405926 | 3068759 |\n780: | Nebraska | 31850993 | 7535685 | 24007625 | 17764849 | 4736740 |\n781: | Nevada | 34747025 | 2183476 | 31721745 | 17539775 | 11446111 |\n782: | New Hampshire | 17668931 | 504343 | 16529584 | 11583454 | 4419952 |\n783: | New Jersey | 180536085 | 29541383 | 148717152 | 117439678 | 29291852 |\n784: | New Mexico | 12476365 | 294579 | 11853810 | 8586540 | 3136710 |\n785: | New York | 373831039 | 39096901 | 329380624 | 251017119 | 73729937 |\n786: | North Carolina | 120610471 | 12862857 | 106934700 | 84565880 | 20989467 |\n787: | North Dakota | 9435606 | 527407 | 8843839 | 6149684 | 2585886 |\n788: | Ohio | 186359863 | 15204923 | 163513367 | 141382766 | 20729249 |\n789: | Oklahoma | 38169020 | 4149182 | 29970692 | 21908174 | 6884358 |\n790: \n791: See footnotes at end of table.\n792: \n793: 22\n794: \n795: FEDERAL FISCAL OPERATIONS\n796: \n797: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2023, continued\n798: \n799: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n800: \n801: | State or area > Unnamed: 0_level_1 | Total Internal Revenue collections 1 (1) > Unnamed: 1_level_1 | Business income taxes 2 (2) > Unnamed: 2_level_1 | Individual income tax, employment taxes, and estate and trust income tax > Total (3) | Individual income tax, employment taxes, and estate and trust income tax > Individual income tax withheld and FICA tax 3 (4) | Individual income tax, employment taxes, and estate and trust income tax > Individual income tax payments and SECA tax 3 (5) |\n802: | --- | --- | --- | --- | --- | --- |\n803: | Oregon | 40995246 | 2405956 | 37616069 | 27942762 | 9202495 |\n804: | Pennsylvania | 174389169 | 17753552 | 153200549 | 122555797 | 28342788 |\n805: | Rhode Island | 18849983 | 2898126 | 15749394 | 13387873 | 2212738 |\n806: | South Carolina | 37713126 | 1611643 | 35667886 | 25089509 | 10251982 |\n807: | South Dakota | 11040423 | 378564 | 10524221 | 5966561 | 2781623 |\n808: | Tennessee | 95563141 | 7774087 | 85235092 | 67743607 | 16386418 |\n809: | Texas | 413010962 | 33595913 | 346764665 | 246146892 | 90002883 |\n810: | Utah | 36992129 | 1945410 | 34488884 | 25812118 | 8400282 |\n811: | Vermont | 5660731 | 338538 | 5265805 | 3822046 | 1389327 |\n812: | Virginia | 113990703 | 11803919 | 101504478 | 78743858 | 21955942 |\n813: | Washington | 155442049 | 24098896 | 128590512 | 104017189 | 23606278 |\n814: | West Virginia | 8616231 | 352894 | 8191625 | 6221429 | 1904025 |\n815: | Wisconsin | 69401060 | 5687185 | 62663138 | 49235434 | 11995070 |\n816: | Wyoming | 7234493 | 253500 | 6837789 | 2854473 | 3058807 |\n817: | U.S. Armed Service members overseas and Territories other than Puerto Rico | 813270 | 47532 | 764668 | 614187 | 142764 |\n818: | Puerto Rico | 5140301 | 67231 | 5049116 | 4013133 | 994313 |\n819: | International | 17416692 | 4498027 | 12270447 | 6517458 | 5715148 |\n820: | Undistributed 6 | 5132234 | 2045954 | 2717687 | -1567187 | 4267889 |\n821: \n822: See footnotes at end of table.\n823: \n824: 23\n825: \n826: FEDERAL FISCAL OPERATIONS\n827: \n828: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2023, continued\n829: \n830: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n831: \n832: | Individual income tax, employment taxes, and estate and trust income tax -continued > State or area | Individual income tax, employment taxes, and estate and trust income tax -continued > Unnamed: 1_level_1 | Unemployment insurance tax (6) > Unnamed: 2_level_1 | Railroad retirement tax (7) > Unnamed: 3_level_1 | Estate and trust income tax (8) > Unnamed: 4_level_1 | Estate tax (9) > Unnamed: 5_level_1 | Gift tax (10) > Unnamed: 6_level_1 | Excise taxes (11) > Unnamed: 7_level_1 |\n833: | --- | --- | --- | --- | --- | --- | --- | --- |\n834: | United States, total | nan | 7946725 | 7218291 | 52250447 | 33780186 | 1654075 | 74248765 |\n835: | Alabama | nan | 76065 | 3704 | 328949 | 309381 | 4407 | 315594 |\n836: | Alaska | nan | 13268 | 2509 | 188019 | 36685 | 24 | 59062 |\n837: | Arizona | nan | 140446 | 2979 | 493908 | 215301 | 6338 | 970874 |\n838: | Arkansas | nan | 143905 | 3734 | 193305 | 296189 | 15315 | 643505 |\n839: | California | nan | 1134809 | 18231 | 2014700 | 4524095 | 104312 | 4189982 |\n\n(Showing lines 740-839 of 3169. Use offset=840 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 35587,
+        "completion_tokens": 105,
+        "cached_tokens": 26656,
+        "cost_usd": 0.00363618,
+        "extra": {
+          "reasoning_tokens": 26
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": "2026-03-30T23:41:07.889000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_449242659152426a8f5ba2cf",
+          "function_name": "glob",
+          "arguments": {
+            "pattern": "/app/corpus/treasury_bulletin_201*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_449242659152426a8f5ba2cf",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 38276,
+        "completion_tokens": 298,
+        "cached_tokens": 35680,
+        "cost_usd": 0.0025188,
+        "extra": {
+          "reasoning_tokens": 260
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": "2026-03-30T23:41:20.412000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_389ed03186e748fa98808da7",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | head -50",
+            "description": "List corpus files"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_389ed03186e748fa98808da7",
+            "content": "index.txt\ntreasury_bulletin_1939_01.txt\ntreasury_bulletin_1939_02.txt\ntreasury_bulletin_1939_03.txt\ntreasury_bulletin_1939_04.txt\ntreasury_bulletin_1939_05.txt\ntreasury_bulletin_1939_06.txt\ntreasury_bulletin_1939_07.txt\ntreasury_bulletin_1939_08.txt\ntreasury_bulletin_1939_09.txt\ntreasury_bulletin_1939_10.txt\ntreasury_bulletin_1939_11.txt\ntreasury_bulletin_1939_12.txt\ntreasury_bulletin_1940_01.txt\ntreasury_bulletin_1940_02.txt\ntreasury_bulletin_1940_03.txt\ntreasury_bulletin_1940_04.txt\ntreasury_bulletin_1940_05.txt\ntreasury_bulletin_1940_06.txt\ntreasury_bulletin_1940_07.txt\ntreasury_bulletin_1940_08.txt\ntreasury_bulletin_1940_09.txt\ntreasury_bulletin_1940_10.txt\ntreasury_bulletin_1940_11.txt\ntreasury_bulletin_1940_12.txt\ntreasury_bulletin_1941_01.txt\ntreasury_bulletin_1941_02.txt\ntreasury_bulletin_1941_03.txt\ntreasury_bulletin_1941_04.txt\ntreasury_bulletin_1941_05.txt\ntreasury_bulletin_1941_06.txt\ntreasury_bulletin_1941_07.txt\ntreasury_bulletin_1941_08.txt\ntreasury_bulletin_1941_09.txt\ntreasury_bulletin_1941_10.txt\ntreasury_bulletin_1941_11.txt\ntreasury_bulletin_1941_12.txt\ntreasury_bulletin_1942_01.txt\ntreasury_bulletin_1942_02.txt\ntreasury_bulletin_1942_03.txt\ntreasury_bulletin_1942_04.txt\ntreasury_bulletin_1942_05.txt\ntreasury_bulletin_1942_06.txt\ntreasury_bulletin_1942_07.txt\ntreasury_bulletin_1942_08.txt\ntreasury_bulletin_1942_09.txt\ntreasury_bulletin_1942_10.txt\ntreasury_bulletin_1942_11.txt\ntreasury_bulletin_1942_12.txt\ntreasury_bulletin_1943_01.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 38595,
+        "completion_tokens": 61,
+        "cached_tokens": 11136,
+        "cost_usd": 0.00866418,
+        "extra": {
+          "reasoning_tokens": 16
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": "2026-03-30T23:41:24.364000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_8de243630520416c9f3ab769",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep \"2010_\"",
+            "description": "List 2010 bulletins"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_8de243630520416c9f3ab769",
+            "content": "treasury_bulletin_2010_03.txt\ntreasury_bulletin_2010_06.txt\ntreasury_bulletin_2010_09.txt\ntreasury_bulletin_2010_12.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 39313,
+        "completion_tokens": 75,
+        "cached_tokens": 10464,
+        "cost_usd": 0.00908982,
+        "extra": {
+          "reasoning_tokens": 26
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": "2026-03-30T23:41:40.406000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Now let me search for fiscal year data in those bulletins. Let me look at treasury_bulletin_2010_09.txt (September 2010) for FY 2010 data:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_990e15af04434469802c043e",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2010_09.txt",
+            "path": "/app/corpus",
+            "pattern": "FFO-5|New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_990e15af04434469802c043e",
+            "content": "Found 5 matches\n/app/corpus/treasury_bulletin_2010_09.txt:\n  Line 215: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |\n  Line 1934: 8 Source: Federal Reserve Board Treasury International Capital Survey. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information see:\n  Line 2188: From the beginning, reporting under the Treasury data collection program has been mandatory. Under the current Treasury International Capital (TIC) reporting system, an assortment of monthly and quarterly reports are filed with district Federal Reserve banks by commercial banks, securities dealers, other financial institutions, and nonbanking enterprises in the United States. These data are centrally processed and maintained at the Federal Reserve Bank of New York, which, along with the district banks, acts as fiscal agent for Treasury. Beginning in late 1998, the Federal Reserve Board also undertakes services on behalf of Treasury in support of the TIC data collection system. The TIC reports of individual respondents are treated as confidential, and access to the respondent level data is strictly limited to specific staff of Treasury and the Federal Reserve System.\n  Line 3921: The data on this page represent foreign investors' purchases and sales of long-term U.S. securities (that is, U.S. Treasury and Government agency bonds and notes, and U.S. corporate bonds and stocks) as reported in the TIC reporting system. Foreign investors have also acquired U.S. equities through mergers and reincorporations that involve stock swaps, but these acquisitions have been relatively small in recent years, totaling $11 billion in 2007, no acquisitions in 2008, and acquisitions of less than $1 billion in 2009. Acquisitions picked up to nearly $9 billion in the first half of 2010. (Stock swaps data for the most recent quarter are Federal Reserve Board/Treasury estimates and are subject to substantial revisions.) These stock swaps are not reported under the TIC reporting system, but are available on the TIC Website. The TIC Website also provides estimates from the Federal Reserve Bank of New York on principal repayment flows of foreign holdings of U.S. government agency and corporate asset-backed securities (ABS). These repayments are estimated to have reduced foreign net purchases of U.S. securities by $234 billion in 2007, $191 billion in 2008, $203 billion in 2009, and $111 billion in the first half of 2010.\n  Line 4999: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 39457,
+        "completion_tokens": 161,
+        "cached_tokens": 11328,
+        "cost_usd": 0.00904254,
+        "extra": {
+          "reasoning_tokens": 59
+        }
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": "2026-03-30T23:41:47.455000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_7e4c77fd09004db49f26fed4",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2010_09.txt",
+            "offset": 210,
+            "limit": 150
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_7e4c77fd09004db49f26fed4",
+            "content": "<path>/app/corpus/treasury_bulletin_2010_09.txt</path>\n<type>file</type>\n<content>210: For the convenience of the \"Treasury Bulletin\" user, nonquarterly tables and reports are listed below along with the issues in which they appear.\n211: \n212: | Unnamed: 0_level_0 > Unnamed: 0_level_1 | Issues > March | Issues > June | Issues > Sept. | Issues > Dec. |\n213: | --- | --- | --- | --- | --- |\n214: | Federal Fiscal Operations | Federal Fiscal Operations | Federal Fiscal Operations | Federal Fiscal Operations | Federal Fiscal Operations |\n215: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |\n216: | FFO-6.\u2014Customs and Border Protection Collection of Duties, Taxes and Fees by Districts and Ports | nan | nan | nan | \u2714 |\n217: | Special Reports | Special Reports | Special Reports | Special Reports | Special Reports |\n218: | Financial Report of the United States Government excerpt | \u2714 | nan | nan | nan |\n219: | Trust Fund Reports: | Trust Fund Reports: | Trust Fund Reports: | Trust Fund Reports: | Trust Fund Reports: |\n220: | Airport and Airway Trust Fund | \u2714 | nan | nan | nan |\n221: | Black Lung Disability Trust Fund | \u2714 | nan | nan | nan |\n222: | Harbor Maintenance Trust Fund | \u2714 | nan | nan | nan |\n223: | Hazardous Substance Superfund | \u2714 | nan | nan | nan |\n224: | Highway Trust Fund | \u2714 | nan | nan | nan |\n225: | Inland Waterways Trust Fund | \u2714 | nan | nan | nan |\n226: | Leaking Underground Storage Tank Trust Fund | \u2714 | nan | nan | nan |\n227: | Nuclear Waste Fund | \u2714 | nan | nan | nan |\n228: | Oil Spill Liability Trust Fund | \u2714 | nan | nan | nan |\n229: | Reforestation Trust Fund | \u2714 | nan | nan | nan |\n230: | Sport Fish Restoration and Boating Trust Fund | \u2714 | nan | nan | nan |\n231: | Uranium Enrichment Decontamination and Decommissioning Fund | \u2714 | nan | nan | nan |\n232: | Vaccine Injury Compensation Trust Fund | \u2714 | nan | nan | nan |\n233: | Wool Research, Development, and Promotion Trust Fund | \u2714 | nan | nan | nan |\n234: \n235: September 2010\n236: \n237: Profile of the Economy Federal Fiscal Operations Account of the U.S. Treasury Federal Debt Public Debt Operations U.S. Savings Bonds and Notes Ownership of Federal Securities Market Yields U.S. Currency and Coin Outstanding and in Circulation\n238: \n239: 3\n240: \n241: Profile of the Economy\n242: \n243: [Source: Office of Macroeconomic Analysis]\n244: \n245: As of August 17, 2010\n246: \n247: Introduction\n248: \n249: The U.S. economy grew for the fourth straight quarter in the 3 months ending in June, although at a slower pace than in the first quarter, as private investment and hiring picked up. Financial as well as economic conditions continue to improve and activity continues to broaden; final sales have grown for five straight quarters. Payroll jobs increased in the first and second quarters of this year, but despite this improvement, the unemployment rate remains high, and further improvements are expected to be slow.\n250: \n251: Despite higher oil prices over the past several months, headline and core (a measure excluding food and energy prices) rates of inflation remain in check, largely due to labor market slack and excess capacity in the economy and most recently, some slowing in the pace of energy price increases. Conditions in housing are still weak, but are generally more stable than a year ago, and financial markets have generally improved over the last eighteen months or so. Stock market indexes posted double-digit gains last year, but are lower on a year-to-date basis. Treasury bond yields have trended lower over the summer. Most economists predict moderate economic growth through 2010. The economy has been supported by a wide variety of measures implemented under the American Recovery and Reinvestment Act of 2009 (ARRA, or the \u201cRecovery Act\u201d), as well as efforts to restore financial stability and improve conditions in housing markets. A few of these measures were temporarily extended and some additional spending has also been approved. For example, the first-time home buyer tax credit, which was instrumental in boosting home sales in the fall of 2009, was extended and expanded but expired at the end of April. In addition, unemployment insurance benefits were extended and additional spending for state and local governments was approved. Most of the fiscal stimulus will be implemented by the end of this year, and more recently, government policy has focused on restoring long-term fiscal balance. The basic stance of monetary policy remains accommodative; all of the special monetary policy supports have been removed, although most recently, the Federal Reserve announced its intention to bolster liquidity by maintaining holdings of securities at current levels, and to roll over holdings of Treasury securities as they mature.\n252: \n253: Economic Growth\n254: \n255: With positive growth in real gross domestic product (GDP) for four consecutive quarters, economic conditions continue to improve, even though the pace of growth has slowed somewhat. According to the advance estimate, real GDP rose by 2.4 percent at an annual rate in the second\n256: \n257: quarter of 2010, following a gain of 3.7 percent in the first quarter and an increase of 5.0 percent in the fourth quarter of 2009. The moderation in the pace of growth in the second quarter reflected a sharp pickup in the pace of import growth\n258: \n259: Growth of Real GDP\n260: \n261: (Quarterly percent change at annual rate)\n262: \n263: (exports pose a drag on growth) as well as a slower pace of inventory accumulation. While inventory investment's contribution to quarterly GDP growth was 2.8 percent in the fourth quarter of 2009 and 2.6 percent in the first quarter of 2010, it fell to 1.1 percent in the latest quarter. Final sales (considered a better measure of underlying demand because it subtracts inventory movements) rose 1.3 percent in the second quarter, in line with the first quarter's 1.1 percent pace but slower than the 2.1 percent advance in the fourth quarter of 2009. Consumer spending and exports each rose for the fourth straight quarter. Business spending on equipment and software grew rapidly for the third straight quarter, and outlays for structures rose for the first time in 2 years. Residential investment increased at its fastest rate since 1983 after falling in 16 of the last 17 quarters. Government spending rose for the first time since the third quarter of 2009, as federal spending surged and state and local government expenditures edged up.\n264: \n265: Consumer spending-which accounts for about 70 percent of GDP-grew 1.6 percent in the second quarter, somewhat slower than the 1.9 percent increase of the first quarter. After declining by 0.3 percent in 2008 and by 1.2 percent in 2009, consumer spending has expanded for four straight quarters, and in the second quarter of 2010 contributed 1.2 percentage points to real GDP growth.\n266: \n267: September 2010\n268: \n269: 4\n270: \n271: PROFILE OF THE ECONOMY\n272: \n273: Residential investment\u2014mostly residential homebuilding\u2014now accounts for only about 3-1/2 percent of GDP after sharply falling since early 2006. After several quarters of steep declines, residential investment surged by nearly 28 percent in the second quarter of 2010, the fastest rate since 1983, adding 0.6 percentage point to real GDP growth. The surge was partly related to activity connectioned with the expiry of the home buyer's tax credit. Monthly housing measures (starts, sales, inventories, and prices) have stabilized, but present a mixed picture. Housing starts fell in both May and June, leaving them at their lowest levels since last November and roughly 6 percent below their June 2009 level. In June, new single-family home sales increased 24 percent, one of the strongest monthly gains on record, but were still about 17 percent below their year-earlier level as well as 76 percent below the mid-2005 peak. But existing single-family home sales fell 5.6 percent in June and remain 26 percent below 2005 peaks. Inventories of unsold new homes declined to the lowest level in 42 years in June, but remain high relative to sales at a 7.6-month supply. Inventories of existing homes\u2014total and single-family\u2014stood at an 8.9-month supply in June.\n274: \n275: Measures of home prices have stabilized and even improved in recent months. The Federal Housing Financing Authority (FHFA) purchase-only house price index rose for a third straight month in May; its year-on-year decline of 1.2 percent was notably smaller than the previous year's 5.8 percent plunge. The Standard & Poor's (S&P)/Case-Shiller composite home price indexes were higher in May on a monthly and yearly basis: monthly gains for each were over 1 percent, with the 20-city index up 4.6 percent from a year earlier and the 10-city index up 5.4 percent.\n276: \n277: Business investment spending has picked up in the two most recent quarters. Nonresidential fixed investment\u2014about 10 percent of GDP\u2014jumped 17 percent at an annual rate in the second quarter, after advancing 7.8 percent in the first quarter and falling 13 percent during 2009. For the third straight quarter outlays for equipment and software grew at a double-digit pace, including a 22 percent surge in the latest quarter that contributed 1.4 percentage points to real GDP growth. Investment in structures rose 5.2 percent in the second quarter, the first increase in 2 years, and added 0.1 percentage point to real GDP growth. Altogether, nonresidential fixed investment added 1.5 percentage points to real GDP growth in the second quarter.\n278: \n279: Exports account for about 12 percent of GDP, while imports, which are subtracted from total domestic spending to calculate GDP, account for about 17 percent. Net exports have contributed roughly 1 percent to annual growth in each of the last 3 years, but in recent quarters the contribution has been mixed. In the second quarter of 2010, exports grew by about 10 percent and imports grew by nearly 29 percent. As a result, net exports subtracted 2.8 percentage points from real GDP growth in the second quarter.\n280: \n281: Although the U.S. trade balance in goods and services and the current account (which also includes investment\n282: \n283: income flows and unilateral transfers) remain in deficit, both deficits have narrowed appreciably in recent years as the U.S. economy has slowed. The merchandise trade deficit reached $839 billion in 2006, but declined to $507 billion in 2009. The current account balance has been in deficit almost continuously since the early 1980s, and in 2006, reached a record $803 billion, equivalent to 6.0 percent of GDP. By 2009, the current account deficit had narrowed to $378 billion, equivalent to 2.7 percent of GDP.\n284: \n285: Public sector purchases\u2014which account for roughly 20 percent of GDP\u2014declined 1.6 percent at an annual rate in the first quarter, but surged 4.4 percent in the second quarter, adding 0.9 percentage point to GDP growth in the second quarter. In the latest quarter, federal spending jumped 9.2 percent, adding 0.7 percentage point to GDP growth, while state and local spending advanced 1.3 percent, contributing 0.2 percentage point.\n286: \n287: Labor Markets\n288: \n289: The pace of job losses moderated significantly during the second half of 2009, and in November 2009 the economy added jobs for the first time in 2 years. From the beginning of the recession in December 2007 through December 2009, 8.4 million jobs were lost, including roughly 4.7 million jobs in 2009 alone. Payrolls rose by an average of 87,000 per month during the first quarter of 2010, and by an average 175,000 per month during the second quarter; in the year through July, the economy has added a total of about 654,000 jobs, in part reflecting 7 consecutive months of private-sector gains. The unemployment rate generally trended higher during 2009, peaking at 10.1 percent in October\u2014a 26-year high and 5.7 percentage points above the March 2007 low of 4.4 percent. The unemployment rate has since eased, declining to 9.5 percent in July 2010. A measure of unemployment that includes workers who are underemployed and those who are only marginally attached to the labor force reached a record high of 17.4 percent in October 2009 (series dates from 1994)\u2014nearly double its level of 8.8 percent in December 2007.This broader measure fell to 16.5 percent in July 2010. The percentage of the unemployed who have been out of work for 27 weeks or more peaked at a new record of 46 percent in May, before edging down to 44.9 percent in July.\n290: \n291: Job losses during the recession were spread broadly across most sectors; from the start of the recession through December 2009, the manufacturing sector lost 2.2 million jobs, and construction payrolls fell by 1.8 million. Over that same period, transportation payrolls fell by close to 380,000, and payrolls in the leisure/hospitality and finance/insurance/real estate sectors each fell by more than 540,000. However, some of these same sectors have begun to add jobs. For example, payrolls in manufacturing, and professional and business services have each increased by at least 180,000 thus far in 2010, and payrolls in the leisure and hospitality industries have increased by more than 100,000. A few sectors have seen job growth throughout the\n292: \n293: September 2010\n294: \n295: PROFILE OF THE ECONOMY\n296: \n297: 5\n298: \n299: recession: since December 2007, the health care and education sectors have together added almost 1 million payroll jobs, including a net gain of more than 800,000 jobs in health services.\n300: \n301: Inflation\n302: \n303: Headline consumer inflation is higher than a year ago mainly because of rising oil prices, although most recently, the pace of energy price increases has slowed. The high level of unemployment, along with the low level of capacity utilization, continue to restrain underlying inflationary pressures, and both headline and core rates of inflation are relatively low. Headline consumer prices rose 1.2 percent over the 12 months ending in July, slower than the 2.1 percent decline in the year-earlier period. Energy prices rose 5.2 percent in the year through July. On a 12-month basis core consumer prices rose 0.9 percent through July, matching the increase of a year ago. For the most recent 3 months, headline consumer prices were flat (with energy prices falling 1.1 percent at an annual rate over the same period), and the rate of core price inflation was 0.2 percent.\n304: \n305: Oil prices have risen since late 2008, but are well-below the record highs reached in July of that year. The retail price of regular gasoline hit a record of $4.11 per gallon in early July 2008, then dropped to $1.61 in late December 2008. As of early August, the price had risen to $2.74 per gallon, $1.13 higher than the December 2008 low and 18 cents higher than a year ago. The front-month futures price for West Texas Intermediate (WTI) crude oil rose to a record\n306: \n307: $147 per barrel in July 2008, then dropped to a low of about $34 per barrel in December 2008, and has since trended higher, averaging $76 per barrel in July 2010\u2013up $12 from a year ago.\n308: \n309: Food prices rose rapidly over much of 2007 and 2008, remaining above the overall inflation rate, but have since trended much lower. In the 12 months through July 2010, consumer food prices increased 0.9 percent, also matching the rise of the previous year.\n310: \n311: September 2010\n312: \n313: 6\n314: \n315: PROFILE OF THE ECONOMY\n316: \n317: Federal Budget\n318: \n319: The federal budget deficit widened to $1.4 trillion in fiscal year 2009 (almost 10 percent of GDP), well above the $459 billion deficit in fiscal year 2008 (3.2 percent of GDP). This deterioration followed 3 years of improvement that had trimmed the deficit to $161 billion (1.2 percent of GDP) in fiscal year 2007.\n320: \n321: The Mid-Session Review of the fiscal year 2011 budget projects that the fiscal year 2010 budget deficit will be $1.47 trillion, $58 billion higher than last year's deficit of $1.4 trillion. The fiscal year 2010 deficit is projected to be 10 percent of GDP, about the same as in fiscal year 2009. The latest projections show a shrinking of the deficit to 5.6 percent of GDP in fiscal year 2012 and a decline to 3.8 percent of GDP in fiscal year 2014. Over the long term (fiscal years 2015 to 2020), the deficit is expected to average 3.7 percent of GDP. Nearly 90 percent of the overall deficit in the long term is due to interest payments; the primary deficit (receipts less spending excluding interest payments) is forecast to fall from 8.8 percent of GDP in the current fiscal year to 1.1 percent of GDP in fiscal year 2015, and averages 0.4 percent from fiscal year 2015 through fiscal year 2020.\n322: \n323: Economic Policy\n324: \n325: Key fiscal and monetary policy actions taken over the past few years have kept the economy from contracting even further, and continue to boost the recovery in 2010 and beyond. Most recently, government policy has focused on setting and achieving goals related to long-run fiscal sustainability.\n326: \n327: On the fiscal policy side, the ARRA authorizes the government to spend $787 billion towards stimulating domestic demand, including $288 billion in tax benefits, $275 billion in contracts, grants, and loans, and $224 billion in entitlements. As of late April 2010, a total of nearly $390 billion in funds had been paid out. This spending will continue to provide an important boost to economic activity in 2010. Specifically, the Recovery Act is expected to create or save an estimated 3.5 million jobs in a range of industries from clean energy to health care. Late last year, the first-time home buyer tax credit was extended and expanded temporarily (it expired on April 30, 2010), and a new Small Business Jobs and Wages Tax Credit was announced to help small businesses create jobs. In August, the government approved legislation providing an additional $26.1 billion for state and local governments to support jobs and medical services.\n328: \n329: The Administration's fiscal year 2011 budget includes proposals to help cut the budget deficit in the medium term. These include freezing all non-security discretionary spending for 3 years, allowing the 2001 tax cuts to expire for high income households, instituting a bank responsibility fee, and winding down activities in Iraq. The Administration has also created a bipartisan National Commission on Fiscal Responsibility and Reform that has been charged with\n330: \n331: identifying policies to reduce the primary deficit to zero by fiscal year 2015 and to reduce the overall budget deficit to a level consistent with a sustainable debt-to-GDP ratio (which includes policies that address the growth of federal spending).\n332: \n333: Partly in response to rising financial market stress, as well as signs of more slowing in the broader economy, the Federal Reserve began easing monetary policy in August 2007. It continued to cut the rate dramatically, reducing it to a target range of 0 percent to 0.25 percent at the December 2008 Federal Open Market Committee (FOMC) meeting, which brought the target to its lowest level in history. The target range was maintained at the FOMC's most recent meeting in mid-August 2010, when the Committee observed a slower pace of recovery in output and employment and subdued inflation. In late 2008 and in 2009, the Federal Reserve responded to financial market stresses and the weakened economy by significantly expanding its tools to increase liquidity in credit markets and easing lending terms to sectors that needed a temporary injection, including a variety of facilities and funds directed at specific financial markets. As of June 30, 2010, all of these special facilities had expired. At the most recent FOMC meeting, the Federal Reserve announced that it would maintain its holdings of securities at current levels by reinvesting principal payments from agency debt and agency mortgage-backed securities in longer-term Treasury securities, and continue rolling over the Federal Reserve's holdings of Treasury securities as they mature.\n334: \n335: Financial Markets\n336: \n337: Financial markets have largely recovered from the unprecedented strains experienced in the fall of 2008, helped by a wide range of financial stability measures as well as the boost to growth from the ARRA. Credit flows began picking up early in 2009 and have since improved substantially, although bank lending has remained sluggish has yet to pick up. Measures of risk tolerance and volatility have largely returned to pre-crisis levels although in recent months volatility has increased and interest rate spreads have widened.\n338: \n339: The S&P 500 index rose 23.5 percent in 2009, rebounding from a 38.5 percent plunge in 2008, the sharpest loss since 1931 (when an earlier version of the index, containing only 90 stocks, dropped 47 percent). Measured from the S&P 500's 12-year low in mid-March 2009, the index has risen 60 percent through mid-August, but year-to-date, is about 3 percent lower, reflecting a 10 percent retracement from a 19-month high reached in late April. The S&P stock market volatility index (VIX), often used as a measure of financial market uncertainty, surged to an all-time high of 80 percent in late October 2008, after hovering in a range of 20 to 30 percent for most of 2008. The VIX retreated to roughly 15 percent in early April, then surged again to a recent peak of nearly 46 percent in mid-May. As of mid-August, the index has partially retraced to about 25 percent, but remains elevated.\n340: \n341: September 2010\n342: \n343: PROFILE OF THE ECONOMY\n344: \n345: 7\n346: \n347: A variety of factors have buffeted long-term Treasury interest rates, including flight-to quality flows in response to multiple financial market pressures as well as supply concerns related to funding of the government's debt. The yield on the 10-year note reached a low of 2.1 percent in late December 2008, but then moved higher, closing in early April 2010 above the 4 percent mark for the first time since October 2008. Since then, the yield has trended substantially lower, reflecting concerns about Euro-area sovereign debt issues and more recently, mixed U.S. economic data. As of mid-August the yield stood at about 2.7 percent, roughly 130 basis points below the early April peak. The 3-month Treasury bill yield, by contrast, generally trended lower throughout 2008 under the relatively steady influence of safe-haven demand for short-term liquid assets. The yield fell to almost zero-reaching a record low-by the end of December 2008, then fluctuated in a range of 0.0 to 0.2 percent throughout 2009. This year, the yield has moved in a narrow range of 0.05 to 0.2 percent. The 2- to 10-year Treasury yield spread, one measure of the steepness of the yield curve, widened noticeably starting in mid-2007, when it was roughly 20 basis points, to 290 basis points in mid-January 2010, but has since narrowed to about 230 basis points as of mid-August. In the current economic environment, a generally steepening yield curve may suggest a rising probability of economic recovery.\n348: \n349: Key interest rates on private securities, which spiked in response to financial market turbulence in late 2008, have since retraced as conditions have stabilized. The spread between the 3-month London Inter-bank Offered Rate (LIBOR) and the 3-month Treasury bill rate (the TED spread, a measure of inter-bank liquidity and credit risk) rose to an all-time high of nearly 460 basis points in early\n350: \n351: October 2008, but improvements in short-term credit availability led to a narrowing of this spread to 9 basis points in March 2010. Through mid-June, the spread had widened again to nearly 50 basis points, but as of mid-August had retraced to about 23 basis points. The spread between the Baa corporate bond yield and the 10-year Treasury yield peaked at nearly 620 basis points in December 2008. After narrowing in 2009 and early 2010, the spread widened again to about 300 basis points as of mid-August\u2014still very high by historical standards.\n352: \n353: Rates for conforming mortgages have fallen over the past several months, and jumbo mortgage rates have trended lower. The interest rate for a 30-year conforming fixed-rate mortgage rose to about 5.5 percent at the end of 2009, but has since declined noticeably to a historic low 4.4 percent as of mid-August.\n354: \n355: 8\n356: \n357: PROFILE OF THE ECONOMY\n358: \n359: Foreign Exchange Rates\n\n(Showing lines 210-359 of 5103. Use offset=360 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 40214,
+        "completion_tokens": 83,
+        "cached_tokens": 38560,
+        "cost_usd": 0.001779,
+        "extra": {
+          "reasoning_tokens": 22
+        }
+      }
+    },
+    {
+      "step_id": 12,
+      "timestamp": "2026-03-30T23:41:53.202000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_237446b0e37243bebbd0b032",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2010_09.txt",
+            "path": "/app/corpus",
+            "pattern": "Internal Revenue Receipts by State"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_237446b0e37243bebbd0b032",
+            "content": "Found 1 matches\n/app/corpus/treasury_bulletin_2010_09.txt:\n  Line 215: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 45945,
+        "completion_tokens": 111,
+        "cached_tokens": 10464,
+        "cost_usd": 0.01114902,
+        "extra": {
+          "reasoning_tokens": 48
+        }
+      }
+    },
+    {
+      "step_id": 13,
+      "timestamp": "2026-03-30T23:41:58.159000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_d242a515be4a409797e37dfc",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2010_12.txt",
+            "path": "/app/corpus",
+            "pattern": "Internal Revenue Receipts by State|New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_d242a515be4a409797e37dfc",
+            "content": "Found 16 matches\n/app/corpus/treasury_bulletin_2010_12.txt:\n  Line 46: | FFO-5\u2014Internal Revenue Receipts by State | 19.0 |\n  Line 201: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |\n  Line 906: TABLE FFO-5.\u2014Internal Revenue Receipts by State, 2010\n  Line 945: | New York | 200209720 | 22735905 | 174267918 | 140714027 | 31412611 |\n  Line 960: TABLE FFO-5.\u2014Internal Revenue Receipts by State, 2010, con.\n  Line 992: TABLE FFO-5.\u2014Internal Revenue Receipts by State, 2010, con.\n  Line 1031: | New York | 380183 | 340441 | 1420655 | 1610996 | 504185 | 1090716 |\n  Line 1046: TABLE FFO-5.\u2014Internal Revenue Receipts by State, 2010, con.\n  Line 1098: | Headquarters: | nan | nan | Ogdensburg, New York: | nan | nan |\n  Line 1105: | Vanceboro, ME | 10105.0 | 5025045.81 | Buffalo, New York: | nan | nan |\n  Line 1113: | Bridgewater, ME | 10127.0 | 2009.29 | New York, New York: | nan | nan |\n  Line 1114: | Portsmouth, NH | 10131.0 | 1582760.51 | New York, NY | 21001.0 | 774138117.18 |\n  Line 2504: 8 Source: Federal Reserve Board Treasury International Capital Survey. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information see: http://www.treas.gov/tic/ticsec2.shtml.\n  Line 2745: From the beginning, reporting under the Treasury data collection program has been mandatory. Under the current Treasury International Capital (TIC) reporting system, an assortment of monthly and quarterly reports are filed with district Federal Reserve banks by commercial banks, securities dealers, other financial institutions, and nonbanking enterprises in the United States. These data are centrally processed and maintained at the Federal Reserve Bank of New York, which, along with the district banks, acts as fiscal agent for Treasury. Beginning in late 1998, the Federal Reserve Board also undertakes services on behalf of Treasury in support of the TIC data collection system. The TIC reports of individual respondents are treated as confidential, and access to the respondent level data is strictly limited to specific staff of Treasury and the Federal Reserve System.\n  Line 4518: The data on this page represent foreign investors\u2019 purchases and sales of long-term U.S. securities (that is, U.S. Treasury and Government agency bonds and notes, and U.S. corporate bonds and stocks) as reported in the TIC reporting system. Foreign investors have also acquired U.S. equities through mergers and reincorporations that involve stock swaps, but these acquisitions have been relatively small in recent years, totaling $11 billion in 2007, no acquisitions in 2008, and acquisitions of less than $1 billion in 2009. Stock swap acquisitions picked up to nearly $9 billion in the first half of 2010, but there were no recorded acquisitions in the third quarter of 2010. (Stock swaps data for the most recent quarter are Federal Reserve Board/Treasury estimates and are subject to substantial revisions.) These stock swaps are not reported under the TIC reporting system, but are available on the TIC Website. The TIC Website also provides estimates from the Federal Reserve Bank of New York on principal repayment flows of foreign holdings of U.S. government agency and corporate asset-backed securities (ABS). These repayments are estimated to have reduced foreign net purchases of U.S. securities by $234 billion in 2007, $191 billion in 2008, $203 billion in 2009, and $165 billion in the first three quarters of 2010.\n  Line 5590: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 46121,
+        "completion_tokens": 110,
+        "cached_tokens": 38640,
+        "cost_usd": 0.0035895,
+        "extra": {
+          "reasoning_tokens": 45
+        }
+      }
+    },
+    {
+      "step_id": 14,
+      "timestamp": "2026-03-30T23:42:05.180000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me read the full table to understand the data better:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_4bca61e0a54e4e1ab6369e3e",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2010_12.txt",
+            "limit": 60,
+            "offset": 900
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_4bca61e0a54e4e1ab6369e3e",
+            "content": "<path>/app/corpus/treasury_bulletin_2010_12.txt</path>\n<type>file</type>\n<content>900: December 2010\n901: \n902: FEDERAL FISCAL OPERATIONS\n903: \n904: 19\n905: \n906: TABLE FFO-5.\u2014Internal Revenue Receipts by State, 2010\n907: \n908: [In thousands of dollars. Source: Chief Financial Officer, Revenue Financial Management OS:CFO:R]\n909: \n910: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n911: | --- | --- | --- | --- | --- | --- |\n912: | United States, total 4 | 2345055978 | 277937220 | 2000177865 | 1661323470 | 315361490 |\n913: | Alabama | 19895499 | 1079545 | 18522008 | 15140717 | 3233316 |\n914: | Alaska | 4685206 | 199875 | 4428153 | 3459170 | 919460 |\n915: | Arizona | 31678131 | 3003916 | 27313530 | 22688794 | 4431162 |\n916: | Arkansas | 28249718 | 7181112 | 18842080 | 16678597 | 1913642 |\n917: | California | 273353106 | 41098422 | 225458099 | 179894141 | 43832275 |\n918: | Colorado | 39288418 | 3820855 | 33693319 | 27657739 | 5846086 |\n919: | Connecticut | 43997544 | 5228622 | 38002726 | 29632634 | 8018926 |\n920: | Delaware | 15327877 | 5747597 | 9511416 | 7948824 | 729280 |\n921: | District of Columbia | 18400477 | 456571 | 17859844 | 16074652 | 1337081 |\n922: | Florida | 111364742 | 6616253 | 102452757 | 79477979 | 21521963 |\n923: | Georgia | 60505759 | 7833155 | 49836518 | 42682638 | 6808364 |\n924: | Hawaii | 6280828 | 494126 | 5585801 | 4357286 | 1178488 |\n925: | Idaho | 6216877 | 207477 | 5957621 | 4770959 | 1135534 |\n926: | Illinois | 111038760 | 13522210 | 94632343 | 79087494 | 14118518 |\n927: | Indiana | 43319888 | 3965666 | 38926012 | 34348258 | 4341355 |\n928: | Iowa | 17576087 | 1744733 | 15649978 | 12975628 | 2577601 |\n929: | Kansas | 18820984 | 1185244 | 16390479 | 13199307 | 2671849 |\n930: | Kentucky | 23383446 | 1727317 | 21319109 | 18567413 | 2625123 |\n931: | Louisiana | 34562547 | 1692565 | 32453967 | 28035037 | 4246042 |\n932: | Maine | 5895843 | 220052 | 5527303 | 4583573 | 904156 |\n933: | Maryland | 47672215 | 3901916 | 43382315 | 36394210 | 6662025 |\n934: | Massachusetts | 71418253 | 5575650 | 64783986 | 53969093 | 10208314 |\n935: | Michigan | 53797386 | 3037379 | 50295615 | 43524515 | 6277730 |\n936: | Minnesota | 68010129 | 10357349 | 56771750 | 51330248 | 5076296 |\n937: | Mississippi | 9093125 | 509831 | 8274389 | 6511324 | 1707795 |\n938: | Missouri | 46099972 | 5710664 | 39062461 | 33698857 | 4948804 |\n939: | Montana | 4000333 | 177296 | 3731986 | 2792650 | 885058 |\n940: | Nebraska | 17641943 | 5343378 | 12049444 | 9338193 | 1665443 |\n941: | Nevada | 12881374 | 798983 | 11822901 | 8655395 | 2998817 |\n942: | New Hampshire | 8377325 | 142498 | 8028735 | 6664967 | 1300462 |\n943: | New Jersey | 118942547 | 30736218 | 86711187 | 73551273 | 12480920 |\n944: | New Mexico | 7613384 | 208234 | 7228699 | 5846081 | 1317657 |\n945: | New York | 200209720 | 22735905 | 174267918 | 140714027 | 31412611 |\n946: | North Carolina | 57548933 | 5798674 | 51299307 | 44803877 | 6189539 |\n947: | North Dakota | 4283479 | 230949 | 4022098 | 3026795 | 970506 |\n948: | Ohio | 106483026 | 9735001 | 93386929 | 85122743 | 7608976 |\n949: | Oklahoma | 23398453 | 2807022 | 16862015 | 13162227 | 3141476 |\n950: | Oregon | 21138851 | 1070414 | 19710812 | 16492372 | 3083480 |\n951: \n952: See footnotes at end of table.\n953: \n954: December 2010\n955: \n956: 20\n957: \n958: FEDERAL FISCAL OPERATIONS\n959: \n\n(Showing lines 900-959 of 5611. Use offset=960 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47186,
+        "completion_tokens": 216,
+        "cached_tokens": 11040,
+        "cost_usd": 0.0116058,
+        "extra": {
+          "reasoning_tokens": 143
+        }
+      }
+    },
+    {
+      "step_id": 15,
+      "timestamp": "2026-03-30T23:42:12.326000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Now I need FY 2015 data. Let me check the 2015 bulletins:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_a59026d21acf46e5b72b5ab1",
+          "function_name": "glob",
+          "arguments": {
+            "pattern": "/app/corpus/treasury_bulletin_2015*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_a59026d21acf46e5b72b5ab1",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 48839,
+        "completion_tokens": 311,
+        "cached_tokens": 46224,
+        "cost_usd": 0.00284922,
+        "extra": {
+          "reasoning_tokens": 254
+        }
+      }
+    },
+    {
+      "step_id": 16,
+      "timestamp": "2026-03-30T23:42:21.923000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_38e16c0fe637429293ce5cce",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep \"2015_\"",
+            "description": "List 2015 bulletins"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_38e16c0fe637429293ce5cce",
+            "content": "treasury_bulletin_2015_03.txt\ntreasury_bulletin_2015_06.txt\ntreasury_bulletin_2015_09.txt\ntreasury_bulletin_2015_12.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49171,
+        "completion_tokens": 58,
+        "cached_tokens": 47392,
+        "cost_usd": 0.00203826,
+        "extra": {
+          "reasoning_tokens": 11
+        }
+      }
+    },
+    {
+      "step_id": 17,
+      "timestamp": "2026-03-30T23:42:26.663000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_af21c5fb62db4615bc8a8f51",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2015_09.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*Total Internal"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_af21c5fb62db4615bc8a8f51",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49298,
+        "completion_tokens": 90,
+        "cached_tokens": 39376,
+        "cost_usd": 0.00429948,
+        "extra": {
+          "reasoning_tokens": 28
+        }
+      }
+    },
+    {
+      "step_id": 18,
+      "timestamp": "2026-03-30T23:42:43.666000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_11ff5142f57a4dacb2496c69",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2015_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*Total"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_11ff5142f57a4dacb2496c69",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49409,
+        "completion_tokens": 77,
+        "cached_tokens": 10464,
+        "cost_usd": 0.01210902,
+        "extra": {
+          "reasoning_tokens": 16
+        }
+      }
+    },
+    {
+      "step_id": 19,
+      "timestamp": "2026-03-30T23:42:48.489000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_d9b741967d1e455b9ccd3a3b",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2015_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_d9b741967d1e455b9ccd3a3b",
+            "content": "Found 9 matches\n/app/corpus/treasury_bulletin_2015_12.txt:\n  Line 873: | New York | 269716999 | 30839677 | 233878379 | 171803055 | 57806300 |\n  Line 959: | New York | 813980 | 497613 | 2957431 | 1930823 | 505683 | 2562437 |\n  Line 1053: | Houlton, ME | 10106.0 | 3257421.85 | Ogdensburg, New York: | nan | nan |\n  Line 1060: | Bridgewater, ME | 10127.0 | 9533.27 | Buffalo, New York: | nan | nan |\n  Line 1093: | New York, New York: | nan | nan | Sherwood, ND | 33414.0 | 243027.39 |\n  Line 1094: | New York, NY | 21001.0 | 368863667.2 | Hansboro, ND | 33415.0 | 4934.75 |\n  Line 1096: | New York/Newark Area, NJ | 24601.0 | 5755843735.68 | Fortuna, ND | 33417.0 | 23745.9 |\n  Line 2402: 9Source: Federal Reserve Board Treasury International Capital Survey. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: http://www.treasury.gov/resource-center/data-chart-center/tic/pages/index.aspx.\n  Line 3295: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49507,
+        "completion_tokens": 69,
+        "cached_tokens": 39616,
+        "cost_usd": 0.00425058,
+        "extra": {
+          "reasoning_tokens": 10
+        }
+      }
+    },
+    {
+      "step_id": 20,
+      "timestamp": "2026-03-30T23:42:53.940000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_62f6b09b65484956aa15bcf7",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep \"2024_\"",
+            "description": "List 2024 bulletins"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_62f6b09b65484956aa15bcf7",
+            "content": "treasury_bulletin_2024_03.txt\ntreasury_bulletin_2024_06.txt\ntreasury_bulletin_2024_09.txt\ntreasury_bulletin_2024_12.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 50004,
+        "completion_tokens": 157,
+        "cached_tokens": 40288,
+        "cost_usd": 0.00444144,
+        "extra": {
+          "reasoning_tokens": 108
+        }
+      }
+    },
+    {
+      "step_id": 21,
+      "timestamp": "2026-03-30T23:43:17.171000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_a4a27229a62a43bd8205bf1b",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_09.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*Total"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_a4a27229a62a43bd8205bf1b",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 50230,
+        "completion_tokens": 88,
+        "cached_tokens": 49136,
+        "cost_usd": 0.00194028,
+        "extra": {
+          "reasoning_tokens": 27
+        }
+      }
+    },
+    {
+      "step_id": 22,
+      "timestamp": "2026-03-30T23:43:20.798000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_7aec7c23c6df4cf9816c3e05",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_09.txt",
+            "path": "/app/corpus",
+            "pattern": "New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_7aec7c23c6df4cf9816c3e05",
+            "content": "Found 2 matches\n/app/corpus/treasury_bulletin_2024_09.txt:\n  Line 1800: 8Source: Treasury International Capital Survey (https://ticdata.treasury.gov/resource-center/data-chart-center/tic/Documents/mfhhis01.txt). Includes nonmarketable foreign series, Treasury securities and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: https://home.treasury.gov/data/treasury-international-capital-tic-system.\n  Line 2631: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 50339,
+        "completion_tokens": 68,
+        "cached_tokens": 49168,
+        "cost_usd": 0.00191874,
+        "extra": {
+          "reasoning_tokens": 9
+        }
+      }
+    },
+    {
+      "step_id": 23,
+      "timestamp": "2026-03-30T23:43:24.583000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_2af38a56ebf045b3831e16b0",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_2af38a56ebf045b3831e16b0",
+            "content": "Found 10 matches\n/app/corpus/treasury_bulletin_2024_12.txt:\n  Line 824: | New York | 384447300 | 37420654 | 341601296 | 258494864 | 78198978 |\n  Line 906: | New York | 635912 | 640629 | 3630913 | 2552804 | 276749 | 2595796 |\n  Line 1052: | Ogdensburg, New York: | Ogdensburg, New York: | Ogdensburg, New York: |\n  Line 1060: | Buffalo, New York: | Buffalo, New York: | Buffalo, New York: |\n  Line 1099: | New York, New York: | nan | nan | Noonan, ND | 33420.0 | 3177.16 |\n  Line 1100: | New York, NY | 21001.0 | 298718618.62 | Carbury, ND | 33421.0 | 2817.26 |\n  Line 1103: | New York, NY/Newark, NJ | 24601.0 | 9605157850.67 | Baudette, MN | 33424.0 | 22278.58 |\n  Line 1108: | New York Stewart International Airport, NY | 24682.0 | 293695.80 | Williston Basin INTL Airport, ND | 33433.0 | 0.00 |\n  Line 2487: aSource: Treasury International Capital Survey https://ticdata.treasury.gov/resource-center/data-chart-center/tic/Documents/mfhhis01.txt. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: https://home.treasury.gov/data/treasury-international-capital-tic-system.\n  Line 3306: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 50593,
+        "completion_tokens": 84,
+        "cached_tokens": 46048,
+        "cost_usd": 0.00287574,
+        "extra": {
+          "reasoning_tokens": 25
+        }
+      }
+    },
+    {
+      "step_id": 24,
+      "timestamp": "2026-03-30T23:43:30.305000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_ba8261d11a5b415f8e5c7abd",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep \"2025_\"",
+            "description": "List 2025 bulletins"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_ba8261d11a5b415f8e5c7abd",
+            "content": "treasury_bulletin_2025_03.txt\ntreasury_bulletin_2025_06.txt\ntreasury_bulletin_2025_09.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 51159,
+        "completion_tokens": 574,
+        "cached_tokens": 49376,
+        "cost_usd": 0.00333498,
+        "extra": {
+          "reasoning_tokens": 525
+        }
+      }
+    },
+    {
+      "step_id": 25,
+      "timestamp": "2026-03-30T23:44:50.347000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_2aeba926a5734ad99c266b8f",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2024_12.txt",
+            "limit": 30,
+            "offset": 810
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_2aeba926a5734ad99c266b8f",
+            "content": "<path>/app/corpus/treasury_bulletin_2024_12.txt</path>\n<type>file</type>\n<content>810: | Louisiana | 41884661 | 1315313 | 40121635 | 31297439 | 8453902 |\n811: | Maine | 12168858 | 848421 | 11204958 | 8251359 | 2839858 |\n812: | Maryland | 107444691 | 4386680 | 102578057 | 84779510 | 16833049 |\n813: | Massachusetts | 156520223 | 12377907 | 142838974 | 112478184 | 28737417 |\n814: | Michigan | 108565033 | 8652149 | 99111383 | 78581982 | 18935176 |\n815: | Minnesota | 122269773 | 13313453 | 107662979 | 92900224 | 14075107 |\n816: | Mississippi | 15189910 | 808678 | 14076644 | 10284705 | 3657506 |\n817: | Missouri | 93231884 | 6614427 | 85756790 | 71597330 | 12686664 |\n818: | Montana | 10688526 | 250642 | 10377718 | 6959985 | 3290241 |\n819: | Nebraska | 43963441 | 20323913 | 23391705 | 17423705 | 4607999 |\n820: | Nevada | 38034564 | 1781376 | 35379215 | 19028015 | 11804562 |\n821: | New Hampshire | 17032034 | 608318 | 15844484 | 10688371 | 4499167 |\n822: | New Jersey | 183225841 | 28514672 | 151115815 | 117945149 | 31323647 |\n823: | New Mexico | 12851255 | 233919 | 12479874 | 9106526 | 3253053 |\n824: | New York | 384447300 | 37420654 | 341601296 | 258494864 | 78198978 |\n825: | North Carolina | 125034536 | 11262992 | 112417994 | 89773634 | 21696420 |\n826: | North Dakota | 9748917 | 630325 | 8995083 | 6293717 | 2608718 |\n827: | Ohio | 207340271 | 18271798 | 181448480 | 158335715 | 21384238 |\n828: | Oklahoma | 39273941 | 4167769 | 31059278 | 22868344 | 7144520 |\n829: \n830: See footnotes at end of table.\n831: \n832: FEDERAL FISCAL OPERATIONS\n833: \n834: 23\n835: \n836: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2024, continued\n837: \n838: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n839: \n\n(Showing lines 810-839 of 3325. Use offset=840 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 51789,
+        "completion_tokens": 647,
+        "cached_tokens": 50160,
+        "cost_usd": 0.0034731,
+        "extra": {
+          "reasoning_tokens": 586
+        }
+      }
+    },
+    {
+      "step_id": 26,
+      "timestamp": "2026-03-30T23:45:15.500000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_a22150d9769f47598ab26452",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2015_12.txt",
+            "limit": 30,
+            "offset": 865
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_a22150d9769f47598ab26452",
+            "content": "<path>/app/corpus/treasury_bulletin_2015_12.txt</path>\n<type>file</type>\n<content>865: | Mississippi | 11468660 | 747840 | 10507791 | 7974384 | 2434395 |\n866: | Missouri | 64112504 | 8473144 | 54101726 | 45172090 | 8017083 |\n867: | Montana | 5805098 | 214131 | 5538068 | 3755432 | 1707125 |\n868: | Nebraska | 25103770 | 6870025 | 18026855 | 13212728 | 3317614 |\n869: | Nevada | 18450072 | 867208 | 17264613 | 10660826 | 5243614 |\n870: | New Hampshire | 11314985 | 296413 | 10749228 | 8017216 | 2410430 |\n871: | New Jersey | 153917572 | 36256100 | 114834184 | 93307132 | 20210034 |\n872: | New Mexico | 8969666 | 248014 | 8519028 | 6294578 | 2131010 |\n873: | New York | 269716999 | 30839677 | 233878379 | 171803055 | 57806300 |\n874: | North Carolina | 78736401 | 10807290 | 67278363 | 55372577 | 11123355 |\n875: | North Dakota | 7711243 | 353450 | 7263315 | 4828692 | 2381894 |\n876: | Ohio | 140981150 | 14649198 | 121379888 | 106063345 | 13817331 |\n877: | Oklahoma | 33942286 | 3330908 | 25554628 | 18930641 | 5766006 |\n878: \n879: See footnotes at end of table.\n880: \n881: December 2015\n882: \n883: 20\n884: \n885: FEDERAL FISCAL OPERATIONS\n886: \n887: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2015, continued\n888: \n889: [In thousands of dollars. Source: Chief Financial Officer, Revenue Financial Management]\n890: \n891: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n892: | --- | --- | --- | --- | --- | --- |\n893: | Oregon | 31219148 | 1989938 | 28153829 | 22221724 | 5630003 |\n894: | Pennsylvania | 136108810 | 16095757 | 115272208 | 94451811 | 18909565 |\n\n(Showing lines 865-894 of 3399. Use offset=895 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 53156,
+        "completion_tokens": 349,
+        "cached_tokens": 52432,
+        "cost_usd": 0.00255456,
+        "extra": {
+          "reasoning_tokens": 288
+        }
+      }
+    },
+    {
+      "step_id": 27,
+      "timestamp": "2026-03-30T23:45:32.256000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_8f4ec760925348679d4338b1",
+          "function_name": "bash",
+          "arguments": {
+            "command": "cat > /app/compute.py << 'PYEOF'\n# Values in thousands of dollars\nfy2010 = 200209720\nfy2015 = 269716999\nfy2024_actual = 384447300\n\n# CAGR from FY 2010 to FY 2015 (5 years)\nn_2010_to_2015 = 5\ncagr = (fy2015 / fy2010) ** (1.0 / n_2010_to_2015) - 1\nprint(f\"CAGR 2010-2015: {cagr:.6f} ({cagr*100:.4f}%)\")\n\n# Project FY 2024 using FY 2015 as base with CAGR\n# Years from 2015 to 2024 = 9 years\nn_2015_to_2024 = 9\nfy2024_projected = fy2015 * ((1 + cagr) ** n_2015_to_2024)\nprint(f\"FY 2024 Projected: {fy2024_projected:,.0f} thousand dollars\")\nprint(f\"FY 2024 Actual: {fy2024_actual:,.0f} thousand dollars\")\n\n# Percentage difference relative to actual\n# Formula: (actual - projected) / actual * 100\npct_diff = (fy2024_actual - fy2024_projected) / fy2024_actual * 100\nprint(f\"Percentage Difference (relative to actual): {pct_diff:.4f}%\")\n\n# Or the reverse: (projected - actual) / actual * 100\npct_diff2 = (fy2024_projected - fy2024_actual) / fy2024_actual * 100\nprint(f\"Percentage Difference (projected vs actual): {pct_diff2:.4f}%\")\nPYEOF\npython3 /app/compute.py",
+            "description": "Calculate CAGR and percentage difference"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_8f4ec760925348679d4338b1",
+            "content": "CAGR 2010-2015: 0.061414 (6.1414%)\nFY 2024 Projected: 461,179,515 thousand dollars\nFY 2024 Actual: 384,447,300 thousand dollars\nPercentage Difference (relative to actual): -19.9591%\nPercentage Difference (projected vs actual): 19.9591%\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 54189,
+        "completion_tokens": 518,
+        "cached_tokens": 51728,
+        "cost_usd": 0.00300774,
+        "extra": {
+          "reasoning_tokens": 80
+        }
+      }
+    },
+    {
+      "step_id": 28,
+      "timestamp": "2026-03-30T23:46:45.063000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_937f6331bce84f01aaaf900e",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/name.txt",
+            "content": "OpenCode"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_937f6331bce84f01aaaf900e",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 54801,
+        "completion_tokens": 205,
+        "cached_tokens": 10464,
+        "cost_usd": 0.01406022,
+        "extra": {
+          "reasoning_tokens": 166
+        }
+      }
+    },
+    {
+      "step_id": 29,
+      "timestamp": "2026-03-30T23:47:00.811000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_3aa7a6fc39084de8a07b3c11",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"print(round(19.9591, 2))\"",
+            "description": "Round to nearest hundredth"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_3aa7a6fc39084de8a07b3c11",
+            "content": "19.96\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 55028,
+        "completion_tokens": 437,
+        "cached_tokens": 10464,
+        "cost_usd": 0.01466832,
+        "extra": {
+          "reasoning_tokens": 384
+        }
+      }
+    },
+    {
+      "step_id": 30,
+      "timestamp": "2026-03-30T23:47:18.526000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_fb30efc918e845d3a7491696",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/answer.txt",
+            "content": "19.96"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_fb30efc918e845d3a7491696",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 55486,
+        "completion_tokens": 227,
+        "cached_tokens": 55456,
+        "cost_usd": 0.00216828,
+        "extra": {
+          "reasoning_tokens": 186
+        }
+      }
+    },
+    {
+      "step_id": 31,
+      "timestamp": "2026-03-30T23:47:27.538000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "I have calculated the percentage difference between the projected and actual nominal internal revenue collections in New York for FY 2024:\n\n- FY 2010 actual: $200,209,720,000\n- FY 2015 actual: $269,716,999,000\n- CAGR (2010-2015): 6.14%\n- FY 2024 projected (using FY 2015 as base): $461,179,515,000\n- FY 2024 actual: $384,447,300,000\n- **Percentage difference: 19.96%**\n\nThe projection overestimated the actual FY 2024 collections by approximately 19.96%.",
+      "metrics": {
+        "prompt_tokens": 55735,
+        "completion_tokens": 491,
+        "cached_tokens": 54992,
+        "cost_usd": 0.00288186,
+        "extra": {
+          "reasoning_tokens": 350
+        }
+      }
+    }
+  ],
+  "final_metrics": {
+    "total_prompt_tokens": 1344509,
+    "total_completion_tokens": 6346,
+    "total_cached_tokens": 949072,
+    "total_cost_usd": 0.15950886000000003,
+    "total_steps": 31
+  }
+}

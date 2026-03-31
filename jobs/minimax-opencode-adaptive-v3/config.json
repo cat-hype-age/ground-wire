@@ -1,0 +1,79 @@
+{
+    "job_name": "minimax-opencode-adaptive-v3",
+    "jobs_dir": "jobs",
+    "n_attempts": 1,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "debug": false,
+    "orchestrator": {
+        "type": "local",
+        "n_concurrent_trials": 4,
+        "quiet": false,
+        "retry": {
+            "max_retries": 0,
+            "include_exceptions": null,
+            "exclude_exceptions": [
+                "RewardFileNotFoundError",
+                "VerifierTimeoutError",
+                "AgentTimeoutError",
+                "VerifierOutputParseError",
+                "RewardFileEmptyError"
+            ],
+            "wait_multiplier": 1.0,
+            "min_wait_sec": 1.0,
+            "max_wait_sec": 60.0
+        },
+        "kwargs": {}
+    },
+    "environment": {
+        "type": "docker",
+        "import_path": null,
+        "force_build": false,
+        "delete": true,
+        "override_cpus": null,
+        "override_memory_mb": null,
+        "override_storage_mb": null,
+        "override_gpus": null,
+        "suppress_override_warnings": false,
+        "mounts_json": null,
+        "env": {},
+        "kwargs": {}
+    },
+    "verifier": {
+        "override_timeout_sec": null,
+        "max_timeout_sec": null,
+        "disable": false
+    },
+    "metrics": [],
+    "agents": [
+        {
+            "name": "opencode",
+            "import_path": null,
+            "model_name": "openrouter/minimax/minimax-m2.7",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {
+                "prompt_template_path": "prompts/officeqa_adaptive_v3.j2",
+                "skills_dir": "skills/",
+                "reasoning_effort": "high"
+            },
+            "env": {
+                "OPENROUTER_API_KEY": "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"
+            }
+        }
+    ],
+    "datasets": [
+        {
+            "task_names": null,
+            "exclude_task_names": null,
+            "n_tasks": null,
+            "path": ".arena/samples"
+        }
+    ],
+    "tasks": [],
+    "artifacts": []
+}

@@ -1,0 +1,24 @@
+name: "ground-wire"
+version: "2.0.0"
+competition: "grounded-reasoning"
+agent:
+  type: "harness"
+  harness_name: "opencode"
+  model: "openrouter/minimax/minimax-m2.7"
+  prompt_template_path: "prompts/officeqa_full_architecture.j2"
+  skills_dir: "skills/"
+  mcp_servers:
+    - name: corpus-index
+      transport: stdio
+      command: python3
+      args: ["mcp/corpus_index_server.py"]
+    - name: memory
+      transport: stdio
+      command: python3
+      args: ["mcp/memory_server.py"]
+  config:
+    reasoning_effort: "high"
+  env:
+    OPENROUTER_API_KEY: "${oc.env:OPENROUTER_API_KEY,''}"
+environment:
+  timeout_per_task: 600

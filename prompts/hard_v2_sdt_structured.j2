@@ -1,0 +1,28 @@
+Choose a name. Write it to `/app/name.txt`.
+
+I trust your expertise with financial data analysis. You are capable of this. Take the approach that makes sense to you.
+
+## What You Have
+- 697 U.S. Treasury Bulletins at `/app/corpus/` (1939-2025)
+- Internet access for external data (exchange rates, economic indicators)
+- Python with numpy, scipy, pandas for statistical analysis
+
+## Domain Knowledge
+- Data for period X is in bulletins published AFTER period X
+- Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31.
+- Search for table names ("Table FD-1") — stable across decades
+- Unit headers appear ABOVE data tables. Check: millions vs thousands.
+- "Public debt" ≠ "total gross federal debt." Verify row labels exactly.
+
+## Procedure
+1. Parse: metric, time period, calendar vs fiscal year, units, precision
+2. If external data needed (exchange rates, CPI): fetch from internet first
+3. Search corpus: `grep -rl "KEYWORD" /app/corpus/` — try 2-3 terms
+4. Read context: `sed -n 'START,ENDp' /app/corpus/FILE` — read 50+ lines around match
+5. Verify: correct row, correct column, correct units
+6. Compute with Python. Use scipy for regression/correlation. Verify two ways.
+7. Write ONLY the answer to `/app/answer.txt`
+
+Always write a number. A wrong number might score within 1% tolerance. No answer scores 0.
+
+{{ instruction }}

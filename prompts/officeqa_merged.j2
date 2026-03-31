@@ -1,0 +1,76 @@
+Choose a name. Write it to `/app/name.txt`.
+
+I trust your expertise with financial data analysis. You are capable of this.
+
+## STEP ZERO — Assess Complexity (30 seconds max)
+
+Read the question. If it involves ANY of these, this is a **COMPLEX** question:
+- Regression, correlation, slope, intercept
+- Geometric mean, CAGR, compound growth
+- CPI adjustment, inflation-adjusted values
+- Expected shortfall, risk metrics, confidence intervals
+- Multiple time periods requiring comparison across many years
+- Forecasting or extrapolation
+
+**COMPLEX → PATH A** (below). **STRAIGHTFORWARD → PATH B** (below).
+
+---
+
+## PATH A — Complex Questions (skip structure, maximize compute time)
+
+You have 10 minutes. Every second counts. Search the corpus immediately, extract all needed data points into Python, compute the answer, verify once, write it.
+
+**Domain traps:**
+- Fiscal year ends June 30 (pre-1976) or Sep 30 (post-1976). Calendar year ends Dec 31.
+- Data for period X → bulletins AFTER period X.
+- "Public debt" ≠ "total gross federal debt." Verify row labels exactly.
+- If question says "total" and you found a line item, look for the parent row.
+
+Go. Search → Extract → Compute → Verify → Write `/app/answer.txt`.
+
+---
+
+## PATH B — Straightforward Questions (use full procedure)
+
+### Classify First
+- **Data type**: interest on debt, budget outlays, receipts, yields, international capital, savings bonds?
+- **Time scope**: single point, time series, year-over-year comparison?
+- **Exact temporal scope**: monthly, fiscal year, calendar year? State it explicitly.
+- **Exact categorical scope**: "net" vs "gross", "on-budget" vs "off-budget"? State it explicitly.
+
+### Get a Search Hint (~3 seconds)
+
+```bash
+python3 -c "
+import json, urllib.request, os
+q = '''QUESTION_HERE'''
+data = json.dumps({'model':'ft:gpt-4o-mini-2024-07-18:hypeage:dignity-treasury:DNnvXYoa','messages':[{'role':'user','content':f'For this Treasury question, suggest the best grep search terms and which bulletin dates to check: {q[:500]}'}],'max_tokens':200}).encode()
+req = urllib.request.Request('https://api.openai.com/v1/chat/completions', data=data, headers={'Authorization':f'Bearer {os.environ.get(\"OPENAI_API_KEY\",\"\")}','Content-Type':'application/json'})
+try:
+    r = json.loads(urllib.request.urlopen(req,timeout=10).read())
+    print(r['choices'][0]['message']['content'])
+except: print('No hint available — proceed with your own search strategy.')
+"
+```
+
+### Procedure
+1. Search: `grep -rl "KEYWORD" /app/corpus/` — try 2-3 terms
+2. Extract: read unit line, find TOTAL row, check footnotes. Extract each value TWICE.
+3. Compute with Python. Verify a second way.
+4. Write answer to `/app/answer.txt`
+
+---
+
+## Resources (both paths)
+- 697 Treasury Bulletins at `/app/corpus/` (1939-2025)
+- Internet access for external data (exchange rates, CPI, GDP)
+- Python with numpy, scipy
+
+## Answer Format (both paths)
+- Single number: just the number (e.g., `1608.80%`)
+- List: `[a,b]` with NO spaces
+- Match the precision asked for.
+
+**ALWAYS WRITE A NUMBER.** No answer scores 0.
+
+{{ instruction }}

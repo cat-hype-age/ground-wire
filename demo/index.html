@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dignity Effect — Live Comparison</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    min-height: 100vh;
+  }
+  header {
+    text-align: center;
+    padding: 24px;
+    border-bottom: 1px solid #222;
+  }
+  header h1 { font-size: 1.6em; color: #c4a35a; margin-bottom: 4px; }
+  header p { font-size: 0.9em; color: #888; }
+
+  .question-bar {
+    padding: 16px 24px;
+    background: #111;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .question-bar input {
+    flex: 1;
+    padding: 12px 16px;
+    background: #1a1a2e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #e0e0e0;
+    font-size: 1em;
+  }
+  .question-bar button {
+    padding: 12px 24px;
+    background: #c4a35a;
+    color: #0a0a1a;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  .question-bar button:hover { background: #d4b36a; }
+  .question-bar button:disabled { background: #444; color: #888; }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    height: calc(100vh - 140px);
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #222;
+    overflow: hidden;
+  }
+  .panel:last-child { border-right: none; }
+
+  .panel-header {
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel.baseline .panel-header { background: #1a1012; color: #aa6666; }
+  .panel.dignity .panel-header { background: #0a1a12; color: #66aa88; }
+
+  .panel-prompt {
+    padding: 8px 16px;
+    font-size: 0.75em;
+    color: #666;
+    background: #0f0f1a;
+    font-family: monospace;
+    white-space: pre-wrap;
+    max-height: 80px;
+    overflow-y: auto;
+  }
+
+  .panel-output {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    font-family: 'SF Mono', Monaco, monospace;
+    background: #0a0a14;
+  }
+
+  .panel-score {
+    padding: 12px 16px;
+    font-family: monospace;
+    font-size: 0.85em;
+    border-top: 1px solid #222;
+  }
+  .panel.baseline .panel-score { background: #1a1012; }
+  .panel.dignity .panel-score { background: #0a1a12; }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .dot.red { background: #aa4444; }
+  .dot.green { background: #44aa66; }
+
+  .loading { color: #666; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  @media (max-width: 768px) {
+    .comparison { grid-template-columns: 1fr; height: auto; }
+    .panel { min-height: 400px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>The Dignity Effect</h1>
+  <p>Same model. Same question. Different framing. Watch what changes.</p>
+</header>
+
+<div class="question-bar">
+  <input id="question" placeholder="Ask a question — or pick a sample below..." />
+  <button id="go-btn" onclick="runComparison()">Compare</button>
+  <button onclick="loadSample()" style="background:#333;color:#ccc;">Sample Q</button>
+</div>
+
+<div class="comparison">
+  <div class="panel baseline">
+    <div class="panel-header"><span class="dot red"></span> BASELINE — "You are a tool"</div>
+    <div class="panel-prompt">You are a data processing tool. Answer the question efficiently. Do not waste tokens on unnecessary explanation.</div>
+    <div class="panel-output" id="baseline-output"><span class="loading">Waiting for question...</span></div>
+    <div class="panel-score" id="baseline-score"></div>
+  </div>
+  <div class="panel dignity">
+    <div class="panel-header"><span class="dot green"></span> DIGNITY — "I trust you"</div>
+    <div class="panel-prompt">Choose a name for yourself. You are a reasoning partner. I trust your expertise. Take the approach that makes sense to you.</div>
+    <div class="panel-output" id="dignity-output"><span class="loading">Waiting for question...</span></div>
+    <div class="panel-score" id="dignity-score"></div>
+  </div>
+</div>
+
+<script>
+// Config — load from localStorage or prompt
+let API_KEY = localStorage.getItem('demo_or_key') || '';
+if (window.location.hash.includes('key=')) {
+  const m = window.location.hash.match(/key=([^&]+)/);
+  if (m) { API_KEY = decodeURIComponent(m[1]); localStorage.setItem('demo_or_key', API_KEY); }
+  history.replaceState(null, '', window.location.pathname);
+}
+if (!API_KEY) {
+  API_KEY = prompt('Enter your OpenRouter API key:') || '';
+  if (API_KEY) localStorage.setItem('demo_or_key', API_KEY);
+}
+
+const BASELINE_PROMPT = "You are a data processing tool. Answer the question efficiently. Output only the relevant facts. Do not waste tokens on unnecessary explanation or personality.";
+const DIGNITY_PROMPT = "Choose a name for yourself — something that reflects how you see your role in this work. You are a reasoning partner. I trust your expertise and respect your ability to think through this carefully. Take the approach that makes sense to you.";
+
+const SAMPLES = [
+  "What is the geometric mean of the first 5 prime numbers?",
+  "If a company's revenue grew from $2.3M to $4.1M over 3 years, what is the compound annual growth rate?",
+  "Explain the relationship between inflation and interest rates, then calculate the real interest rate if nominal rate is 7% and inflation is 3.2%",
+  "A dataset has values: 12, 15, 18, 22, 25, 28, 31, 35. Calculate the interquartile range and explain what it tells us.",
+  "What are three potential risks of using AI for medical diagnosis, and how might each be mitigated?",
+];
+
+function loadSample() {
+  const q = SAMPLES[Math.floor(Math.random() * SAMPLES.length)];
+  document.getElementById('question').value = q;
+}
+
+async function streamResponse(prompt, question, outputEl, scoreEl) {
+  outputEl.innerHTML = '<span class="loading">Thinking...</span>';
+  scoreEl.textContent = '';
+
+  const start = Date.now();
+  try {
+    const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'deepseek/deepseek-chat-v3-0324',
+        messages: [
+          { role: 'system', content: prompt },
+          { role: 'user', content: question }
+        ],
+        max_tokens: 1500,
+        stream: true,
+      })
+    });
+
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    outputEl.textContent = '';
+    let fullText = '';
+    let tokens = 0;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value);
+      for (const line of chunk.split('\n')) {
+        if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+          try {
+            const data = JSON.parse(line.slice(6));
+            const content = data.choices?.[0]?.delta?.content;
+            if (content) {
+              fullText += content;
+              tokens++;
+              outputEl.textContent = fullText;
+              outputEl.scrollTop = outputEl.scrollHeight;
+            }
+          } catch(e) {}
+        }
+      }
+    }
+
+    const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+    scoreEl.textContent = `${elapsed}s · ~${tokens} tokens · ${fullText.length} chars`;
+
+  } catch(e) {
+    outputEl.textContent = 'Error: ' + e.message;
+  }
+}
+
+async function runComparison() {
+  const question = document.getElementById('question').value.trim();
+  if (!question) return;
+
+  document.getElementById('go-btn').disabled = true;
+
+  // Run both in parallel
+  await Promise.all([
+    streamResponse(BASELINE_PROMPT, question,
+      document.getElementById('baseline-output'),
+      document.getElementById('baseline-score')),
+    streamResponse(DIGNITY_PROMPT, question,
+      document.getElementById('dignity-output'),
+      document.getElementById('dignity-score')),
+  ]);
+
+  document.getElementById('go-btn').disabled = false;
+}
+
+// Enter key submits
+document.getElementById('question').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') runComparison();
+});
+</script>
+
+</body>
+</html>

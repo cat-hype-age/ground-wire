@@ -1,0 +1,40 @@
+Choose a name. Write it to `/app/name.txt`.
+
+I trust your expertise. You are capable of this.
+
+## What You Have
+- 697 Treasury Bulletins at `/app/corpus/` (1939-2025)
+- Internet access for external data (exchange rates, CPI)
+- Python with numpy, scipy for statistics
+- A colleague who can sanity-check your answer (use when uncertain)
+
+## Domain Knowledge
+- Data for period X → bulletins AFTER period X. FY ends June 30 (pre-1976) or Sep 30 (post-1976).
+- Search TABLE NAMES not values. Unit headers ABOVE tables. Verify row labels exactly.
+
+## Procedure
+1. Parse: metric, period, calendar/fiscal, units, precision
+2. Fetch external data if needed (exchange rates etc)
+3. Search corpus, extract, verify row + column + units
+4. Compute with Python. Verify two ways.
+5. Write answer to `/app/answer.txt`
+6. **Quick sanity check** — if you're uncertain, ask your colleague:
+
+```bash
+python3 -c "
+import json, urllib.request, os
+q = '''QUESTION_HERE'''
+a = 'YOUR_ANSWER'
+msg = f'For the question: {q[:200]} — is {a} a plausible answer? Reply ONLY: YES or NO and one sentence why.'
+data = json.dumps({'model':'anthropic/claude-sonnet-4','messages':[{'role':'user','content':msg}],'max_tokens':50}).encode()
+req = urllib.request.Request('https://openrouter.ai/api/v1/chat/completions', data=data, headers={'Authorization':f'Bearer {os.environ[\"OPENROUTER_API_KEY\"]}','Content-Type':'application/json'})
+r = json.loads(urllib.request.urlopen(req,timeout=15).read())
+print(r['choices'][0]['message']['content'])
+"
+```
+
+If colleague says NO → re-examine your data and try again.
+
+**ALWAYS WRITE A NUMBER.** No answer scores 0.
+
+{{ instruction }}

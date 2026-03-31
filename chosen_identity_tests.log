@@ -1,0 +1,206 @@
+=== Test 1: chosen_identity + opencode ===
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0036__CffxhtJ/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0100__GjNKUtn/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0038__RK8u8fj/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0010__w5ZvyLc/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0072__z9BatH5/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0045__BSRz6xk/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0163__XLMTJ3M/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0066__zymiuLM/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0109__pfN5RFj/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0037__6Fxprnz/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0212__FoGQePL/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0012__x83Rmiz/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0113__DQw8BiT/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0040__Hv3o7br/agent/trajectory.json
+Wrote opencode trajectory to jobs/chosen-identity-opencode-diverse20/officeqa-uid0176__DauV258/agent/trajectory.json
+⠋ 18/20 Mean: 0.500 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━     0:51:48 -:--:--
+⠋ 0… officeqa-uid0013__kLuHwcX: running agent...                                
+⠋ 0… officeqa-uid0176__DauV258: canceling trial; this may take up to a minute...╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/cli/jobs.py:961 in │
+│ start                                                                        │
+│                                                                              │
+│    958 │                                                                     │
+│    959 │   show_registry_hint_if_first_run(console)                          │
+│    960 │                                                                     │
+│ ❱  961 │   job_result = run_async(job.run())                                 │
+│    962 │                                                                     │
+│    963 │   # Print results tables                                            │
+│    964 │   print_job_results_tables(job_result)                              │
+│                                                                              │
+│ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/cli/utils.py:19 in │
+│ run_async                                                                    │
+│                                                                              │
+│   16 │   """                                                                 │
+│   17 │   if sys.platform == "win32":                                         │
+│   18 │   │   return asyncio.run(coro, loop_factory=asyncio.ProactorEventLoop │
+│ ❱ 19 │   return asyncio.run(coro)                                            │
+│   20                                                                         │
+│   21                                                                         │
+│   22 def parse_kwargs(kwargs_list: list[str] | None) -> dict[str, Any]:      │
+│                                                                              │
+│ /usr/lib/python3.13/asyncio/runners.py:195 in run                            │
+│                                                                              │
+│   192 │   │   │   "asyncio.run() cannot be called from a running event loop" │
+│   193 │                                                                      │
+│   194 │   with Runner(debug=debug, loop_factory=loop_factory) as runner:     │
+│ ❱ 195 │   │   return runner.run(main)                                        │
+│   196                                                                        │
+│   197                                                                        │
+│   198 def _cancel_all_tasks(loop):                                           │
+│                                                                              │
+│ /usr/lib/python3.13/asyncio/runners.py:118 in run                            │
+│                                                                              │
+│   115 │   │                                                                  │
+│   116 │   │   self._interrupt_count = 0                                      │
+│   117 │   │   try:                                                           │
+│ ❱ 118 │   │   │   return self._loop.run_until_complete(task)                 │
+│   119 │   │   except exceptions.CancelledError:                              │
+│   120 │   │   │   if self._interrupt_count > 0:                              │
+│   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
+│                                                                              │
+│ /usr/lib/python3.13/asyncio/base_events.py:725 in run_until_complete         │
+│                                                                              │
+│    722 │   │   if not future.done():                                         │
+│    723 │   │   │   raise RuntimeError('Event loop stopped before Future comp │
+│    724 │   │                                                                 │
+│ ❱  725 │   │   return future.result()                                        │
+│    726 │                                                                     │
+│    727 │   def stop(self):                                                   │
+│    728 │   │   """Stop running the event loop.                               │
+│                                                                              │
+│ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/job.py:397 in run  │
+│                                                                              │
+│   394 │   │   │                                                              │
+│   395 │   │   │   self._job_config_path.write_text(self.config.model_dump_js │
+│   396 │   │   │                                                              │
+│ ❱ 397 │   │   │   trial_results = await self._orchestrator.run()             │
+│   398 │   │   │                                                              │
+│   399 │   │   │   combined_trial_results = self._existing_trial_results + tr │
+│   400                                                                        │
+│                                                                              │
+│ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/orchestrators/loca │
+│ l.py:326 in run                                                              │
+│                                                                              │
+│   323 │   │   │   │   │   "Running trials...", total=len(self._trial_configs │
+│   324 │   │   │   │   )                                                      │
+│   325 │   │   │   │                                                          │
+│ ❱ 326 │   │   │   │   async with asyncio.TaskGroup() as tg:                  │
+│   327 │   │   │   │   │   tasks = [                                          │
+│   328 │   │   │   │   │   │   tg.create_task(                                │
+│   329 │   │   │   │   │   │   │   self._run_trial(                           │
+│                                                                              │
+│ /usr/lib/python3.13/asyncio/taskgroups.py:71 in __aexit__                    │
+│                                                                              │
+│    68 │   async def __aexit__(self, et, exc, tb):                            │
+│    69 │   │   tb = None                                                      │
+│    70 │   │   try:                                                           │
+│ ❱  71 │   │   │   return await self._aexit(et, exc)                          │
+│    72 │   │   finally:                                                       │
+│    73 │   │   │   # Exceptions are heavy objects that can have object        │
+│    74 │   │   │   # cycles (bad for GC); let's not keep a reference to       │
+│                                                                              │
+│ /usr/lib/python3.13/asyncio/taskgroups.py:173 in _aexit                      │
+│                                                                              │
+│   170 │   │   │   │   self._parent_task.uncancel()                           │
+│   171 │   │   │   │   self._parent_task.cancel()                             │
+│   172 │   │   │   try:                                                       │
+│ ❱ 173 │   │   │   │   raise BaseExceptionGroup(                              │
+│   174 │   │   │   │   │   'unhandled errors in a TaskGroup',                 │
+│   175 │   │   │   │   │   self._errors,                                      │
+│   176 │   │   │   │   ) from None                                            │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+
+╭────────────────────────────── Sub-exception #1 ──────────────────────────────╮
+│ ╭─────────────────── Traceback (most recent call last) ────────────────────╮ │
+│ │ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/orchestrators/ │ │
+│ │ local.py:211 in _run_trial                                               │ │
+│ │                                                                          │ │
+│ │   208 │   │   │   │   │   f"{trial_config.trial_name}: retrying (attempt │ │
+│ │   209 │   │   │   │   )                                                  │ │
+│ │   210 │   │   │                                                          │ │
+│ │ ❱ 211 │   │   │   result = await self._execute_trial_with_retries(       │ │
+│ │   212 │   │   │   │   trial_config,                                      │ │
+│ │   213 │   │   │   │   setup_hooks=setup_progress_hooks,                  │ │
+│ │   214 │   │   │   │   on_retry=on_retry,                                 │ │
+│ │                                                                          │ │
+│ │ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/orchestrators/ │ │
+│ │ local.py:129 in _execute_trial_with_retries                              │ │
+│ │                                                                          │ │
+│ │   126 │   │   │   if setup_hooks:                                        │ │
+│ │   127 │   │   │   │   setup_hooks(trial)                                 │ │
+│ │   128 │   │   │                                                          │ │
+│ │ ❱ 129 │   │   │   result = await trial.run()                             │ │
+│ │   130 │   │   │                                                          │ │
+│ │   131 │   │   │   if result.exception_info is None:                      │ │
+│ │   132 │   │   │   │   return result                                      │ │
+│ │                                                                          │ │
+│ │ /home/cat/.arena/venv/lib/python3.13/site-packages/harbor/trial/trial.py │ │
+│ │ :616 in run                                                              │ │
+│ │                                                                          │ │
+│ │   613 │   │   │                                                          │ │
+│ │   614 │   │   │   if self.result.exception_info is None:                 │ │
+│ │   615 │   │   │   │   self.result.exception_info = ExceptionInfo.from_ex │ │
+│ │ ❱ 616 │   │   │   │   self._trial_paths.exception_message_path.write_tex │ │
+│ │   617 │   │   │   │   │   traceback.format_exc()                         │ │
+│ │   618 │   │   │   │   )                                                  │ │
+│ │   619                                                                    │ │
+│ │                                                                          │ │
+│ │ /usr/lib/python3.13/pathlib/_local.py:557 in write_text                  │ │
+│ │                                                                          │ │
+│ │   554 │   │   # Call io.text_encoding() here to ensure any warning is ra │ │
+│ │   555 │   │   # appropriate stack level.                                 │ │
+│ │   556 │   │   encoding = io.text_encoding(encoding)                      │ │
+│ │ ❱ 557 │   │   return PathBase.write_text(self, data, encoding, errors, n │ │
+│ │   558 │                                                                  │ │
+│ │   559 │   _remove_leading_dot = operator.itemgetter(slice(2, None))      │ │
+│ │   560 │   _remove_trailing_slash = operator.itemgetter(slice(-1))        │ │
+│ │                                                                          │ │
+│ │ /usr/lib/python3.13/pathlib/_abc.py:651 in write_text                    │ │
+│ │                                                                          │ │
+│ │   648 │   │   if not isinstance(data, str):                              │ │
+│ │   649 │   │   │   raise TypeError('data must be str, not %s' %           │ │
+│ │   650 │   │   │   │   │   │   │   data.__class__.__name__)               │ │
+│ │ ❱ 651 │   │   with self.open(mode='w', encoding=encoding, errors=errors, │ │
+│ │   652 │   │   │   return f.write(data)                                   │ │
+│ │   653 │                                                                  │ │
+│ │   654 │   def iterdir(self):                                             │ │
+│ │                                                                          │ │
+│ │ /usr/lib/python3.13/pathlib/_local.py:539 in open                        │ │
+│ │                                                                          │ │
+│ │   536 │   │   """                                                        │ │
+│ │   537 │   │   if "b" not in mode:                                        │ │
+│ │   538 │   │   │   encoding = io.text_encoding(encoding)                  │ │
+│ │ ❱ 539 │   │   return io.open(self, mode, buffering, encoding, errors, ne │ │
+│ │   540 │                                                                  │ │
+│ │   541 │   def read_text(self, encoding=None, errors=None, newline=None): │ │
+│ │   542 │   │   """                                                        │ │
+│ ╰──────────────────────────────────────────────────────────────────────────╯ │
+│ FileNotFoundError: [Errno 2] No such file or directory:                      │
+│ 'jobs/chosen-identity-opencode-diverse20/officeqa-uid0013__kLuHwcX/exception │
+│ .txt'                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+=== Test 2: chosen_identity + openhands-sdk ===
+  20/20 Mean: 0.400 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:54:31 0:00:00Results written to jobs/chosen-identity-openhands-diverse20/result.json
+          openhands-sdk (minimax-minimax-m2.5) on samples          
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Metric                   ┃ Value                                ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Agent                    │ openhands-sdk (minimax-minimax-m2.5) │
+│ Dataset                  │ samples                              │
+│ Trials                   │ 18                                   │
+│ Errors                   │ 2                                    │
+│                          │                                      │
+│ Mean                     │ 0.400                                │
+│                          │                                      │
+│ Reward Distribution      │                                      │
+│   reward = 0.0           │ 10                                   │
+│   reward = 1.0           │ 8                                    │
+│                          │                                      │
+│ Exception Distribution   │                                      │
+│   AgentSetupTimeoutError │ 2                                    │
+└──────────────────────────┴──────────────────────────────────────┘
+
+=== Both tests complete ===

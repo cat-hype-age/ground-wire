@@ -1,0 +1,1360 @@
+{
+  "schema_version": "ATIF-v1.6",
+  "session_id": "ses_2baa1a4a1ffeyuEoyQXlGlE3tT",
+  "agent": {
+    "name": "opencode",
+    "version": "1.3.10",
+    "model_name": "openrouter/minimax/minimax-m2.5"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-03-31T19:28:27.957000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "I'll start by exploring the corpus to understand its structure and find the relevant data for New York internal revenue collections.",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_341f820ceb6d47268e38cd15",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | head -20",
+            "description": "List first 20 corpus files"
+          }
+        },
+        {
+          "tool_call_id": "call_8c5b61e36976463c8e864c34",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/index.txt",
+            "limit": 50
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_341f820ceb6d47268e38cd15",
+            "content": "index.txt\ntreasury_bulletin_1939_01.txt\ntreasury_bulletin_1939_02.txt\ntreasury_bulletin_1939_03.txt\ntreasury_bulletin_1939_04.txt\ntreasury_bulletin_1939_05.txt\ntreasury_bulletin_1939_06.txt\ntreasury_bulletin_1939_07.txt\ntreasury_bulletin_1939_08.txt\ntreasury_bulletin_1939_09.txt\ntreasury_bulletin_1939_10.txt\ntreasury_bulletin_1939_11.txt\ntreasury_bulletin_1939_12.txt\ntreasury_bulletin_1940_01.txt\ntreasury_bulletin_1940_02.txt\ntreasury_bulletin_1940_03.txt\ntreasury_bulletin_1940_04.txt\ntreasury_bulletin_1940_05.txt\ntreasury_bulletin_1940_06.txt\ntreasury_bulletin_1940_07.txt\n"
+          },
+          {
+            "source_call_id": "call_8c5b61e36976463c8e864c34",
+            "content": "<path>/app/corpus/index.txt</path>\n<type>file</type>\n<content>1: /app/corpus/index.txt\n2: /app/corpus/treasury_bulletin_1939_01.txt\n3: /app/corpus/treasury_bulletin_1939_02.txt\n4: /app/corpus/treasury_bulletin_1939_03.txt\n5: /app/corpus/treasury_bulletin_1939_04.txt\n6: /app/corpus/treasury_bulletin_1939_05.txt\n7: /app/corpus/treasury_bulletin_1939_06.txt\n8: /app/corpus/treasury_bulletin_1939_07.txt\n9: /app/corpus/treasury_bulletin_1939_08.txt\n10: /app/corpus/treasury_bulletin_1939_09.txt\n11: /app/corpus/treasury_bulletin_1939_10.txt\n12: /app/corpus/treasury_bulletin_1939_11.txt\n13: /app/corpus/treasury_bulletin_1939_12.txt\n14: /app/corpus/treasury_bulletin_1940_01.txt\n15: /app/corpus/treasury_bulletin_1940_02.txt\n16: /app/corpus/treasury_bulletin_1940_03.txt\n17: /app/corpus/treasury_bulletin_1940_04.txt\n18: /app/corpus/treasury_bulletin_1940_05.txt\n19: /app/corpus/treasury_bulletin_1940_06.txt\n20: /app/corpus/treasury_bulletin_1940_07.txt\n21: /app/corpus/treasury_bulletin_1940_08.txt\n22: /app/corpus/treasury_bulletin_1940_09.txt\n23: /app/corpus/treasury_bulletin_1940_10.txt\n24: /app/corpus/treasury_bulletin_1940_11.txt\n25: /app/corpus/treasury_bulletin_1940_12.txt\n26: /app/corpus/treasury_bulletin_1941_01.txt\n27: /app/corpus/treasury_bulletin_1941_02.txt\n28: /app/corpus/treasury_bulletin_1941_03.txt\n29: /app/corpus/treasury_bulletin_1941_04.txt\n30: /app/corpus/treasury_bulletin_1941_05.txt\n31: /app/corpus/treasury_bulletin_1941_06.txt\n32: /app/corpus/treasury_bulletin_1941_07.txt\n33: /app/corpus/treasury_bulletin_1941_08.txt\n34: /app/corpus/treasury_bulletin_1941_09.txt\n35: /app/corpus/treasury_bulletin_1941_10.txt\n36: /app/corpus/treasury_bulletin_1941_11.txt\n37: /app/corpus/treasury_bulletin_1941_12.txt\n38: /app/corpus/treasury_bulletin_1942_01.txt\n39: /app/corpus/treasury_bulletin_1942_02.txt\n40: /app/corpus/treasury_bulletin_1942_03.txt\n41: /app/corpus/treasury_bulletin_1942_04.txt\n42: /app/corpus/treasury_bulletin_1942_05.txt\n43: /app/corpus/treasury_bulletin_1942_06.txt\n44: /app/corpus/treasury_bulletin_1942_07.txt\n45: /app/corpus/treasury_bulletin_1942_08.txt\n46: /app/corpus/treasury_bulletin_1942_09.txt\n47: /app/corpus/treasury_bulletin_1942_10.txt\n48: /app/corpus/treasury_bulletin_1942_11.txt\n49: /app/corpus/treasury_bulletin_1942_12.txt\n50: /app/corpus/treasury_bulletin_1943_01.txt\n\n(Showing lines 1-50 of 698. Use offset=51 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 10352,
+        "completion_tokens": 238,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00304968,
+        "extra": {
+          "reasoning_tokens": 133
+        }
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-03-31T19:28:36.828000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_bf124ce35ba34740a6675b76",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "internal revenue.*New York|New York.*internal revenue",
+            "path": "/app/corpus",
+            "include": "*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_bf124ce35ba34740a6675b76",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11893,
+        "completion_tokens": 82,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00319518,
+        "extra": {
+          "reasoning_tokens": 25
+        }
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-03-31T19:28:42.105000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_292dff26edef444a883fdd34",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_292dff26edef444a883fdd34",
+            "content": "Found 3502 matches (showing first 100)\n/app/corpus/treasury_bulletin_1940_06.txt:\n  Line 1546: Notes: Yields are computed on the basis of closing prices on New York Stock Exchange. Back figures may be found in the July 1939 bulletin, page 20. \n\n/app/corpus/treasury_bulletin_1966_10.txt:\n  Line 4320: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York.\n  Line 4544: Source: Beginning April 1953, Treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Macdy's Investor Service is the source for the average of Aaa corporate bonds. Series includes bonds on which the interest income is subject to\n  Line 4573: | Federal Reserve Bank of New York, special account | - | - |\n  Line 4576: | Special account of Secretary of the Treasury with Federal Reserve Bank of New York - Cold | 115194324.01 | 95132855.67 |\n  Line 5262: Liabilities reported only by banks in Second (New York) Federal Reserve District.\n  Line 6890: Note: Through 1962, except as noted, data are based on reports from banks in the Second (New York) Federal Reserve District only, and include funds held in an account with the U.S. Treasury; subsequent data are as reported by banks in all Federal Reserve Districts. They represent a partial breakdown of the amounts shown for the corresponding dates for the \"Other\"\n\n/app/corpus/treasury_bulletin_1963_02.txt:\n  Line 3913: | New York | 12550149 | 46903 | 39125 | 37019 | 42253 | 41081 | 35969 | 34182 | 36851 | 32745 | 32809 | 33225 | 37324 |\n  Line 4417: | nan | nan | nan | 17 New York City | 12 Chicago | 190 other | nan | nan |\n  Line 4430: | Classification > Unnamed: 0_level_1 | Held by 6,159 commercial banks 1/ > Unnamed: 1_level_1 | 3,929 member banks > Unnamed: 2_level_1 | 219 Reserve city > 17 New York City | 219 Reserve city > 12 Chicago | 219 Reserve city > 190 other | 3,710 country > Unnamed: 6_level_1 | 2,230 nonmember banks > Unnamed: 7_level_1 |\n  Line 4472: | Issue > Unnamed: 0_level_1 | Hold by 6,159 commercial banks > Unnamed: 1_level_1 | 3,929 member banks > Unnamed: 2_level_1 | Federal Reserve member banks > 17 New York City | Federal Reserve member banks > 12 Chicago | Federal Reserve member banks > 190 other | Federal Reserve member banks > 3,710 country | 2,230 nonmember banks > Unnamed: 7_level_1 |\n  Line 4562: | Issue > Unnamed: 0_level_1 | Held by 6,159 commercial banks 1/ > Unnamed: 1_level_1 | Federal Reserve member banks > 3,929 member banks | Federal Reserve member banks > 17 New York City | Federal Reserve member banks > 12 Chicago | Federal Reserve member banks > 190 other | Federal Reserve member banks > 3,710 country | 2,230 nonmember banks > Unnamed: 7_level_1 |\n  Line 4582: | Issue > Unnamed: 0_level_1 | Held by 6,159 commercial banks 1/ > Unnamed: 1_level_1 | 3,929 member banks > Unnamed: 2_level_1 | Federal Reserve member banks 219 Reserve city > 17 New York City | Federal Reserve member banks 219 Reserve city > 12 Chicago | Federal Reserve member banks 219 Reserve city > 190 other | 3,710 country > Unnamed: 6_level_1 | 2,230 nonmember banks > Unnamed: 7_level_1 |\n  Line 4629: | Issue > Unnamed: 0_level_1 | Held by 6,159 commercial banks 1/2/ > Unnamed: 1_level_1 | 3,929 member banks > Unnamed: 2_level_1 | 219 Reserve city > 17 New York City | 219 Reserve city > 12 Chicago | 219 Reserve city > 190 other | 219 Reserve city > Unnamed: 6_level_1 | 3,710 country > Unnamed: 7_level_1 | 2,230 nonmember banks > Unnamed: 8_level_1 |\n  Line 4710: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities listed include all regularly quoted public\n  Line 4841: ask quotations, except that before October 1, 1939, they are closing prices on the New York Stock Exchange. \"When issued\" prices are included in the history beginning October 1, 1939. Dates of highs and lows in case of recurrence are the latest dates.\n  Line 4919: Source: Beginning April 1953, Treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Moody's Investor Service is the source for the average of Aaa Corporate bonds. For definition of taxable bonds, see footnotes to the \"Treasury Survey of Ownership\" in this issue of the Bulletin.\n\n/app/corpus/treasury_bulletin_1973_01.txt:\n  Line 239: Tenders were received without deposit from commercial and other banks for their own account, Federally-insured savings and loan associations, States, political subdivisions or instrumentalities thereof, public pension and retirement and other public funds, international organizations in which the United States holds membership, foreign central banks and foreign States, dealers who make primary markets in Government securities and report daily to the Federal Reserve Bank of New York their positions with respect to Government securities and borrowings thereon, and Government accounts. Tenders from others were required to be accompanied by payment of 5 percent of the face amount of notes or bonds applied for.\n  Line 4628: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York.\n  Line 4852: | Federal Reserve Bank of New York, special account. | 267860367.00 | 267860367.00 |\n  Line 4856: | Special account of Secretary of the Treasury with Federal Reserve Bank of New York - Gold. | 79939167.79 | 76746277.58 |\n\n/app/corpus/treasury_bulletin_1960_03.txt:\n  Line 3025: | Classification > Classification > Unnamed: 0_level_2 | Held by 6,390 commercial banks 1/ > Held by 6,390 commercial banks 1/ > Unnamed: 1_level_2 | Federal Reserve member banks > 4,127 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > Central reserve city > 30 central reserve city | Federal Reserve member banks > Central reserve city > 16 New York City | Federal Reserve member banks > Central reserve city > 14 Chicago | Federal Reserve member banks > Central reserve city > Unnamed: 6_level_2 | Federal Reserve member banks > 269 reserve city > Unnamed: 7_level_2 | 2,263 nonmember banks > 2,263 nonmember banks > Unnamed: 8_level_2 | Unnamed: 9_level_0 > 3,828 country > Unnamed: 9_level_2 |\n  Line 3038: | Classification > Unnamed: 0_level_1 | Hold by 6,390 commercial banks 1/ > Unnamed: 1_level_1 | 4,127 member banks > Unnamed: 2_level_1 | Federal Reserve member banks > 30 central reserve city | Federal Reserve member banks > 16 New York City | Federal Reserve member banks > 14 Chicago | Federal Reserve member banks > 269 reserve city | 2,263 nonmember banks > 3,828 country | Unnamed: 8_level_0 > Unnamed: 8_level_1 |\n  Line 3085: | Issue (Tax status 4/ is shown in parentheses) > Unnamed: 0_level_1 | Held by 6,390 commercial banks 1/ > Unnamed: 1_level_1 | 4,127 member banks > Unnamed: 2_level_1 | Federal Reserve member banks > 30 central reserve city | Federal Reserve member banks > 16 New York City | Federal Reserve member banks > 14 Chicago | 269 reserve city > Unnamed: 6_level_1 | 3,828 country > Unnamed: 7_level_1 | 2,263 nonmember banks > Unnamed: 8_level_1 |\n  Line 3171: | Issue (Tax status 4/ is shown in parentheses) > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Hold by 6,390 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Federal Reserve member banks > 4,127 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > Central reserve city > 30 central reserve city | Federal Reserve member banks > Central reserve city > 16 New York City | Federal Reserve member banks > Central reserve city > 14 Chicago | Federal Reserve member banks > 269 reserve city > Unnamed: 6_level_2 | Federal Reserve member banks > 3,828 country > Unnamed: 7_level_2 | 2,263 nonmember banks > Unnamed: 8_level_1 > Unnamed: 8_level_2 |\n  Line 3195: | Issue (Tax status 4/ is shown in parentheses) > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Held by 6,390 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Federal Reserve member banks > 4,127 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > Central reserve city > 30 central reserve city | Federal Reserve member banks > Central reserve city > 16 New York City | Federal Reserve member banks > Central reserve city > 14 Chicago | Federal Reserve member banks > Central reserve city > Unnamed: 6_level_2 | Federal Reserve member banks > 269 reserve city > Unnamed: 7_level_2 | 2,263 nonmember banks > 3,828 country > Unnamed: 8_level_2 | Unnamed: 9_level_0 > Unnamed: 9_level_1 > Unnamed: 9_level_2 |\n  Line 3263: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities listed include all regularly quoted\n  Line 3384: 1/ Beginning April 1993, prices are closing bid quotations in the over-the-counter market. Prices for prior dates are the mean of closing bid and ask quotations, except that before October 1, 1993, they are closing prices on the New York Stock Exchange. \"When issued\" prices are included in the history beginning October 1, 1993. Dates of highs and lows in cases of recurrence are the latest dates.\n  Line 3495: Source: Beginning April 1953, treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Moody's Investor Service is the source for the average of Aaa corporate bonds. For definition of taxable bonds, see footnotes to the \"Treasury Survey of Ownership\" in this issue of the Bulletin.\n  Line 5033: The date in this table are based on annual reports from banks and bankers in the Second (New York) Federal Reserve District only, and include funds held in an account with the U. S. Treasury. Area totals will not agree with those shown for the corresponding dates for \"Other Europe,\" \"Other Latin America,\" \"Other Asia,\" and \"Other Countries\" in the regular monthly series in the \"Treasury Bulletin.\" Countries have\n\n/app/corpus/treasury_bulletin_1962_08.txt:\n  Line 151: Subscriptions were received without deposit from commercial and other banks for their own account, federally insured savings and loan associations, States, political subdivisions or instrumentalities thereof, public pension and retirement and other public funds, international organizations in which the United States holds membership, foreign central banks and foreign states, dealers who make primary markets in Government securities and report daily to the Federal Reserve Bank of New York their positions with respect to Government securities and borrowings thereon, Government investment accounts, and the Federal Reserve Banks. On all other subscriptions, payment of 2 percent of the amount of certificates and 10 percent of the amount of each issue of the bonds applied for (in cash, or in the maturing securities accepted at par) was required.\n  Line 3729: | New York | 12343013 | 38595 | 43007 | 32378 | 40127 | 41259 | 35857 | 46903 | 39125 | 37019 | 42253 | 41081 | 35969 |\n  Line 4182: | Classification > Classification > Unnamed: 0_level_2 | Held by 6,200 commercial banks 1/ > Held by 6,200 commercial banks 1/ > Unnamed: 1_level_2 | Federal Reserve member banks > 3,961 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > 22 Central reserve city > Total New York City and Chicago | Federal Reserve member banks > 22 Central reserve city > 13 New York City | Federal Reserve member banks > 22 Central reserve city > 9 Chicago | Federal Reserve member banks > 202 reserve city > Unnamed: 6_level_2 | Federal Reserve member banks > 3,737 country > Unnamed: 7_level_2 | 2,239 nonmember banks > 2,239 nonmember banks > Unnamed: 8_level_2 |\n  Line 4195: | Classification > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Held by 6,200 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | 3,961 member banks > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Federal Reserve member banks > 22 Central reserve city > Total New York City and Chicago | Federal Reserve member banks > 22 Central reserve city > 13 New York City | Federal Reserve member banks > 22 Central reserve city > 9 Chicago | Federal Reserve member banks > 202 reserve city > Unnamed: 6_level_2 | 2,339 nonmember banks > 3,737 country > Unnamed: 7_level_2 | Unnamed: 8_level_0 > Unnamed: 8_level_1 > Unnamed: 8_level_2 |\n  Line 4242: | Issue > Unnamed: 0_level_1 | Held by 6,200 commercial banks 1/ > Unnamed: 1_level_1 | 3,961 member banks > Unnamed: 2_level_1 | Federal Reserve member banks > 22 Central reserve city | Federal Reserve member banks > 13 New York City | Federal Reserve member banks > 9 Chicago | 202 reserve city > Unnamed: 6_level_1 | 3,737 country > Unnamed: 7_level_1 | 2,239 nonmember banks > Unnamed: 8_level_1 |\n  Line 4244: | Treasury bills: | nan | nan | Total New York City and Chicago | nan | nan | nan | nan | nan |\n  Line 4334: | Issue > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Held by 6,200 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Federal Reserve member banks > 3,961 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > 22 Central reserve city > Total New York City and Chicago | Federal Reserve member banks > 22 Central reserve city > 13 New York City | Federal Reserve member banks > 22 Central reserve city > 9 Chicago | Federal Reserve member banks > 202 reserve city > Unnamed: 6_level_2 | Federal Reserve member banks > 3,737 country > Unnamed: 7_level_2 | 2,239 nonmember banks > Unnamed: 8_level_1 > Unnamed: 8_level_2 |\n  Line 4353: | Issue > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Held by 6,200 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | 3,961 member banks > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Federal Reserve member banks > 22 Central reserve city > Total New York City and Chicago | Federal Reserve member banks > 22 Central reserve city > 13 New York City | Federal Reserve member banks > 22 Central reserve city > 9 Chicago | 202 reserve city > Unnamed: 6_level_1 > Unnamed: 6_level_2 | 3,737 country > Unnamed: 7_level_1 > Unnamed: 7_level_2 | 2,239 nonmember banks > Unnamed: 8_level_1 > Unnamed: 8_level_2 |\n  Line 4406: | Issue > Unnamed: 0_level_1 | Held by 6,200 commercial banks 1/2/ > Unnamed: 1_level_1 | 3,961 member banks > Unnamed: 2_level_1 | 22 Central reserve city > Total New York City and Chicago | 22 Central reserve city > 13 New York City | 22 Central reserve city > 9 Chicago | 202 reserve city > Unnamed: 6_level_1 | 3,737 country > Unnamed: 7_level_1 | 2,239 nonmember banks > Unnamed: 8_level_1 |\n  Line 4482: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities listed include all regularly quoted public\n  Line 4619: 4/ Beginning April 1953, prices are closing bid quotations in the over-the-counter market. Prices for prior dates are the mean of closing bid and ask quotations, except that before October 1, 1939, they are closing prices on the New York Stock Exchange. \"When issued\" prices are included in the history beginning October 1, 1939. Dates of highs and lows in case of recurrence are the latest dates.\n  Line 4723: source: Beginning April 1953, Treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Moody's Investor Service is the source for the average of Aaa Corporate bonds. For definition of taxable bonds, see footnotes to the \"Treasury Survey of Ownership\" in this issue of the Bulletin.\n\n/app/corpus/treasury_bulletin_2008_06.txt:\n  Line 1786: 8 Source: Federal Reserve Board Treasury International Capital Survey. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. Estimates reflect the 1989 benchmark to 1994, the 1994 benchmark to September 2001, the March 2000 benchmark to September 2002, the June 2002 benchmark to December 2003, the June 2003 benchmark to March 2004, the June 2004 benchmark to March 2005, the June 2005 benchmark to February 2006, and the June 2006 benchmark to February 2007. For additional information see: http://www.treas.gov/tic/ticsec2.shtml.\n  Line 1799: The quotations used by Treasury to calculate the bid yields and fit the yield curve are obtained by the Federal Reserve Bank of New York. The Board of Governors of the Federal Reserve System also publishes the Treasury constant maturity data series in its weekly Statistical Release H.15.\n  Line 2065: From the beginning, reporting under the Treasury data collection program has been mandatory. Under the current Treasury International Capital (TIC) reporting system, an assortment of monthly and quarterly reports are filed with district Federal Reserve banks by commercial banks, securities dealers, other financial institutions, and nonbanking enterprises in the United States. These data are centrally processed and maintained at the Federal Reserve Bank of New York, which, along with the district banks, acts as fiscal agent for Treasury. Beginning in late 1998, the Federal Reserve Board also undertakes services on behalf of Treasury in support of the TIC data collection system. The TIC reports of individual respondents are treated as confidential, and access to the respondent level data is strictly limited to specific staff of Treasury and the Federal Reserve System.\n  Line 3897: The data on this page represent foreign investors' purchases and sales of long-term U.S. securities (that is, U.S. Treasury and Government agency bonds and notes, and U.S. corporate bonds and stocks) as reported to the TIC reporting system. Foreign investors also acquired U.S. equities through mergers and reincorporations that involve stock swaps. Net foreign acquisitions of U.S. equities through stock swaps have been modest, amounting to $36 billion in 2004, $6 billion in 2005, $4 billion in 2006, $11 billion in 2007, and $2 billion in the first quarter of 2007. (Stock swaps data for the most recent quarter are Federal Reserve Board/Treasury estimates and are subject to substantial revisions.) These stock swaps are not reported under the TIC reporting system, but are available on the TIC Web site. The TIC Web site also provides estimates from the Federal Reserve Bank of New York on principal repayment flows on foreign holdings of U.S. government agency and corporate asset-backed securities (ABS). These repayments, also not reported under the TIC system, are estimated to have reduced foreign net purchases of U.S. securities by $86 billion in 2004, $144 billion in 2005, $160 billion in 2006, $235 billion in 2007, and $56 billion in the first quarter of 2008.\n  Line 5002: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York.\n\n/app/corpus/treasury_bulletin_1970_08.txt:\n  Line 121: tions in which the United States holds membership, foreign central banks and foreign States, and dealers who make primary markets in Government securities and report daily to the Federal Reserve Bank of New York their positions with respect to Government securities and borrowings thereon. All other subscriptions were required to be accompanied by payment of 10 percent (in cash or in the maturing securities, which were accepted at par) of the amount of notes applied for not subject to withdrawal until after allotment.\n  Line 4167: | New York | 16391502 | 39576 | 33410 | 42863 | 36690 | 30356 | 37580 | 46963 | 33691 | 36448 | 40271 | 42334 | 38059.0 | nan |\n  Line 4767: | Classification > Classification | Held by 5,743 commercial banks 1/ > Held by 5,743 commercial banks 1/ | Federal Reserve member banks > 3,502 member banks | Federal Reserve member banks > 12 New York City | Federal Reserve member banks > 9 Chicago | Federal Reserve member banks > 157 other | 2,241 nonmember banks > 2,241 nonmember banks | Unnamed: 7_level_0 > 3,324 country |\n  Line 4780: | Classification > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Held by 5,743 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | 3,502 member banks > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Federal Reserve member banks > 178 Reserve city > 12 New York City | Federal Reserve member banks > 178 Reserve city > 9 Chicago | Federal Reserve member banks > 178 Reserve city > 157 other | 3,324 country > Unnamed: 6_level_1 > Unnamed: 6_level_2 | 2,241 nonmember banks > Unnamed: 7_level_1 > Unnamed: 7_level_2 |\n  Line 4818: | Issue > Unnamed: 0_level_1 | Held by 5,743 commercial banks 1/ > Unnamed: 1_level_1 | 3,502 member banks > Unnamed: 2_level_1 | Federal Reserve member banks 178 Reserve city > 12 New York City | Federal Reserve member banks 178 Reserve city > 9 Chicago | Federal Reserve member banks 178 Reserve city > 157 other | 3,324 country > Unnamed: 6_level_1 | 2,241 nonmember banks > Unnamed: 7_level_1 |\n  Line 4883: | Issue > Issue | Held by 5,743 commercial banks 1/ > Held by 5,743 commercial banks 1/ | Federal Reserve member banks > 3,502 member banks | Federal Reserve member banks > 12 New York City | Federal Reserve member banks > 9 Chicago | Federal Reserve member banks > 157 other | Federal Reserve member banks > 3,324 country | 2,241 nonmember banks > 2,241 nonmember banks |\n  Line 4920: | Type > Type | Held by 7,743 commercial banks > Held by 7,743 commercial banks | Federal Reserve member banks > 3,502 member banks | Federal Reserve member banks > 12 New York City | Federal Reserve member banks > 2 Chicago | Federal Reserve member banks > 1 Other | Federal Reserve member banks > 3,324 country | 2,241 nonmember banks > 2,241 nonmember banks |\n  Line 4947: | Issue > Unnamed: 0_level_1 | Held by 5,743 commercial banks 1/ > Unnamed: 1_level_1 | Federal Reserve member banks > 3,502 member banks | Federal Reserve member banks > 12 New York City | Federal Reserve member banks > 9 Chicago | Federal Reserve member banks > 157 other | 3,324 country > Unnamed: 6_level_1 | 2,241 nonmember banks > Unnamed: 7_level_1 |\n  Line 4976: | Issue > Unnamed: 0_level_1 | Held by 5,743 commercial banks 1/ > Unnamed: 1_level_1 | 3,502 member banks > Unnamed: 2_level_1 | Federal Reserve member banks > 12 New York City | Federal Reserve member banks > 178 Reserve city | Federal Reserve member banks > 9 Chicago | 3,324 country > 157 other | 2,241 nonmember banks > Unnamed: 7_level_1 | Unnamed: 8_level_0 > Unnamed: 8_level_1 |\n  Line 5033: | Issue > Unnamed: 0_level_1 | Held by 5,743 commercial banks 1/ > Unnamed: 1_level_1 | Federal Reserve member banks 178 Reserve city > 3,502 member banks | Federal Reserve member banks 178 Reserve city > 12 New York City | Federal Reserve member banks 178 Reserve city > 9 Chicago | Federal Reserve member banks 178 Reserve city > 157 other | 3,324 country > Unnamed: 6_level_1 | 2,241 nonmember banks > Unnamed: 7_level_1 |\n  Line 5119: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York.\n\n/app/corpus/treasury_bulletin_1971_08.txt:\n  Line 114: Tenders were received without deposit from commercial banks for their own account, Federally-insured savings and loan associations, States, political subdivisions or instrumentalities thereof, public pension and retirement and other public funds, international organizations in which the United States holds membership, foreign central banks and foreign States, dealers who make primary markets in Government securities and report daily to the Federal Reserve Bank of New York their positions with respect to Government securities and borrowings thereon, and Government accounts. Tenders from others were required to be accompanied by payment of 5 percent of the face amount of notes applied for.\n  Line 3861: | New York | 16922207 | 39248 | 37523 | 40327 | 38970 | 41120 | 39956 | 47405 | 42243 | 47028 | 55451 | 51230 | 50204 | nan |\n  Line 4529: | Classification > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Held by 5,680 commercial banks 1/ > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Federal Reserve member banks > 3,436 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > 177 Reserve city > 12 New York City | Federal Reserve member banks > 177 Reserve city > 9 Chicago | Federal Reserve member banks > 177 Reserve city > 156 other | Federal Reserve member banks > 3,259 country > Unnamed: 6_level_2 | 2,244 nonmember banks > Unnamed: 7_level_1 > Unnamed: 7_level_2 |\n  Line 4542: | Classification > Unnamed: 0_level_1 | Held by 5,680 commercial banks 1/ > Unnamed: 1_level_1 | 3,436 member banks > Unnamed: 2_level_1 | 177 Reserve city > 12 New York City | 177 Reserve city > 9 Chicago | 177 Reserve city > 156 other | 3,259 country > Unnamed: 6_level_1 | 2,244 nonmember banks > Unnamed: 7_level_1 |\n  Line 4580: | Issue > Issue | Held by 5,680 commercial banks 1/ > Held by 5,680 commercial banks 1/ | Federal Reserve member banks > 3,436 member banks | Federal Reserve member banks > 12 New York City | Federal Reserve member banks > 9 Chicago | Federal Reserve member banks > 156 other | Federal Reserve member banks > 3,259 country | 2,244 nonmember banks > 2,244 nonmember banks |\n  Line 4672: | Type > Type > Unnamed: 0_level_2 | Held by 5,680 commercial banks 1/ > Held by 5,680 commercial banks 1/ > Unnamed: 1_level_2 | Federal Reserve member banks > 3,436 member banks > Unnamed: 2_level_2 | Federal Reserve member banks > 177 Reserve city > 12 New York City | Federal Reserve member banks > 177 Reserve city > 9 Chicago | Federal Reserve member banks > 177 Reserve city > 156 other | Federal Reserve member banks > 3,259 country > Unnamed: 6_level_2 | 2,244 nonmember banks > 2,244 nonmember banks > Unnamed: 7_level_2 |\n  Line 4705: | Issues > Unnamed: 0_level_1 | Held by 5,680 commercial banks 1/ > Unnamed: 1_level_1 | 3,436 member banks > Unnamed: 2_level_1 | 177 Reserve city > 12 New York City | 177 Reserve city > 9 Chicago | 177 Reserve city > 156 other | 3,259 country > Unnamed: 6_level_1 | 2,244 nonmember banks > Unnamed: 7_level_1 |\n  Line 4741: | Issue > Unnamed: 0_level_1 | Held by 5,680 commercial banks 1/ > Unnamed: 1_level_1 | 3,436 member banks > Unnamed: 2_level_1 | 177 Reserve city > 12 New York City | 177 Reserve city > 9 Chicago | 177 Reserve city > 156 other | 3,259 country > Unnamed: 6_level_1 | 2,244 nonmember banks > Unnamed: 7_level_1 |\n  Line 4836: | Issue > Unnamed: 0_level_1 | Held by 5,680 commercial banks 1/ > Unnamed: 1_level_1 | 3,436 member banks > Unnamed: 2_level_1 | Federal Reserve member banks 177 Reserve city > 12 New York City | Federal Reserve member banks 177 Reserve city > 9 Chicago | Federal Reserve member banks 177 Reserve city > 156 other | 3,259 country > Unnamed: 6_level_1 | 2,244 nonmember banks > Unnamed: 7_level_1 |\n  Line 4911: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York.\n\n/app/corpus/treasury_bulletin_1981_01.txt:\n  Line 372: On December 29 tenders were invited for approximately $2,500 million of 16-day Treasury bills to be issued January 6, 1981, representing an additional amount of bills dated July 24, 1980, maturing January 22, 1981. The issue was to raise new cash. Tenders were opened on December 30 at the Federal Reserve Bank of New York. They totaled $6,025 million, of which $2,500 million was accepted. The average bank discount rate was 17.033%.\n  Line 4652: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities\n  Line 4959: | Federal Reserve Bank of New York.................... | $ 513 | $ 101 | $ 614 |\n  Line 4960: | Federal Reserve Bank of New York, special account... | 79192 | (10,784) | 68408 |\n\n/app/corpus/treasury_bulletin_1941_08.txt:\n  Line 949: Basis of Computation: Yields are computed on the basis of closing prices on the New York Stock Exchange and the New York Curb Exchange. On days when the exchanges are closed, the date and prices of the previous day are used. On days when an issue does not sell, the mean of bid and ask quotations is used for Treasury bonds, and the price of the last preceding sale is used for corporate bonds.\n  Line 3248: | New York | 3929 | 3767 | 328 | 325 | 356r | 282 | 308 | 288 | 299 | 295 | 270 | 340 | 384 | 402 | 425 | nan |\n  Line 3277: | New York | 19566 | 14078 | 1126 | 1125 | 1,253r | 985 | 1174 | 981 | 987 | 1011 | 961 | 1155 | 1289 | 1334 | 1381 | nan |\n\n/app/corpus/treasury_bulletin_1961_07.txt:\n  Line 3617: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities listed include all regularly quoted\n  Line 3747: 4 Beginning April 1953, prices are closing bid quotations in the over-the-counter market. Prices for prior dates are the mean of closing bid and ask quotations, except that before October 1, 1939, they are closing prices on the New York Stock Exchange. \"When issued\" prices are included in the history beginning October 1, 1939. Dates of highs and lows in case of recurrence are the latest date.\n  Line 3843: Source: Beginning April 1953, Treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Moody's Investor Service is the source for the average of Aaa corporate bonds. For definition of taxable bonds, see footnotes to the \"Treasury Survey of Ownership\" in this issue of the Bulletin.\n\n/app/corpus/treasury_bulletin_1979_10.txt:\n  Line 5779: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities\n  Line 6091: | Federal Reserve Bank of New York, special account | 29161 | $ (2,735,900) | $ 29,161 |\n\n/app/corpus/treasury_bulletin_2022_09.txt:\n  Line 1766: 8 Source: Federal Reserve Board Treasury International Capital Survey. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: http://www.treasury.gov/resource-center/data-chart-center/tic/pages/index.aspx.\n  Line 2534: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York.\n\n/app/corpus/treasury_bulletin_1943_09.txt:\n  Line 1962: | New York | 587249 | 991988 | 54990 | 72866 | 77332 | 70221 | 89287 | 102724 | 72550 | 82583 | 105581 | 114815 | 74108 | 80838 | 69363 | nan | nan | nan |\n  Line 2025: | New York | 580433 | 627986 | 44915 | 62776 | 35201.0 | 30032.0 | 54236.0 | 72540.0 | 42816.0 | 38317.0 | 82836.0 | 43532.0 | 28466.0 | 28753.0 | 18971.0 | nan |\n  Line 2315: | New York | 53060.7 | 106793.2 | 8650.7 | 9316.3 | 10758.8 | 9028.1 | 10426.5 | 8705.6 | 8019.8 | 8793.1 | 8939.4 | 7335.9 | 6644.9 | 5378.4 | 5265.3 | nan | nan |\n  Line 2909: 2/ Prices represent the mean of closing bid and ask quotations in the over-the-counter market except that prices of Treasury, Federal Farm Mortgage Corporation, and Home Owners' Loan Corporation bonds for the period prior to October 1, 1939 represent closing prices on the New York Stock Exchange. \"When issued\" prices are included beginning October 1, 1939. Dates of highs and lows, in case of recurrence, are the latest dates.\n  Line 3044: Basis of Computation: (1) Treasury bond yields are computed on the basis of the mean of bid and ask quotations in the over-the-counter market, beginning September 2, 1941; previously, closing prices on the New York Stock Exchange were used on days when sales took place on the Exchange in a particular issue and the mean of closing bid and ask quotations on the New York Stock Exchange on days when no sales took place. (2) Corporate bond yields are computed on the basis of closing prices on the New York Stock Exchange and the New York Curb Exchange; on days when an issue does not sell, the price of the last preceding sale is used\n\n/app/corpus/treasury_bulletin_1968_04.txt:\n  Line 3496: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York.\n  Line 3699: Source: Beginning April 1953, Treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Moody's Investor Service is the source for the average of Aaa corporate bonds.\n  Line 3735: | Federal Reserve Bank of New York, special account | - | - |\n  Line 3738: | Special account of Secretary of the Treasury with Federal Reserve Bank of New York - Gold | 59644322.03 | 83273628.18 |\n  Line 6074: Note: Through 1962, except as noted, data are based on reports from banks in the Second (New York) Federal Reserve District only, and include funds held in an account with the U.S. Treasury; subsequent data are as reported by banks in all Federal Reserve Districts. They represent a partial breakdown of the amounts shown for the corresponding dates for the \"Other\" categories in the regular monthly series in the \"Treasury Bulletin.\"\n\n/app/corpus/treasury_bulletin_2023_03.txt:\n  Line 1700: center/data-chart-center/tic/Documents/mfhhis01.txt). Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: https://home.treasury.gov/data/treasury-international-capital-tic-system\n  Line 3651: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York.\n\n/app/corpus/treasury_bulletin_1960_06.txt:\n  Line 3206: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities listed include all regularly quoted\n  Line 3327: 1/ Beginning April 1953, prices are closing bid quotations in the over-the-counter market. Prices for prior dates are the mean of closing bid and ask quotations, except that before October 1, 1959, they are closing prices on the New York Stock Exchange. \"When issued\" prices are included in the history beginning October 1, 1959. Dates of high and low are in current year, except for 1957. 2/ Of the $2,000 million 4% notes of August 15, 1962, outstanding on October 31, 1959, $1,682 million were exchanged for the 4-7/8% notes of November 15, 1963, and $159 million were presented for stamping\n  Line 3532: Source: Beginning April 1953, Treasury bond yields are reported to the Treasury by the Federal Reserve Bank of New York, based on closing bid quotations in the over-the-counter market. Yields for prior periods were computed on the basis of mean of closing bid and ask quotations. Moody's Investor Service is the source for the average of Aaa corporate bonds. For definition of taxable bonds, see footnotes to the \"Treasury Survey of Ownership\" in this issue of the Bulletin.\n\n/app/corpus/treasury_bulletin_2020_06.txt:\n  Line 1820: 8Source: Federal Reserve Board Treasury International Capital Survey. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: http://www.treasury.gov/resource-center/data-chart-center/tic/pages/index.aspx.\n  Line 2674: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York.\n\n/app/corpus/treasury_bulletin_1954_11.txt:\n  Line 2126: Current market quotations shown here are over-the-counter closing bid quotations in the New York market for the last trading day of the month, as reported to the Treasury by the Federal Reserve Bank of New York. The securities listed include all regularly quoted\n\n(Results truncated: showing 100 of 3502 matches (3402 hidden). Consider using a more specific path or pattern.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11996,
+        "completion_tokens": 69,
+        "cached_tokens": 10576,
+        "cost_usd": 0.00085008,
+        "extra": {
+          "reasoning_tokens": 20
+        }
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-03-31T19:28:47.224000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_06f12bada1de44fba8158176",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "internal revenue collections"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_06f12bada1de44fba8158176",
+            "content": "Found 572 matches (showing first 100)\n/app/corpus/treasury_bulletin_1973_01.txt:\n  Line 8004: | Summary of internal revenue collections by States, and other areas. | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1970_08.txt:\n  Line 8858: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1971_08.txt:\n  Line 8731: | Summary of internal revenue collections by States, calendar year 1970 | ... | ... | ... | ... | ... | ... | ... | ... | ... | 14 | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1981_01.txt:\n  Line 8968: | Summary of internal revenue collections by States and other areas | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1979_10.txt:\n  Line 10061: | Summary of internal revenue collections by States and other areas | nan | nan | nan | nan | nan | 13 | nan | nan | 13 | nan | 13 | nan | nan |\n\n/app/corpus/treasury_bulletin_1968_04.txt:\n  Line 9309: | Chart - internal revenue collections by principal sources | ... | ... | ... | ... | ... | ... | ... | ... | 4 | 5 | 6 | 6 |\n\n/app/corpus/treasury_bulletin_1954_11.txt:\n  Line 2354: | Fiscal year or month | Budget receipts from internal revenue | Adjustment of collections to budget receipts 2/ | Total internal revenue collections | Corporation income and profits taxes | Total | Individual income tax not withheld 3/ | Individual income tax withheld 4/ | Old-age insurance taxes 5/ | Feilroad retirement | Unemployment insurance |\n  Line 2548: | Total internal revenue collections | 69686509 | 69919901 | 9538839 | 7483667.0 | 5785981 | 4633374.0 |\n\n/app/corpus/treasury_bulletin_1969_11.txt:\n  Line 8313: | Summary of internal revenue collections by States, calendar year 1968. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1949_04.txt:\n  Line 2473: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits | Income and profits taxes > Individual income | Income and profits taxes > Corporation income and profits 2/ | Employment taxes > Total employment | Employment taxes > Social security Old-age insurance | Employment taxes > Unemployment insurance | Unnamed: 10_level_0 > Railroad retirement |\n  Line 2659: | Total internal revenue collections | 39108273.0 | 41864536.0 | 21615882 | 21528170 | 4205633 | 3679599 |\n  Line 4313: | Chart showing internal revenue collections. | 40 | 40 | 41 | 45 | 45 | 41 | 41 | 41 | 41 | 45 | 45 | 41 |\n\n/app/corpus/treasury_bulletin_1981_06.txt:\n  Line 9557: | Summary of internal revenue collections by States and other areas | ... | ... | 15 | ... | 13 | ... | 13 | 13 | 15 | 14 | 13 | 15 |\n\n/app/corpus/treasury_bulletin_1952_12.txt:\n  Line 2917: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment of collections to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Corporation income and profits taxes 2/ > Unnamed: 4_level_1 | individual income tax and employment taxes > Total | individual income tax and employment taxes > Individual income tax not withheld 3/ | individual income tax and employment taxes > Individual income tax withheld 4/ | individual income tax and employment taxes > Old-age insurance taxes on employers and employees 4/ | individual income tax and employment taxes > Railroad retirement | individual income tax and employment taxes > Unemployment insurance |\n  Line 3112: | Total internal revenue collections | 50445686 | 65009393 | 12879753 | 14518999.0 | 5141443 | 5278380 |\n\n/app/corpus/treasury_bulletin_1974_10.txt:\n  Line 9094: | Summary of internal revenue collections by State, and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1944_09.txt:\n  Line 244: Total receipts of the Federal Government in the fiscal year 1944 amounted to $145,408 millions as compared with $23,385 millions in 1943, an increase of $22,023 millions. Income and profits taxes increased $18,561 millions, of which $8,393 millions represented receipts of individual income taxes withheld by employers under the Current Tax Payment Act of 1943. Miscellaneous internal revenue increased $738 millions; social security taxes and taxes upon carriers and their employees increased $241 millions; customs receipts increased $107 millions; and miscellaneous receipts increased $2,374 millions. For a detailed analysis of internal revenue collections on the basis of reports from the collectors of internal revenue, see pages 68-70 of the July 1944-August 1944 issue of the \"Treasury Bulletin\".\n\n/app/corpus/treasury_bulletin_1979_07.txt:\n  Line 13783: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | 13 | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1950_03.txt:\n  Line 2853: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profit taxes > Total income and profit | Income and profit taxes > Individual income | Income and profit taxes > Corporation income and profit 2/ | Employment taxes > Total employment | Employment taxes > Social security Old-age insurance | Employment taxes > Unemployment insurance | Employment taxes > Railroad retirement |\n  Line 3054: | Total internal revenue collections | 41864536.0 | 40463119.0 | 17848572.0 | 17887316.0 | 3186567 | 3350066 |\n  Line 4432: | Chart showing internal revenue collections | 41.0 | 41.0 | 41.0 | 41.0 | 45.0 | 46.0 | 42.0 | 42.0 | 42.0 | 42.0 | 45.0 | 47.0 | nan |\n\n/app/corpus/treasury_bulletin_1946_04.txt:\n  Line 5876: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excess profits 3/ | Income and profits taxes > Miscellaneous profits taxes 4/ | Employment taxes > Total employment taxes | Employment taxes > Social Security taxes Old-age insurance 5/ | Employment taxes > Unemployment insurance 6/ | Employment taxes > Railroad retirement 7/ |\n  Line 6094: | Total internal revenue collections | 40119510.0 | 43800338 | 27236381 | 27156641 | 3985292 | 4102106 |\n\n/app/corpus/treasury_bulletin_1972_09.txt:\n  Line 7567: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1983_03.txt:\n  Line 52: | FFD-4. | Summary of internal revenue collections by States and other areas. | 8.0 |\n  Line 537: 6/ Tax payments made to banks, under the Federal tax deposit (FTD) system, are included in the internal revenue collections for the period in which the FTD is purchased. However, such payments are not classified by internal revenue districts (nor by tax subclasses to which excise payments relate) until the FTD payment is applied to the taxpayer's liability from tax returns filed.\n\n/app/corpus/treasury_bulletin_1974_04.txt:\n  Line 12152: | Summary of internal revenue collections by State, and other areas | 13 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | nan |\n\n/app/corpus/treasury_bulletin_1949_05.txt:\n  Line 2505: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profit taxes > Total income and profits | Income and profit taxes > Individual income | Income and profit taxes > Corporation income and profits 2/ | Total employment > Unnamed: 7_level_1 | Employment taxes > Social security | Employment taxes > Old-age insurance | Employment taxes > Unemployment insurance | Unnamed: 11_level_0 > Railroad retirement |\n  Line 2711: | Total internal revenue collections | 39108273.0 | 41864536.0 | 26277873.0 | 25759298.0 | 4661991.0 | 4231127 |\n  Line 4633: | Chart showing internal revenue collections | 40 | 41 | 45 | 45 | 41 | 41 | 41 | 41 | 45 | 45 | 41 | 41 | nan |\n\n/app/corpus/treasury_bulletin_1971_11.txt:\n  Line 13130: | Summary of internal revenue collections by States, calendar year 1970 | ... | ... | ... | ... | ... | 14 | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1980_11.txt:\n  Line 9325: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1971_09.txt:\n  Line 7764: | Summary of internal revenue collections by States, calendar year 1970 | 13 | 13 | 16 | 13 | 13 | 15 | 13 | 13 | 16 | 13 | 13 | 15 | nan |\n\n/app/corpus/treasury_bulletin_1954_02.txt:\n  Line 3097: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Total receipts from internal revenue (Daily Treasury Statement) > Adjustment of collections to Daily Treasury Statement | Total receipts from internal revenue (Daily Treasury Statement) > Total internal revenue collections | Individual income tax and employment taxes > Corporation income and profit taxe 2/ | Individual income tax and employment taxes > Total | Individual income tax and employment taxes > Individual income tax not withheld 3/ | Individual income tax and employment taxes > Individual income tax withheld 4/ | Individual income tax and employment taxes > Old-age insurance taxes 4/ | Individual income tax and employment taxes > Railroad retirement | Individual income tax and employment taxes > Unemployment insurance |\n  Line 3282: | Total internal revenue collections | 65009393.0 | 69686509.0 | 27933555.0 | 26546417.0 | 4367900 | 3097810 |\n\n/app/corpus/treasury_bulletin_1982_02.txt:\n  Line 8799: | Summary of internal revenue collections by States and other areas | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1981_08.txt:\n  Line 11563: | Summary of internal revenue collections by States and other areas | 15 | 13 | 13 | 15 | 13 | 13 | 15 | 14 | 13 | 15 | 13 | 13 | nan |\n\n/app/corpus/treasury_bulletin_1949_07.txt:\n  Line 2623: | Fiscal year or month > Fiscal year or month > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement > Unnamed: 2_level_2 | Total internal revenue collections > Total internal revenue collections > Unnamed: 3_level_2 | Income and profits taxes > Total income and profits > Unnamed: 4_level_2 | Income and profits taxes > Individual income > Unnamed: 5_level_2 | Income and profits taxes > Corporation income and profits 2/ > Unnamed: 6_level_2 | Employment taxes > Total employment > Unnamed: 7_level_2 | Employment taxes > Social security > Old-age insurance | Employment taxes > Social security > Unemployment insurance | Employment taxes > Railroad retirement > Unnamed: 10_level_2 |\n  Line 2821: | Total internal revenue collections | 39108273.0 | 41864536 | 34760626 | 33554720 | 3004847 | 2365085 |\n  Line 4208: | Chart showing internal revenue collections | 45 | 45 | 41 | 41 | 41 | 41 | 45 | 45 | 41 | 41 | 41 | 41 | 41 |\n\n/app/corpus/treasury_bulletin_1982_03.txt:\n  Line 56: | FFU-9. - Summary of internal revenue collections by States and other areas | 15 | CM-II-2. - Total claims by type (new series) | 78 |\n  Line 17441: | Summary of internal revenue collections by States and other areas | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 15 | nan |\n\n/app/corpus/treasury_bulletin_1999_12.txt:\n  Line 178: | FFO-5.\u2014Summary of internal revenue collections by States and other areas | \u2713 | nan | nan | nan |\n  Line 426: ! Table FFO-5 summarizes internal revenue collections by States and other areas and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax lia\n\n/app/corpus/treasury_bulletin_1951_06.txt:\n  Line 2998: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excess profits taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Withheld taxes > Railroad retirement | Unnamed: 9_level_0 > Unemployment insurance > Unnamed: 9_level_2 |\n  Line 3180: | Total internal revenue collections | 40463119.0 | 38957126.0 | 29789537.0 | 36370623.0 | 4687916 | 7764757 |\n  Line 4666: | Chart showing internal revenue collections.................... | 43.0 | 46.0 | 47.0 | 43.0 | 44.0 | 43.0 | 43.0 | 46.0 | 48.0 | 44.0 | 46.0 | 45.0 | nan | nan |\n\n/app/corpus/treasury_bulletin_1992_12.txt:\n  Line 240: | FFO-4.-Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n  Line 421: Table FFO-4 (Fall issue) summarizes internal revenue collections by States and other areas and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax liability years because they consist of prepayments (i.e., estimated tax payments and taxes withheld by employers for individual income and Social Security taxes), of payments made with tax returns, and of subsequent payments made after tax returns are due or are filed (i.e., payments with delinquent returns or on delinquent accounts).\n\n/app/corpus/treasury_bulletin_1952_07.txt:\n  Line 2978: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustments of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and excess profits taxes 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld | Old-age insurance taxes on employers and employees 4/ | Railroad retirement | Unemployment insurance |\n  Line 3168: | Total internal revenue collections | 38957126 | 50445696 | 39498910 | 50755736 | 3128287 | 5027431 |\n\n/app/corpus/treasury_bulletin_1981_05.txt:\n  Line 9499: | Summary of internal revenue collections by States and other areas | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 13 | nan |\n\n/app/corpus/treasury_bulletin_1981_07.txt:\n  Line 12580: | Summary of internal revenue collections by States and other areas | ... | 15 | 13 | 13 | 15 | 13 | 13 | 15 | 13 | 13 | 15 | 13 | nan |\n\n/app/corpus/treasury_bulletin_1976_03.txt:\n  Line 1142: 7/ Tax payments made to banks under the Federal tax deposit system are included in the internal revenue collections for the period in which the Federal tax deposit is purchased. However, such payments are not classified by internal revenue districts (nor by tax subclasses to which excise tax payments relate) until the Federal tax deposit payment is applied to the taxpayer's liability from tax returns filed.\n  Line 11506: | Summary of internal revenue collections by State, and other areas. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 14 | ... |\n\n/app/corpus/treasury_bulletin_1975_06.txt:\n  Line 8555: | Summary of internal revenue collections by State, and other areas | ... | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1953_04.txt:\n  Line 2911: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment of collections to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Corporation income and profits taxes 2/ > Unnamed: 4_level_1 | Individual income tax and employment taxes > Total | Individual income tax and employment taxes > Individual income tax not withheld 3/ | Individual income tax and employment taxes > Individual income tax withheld 4/ | Individual income tax and employment taxes > Old-age insurance taxes 4/ | Individual income tax and employment taxes > Railroad retirement | Individual income tax and employment taxes > Unemployment insurance |\n  Line 3091: | Total internal revenue collections | 50445686 | 65009393.0 | 29253500.0 | 33311833.0 | 4813105 | 5378278 |\n\n/app/corpus/treasury_bulletin_1950_02.txt:\n  Line 2999: | Fiscal year or month > Unnamed: 0_level_1 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 | Total internal revenue collections > Unnamed: 3_level_1 | Income and profits taxes > Total income and profits | Income and profits taxes > Individual income | Income and profits taxes > Corporation income and profits 2/ | Employment taxes > Total employment | Employment taxes > Social security | Employment taxes > Unemployment insurance | Employment taxes > Railroad retirement |\n  Line 3200: | Total internal revenue collections | 41864536.0 | 40463119.0 | 14662005.0 | 14537250.0 | 3045115 | 2789233 |\n  Line 4682: | Chart showing internal revenue collections...... | 45 | 41 | 41 | 41 | 41 | 45 | 46 | 42 | 42 | 42 | 42 | 45 | nan |\n\n/app/corpus/treasury_bulletin_1981_10.txt:\n  Line 9002: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | 13 | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1972_07.txt:\n  Line 8147: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1972_08.txt:\n  Line 8974: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1993_12.txt:\n  Line 328: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n  Line 552: Table FFO-4 (Fall issue) summarizes internal revenue collections by States and other areas and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax liability years because they consist of prepayments (i.e., estimated tax payments and taxes withheld by employers for individual income and Social Security taxes), of payments made with tax returns, and of subsequent payments made after tax returns are due or are filed (i.e., payments with delinquent returns or on delinquent accounts).\n\n/app/corpus/treasury_bulletin_1989_12.txt:\n  Line 333: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n  Line 566: This annual table provides data on internal revenue collections classified by States and other areas and by type of tax. The amounts reported are for collections made in a fiscal year beginning in October and ending the following September.\n\n/app/corpus/treasury_bulletin_1991_12.txt:\n  Line 317: | FFO-4.-Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n  Line 982: This annual table provides data on internal revenue collections classified by States and other areas and by type of tax. The amounts reported are for collections made in a fiscal year beginning in October and ending the following September.\n\n/app/corpus/treasury_bulletin_1997_12.txt:\n  Line 163: | FFO-4--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n  Line 368: Table FFO-4 summarizes internal revenue collections by States and other areas and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax\n\n/app/corpus/treasury_bulletin_1997_09.txt:\n  Line 192: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n  Line 393: Table FFO-4 summarizes internal revenue collections by States and other areas and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax\n\n/app/corpus/treasury_bulletin_1974_08.txt:\n  Line 9814: | Summary of internal revenue collections by State, and other areas | ... | ... | ... | ... | ... | ... | 15 | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1973_10.txt:\n  Line 9097: | Summary of internal revenue collections by States, and other areas. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1975_01.txt:\n  Line 7926: | Summary of internal revenue collections by State, and other areas | ... | 15 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1980_04.txt:\n  Line 1070: 7/ Tax payments made to banks under the Federal Tax deposit system are included in the internal revenue collections for the period\n  Line 12243: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 12 | nan |\n\n/app/corpus/treasury_bulletin_1977_05.txt:\n  Line 10403: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | 15 | ... | ... |\n\n/app/corpus/treasury_bulletin_1953_02.txt:\n  Line 4206: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustment of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and profit taxes 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld 4/ | Old-age insurance taxes 4/ | Railroad retirement | Unemployment insurance |\n  Line 4394: | Total internal revenue collections | 50445686 | 65009393.0 | 20334265.0 | 23565654.0 | 4612609 | 5345808 |\n\n/app/corpus/treasury_bulletin_1954_07.txt:\n  Line 2269: | Fiscal year or month | Budget receipts from internal revenue | Adjustment of collections to budget receipts | Total internal revenue collections | Corporation income and profit tax 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld 4/ | Old-age insurance taxes 4/ | Railroad retirement | Unemployment insurance |\n  Line 2456: | Total internal revenue collections | 65009393.0 | 69686509.0 | 61026421.0 | 60800363 | 6010386 | 6562313 |\n\n/app/corpus/treasury_bulletin_1973_03.txt:\n  Line 8238: | Summary of internal revenue collections by States, and other areas | 12 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1974_07.txt:\n  Line 8320: | Summary of internal revenue collections by State, and other areas | 13 | 14 | 14 | 18 | 16 | 14 | 15 | 17 | 15 | 13 | 16 | 14 |\n\n/app/corpus/treasury_bulletin_1976_11.txt:\n  Line 9296: | Summary of internal revenue collections by States and other areas | ... | ... | ... | 14 | ... | ... | ... | ... | ... | ... | 13 | 16 | nan |\n\n/app/corpus/treasury_bulletin_1974_05.txt:\n  Line 9982: | Summary of internal revenue collections by State, and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | 17 | 15 | ... | nan |\n\n/app/corpus/treasury_bulletin_1973_05.txt:\n  Line 1083: 7/ Tax payments made to banks, under the Federal tax deposit system or the prior depositary receipts system, are included in the internal revenue collections for the period in which the Federal tax deposit is purchased or the depositary receipts were issued, however, such payments are not classified by Internal Revenue Districts, nor by tax subclasses to which excise tax payments relate, until the Federal tax deposit payment is applied to the taxpayer's liability in the Internal revenue offices or the depositary receipts are received in the Internal Revenue offices with tax returns.\n  Line 11452: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 13 | nan |\n\n/app/corpus/treasury_bulletin_1953_10.txt:\n  Line 2167: | Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) | Adjustment of collections to Daily Treasury Statement | Total internal revenue collections | Corporation income and profit taxe 2/ | Total | Individual income tax not withheld 3/ | Individual income tax withheld 3/ | Old-age insurance taxes 3/ | Railroad retirement | Unemployment insurance |\n  Line 2345: | Total internal revenue collections | 65009393.0 | 69686509.0 | 9240619.0 | 9538839.0 | 5396631.0 | 5789981 |\n\n/app/corpus/treasury_bulletin_1947_09.txt:\n  Line 4511: | Fiscal year or month > Fiscal year or month | Total receipts from internal revenue (Daily Treasury Statement) > Total receipts from internal revenue (Daily Treasury Statement) | Adjustment to Daily Treasury Statement > Adjustment to Daily Treasury Statement | Total internal revenue collections > Total internal revenue collections | Income and profits taxes > Total income and profits taxes | Income and profits taxes > Individual 2/ | Income and profits taxes > Corporation income and excess profits 3/ | Income and profits taxes > Wiece-lanceous profits 4/ | Employment taxes > Total employment taxes | Employment taxes > Social Security taxes | Employment taxes > Railroad retirement 1/ | Employment taxes > Unnamed: 11_level_1 |\n  Line 4718: | Total internal revenue collections | 40671919 | 39106273 | 3501813 | 3263156 |\n\n/app/corpus/treasury_bulletin_1951_08.txt:\n  Line 3225: | Fiscal year or month > Unnamed: 0_level_1 > Unnamed: 0_level_2 | Total receipts from internal revenue (Daily Treasury Statement) > Unnamed: 1_level_1 > Unnamed: 1_level_2 | Adjustment to Daily Treasury Statement > Unnamed: 2_level_1 > Unnamed: 2_level_2 | Total internal revenue collections > Unnamed: 3_level_1 > Unnamed: 3_level_2 | Corporation income and excise profits taxes 2/ > Unnamed: 4_level_1 > Unnamed: 4_level_2 | Individual income tax and employment taxes > Total > Unnamed: 5_level_2 | Individual income tax and employment taxes > Individual income tax not withheld > Unnamed: 6_level_2 | Individual income tax and employment taxes > Withheld taxes > Individual income and old-age insurance 3/ | Individual income tax and employment taxes > Withheld taxes > Railroad retirement | Unnamed: 9_level_0 > Unemployment insurance > Unnamed: 9_level_2 |\n  Line 3475: | Total internal revenue collections | 40463119.0 | 38957126.0 | 35219980.0 | 44253707.0 | 3400021 | 4754797 |\n  Line 4960: | Chart showing internal revenue collections | 47 | 43 | 44 | 43 | 43 | 46 | 48 | 44 | 46 | 45 | 45 | 48 | nan |\n\n/app/corpus/treasury_bulletin_1982_05.txt:\n  Line 8061: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | 15 | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1973_12.txt:\n  Line 8501: | Summary of internal revenue collections by States, and other areas | 16 | 14 | 16 | 14 | 14 | 14 | 14 | 14 | 14 | 14 | 18 | 16 | nan |\n\n/app/corpus/treasury_bulletin_1978_10.txt:\n  Line 9367: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | 13 | ... | ... | ... | ... | ... | ... | ... |\n\n(Results truncated: showing 100 of 572 matches (472 hidden). Consider using a more specific path or pattern.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 22133,
+        "completion_tokens": 77,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00626358,
+        "extra": {
+          "reasoning_tokens": 27
+        }
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": "2026-03-31T19:28:51.902000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_b5feb9c621044611b43a2a1e",
+          "function_name": "glob",
+          "arguments": {
+            "pattern": "/app/corpus/treasury_bulletin_201*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_b5feb9c621044611b43a2a1e",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 29948,
+        "completion_tokens": 93,
+        "cost_usd": 0.009162,
+        "extra": {
+          "reasoning_tokens": 55
+        }
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": "2026-03-31T19:28:57.017000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_00779e7e9b734fa084700239",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep -o 'treasury_bulletin_[0-9]*' | sed 's/treasury_bulletin_//' | sort -n | uniq | tail -30",
+            "description": "List years in corpus"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_00779e7e9b734fa084700239",
+            "content": "1996\n1997\n1998\n1999\n2000\n2001\n2002\n2003\n2004\n2005\n2006\n2007\n2008\n2009\n2010\n2011\n2012\n2013\n2014\n2015\n2016\n2017\n2018\n2019\n2020\n2021\n2022\n2023\n2024\n2025\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 30062,
+        "completion_tokens": 95,
+        "cached_tokens": 11968,
+        "cost_usd": 0.00591444,
+        "extra": {
+          "reasoning_tokens": 11
+        }
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": "2026-03-31T19:29:03.358000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me look at recent Treasury bulletins that contain state-level internal revenue data:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_ea86bb3ff5a7416cb5b254c0",
+          "function_name": "grep",
+          "arguments": {
+            "include": "*.txt",
+            "path": "/app/corpus",
+            "pattern": "Summary of internal revenue collections by States"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_ea86bb3ff5a7416cb5b254c0",
+            "content": "Found 198 matches (showing first 100)\n/app/corpus/treasury_bulletin_1973_01.txt:\n  Line 8004: | Summary of internal revenue collections by States, and other areas. | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1970_08.txt:\n  Line 8858: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1971_08.txt:\n  Line 8731: | Summary of internal revenue collections by States, calendar year 1970 | ... | ... | ... | ... | ... | ... | ... | ... | ... | 14 | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1981_01.txt:\n  Line 8968: | Summary of internal revenue collections by States and other areas | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1979_10.txt:\n  Line 10061: | Summary of internal revenue collections by States and other areas | nan | nan | nan | nan | nan | 13 | nan | nan | 13 | nan | 13 | nan | nan |\n\n/app/corpus/treasury_bulletin_1969_11.txt:\n  Line 8313: | Summary of internal revenue collections by States, calendar year 1968. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1981_06.txt:\n  Line 9557: | Summary of internal revenue collections by States and other areas | ... | ... | 15 | ... | 13 | ... | 13 | 13 | 15 | 14 | 13 | 15 |\n\n/app/corpus/treasury_bulletin_1979_07.txt:\n  Line 13783: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | 13 | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1972_09.txt:\n  Line 7567: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1983_03.txt:\n  Line 52: | FFD-4. | Summary of internal revenue collections by States and other areas. | 8.0 |\n\n/app/corpus/treasury_bulletin_1971_11.txt:\n  Line 13130: | Summary of internal revenue collections by States, calendar year 1970 | ... | ... | ... | ... | ... | 14 | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1980_11.txt:\n  Line 9325: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1971_09.txt:\n  Line 7764: | Summary of internal revenue collections by States, calendar year 1970 | 13 | 13 | 16 | 13 | 13 | 15 | 13 | 13 | 16 | 13 | 13 | 15 | nan |\n\n/app/corpus/treasury_bulletin_1982_02.txt:\n  Line 8799: | Summary of internal revenue collections by States and other areas | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1981_08.txt:\n  Line 11563: | Summary of internal revenue collections by States and other areas | 15 | 13 | 13 | 15 | 13 | 13 | 15 | 14 | 13 | 15 | 13 | 13 | nan |\n\n/app/corpus/treasury_bulletin_1982_03.txt:\n  Line 56: | FFU-9. - Summary of internal revenue collections by States and other areas | 15 | CM-II-2. - Total claims by type (new series) | 78 |\n  Line 17441: | Summary of internal revenue collections by States and other areas | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 15 | nan |\n\n/app/corpus/treasury_bulletin_1999_12.txt:\n  Line 178: | FFO-5.\u2014Summary of internal revenue collections by States and other areas | \u2713 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1992_12.txt:\n  Line 240: | FFO-4.-Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1981_05.txt:\n  Line 9499: | Summary of internal revenue collections by States and other areas | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 13 | nan |\n\n/app/corpus/treasury_bulletin_1981_07.txt:\n  Line 12580: | Summary of internal revenue collections by States and other areas | ... | 15 | 13 | 13 | 15 | 13 | 13 | 15 | 13 | 13 | 15 | 13 | nan |\n\n/app/corpus/treasury_bulletin_1981_10.txt:\n  Line 9002: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | 13 | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1972_07.txt:\n  Line 8147: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1972_08.txt:\n  Line 8974: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1993_12.txt:\n  Line 328: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1989_12.txt:\n  Line 333: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1991_12.txt:\n  Line 317: | FFO-4.-Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1997_12.txt:\n  Line 163: | FFO-4--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1997_09.txt:\n  Line 192: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1973_10.txt:\n  Line 9097: | Summary of internal revenue collections by States, and other areas. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1980_04.txt:\n  Line 12243: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 12 | nan |\n\n/app/corpus/treasury_bulletin_1977_05.txt:\n  Line 10403: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | 15 | ... | ... |\n\n/app/corpus/treasury_bulletin_1973_03.txt:\n  Line 8238: | Summary of internal revenue collections by States, and other areas | 12 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1976_11.txt:\n  Line 9296: | Summary of internal revenue collections by States and other areas | ... | ... | ... | 14 | ... | ... | ... | ... | ... | ... | 13 | 16 | nan |\n\n/app/corpus/treasury_bulletin_1973_05.txt:\n  Line 11452: | Summary of internal revenue collections by States, and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 13 | nan |\n\n/app/corpus/treasury_bulletin_1982_05.txt:\n  Line 8061: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | 15 | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1973_12.txt:\n  Line 8501: | Summary of internal revenue collections by States, and other areas | 16 | 14 | 16 | 14 | 14 | 14 | 14 | 14 | 14 | 14 | 18 | 16 | nan |\n\n/app/corpus/treasury_bulletin_1978_10.txt:\n  Line 9367: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | 13 | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1971_02.txt:\n  Line 9331: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1981_11.txt:\n  Line 9414: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | 13 | ... | ... | ... | ... | ... | ... | ... | nan | nan |\n\n/app/corpus/treasury_bulletin_1979_11.txt:\n  Line 10588: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | 13 | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1994_06.txt:\n  Line 301: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1971_04.txt:\n  Line 11574: | Summary of internal revenue collections by States, calendar year 1969 | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1990_09.txt:\n  Line 307: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1969_10.txt:\n  Line 7897: | Summary of internal revenue collections by States, calendar year 1968. | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1976_06.txt:\n  Line 8779: | Summary of internal revenue collections by States and other areas | 15 | 14 | 17 | 13 | ... | 13 | ... | 15 | 13 | 15 | 14 | 14 | nan |\n\n/app/corpus/treasury_bulletin_1970_12.txt:\n  Line 11273: | Summary of internal revenue collections by States, calendar year 1969 | nan | nan | nan | 12 | nan | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1982_09.txt:\n  Line 7646: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | 15 | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1979_04.txt:\n  Line 12634: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 13 | nan | nan |\n\n/app/corpus/treasury_bulletin_1980_02.txt:\n  Line 10612: | Summary of internal revenue collections by States and other areas | ... | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1970_04.txt:\n  Line 8297: | Summary of internal revenue collections by States, calendar year 1968 | 10 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1991_09.txt:\n  Line 284: | FFO-4--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1980_03.txt:\n  Line 16801: | Summary of internal revenue collections by States and other areas | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1996_09.txt:\n  Line 170: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2713 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1999_06.txt:\n  Line 220: | FFO-5.\u2014Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1978_02.txt:\n  Line 10709: | Summary of internal revenue collections by States and other areas | 15 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1970_05.txt:\n  Line 11306: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 12 | nan |\n\n/app/corpus/treasury_bulletin_1988_12.txt:\n  Line 339: | FFO-4--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1970_09.txt:\n  Line 7881: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1994_03.txt:\n  Line 66: | FFO-4--Summary of internal revenue collections by States and other areas | nan | nan |\n  Line 243: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1995_03.txt:\n  Line 83: | FFO-4.--Summary of internal revenue collections by States and other areas. | 23 |\n  Line 340: FFO-4.--Summary of internal revenue collections by States and other areas\n\n/app/corpus/treasury_bulletin_1973_04.txt:\n  Line 8061: | Summary of internal revenue collections by States, | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1971_01.txt:\n  Line 10363: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1999_03.txt:\n  Line 227: | FFO-5.\u2014Summary of internal revenue collections by States and other areas | \u2713 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1993_03.txt:\n  Line 44: | FFO-4--Summary of internal revenue collections by States and other areas | nan | 20.0 |\n  Line 265: FFO-4.--Summary of internal revenue collections by States and other areas\n\n/app/corpus/treasury_bulletin_1991_03.txt:\n  Line 59: | FFO-4.--Summary of internal revenue collections by States and other areas | 24 |\n  Line 309: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1995_09.txt:\n  Line 289: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1987_03.txt:\n  Line 56: | FFO-4. - Summary of internal revenue collections by States and other areas. | nan | nan |\n  Line 203: | FF0-4. - Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1988_09.txt:\n  Line 281: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1979_02.txt:\n  Line 10902: | Summary of internal revenue collections by States and other areas | 13 | 13 | 15 | 13 | ... | 17 | 13 | 14 | 12 | 15 | 13 | 14 |\n\n/app/corpus/treasury_bulletin_1970_11.txt:\n  Line 13690: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | 12 | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1971_07.txt:\n  Line 7641: | Summary of internal revenue collections by States, calendar year 1970 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 14 | ... | nan |\n\n/app/corpus/treasury_bulletin_1989_03.txt:\n  Line 79: FFO-4.\u2014Summary of internal revenue collections by States and other areas 24\n  Line 314: | FFO-4.-Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1978_09.txt:\n  Line 9579: | Summary of internal revenue collections by States and other areas. | ... | ... | ... | ... | ... | ... | 13 | ... | ... | ... | 17 | ... | nan |\n\n/app/corpus/treasury_bulletin_1971_06.txt:\n  Line 10326: | Summary of internal revenue collections by States, calendar year 1969 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1993_09.txt:\n  Line 243: | FFO-4 --Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1970_01.txt:\n  Line 11128: | Summary of internal revenue collections by States, calendar year 1968 | nan | nan | nan | 10 | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1976_08.txt:\n  Line 9566: | Summary of internal revenue collections by States and other areas | ... | ... | ... | 13 | ... | 15 | 13 | 15 | 14 | 15 | 14 | 14 | nan |\n\n/app/corpus/treasury_bulletin_1973_02.txt:\n  Line 11934: | Summary of internal revenue collections by States, and other areas. | ... | 12 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1976_12.txt:\n  Line 8166: | Summary of internal revenue collections by States and other areas | ... | ... | 14 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1976_10.txt:\n  Line 8248: | Summary of internal revenue collections by States and other areas | ... | ... | ... | 14 | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1979_05.txt:\n  Line 10660: | Summary of internal revenue collections by States and other areas. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 13 | ... |\n\n/app/corpus/treasury_bulletin_1977_09.txt:\n  Line 10103: | Summary of internal revenue collections by States and other areas. | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 | 15 |\n\n/app/corpus/treasury_bulletin_1990_06.txt:\n  Line 309: | FFO-4.--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1978_12.txt:\n  Line 10672: | Summary of internal revenue collections by States and other areas | ... | ... | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1978_03.txt:\n  Line 17012: | Summary of internal revenue collections by States and other areas. | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1977_08.txt:\n  Line 12298: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | 15 | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1972_03.txt:\n  Line 8217: | Summary of internal revenue collections by States, calendar year 1970 | nan | 14 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1992_06.txt:\n  Line 276: | FFO-4--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1973_06.txt:\n  Line 9496: | Summary of internal revenue collections by States, and other areas. | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | 13 | ... |\n\n/app/corpus/treasury_bulletin_1980_01.txt:\n  Line 9967: | Summary of internal revenue collections by States and other areas. | ... | ... | 13 | ... | ... | ... | ... | ... | ... | ... | ... | ... |\n\n/app/corpus/treasury_bulletin_1989_06.txt:\n  Line 583: | FFO-4--Summary of internal revenue collections by States and other areas | \u2714 | nan | nan | nan |\n\n/app/corpus/treasury_bulletin_1969_09.txt:\n  Line 7671: | Summary of internal revenue collections by States, calendar year 1968. | ... | ... | ... | ... | ... | ... | 10 | ... | ... | ... | ... | ... | nan |\n\n/app/corpus/treasury_bulletin_1982_08.txt:\n  Line 9743: | Summary of internal revenue collections by States and other areas | ... | ... | ... | ... | ... | ... | 15 | ... | ... | ... | ... | ... | nan |\n\n(Results truncated: showing 100 of 198 matches (98 hidden). Consider using a more specific path or pattern.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 30264,
+        "completion_tokens": 115,
+        "cached_tokens": 1856,
+        "cost_usd": 0.00877128,
+        "extra": {
+          "reasoning_tokens": 46
+        }
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": "2026-03-31T19:29:13.449000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_0e9ab6c2da134a01b21a1aa1",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2023_09.txt",
+            "offset": 1,
+            "limit": 100
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_0e9ab6c2da134a01b21a1aa1",
+            "content": "<path>/app/corpus/treasury_bulletin_2023_09.txt</path>\n<type>file</type>\n<content>1: SEPTEMBER 2023\n2: \n3: Profile of the Economy Financial Operations International Statistics Special Reports\n4: \n5: Produced and Published by\n6: \n7: Department of the Treasury Bureau of the Fiscal Service\n8: \n9: FEATURES\n10: \n11: The Treasury Bulletin is issued quarterly in March, June, September, and December by the Bureau of the Fiscal Service, Cash Accounting and Reporting Division. Statistical data is compiled from sources within Treasury departmental offices and bureaus, as well as various other Federal program agencies. Readers can contact the publication staff to inquire about any of the published information.\n12: \n13: The publication staff can also be reached by electronic mail.\n14: \n15: treasury.bulletin@fiscal.treasury.gov\n16: \n17: Internet service subscribers can access the Treasury Bulletin in Microsoft Word or PDF format through the Bureau of Fiscal Service\u2019s home page.\n18: \n19: www.fiscal.treasury.gov\n20: \n21: Table of Contents\n22: \n23: FINANCIAL OPERATIONS\n24: \n25: PROFILE OF THE ECONOMY\n26: \n27: | 0 | 1 |\n28: | --- | --- |\n29: | Analysis\u2014Summary of Economic Indicators | 1 |\n30: \n31: FEDERAL FISCAL OPERATIONS\n32: \n33: | 0 | 1 |\n34: | --- | --- |\n35: | Introduction\u2014Federal Fiscal Operations | 12 |\n36: | Analysis\u2014Budget Results and Financing of the U.S. Government and Third-Quarter Receipts by Source | 13 |\n37: | FFO-A\u2014Chart: Monthly Receipts and Outlays | 15 |\n38: | FFO-B\u2014Chart: Budget Receipts by Source | 15 |\n39: | FFO-1\u2014Summary of Fiscal Operations | 16 |\n40: | FFO-2\u2014On-Budget and Off-Budget Receipts by Source | 17 |\n41: | FFO-3\u2014On-Budget and Off-Budget Outlays by Agency | 19 |\n42: | FFO-4\u2014Summary of U.S. Government Receipts by Source and Outlays by Agency | 21 |\n43: \n44: FEDERAL DEBT\n45: \n46: | 0 | 1 |\n47: | --- | --- |\n48: | Introduction\u2014Federal Debt | 22 |\n49: | FD-1\u2014Summary of Federal Debt | 23 |\n50: | FD-2\u2014Debt Held by the Public | 24 |\n51: | FD-3\u2014Government Account Series | 25 |\n52: | FD-4\u2014Interest-Bearing Securities Issued by Government Agencies | 26 |\n53: | FD-5\u2014Maturity Distribution and Average Length of Marketable Interest-Bearing Public Debt Held by Private Investors | 27 |\n54: | FD-6\u2014Debt Subject to Statutory Limit | 28 |\n55: | FD-7\u2014Treasury Holdings of Securities Issued by Government Corporations and Other Agencies | 29 |\n56: \n57: BUREAU OF THE FISCAL SERVICE OPERATIONS\n58: \n59: | 0 | 1 |\n60: | --- | --- |\n61: | Introduction\u2014Bureau of the Fiscal Service Operations | 31 |\n62: | TREASURY FINANCING | 31 |\n63: | PDO-1\u2014Offerings of Regular Weekly Treasury Bills | 44 |\n64: | PDO-2\u2014Offerings of Marketable Securities Other than Regular Weekly Treasury Bills | 46 |\n65: \n66: OWNERSHIP OF FEDERAL SECURITIES\n67: \n68: | 0 | 1 |\n69: | --- | --- |\n70: | Introduction\u2014Ownership of Federal Securities | 48 |\n71: | OFS-1\u2014Distribution of Federal Securities by Class of Investors and Type of Issues | 49 |\n72: | OFS-2\u2014Estimated Ownership of U.S. Treasury Securities | 50 |\n73: \n74: U.S. CURRENCY AND COIN OUTSTANDING AND IN CIRCULATION\n75: \n76: | 0 | 1 |\n77: | --- | --- |\n78: | Introduction\u2014U.S. Currency and Coin Outstanding and in Circulation | 51 |\n79: | USCC-1\u2014Amounts Outstanding and in Circulation; Currency, Coins | 51 |\n80: | USCC-2\u2014Amounts Outstanding and in Circulation; by Denomination, Per Capita Comparative Totals | 52 |\n81: \n82: INTERNATIONAL STATISTICS\n83: \n84: FOREIGN CURRENCY POSITIONS\n85: \n86: | 0 | 1 |\n87: | --- | --- |\n88: | Introduction\u2014Foreign Currency Positions | 54 |\n89: \n90: Table of Contents\n91: \n92: | 0 | 1 |\n93: | --- | --- |\n94: | SECTION I\u2014Canadian Dollar Positions | nan |\n95: | FCP-I-1\u2014Weekly Report of Major Market Participants | 55.0 |\n96: | FCP-I-2\u2014Monthly Report of Major Market Participants | 56.0 |\n97: | FCP-I-3\u2014Quarterly Report of Large Market Participants | 56.0 |\n98: | SECTION II\u2014Japanese Yen Positions | nan |\n99: | FCP-II-1\u2014Weekly Report of Major Market Participants | 57.0 |\n100: | FCP-II-2\u2014Monthly Report of Major Market Participants | 58.0 |\n\n(Showing lines 1-100 of 2575. Use offset=101 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 36184,
+        "completion_tokens": 117,
+        "cached_tokens": 1856,
+        "cost_usd": 0.01056168,
+        "extra": {
+          "reasoning_tokens": 56
+        }
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": "2026-03-31T19:29:20.524000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_d6204d4112fb4339a891c6be",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2023_09.txt",
+            "path": "/app/corpus",
+            "pattern": "New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_d6204d4112fb4339a891c6be",
+            "content": "Found 2 matches\n/app/corpus/treasury_bulletin_2023_09.txt:\n  Line 1759: 8Source: Treasury International Capital Survey (https://ticdata.treasury.gov/resource-center/data-chart-center/tic/Documents/mfhhis01.txt). Includes nonmarketable foreign series, Treasury securities and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: https://home.treasury.gov/data/treasury-international-capital-tic-system.\n  Line 2556: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 37529,
+        "completion_tokens": 96,
+        "cached_tokens": 22208,
+        "cost_usd": 0.00542214,
+        "extra": {
+          "reasoning_tokens": 37
+        }
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": "2026-03-31T19:29:27.158000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_56b28a71e57c44f7a944d6e1",
+          "function_name": "glob",
+          "arguments": {
+            "pattern": "/app/corpus/treasury_bulletin_2015*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_56b28a71e57c44f7a944d6e1",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 37811,
+        "completion_tokens": 89,
+        "cached_tokens": 30144,
+        "cost_usd": 0.00337122,
+        "extra": {
+          "reasoning_tokens": 50
+        }
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": "2026-03-31T19:29:30.582000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_76e54b3657df418b8507c647",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep 2015",
+            "description": "List 2015 files"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_76e54b3657df418b8507c647",
+            "content": "treasury_bulletin_2015_03.txt\ntreasury_bulletin_2015_06.txt\ntreasury_bulletin_2015_09.txt\ntreasury_bulletin_2015_12.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 37921,
+        "completion_tokens": 61,
+        "cached_tokens": 30032,
+        "cost_usd": 0.00335646,
+        "extra": {
+          "reasoning_tokens": 13
+        }
+      }
+    },
+    {
+      "step_id": 12,
+      "timestamp": "2026-03-31T19:29:36.515000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me search for the internal revenue collections table with New York data:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_5e759146311a411ab3103c70",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2015_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*\\d"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_5e759146311a411ab3103c70",
+            "content": "Found 5 matches\n/app/corpus/treasury_bulletin_2015_12.txt:\n  Line 873: | New York | 269716999 | 30839677 | 233878379 | 171803055 | 57806300 |\n  Line 959: | New York | 813980 | 497613 | 2957431 | 1930823 | 505683 | 2562437 |\n  Line 1093: | New York, New York: | nan | nan | Sherwood, ND | 33414.0 | 243027.39 |\n  Line 1094: | New York, NY | 21001.0 | 368863667.2 | Hansboro, ND | 33415.0 | 4934.75 |\n  Line 1096: | New York/Newark Area, NJ | 24601.0 | 5755843735.68 | Fortuna, ND | 33417.0 | 23745.9 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 38051,
+        "completion_tokens": 128,
+        "cached_tokens": 1856,
+        "cost_usd": 0.01113018,
+        "extra": {
+          "reasoning_tokens": 52
+        }
+      }
+    },
+    {
+      "step_id": 13,
+      "timestamp": "2026-03-31T19:29:47.135000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_f1627d5ba850485e97241eba",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2015_12.txt",
+            "offset": 850,
+            "limit": 50
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_f1627d5ba850485e97241eba",
+            "content": "<path>/app/corpus/treasury_bulletin_2015_12.txt</path>\n<type>file</type>\n<content>850: | Florida | 177389488 | 10623903 | 163199338 | 116059240 | 43558308 |\n851: | Georgia | 86446602 | 12764920 | 70052525 | 56932220 | 12480551 |\n852: | Hawaii | 8221290 | 476171 | 7468136 | 5501597 | 1875437 |\n853: | Idaho | 9785027 | 268962 | 9389727 | 7250674 | 2023777 |\n854: | Illinois | 158042273 | 20370821 | 132643232 | 104160944 | 24771174 |\n855: | Indiana | 57972825 | 4891553 | 50811098 | 42981848 | 7317638 |\n856: | Iowa | 23969391 | 1965929 | 21556743 | 17039680 | 4384706 |\n857: | Kansas | 27019291 | 1965250 | 23284508 | 17528322 | 5319926 |\n858: | Kentucky | 32708391 | 2629863 | 28811348 | 24164759 | 4337573 |\n859: | Louisiana | 42628150 | 1107876 | 40681260 | 33531985 | 6865820 |\n860: | Maine | 7464280 | 305706 | 6947573 | 5400186 | 1448181 |\n861: | Maryland | 63936798 | 3616792 | 59638796 | 48468009 | 10452921 |\n862: | Massachusetts | 108049205 | 8786713 | 97226545 | 75455947 | 20350265 |\n863: | Michigan | 77948414 | 6312321 | 70295550 | 56717948 | 12738754 |\n864: | Minnesota | 106927808 | 24329664 | 79347688 | 69141751 | 9573866 |\n865: | Mississippi | 11468660 | 747840 | 10507791 | 7974384 | 2434395 |\n866: | Missouri | 64112504 | 8473144 | 54101726 | 45172090 | 8017083 |\n867: | Montana | 5805098 | 214131 | 5538068 | 3755432 | 1707125 |\n868: | Nebraska | 25103770 | 6870025 | 18026855 | 13212728 | 3317614 |\n869: | Nevada | 18450072 | 867208 | 17264613 | 10660826 | 5243614 |\n870: | New Hampshire | 11314985 | 296413 | 10749228 | 8017216 | 2410430 |\n871: | New Jersey | 153917572 | 36256100 | 114834184 | 93307132 | 20210034 |\n872: | New Mexico | 8969666 | 248014 | 8519028 | 6294578 | 2131010 |\n873: | New York | 269716999 | 30839677 | 233878379 | 171803055 | 57806300 |\n874: | North Carolina | 78736401 | 10807290 | 67278363 | 55372577 | 11123355 |\n875: | North Dakota | 7711243 | 353450 | 7263315 | 4828692 | 2381894 |\n876: | Ohio | 140981150 | 14649198 | 121379888 | 106063345 | 13817331 |\n877: | Oklahoma | 33942286 | 3330908 | 25554628 | 18930641 | 5766006 |\n878: \n879: See footnotes at end of table.\n880: \n881: December 2015\n882: \n883: 20\n884: \n885: FEDERAL FISCAL OPERATIONS\n886: \n887: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2015, continued\n888: \n889: [In thousands of dollars. Source: Chief Financial Officer, Revenue Financial Management]\n890: \n891: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n892: | --- | --- | --- | --- | --- | --- |\n893: | Oregon | 31219148 | 1989938 | 28153829 | 22221724 | 5630003 |\n894: | Pennsylvania | 136108810 | 16095757 | 115272208 | 94451811 | 18909565 |\n895: | Rhode Island | 14373318 | 3527526 | 10672687 | 8891464 | 1530086 |\n896: | South Carolina | 24086257 | 1731619 | 21934428 | 16698335 | 5006654 |\n897: | South Dakota | 7732138 | 552853 | 7118323 | 3945697 | 2085524 |\n898: | Tennessee | 62708662 | 7004232 | 54104159 | 45471936 | 8169341 |\n899: | Texas | 279904425 | 32083819 | 226945577 | 165876063 | 55270390 |\n\n(Showing lines 850-899 of 3399. Use offset=900 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 38410,
+        "completion_tokens": 84,
+        "cached_tokens": 38176,
+        "cost_usd": 0.00134388,
+        "extra": {
+          "reasoning_tokens": 23
+        }
+      }
+    },
+    {
+      "step_id": 14,
+      "timestamp": "2026-03-31T19:29:51.482000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_82c3a5ce81964c1e99938657",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2015_12.txt",
+            "limit": 50,
+            "offset": 800
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_82c3a5ce81964c1e99938657",
+            "content": "<path>/app/corpus/treasury_bulletin_2015_12.txt</path>\n<type>file</type>\n<content>800: | Corps of Engineers | 5689 | -78 | 1073 | 6683.0 | 5429 | -131 | 1235 | 6533.0 |\n801: | Other defense civil programs | 79752 | 1747 | -18534 | 62966.0 | 77286 | -2728 | -17185 | 57372.0 |\n802: | Environmental Protection Agency | 8668 | -32 | -1631 | 7005.0 | 8504 | -28 | 924 | 9400.0 |\n803: | Executive Office of the President | 393 | 1 | * | 394.0 | 373 | * | - | 373.0 |\n804: | General Services Administration | 108 | -997 | * | -889.0 | 97 | -862 | * | -765.0 |\n805: | International Assistance Program | 25299 | -351 | -3973 | 20975.0 | 22042 | -635 | -2666 | 18740.0 |\n806: | National Aeronautics and Space Administration | 18290 | -19 | 1 | 18272.0 | 17096 | -5 | 1 | 17093.0 |\n807: | National Science Foundation | 6778 | 71 | -12 | 6837.0 | 6954 | 87 | 14 | 7054.0 |\n808: | Office of Personnel Management | 47882 | -1883 | 45736 | 91735.0 | 46420 | -3112 | 44611 | 87919.0 |\n809: | Small Business Administration | -734 | -12 | - | -746.0 | 209 | -15 | - | 194.0 |\n810: | Social Security Administration | 87359 | 2 | 856782 | 944143.0 | 81181 | * | 824588 | 905769.0 |\n811: | Other independent agencies | 11235 | -5280 | 7621 | 13576.0 | 10823 | -9380 | 2752 | 4195.0 |\n812: | Undistributed offsetting receipts: | nan | nan | nan | nan | nan | nan | nan | nan |\n813: | Interest | - | - | -141793 | -141793.0 | - | - | -158115 | -158115.0 |\n814: | Other | -2899 | -20385 | -92519 | -115804.0 | -6425 | -8698 | -72919 | -88043.0 |\n815: | Total outlays | 2692541 | -22962 | 1018043 | 3687622.0 | 2557796 | -11124 | 957060 | 3503732.0 |\n816: | (On-budget) | 2682283 | -20992 | 273236 | 2944526.0 | 2557540 | -8340 | 248474 | 2797675.0 |\n817: | (Off-budget) | 258 | -1970 | 744807 | 743096.0 | 256 | -2784 | 708586 | 706057.0 |\n818: | Surplus or deficit (-) | -617079 | 67490 | 110689 | -438899.0 | -655973 | 43796 | 128816 | -483361.0 |\n819: | (On-budget) | -616820 | 65520 | 85102 | -466197.0 | -655717 | 41011 | 101837 | -512686.0 |\n820: | (Off-budget) | -258 | 1970 | 25587 | 27298.0 | -256 | 2784 | 26979 | 29507.0 |\n821: \n822: No transactions. Less than $500,000\n823: \n824: Note.\u2014Detail may not add to totals due to rounding.\n825: \n826: December 2015\n827: \n828: FEDERAL FISCAL OPERATIONS\n829: \n830: 19\n831: \n832: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2015\n833: \n834: (In thousands of dollars. Source: Chief Financial Officer, Financial Management\n835: \n836: Individual income taxes, employment taxes, and estate and trust income taxes\n837: \n838: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n839: | --- | --- | --- | --- | --- | --- |\n840: | United States, total 4 | 3302677258 | 389888722 | 2815544615 | 2183608978 | 582949874 |\n841: | Alabama | 25070261 | 1465831 | 23160484 | 18254070 | 4687971 |\n842: | Alaska | 5717640 | 194313 | 5462605 | 4079050 | 1294019 |\n843: | Arizona | 42631316 | 3862387 | 37047410 | 28437845 | 8149122 |\n844: | Arkansas | 32508761 | 7657274 | 23959297 | 20091810 | 3487562 |\n845: | California | 405851295 | 51290979 | 345830143 | 253600502 | 87889418 |\n846: | Colorado | 47210720 | -2051855 | 48125613 | 36546996 | 11092991 |\n847: | Connecticut | 59174581 | 8304111 | 49189122 | 35091938 | 13052649 |\n848: | Delaware | 22640853 | 9118702 | 13196278 | 11021260 | 1137079 |\n849: | District of Columbia | 25583750 | 4285021 | 21229350 | 18229702 | 2413906 |\n\n(Showing lines 800-849 of 3399. Use offset=850 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 39777,
+        "completion_tokens": 197,
+        "cached_tokens": 37888,
+        "cost_usd": 0.00210294,
+        "extra": {
+          "reasoning_tokens": 136
+        }
+      }
+    },
+    {
+      "step_id": 15,
+      "timestamp": "2026-03-31T19:30:02.081000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_0ee8efc15b594c0cb48d6d55",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2024_09.txt",
+            "limit": 100,
+            "offset": 1
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_0ee8efc15b594c0cb48d6d55",
+            "content": "<path>/app/corpus/treasury_bulletin_2024_09.txt</path>\n<type>file</type>\n<content>1: SEPTEMBER 2024\n2: \n3: FEATURES\n4: \n5: Profile of the Economy Financial Operations International Statistics Special Reports\n6: \n7: Produced and Published by\n8: \n9: Department of the Treasury Bureau of the Fiscal Service\n10: \n11: The Treasury Bulletin is issued quarterly in March, June, September, and December by the Bureau of the Fiscal Service, Cash Accounting and Reporting Division. Statistical data is compiled from sources within Treasury departmental offices and bureaus, as well as various other Federal program agencies. Readers can contact the publication staff to inquire about any of the published information.\n12: \n13: The publication staff can also be reached by electronic mail.\n14: \n15: treasury.bulletin@fiscal.treasury.gov\n16: \n17: Internet service subscribers can access the Treasury Bulletin in Microsoft Word or PDF format through the Bureau of Fiscal Service's home page.\n18: \n19: www.fiscal.treasury.gov\n20: \n21: Table of Contents\n22: \n23: FINANCIAL OPERATIONS\n24: \n25: | 0 | 1 |\n26: | --- | --- |\n27: | PROFILE OF THE ECONOMY | nan |\n28: | Analysis\u2014Summary of Economic Indicators | 1.0 |\n29: | FEDERAL FISCAL OPERATIONS | nan |\n30: | Introduction\u2014Federal Fiscal Operations | 11.0 |\n31: | Analysis\u2014Budget Results and Financing of the U.S. Government and Third-Quarter Receipts by Source | 12.0 |\n32: | FFO-A\u2014Chart: Monthly Receipts and Outlays | 14.0 |\n33: | FFO-B\u2014Chart: Budget Receipts by Source | 14.0 |\n34: | FFO-1\u2014Summary of Fiscal Operations | 15.0 |\n35: | FFO-2\u2014On-Budget and Off-Budget Receipts by Source | 16.0 |\n36: | FFO-3\u2014On-Budget and Off-Budget Outlays by Agency | 18.0 |\n37: | FFO-4\u2014Summary of U.S. Government Receipts by Source and Outlays by Agency | 20.0 |\n38: | FEDERAL DEBT | nan |\n39: | Introduction\u2014Federal Debt | 21.0 |\n40: | FD-1\u2014Summary of Federal Debt | 22.0 |\n41: | FD-2\u2014Debt Held by the Public | 23.0 |\n42: | FD-3\u2014Government Account Series | 24.0 |\n43: | FD-4\u2014Interest-Bearing Securities Issued by Government Agencies | 25.0 |\n44: | FD-5\u2014Maturity Distribution and Average Length of Marketable Interest-Bearing Public Debt Held by Private Investors | 26.0 |\n45: | FD-6\u2014Debt Subject to Statutory Limit | 27.0 |\n46: | FD-7\u2014Treasury Holdings of Securities Issued by Government Corporations and Other Agencies | 28.0 |\n47: | BUREAU OF THE FISCAL SERVICE OPERATIONS | nan |\n48: | Introduction\u2014Bureau of the Fiscal Service Operations | 30.0 |\n49: | TREASURY FINANCING | nan |\n50: | PDO-1\u2014Offerings of Regular Weekly Treasury Bills | 45.0 |\n51: | PDO-2\u2014Offerings of Marketable Securities Other than Regular Weekly Treasury Bills | 47.0 |\n52: | OWNERSHIP OF FEDERAL SECURITIES | nan |\n53: | Introduction\u2014Ownership of Federal Securities | 49.0 |\n54: | OFS-1\u2014Distribution of Federal Securities by Class of Investors and Type of Issues | 50.0 |\n55: | OFS-2\u2014Estimated Ownership of U.S. Treasury Securities | 51.0 |\n56: | U.S. CURRENCY AND COIN OUTSTANDING AND IN CIRCULATION | nan |\n57: | Introduction\u2014U.S. Currency and Coin Outstanding and in Circulation | 52.0 |\n58: | USCC-1\u2014Amounts Outstanding and in Circulation; Currency, Coins | 52.0 |\n59: | USCC-2\u2014Amounts Outstanding and in Circulation; by Denomination, Per Capita Comparative Totals | 53.0 |\n60: \n61: INTERNATIONAL STATISTICS\n62: \n63: | 0 | 1 |\n64: | --- | --- |\n65: | FOREIGN CURRENCY POSITIONS | nan |\n66: | Introduction\u2014Foreign Currency Positions | 55.0 |\n67: \n68: Table of Contents\n69: \n70: SECTION I\u2014Canadian Dollar Positions\n71: \n72: FCP-I-1\u2014Weekly Report of Major Market Participants 56\n73: \n74: FCP-I-2\u2014Monthly Report of Major Market Participants 57\n75: \n76: FCP-I-3\u2014Quarterly Report of Large Market Participants 57\n77: \n78: SECTION II\u2014Japanese Yen Positions\n79: \n80: FCP-II-1\u2014Weekly Report of Major Market Participants 58\n81: \n82: FCP-II-2\u2014Monthly Report of Major Market Participants 59\n83: \n84: FCP-II-3\u2014Quarterly Report of Large Market Participants 59\n85: \n86: SECTION III\u2014Swiss Franc Positions\n87: \n88: FCP-III-1\u2014Weekly Report of Major Market Participants 60\n89: \n90: FCP-III-2\u2014Monthly Report of Major Market Participants\n91: \n92: FCP-III-3\u2014Quarterly Report of Large Market Participants\n93: \n94: SECTION IV\u2014Sterling Positions\n95: \n96: FCP-IV-1\u2014Weekly Report of Major Market Participants 62\n97: \n98: FCP-IV-2\u2014Monthly Report of Major Market Participants 63\n99: \n100: FCP-IV-3\u2014Quarterly Report of Large Market Participants\n\n(Showing lines 1-100 of 2648. Use offset=101 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 41395,
+        "completion_tokens": 228,
+        "cached_tokens": 30368,
+        "cost_usd": 0.00469314,
+        "extra": {
+          "reasoning_tokens": 167
+        }
+      }
+    },
+    {
+      "step_id": 16,
+      "timestamp": "2026-03-31T19:30:13.599000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_e342ca41006f4947973192b1",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_09.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*\\d{8,}"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_e342ca41006f4947973192b1",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 42946,
+        "completion_tokens": 87,
+        "cached_tokens": 39968,
+        "cost_usd": 0.00222324,
+        "extra": {
+          "reasoning_tokens": 22
+        }
+      }
+    },
+    {
+      "step_id": 17,
+      "timestamp": "2026-03-31T19:30:17.571000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_a06a22f67fde4394b4c5c700",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_09.txt",
+            "path": "/app/corpus",
+            "pattern": "Internal Revenue"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_a06a22f67fde4394b4c5c700",
+            "content": "Found 1 matches\n/app/corpus/treasury_bulletin_2024_09.txt:\n  Line 145: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 43054,
+        "completion_tokens": 88,
+        "cached_tokens": 43024,
+        "cost_usd": 0.00144012,
+        "extra": {
+          "reasoning_tokens": 29
+        }
+      }
+    },
+    {
+      "step_id": 18,
+      "timestamp": "2026-03-31T19:30:31.146000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_4e5869974c214ab5936802f3",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2024_09.txt",
+            "limit": 50,
+            "offset": 140
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_4e5869974c214ab5936802f3",
+            "content": "<path>/app/corpus/treasury_bulletin_2024_09.txt</path>\n<type>file</type>\n<content>140: | Nonquarterly Tables and Reports | Nonquarterly Tables and Reports.1 | Nonquarterly Tables and Reports.2 | Nonquarterly Tables and Reports.3 | Nonquarterly Tables and Reports.4 |\n141: | --- | --- | --- | --- | --- |\n142: | For the convenience of the \"Treasury Bulletin\" user, nonquarterly tables and reports are listed below along with the issues in which they appear. | For the convenience of the \"Treasury Bulletin\" user, nonquarterly tables and reports are listed below along with the issues in which they appear. | For the convenience of the \"Treasury Bulletin\" user, nonquarterly tables and reports are listed below along with the issues in which they appear. | For the convenience of the \"Treasury Bulletin\" user, nonquarterly tables and reports are listed below along with the issues in which they appear. | For the convenience of the \"Treasury Bulletin\" user, nonquarterly tables and reports are listed below along with the issues in which they appear. |\n143: | nan | March | June | Sept. | Dec. |\n144: | Federal Fiscal Operations | nan | nan | nan | nan |\n145: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |\n146: | FFO-6.\u2014Customs and Border Protection Collection of Duties, Taxes and Fees by Districts and Ports | nan | nan | nan | \u2714 |\n147: | Special Reports | nan | nan | nan | nan |\n148: | Financial Report of the United States Government excerpt | \u2714 | nan | nan | nan |\n149: | Trust Fund Reports: | nan | nan | nan | nan |\n150: | Agriculture Disaster Relief Trust Fund | \u2714 | nan | nan | nan |\n151: | Airport and Airway Trust Fund | \u2714 | nan | nan | nan |\n152: | Black Lung Disability Trust Fund | \u2714 | nan | nan | nan |\n153: | Harbor Maintenance Trust Fund | \u2714 | nan | nan | nan |\n154: | Hazardous Substance Superfund | \u2714 | nan | nan | nan |\n155: | Highway Trust Fund | \u2714 | nan | nan | nan |\n156: | Inland Waterways Trust Fund | \u2714 | nan | nan | nan |\n157: | Leaking Underground Storage Tank Trust Fund | \u2714 | nan | nan | nan |\n158: | Nuclear Waste Fund | \u2714 | nan | nan | nan |\n159: | Oil Spill Liability Trust Fund | \u2714 | nan | nan | nan |\n160: | Patient Centered Outcomes Research Trust Fund | \u2714 | nan | nan | nan |\n161: | Reforestation Trust Fund | \u2714 | nan | nan | nan |\n162: | Sport Fish Restoration and Boating Trust Fund | \u2714 | nan | nan | nan |\n163: | United States Victims of State Sponsored Terrorism Fund | \u2714 | nan | nan | nan |\n164: | Uranium Enrichment Decontamination and Decommissioning Fund | \u2714 | nan | nan | nan |\n165: | Vaccine Injury Compensation Trust Fund | \u2714 | nan | nan | nan |\n166: | Wool Research, Development, and Promotion Trust Fund | \u2714 | nan | nan | nan |\n167: \n168: Profile of the Economy Federal Fiscal Operations Federal Debt Fiscal Service Operations Ownership of Federal Securities U.S. Currency and Coin Outstanding and in Circulation\n169: \n170: 1\n171: \n172: Profile of the Economy\n173: \n174: (Office of Macroeconomic Analysis)\n175: \n176: August 27, 2024\n177: \n178: Introduction\n179: \n180: Real GDP growth accelerated in the second quarter of 2024 as a resilient labor market continued to support private demand. Labor market strength persisted in the form of real earnings growth as well as an improved labor supply and demand balance\u2014though the pace of job creation moderated, and the unemployment rate steadily increased. Nonetheless, initial unemployment claims remain near historically low levels.\n181: \n182: In addition to strong economic growth and persistent labor market strength, the second quarter saw renewed progress in reducing both headline and core inflation\u2014though elevated price levels continue to cool moods among businesses, builders, and consumers. Even so, measures of inflation are now within reasonable range of the Federal Reserve\u2019s target rate as cooling price growth for non-housing services has helped slow core inflation.\n183: \n184: Economic Growth\n185: \n186: Real GDP growth accelerated to 3.0 percent at an annual rate in the second quarter of this year, according to the second estimate, more than double the first quarter\u2019s 1.4 percent pace. Faster growth largely reflected a pick-up in private consumption, as well as a stronger build in private inventories.\n187: \n188: Decomposing GDP into smaller components can be helpful in explaining the economy's performance. The four components we consider are: (1) private domestic final purchases (PDFP), the most persistent and stable component of output, consisting of personal consumption expenditures (PCE), business fixed investment (BFI), and residential investment; (2) government consumption and investment; (3) net international purchases (U.S. exports less U.S. imports); and (4) intermediate demand (or the change in private inventories). Examined separately, each component delivers specific information about activity in various sectors that can also be useful in predicting the future path of growth.\n189: \n\n(Showing lines 140-189 of 2648. Use offset=190 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 43207,
+        "completion_tokens": 84,
+        "cached_tokens": 43136,
+        "cost_usd": 0.00144378,
+        "extra": {
+          "reasoning_tokens": 23
+        }
+      }
+    },
+    {
+      "step_id": 19,
+      "timestamp": "2026-03-31T19:30:36.037000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_e5b8367524f24a6880b24b7b",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_09.txt",
+            "path": "/app/corpus",
+            "pattern": "FFO-5"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_e5b8367524f24a6880b24b7b",
+            "content": "Found 2 matches\n/app/corpus/treasury_bulletin_2024_09.txt:\n  Line 145: | FFO-5.\u2014Internal Revenue Receipts by State | nan | nan | nan | \u2714 |\n  Line 354: Table FFO-5 summarizes internal revenue receipts by states and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax liability years because they consist of prepayments (estimated tax payments and taxes withheld by employers for individual income and Social Security taxes), payments made with tax returns and subsequent payments made after tax returns are due or are filed (that is, payments with delinquent returns or on delinquent accounts)."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 44471,
+        "completion_tokens": 100,
+        "cached_tokens": 37968,
+        "cost_usd": 0.00325674,
+        "extra": {
+          "reasoning_tokens": 39
+        }
+      }
+    },
+    {
+      "step_id": 20,
+      "timestamp": "2026-03-31T19:30:46.494000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_352415a8296040b094af6cc3",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2024_09.txt",
+            "limit": 100,
+            "offset": 350
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_352415a8296040b094af6cc3",
+            "content": "<path>/app/corpus/treasury_bulletin_2024_09.txt</path>\n<type>file</type>\n<content>350: Table FFO-3 details on- and off-budget outlays by agency.\n351: \n352: Table FFO-4 summarizes on- and off-budget receipts by source and outlays by function as reported to each major fund group classification for the current fiscal year to date and prior fiscal year to date.\n353: \n354: Table FFO-5 summarizes internal revenue receipts by states and by type of tax. Amounts reported are collections made in a fiscal year. They span several tax liability years because they consist of prepayments (estimated tax payments and taxes withheld by employers for individual income and Social Security taxes), payments made with tax returns and subsequent payments made after tax returns are due or are filed (that is, payments with delinquent returns or on delinquent accounts).\n355: \n356: Amounts are reported based on the primary filing address provided by each taxpayer or reporting entity. For multistate corporations, the address may reflect only the district where such a corporation reported its taxes from a principal office rather than other districts where income was earned or where individual income and Social Security taxes were withheld. In addition, an individual may reside in one district and work in another.\n357: \n358: Table FFO-6 includes customs collection of duties, taxes, and fees by districts and ports.\n359: \n360: Budget Results and Financing of the U.S. Government and Third-Quarter Receipts by Source\n361: \n362: [Source: Office of Tax Analysis, Office of Tax Policy]\n363: \n364: Third-Quarter Receipts\n365: \n366: The following capsule analysis of budget receipts, by source, for the third quarter of Fiscal Year 2024 supplements fiscal data reported in the June issue of the \u201cTreasury Bulletin.\u201d At the time of that issue\u2019s release, not enough data were available to analyze adequately collections for the quarter.\n367: \n368: Individual income taxes\u2014 Individual income tax receipts, net of refunds, were $796.5 billion for the third quarter of Fiscal Year 2024. This is an increase of $132.3 billion over the comparable prior year quarter. Withheld receipts increased by $27.8 billion and non-withheld receipts increased by $78.7 billion during this period. Refunds decreased by $25.8 billion over the comparable Fiscal Year 2023 quarter. There was an increase of $8.5 billion in accounting adjustments between individual income tax receipts and the Social Security and Medicare trust funds over the comparable quarter in Fiscal Year 2023.\n369: \n370: Corporate income taxes\u2014 Net corporate income tax receipts were $203.4 billion for the third quarter of Fiscal Year 2024. This is an increase of $37.5 billion compared to the prior year third quarter. The $37.5 billion change is\n371: \n372: comprised of an increase of $34.4 billion in estimated and final payments, and a decrease of $3.1 billion in corporate refunds.\n373: \n374: Employment taxes and contributions\u2014Employment taxes and contributions receipts for the third quarter of Fiscal Year 2024 were $478.5 billion, an increase of $20.8 billion over the comparable prior year quarter. Receipts to the Federal Old-Age and Survivors Insurance, Federal Disability Insurance, and Federal Hospital Insurance trust funds changed by $7.4 billion, $1.3 billion, and $12.1 billion respectively. There was a $27.4 billion accounting adjustment for prior years employment tax liabilities made in the third quarter of Fiscal Year 2024. There was a $35.9 billion adjustment in the third quarter of Fiscal Year 2023.\n375: \n376: Unemployment insurance\u2014Unemployment insurance receipts, net of refunds, for the third quarter of Fiscal Year 2024 were $25.6 billion, an increase of $1.0 billion over the comparable quarter of Fiscal Year 2023. Net State taxes deposited in the U.S. Treasury increased by $1.0 billion to $21.5 billion. Net Federal Unemployment Tax Act taxes did not change significantly from $4.2 billion.\n377: \n378: 13\n379: \n380: Budget Results and Financing of the U.S. Government and Third-Quarter Receipts by Source, continued\n381: \n382: Contributions for other insurance and retirement\u2014Contributions for other retirement were $2.0 billion for the third quarter of Fiscal Year 2024. This was an increase of $0.3 billion from the comparable quarter of Fiscal Year 2023.\n383: \n384: Excise taxes\u2014 Net excise tax receipts for the third quarter of Fiscal Year 2024 were $22.2 billion, an increase of $2.9 billion over the comparable prior year quarter. Total excise tax refunds for the quarter were $2.0 billion, a decrease of $3.1 billion over the comparable prior year quarter.\n385: \n386: Estate and gift taxes\u2014 Net estate and gift tax receipts were $9.7 billion for the third quarter of Fiscal Year 2024.\n387: \n388: These receipts represent an increase of $3.0 billion over the same quarter in Fiscal Year 2023.\n389: \n390: Customs duties\u2014 Customs duties net of refunds were $17.9 billion for the third quarter of Fiscal Year 2024. This is a decrease of $1.3 billion over the comparable prior year quarter.\n391: \n392: Miscellaneous receipts\u2014 Net miscellaneous receipts for the third quarter of Fiscal Year 2024 were $10.3 billion, an increase of $5.3 billion over the comparable prior year quarter. This change is due in part to deposits of earnings by Federal Reserve banks increasing by $1.3 billion.\n393: \n394: | Total On- and Off-Budget Results and Financing of the U.S. Government | Total On- and Off-Budget Results and Financing of the U.S. Government.1 | Total On- and Off-Budget Results and Financing of the U.S. Government.2 |\n395: | --- | --- | --- |\n396: | [In millions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] | [In millions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] | [In millions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] |\n397: | nan | Third quarter 2024 April - June | Fiscal year 2024 year to date |\n398: | Total on- and off-budget results: | nan | nan |\n399: | Total receipts | 1566100 | 3754199 |\n400: | On-budget receipts | 1198010 | 2791771 |\n401: | Off-budget receipts | 368090 | 962427 |\n402: | Total outlays | 1769667 | 5022456 |\n403: | On-budget outlays | 1449927 | 4057489 |\n404: | Off-budget outlays | 319740 | 964967 |\n405: | Total surplus or deficit (-) | -203567 | -1268258 |\n406: | On-budget surplus or deficit (-) | -251917 | -1265718 |\n407: | Off-budget surplus or deficit (-) | 48350 | -2539 |\n408: | Means of financing: | nan | nan |\n409: | Borrowing from the public | 98196 | 1260431 |\n410: | Reduction of operating cash | -2529 | -120908 |\n411: | Other means | 107901 | 128735 |\n412: | Total on- and off-budget financing | 203567 | 1268258 |\n413: \n414: | Third-Quarter Net Budget Receipts by Source, Fiscal Year 2024 | Third-Quarter Net Budget Receipts by Source, Fiscal Year 2024.1 | Third-Quarter Net Budget Receipts by Source, Fiscal Year 2024.2 | Third-Quarter Net Budget Receipts by Source, Fiscal Year 2024.3 |\n415: | --- | --- | --- | --- |\n416: | [In billions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] | [In billions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] | [In billions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] | [In billions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"] |\n417: | Source | April | May | June |\n418: | Individual income taxes | 481.9 | 129.6 | 184.9 |\n419: | Corporate income taxes | 91.9 | 30.1 | 81.4 |\n420: | Employment and general retirement | 168.9 | 129.3 | 180.3 |\n421: | Unemployment insurance | 11.7 | 13.4 | 0.5 |\n422: | Contributions for other insurance and retirement | 0.7 | 0.7 | 0.6 |\n423: | Excise taxes | 7.5 | 7.6 | 7.1 |\n424: | Estate and gift taxes | 4.2 | 3.6 | 2.0 |\n425: | Customs duties | 6.4 | 5.2 | 6.3 |\n426: | Miscellaneous receipts | 3.1 | 4.2 | 3.1 |\n427: | Total budget receipts | 776.2 | 323.6 | 466.3 |\n428: \n429: Note.\u2014Detail may not add to totals due to independent rounding.\n430: \n431: 14\n432: \n433: CHART FFO-A.\n434: \n435: Monthly Receipts and Outlays, 2023-2024\n436: \n437: (In billions of dollars)\n438: \n439: CHART FFO-B.\n440: \n441: Budget Receipts by Source, Fiscal Year to Date, 2023-2024\n442: \n443: 15\n444: \n445: TABLE FFO-1\u2014Summary of Fiscal Operations\n446: \n447: [In millions of dollars. Source: \"Monthly Treasury Statement of Receipts and Outlays of the United States Government\"]\n448: \n449: | Fiscal year or Month > Fiscal year or Month | Total on-budget and off-budget results > Total Receipts (1) | Total on-budget and off-budget results > On-budget receipts (2) | Total on-budget and off-budget results > Off-budget receipts (3) | Total on-budget and off-budget results > Total outlays (4) | Total on-budget and off-budget results > On-budget outlays (5) | Total on-budget and off-budget results > Off-budget outlays (6) | Total on-budget and off-budget results > Total surplus deficit (-) (7) | Means of financing -net transactions > On-budget surplus deficit (-) (8) | Means of financing -net transactions > Off-budget surplus deficit (-) (9) | Means of financing -net transactions > Borrowing from the public- Federal securities Public debt securities (10) |\n\n(Showing lines 350-449 of 2648. Use offset=450 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 44728,
+        "completion_tokens": 80,
+        "cached_tokens": 38480,
+        "cost_usd": 0.0031476,
+        "extra": {
+          "reasoning_tokens": 19
+        }
+      }
+    },
+    {
+      "step_id": 21,
+      "timestamp": "2026-03-31T19:30:57.498000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me search for the actual state data in the file:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_98cf021ba3594c8b8275626e",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_09.txt",
+            "path": "/app/corpus",
+            "pattern": "\\| New York \\|"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_98cf021ba3594c8b8275626e",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47224,
+        "completion_tokens": 106,
+        "cached_tokens": 9968,
+        "cost_usd": 0.01164264,
+        "extra": {
+          "reasoning_tokens": 33
+        }
+      }
+    },
+    {
+      "step_id": 22,
+      "timestamp": "2026-03-31T19:31:06.101000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_2427453c7339444290617bad",
+          "function_name": "bash",
+          "arguments": {
+            "command": "wc -l /app/corpus/treasury_bulletin_2024_09.txt",
+            "description": "Count lines in 2024_09 file"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_2427453c7339444290617bad",
+            "content": "2648 /app/corpus/treasury_bulletin_2024_09.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47351,
+        "completion_tokens": 83,
+        "cached_tokens": 47328,
+        "cost_usd": 0.00155274,
+        "extra": {
+          "reasoning_tokens": 22
+        }
+      }
+    },
+    {
+      "step_id": 23,
+      "timestamp": "2026-03-31T19:31:16.504000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Let me check the December 2024 file:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_aeb1c738236b4740bd86fb36",
+          "function_name": "glob",
+          "arguments": {
+            "pattern": "/app/corpus/treasury_bulletin_2024*.txt"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_aeb1c738236b4740bd86fb36",
+            "content": "No files found"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47471,
+        "completion_tokens": 75,
+        "cached_tokens": 47424,
+        "cost_usd": 0.00155802,
+        "extra": {
+          "reasoning_tokens": 26
+        }
+      }
+    },
+    {
+      "step_id": 24,
+      "timestamp": "2026-03-31T19:31:22.963000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_fd7331979473481ba655cf82",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | grep 2024",
+            "description": "List 2024 files"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_fd7331979473481ba655cf82",
+            "content": "treasury_bulletin_2024_03.txt\ntreasury_bulletin_2024_06.txt\ntreasury_bulletin_2024_09.txt\ntreasury_bulletin_2024_12.txt\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47567,
+        "completion_tokens": 58,
+        "cached_tokens": 47536,
+        "cost_usd": 0.00151698,
+        "extra": {
+          "reasoning_tokens": 10
+        }
+      }
+    },
+    {
+      "step_id": 25,
+      "timestamp": "2026-03-31T19:31:34.318000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_b2cac0dd969a435889e9d9a8",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2024_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_b2cac0dd969a435889e9d9a8",
+            "content": "Found 10 matches\n/app/corpus/treasury_bulletin_2024_12.txt:\n  Line 824: | New York | 384447300 | 37420654 | 341601296 | 258494864 | 78198978 |\n  Line 906: | New York | 635912 | 640629 | 3630913 | 2552804 | 276749 | 2595796 |\n  Line 1052: | Ogdensburg, New York: | Ogdensburg, New York: | Ogdensburg, New York: |\n  Line 1060: | Buffalo, New York: | Buffalo, New York: | Buffalo, New York: |\n  Line 1099: | New York, New York: | nan | nan | Noonan, ND | 33420.0 | 3177.16 |\n  Line 1100: | New York, NY | 21001.0 | 298718618.62 | Carbury, ND | 33421.0 | 2817.26 |\n  Line 1103: | New York, NY/Newark, NJ | 24601.0 | 9605157850.67 | Baudette, MN | 33424.0 | 22278.58 |\n  Line 1108: | New York Stewart International Airport, NY | 24682.0 | 293695.80 | Williston Basin INTL Airport, ND | 33433.0 | 0.00 |\n  Line 2487: aSource: Treasury International Capital Survey https://ticdata.treasury.gov/resource-center/data-chart-center/tic/Documents/mfhhis01.txt. Includes nonmarketable foreign series, Treasury securities, and Treasury deposit funds. Excludes Treasury securities held under repurchase agreements in custody accounts at the Federal Reserve Bank of New York. For additional information, see: https://home.treasury.gov/data/treasury-international-capital-tic-system.\n  Line 3306: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47694,
+        "completion_tokens": 74,
+        "cached_tokens": 1856,
+        "cost_usd": 0.01391388,
+        "extra": {
+          "reasoning_tokens": 15
+        }
+      }
+    },
+    {
+      "step_id": 26,
+      "timestamp": "2026-03-31T19:31:42.703000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_d92c314542c54d75a6a9cb3f",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2024_12.txt",
+            "limit": 50,
+            "offset": 800
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_d92c314542c54d75a6a9cb3f",
+            "content": "<path>/app/corpus/treasury_bulletin_2024_12.txt</path>\n<type>file</type>\n<content>800: | District of Columbia | 45243625 | 4088603 | 41029984 | 35910218 | 4195964 |\n801: | Florida | 325423855 | 17905271 | 301381282 | 198054714 | 97506105 |\n802: | Georgia | 144811636 | 23478229 | 115418267 | 89349953 | 24211807 |\n803: | Hawaii | 11402789 | 542670 | 10549188 | 7303806 | 3100299 |\n804: | Idaho | 17919350 | 879264 | 16933383 | 12164830 | 4629835 |\n805: | Illinois | 222034635 | 25886622 | 190160722 | 148766026 | 36087502 |\n806: | Indiana | 83926517 | 10035074 | 72735147 | 60028456 | 12208749 |\n807: | Iowa | 35596231 | 1949030 | 33168691 | 26400307 | 6574731 |\n808: | Kansas | 31359032 | 1722320 | 28482215 | 21460083 | 6458827 |\n809: | Kentucky | 50185720 | 3427402 | 46328775 | 39489917 | 6427352 |\n810: | Louisiana | 41884661 | 1315313 | 40121635 | 31297439 | 8453902 |\n811: | Maine | 12168858 | 848421 | 11204958 | 8251359 | 2839858 |\n812: | Maryland | 107444691 | 4386680 | 102578057 | 84779510 | 16833049 |\n813: | Massachusetts | 156520223 | 12377907 | 142838974 | 112478184 | 28737417 |\n814: | Michigan | 108565033 | 8652149 | 99111383 | 78581982 | 18935176 |\n815: | Minnesota | 122269773 | 13313453 | 107662979 | 92900224 | 14075107 |\n816: | Mississippi | 15189910 | 808678 | 14076644 | 10284705 | 3657506 |\n817: | Missouri | 93231884 | 6614427 | 85756790 | 71597330 | 12686664 |\n818: | Montana | 10688526 | 250642 | 10377718 | 6959985 | 3290241 |\n819: | Nebraska | 43963441 | 20323913 | 23391705 | 17423705 | 4607999 |\n820: | Nevada | 38034564 | 1781376 | 35379215 | 19028015 | 11804562 |\n821: | New Hampshire | 17032034 | 608318 | 15844484 | 10688371 | 4499167 |\n822: | New Jersey | 183225841 | 28514672 | 151115815 | 117945149 | 31323647 |\n823: | New Mexico | 12851255 | 233919 | 12479874 | 9106526 | 3253053 |\n824: | New York | 384447300 | 37420654 | 341601296 | 258494864 | 78198978 |\n825: | North Carolina | 125034536 | 11262992 | 112417994 | 89773634 | 21696420 |\n826: | North Dakota | 9748917 | 630325 | 8995083 | 6293717 | 2608718 |\n827: | Ohio | 207340271 | 18271798 | 181448480 | 158335715 | 21384238 |\n828: | Oklahoma | 39273941 | 4167769 | 31059278 | 22868344 | 7144520 |\n829: \n830: See footnotes at end of table.\n831: \n832: FEDERAL FISCAL OPERATIONS\n833: \n834: 23\n835: \n836: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2024, continued\n837: \n838: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n839: \n840: | State or area > Unnamed: 0_level_1 | Total Internal Revenue collections 1 (1) > Unnamed: 1_level_1 | Business income taxes 2 (2) > Unnamed: 2_level_1 | Individual income tax, employment taxes, and estate and trust income tax > Total (3) | Individual income tax, employment taxes, and estate and trust income tax > Individual income tax withheld and FICA tax 3 (4) | Individual income tax, employment taxes, and estate and trust income tax > Individual income tax payments and SECA tax 3 (5) |\n841: | --- | --- | --- | --- | --- | --- |\n842: | Oregon | 41976824 | 2634258 | 38787346 | 28999747 | 9520696 |\n843: | Pennsylvania | 179329991 | 17960332 | 158041380 | 126019924 | 29704273 |\n844: | Rhode Island | 18933872 | 2544213 | 16334751 | 13680706 | 2510718 |\n845: | South Carolina | 39877104 | 1706150 | 37684195 | 25854814 | 11445219 |\n846: | South Dakota | 12770286 | 341392 | 12348693 | 6438623 | 2921766 |\n847: | Tennessee | 100928664 | 8481506 | 89798314 | 69190650 | 19428088 |\n848: | Texas | 417434723 | 30703191 | 361705477 | 266237864 | 86471408 |\n849: | Utah | 38295614 | 1874470 | 35938699 | 27017942 | 8648759 |\n\n(Showing lines 800-849 of 3325. Use offset=850 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 48250,
+        "completion_tokens": 84,
+        "cached_tokens": 10096,
+        "cost_usd": 0.01187748,
+        "extra": {
+          "reasoning_tokens": 23
+        }
+      }
+    },
+    {
+      "step_id": 27,
+      "timestamp": "2026-03-31T19:31:51.326000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_e71935d127884a769ae94428",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2024_12.txt",
+            "limit": 50,
+            "offset": 750
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_e71935d127884a769ae94428",
+            "content": "<path>/app/corpus/treasury_bulletin_2024_12.txt</path>\n<type>file</type>\n<content>750: | Department of State | 37503 | -1062 | 576 | 37017.0 | 33550 | -1163 | 609 | 32997.0 |\n751: | Department of Transportation | 28737 | -37 | 88690 | 117389.0 | 31689 | -187 | 78021 | 109523.0 |\n752: | Department of the Treasury: | nan | nan | nan | nan | nan | nan | nan | nan |\n753: | Interest on Treasury Debt Securities (Gross) | 1133037 | - | - | 1133037.0 | 879307 | - | - | 879307.0 |\n754: | Other | 184132 | -808 | 491 | 183816.0 | 224928 | 2667 | 48 | 227644.0 |\n755: | Department of Veterans Affairs | 329211 | -4481 | 274 | 325004.0 | 305423 | -4686 | 289 | 301026.0 |\n756: | Corps of Engineers | 8833 | -197 | 2709 | 11345.0 | 6956 | -159 | 1008 | 7806.0 |\n757: | Other defense civil programs | 161377 | -15951 | -79206 | 66220.0 | 130753 | -16161 | -45664 | 68928.0 |\n758: | Environmental Protection Agency | 12218 | -91 | 1572 | 13699.0 | 12323 | -48 | 311 | 12586.0 |\n759: | Executive Office of the President | 599 | * | 7 | 607.0 | 534 | -1 | 10 | 543.0 |\n760: | General Services Administration | 145 | -389 | - | -244.0 | 173 | -873 | - | -700.0 |\n761: | International Assistance Program | 38929 | 242 | -3377 | 35794.0 | 48864 | 197 | -13010 | 36050.0 |\n762: | National Aeronautics and Space Administration | 25003 | 11 | 1 | 25015.0 | 25279 | 37 | 3 | 25319.0 |\n763: | National Science Foundation | 9257 | 151 | -16 | 9392.0 | 8824 | 149 | -22 | 8951.0 |\n764: | Office of Personnel Management | 68511 | 3229 | 54433 | 126173.0 | 64513 | 3779 | 54216 | 122508.0 |\n765: | Small Business Administration | 33250 | -54 | - | 33197.0 | 26094 | -23 | - | 26072.0 |\n766: | Social Security Administration | 112582 | 6 | 1407146 | 1519734.0 | 112822 | -12 | 1303517 | 1416328.0 |\n767: | Independent Agencies | 21567 | 51441 | 4785 | 77793.0 | 22166 | 106317 | 6137 | 134620.0 |\n768: | Undistributed offsetting receipts: | nan | nan | nan | nan | nan | nan | nan | nan |\n769: | Interest | - | - | -183823 | -183823.0 | - | - | -169144 | -169144.0 |\n770: | Other | -5337 | -12522 | -128891 | -146749.0 | -5993 | -10974 | -114967 | -131934.0 |\n771: | Total Outlays | 5131496 | 52865 | 1566124 | 6750485.0 | 4473415 | 154934 | 1505905 | 6134526.0 |\n772: | (On-Budget) | 5131225 | 49252 | 249697 | 5430174.0 | 4473415 | 149437 | 290573 | 4913425.0 |\n773: | (Off-Budget) | 271 | 3613 | 1316427 | 1320311.0 | 272 | 5497 | 1215332 | 1221100.0 |\n774: | Surplus (+) or Deficit (-) | nan | nan | nan | nan | nan | nan | nan | nan |\n775: | (On-Budget) | -2050825 | 5280 | 213164 | -1832381.0 | -1782800 | -95047 | 182608 | -1695240.0 |\n776: | (Off-Budget) | -2050554 | 8893 | 269709 | -1771952.0 | -1782529 | -89550 | 204184 | -1667895.0 |\n777: | (Off-Budget) | -271 | -3613 | -56545 | -60429.0 | -272 | -5497 | -21577 | -27345.0 |\n778: \n779: - No Transactions * Less than $500,000\n780: \n781: Note.\u2014Detail may not add to totals due to rounding\n782: \n783: 22\n784: \n785: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2024\n786: \n787: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n788: \n789: | State or area | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual income tax withheld and FICA tax 3 (4) | Individual income tax payments and SECA tax 3 (5) |\n790: | --- | --- | --- | --- | --- | --- |\n791: | United States, total | 5100489478 | 565085519 | 4424588345 | 3350927585 | 999781367 |\n792: | Alabama | 37658414 | 2081718 | 34947660 | 25952146 | 8475467 |\n793: | Alaska | 7275928 | 156252 | 7021516 | 5093069 | 1651215 |\n794: | Arizona | 78552869 | 7451650 | 68924696 | 50737180 | 17558534 |\n795: | Arkansas | 42184263 | 4450221 | 36862036 | 30407132 | 6128497 |\n796: | California | 805650731 | 153995601 | 637416159 | 448065860 | 182865107 |\n797: | Colorado | 86744001 | 5804163 | 79832194 | 59315612 | 19763062 |\n798: | Connecticut | 69406258 | 10294537 | 58186374 | 40347346 | 16807484 |\n799: | Delaware | 20531131 | 4048194 | 15897983 | 11530600 | 2078132 |\n\n(Showing lines 750-799 of 3325. Use offset=800 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49739,
+        "completion_tokens": 138,
+        "cached_tokens": 48320,
+        "cost_usd": 0.0021333,
+        "extra": {
+          "reasoning_tokens": 77
+        }
+      }
+    },
+    {
+      "step_id": 28,
+      "timestamp": "2026-03-31T19:31:58.105000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Now I need FY 2015 data. Let me look for it:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_b4ea99a665714f3fbc9c0aba",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2016_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*\\d{8,}"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_b4ea99a665714f3fbc9c0aba",
+            "content": "Found 3 matches\n/app/corpus/treasury_bulletin_2016_12.txt:\n  Line 863: | New York | 265989543 | 28810484 | 232171654 | 173208393 | 55712922 |\n  Line 1091: | New York, NY | 21001.0 | 313204881.41 | Westhope, ND | 33419.0 | 11670.8 |\n  Line 1093: | New York/Newark Area, NJ | 24601.0 | 5343563930.9 | Carbury, ND | 33421.0 | 6535.8 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 51507,
+        "completion_tokens": 143,
+        "cached_tokens": 10096,
+        "cost_usd": 0.01297338,
+        "extra": {
+          "reasoning_tokens": 63
+        }
+      }
+    },
+    {
+      "step_id": 29,
+      "timestamp": "2026-03-31T19:32:06.595000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_3aab4cdf0ad546888452acd2",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2016_12.txt",
+            "limit": 50,
+            "offset": 820
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_3aab4cdf0ad546888452acd2",
+            "content": "<path>/app/corpus/treasury_bulletin_2016_12.txt</path>\n<type>file</type>\n<content>820: FEDERAL FISCAL OPERATIONS\n821: \n822: 19\n823: \n824: TABLE FF0-5\u2014Internal Revenue Receipts by State, 2016\n825: \n826: [In thousands of dollars. Source: Chief Financial Officer, Financial Management]\n827: \n828: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n829: | --- | --- | --- | --- | --- | --- |\n830: | United States, total 4 | 3333449083 | 345552427 | 2889726850 | 2267921604 | 577728172 |\n831: | Alabama | 25769798 | 1571713 | 23701732 | 18668398 | 4822703 |\n832: | Alaska | 5585614 | 187371 | 5320151 | 3952383 | 1292043 |\n833: | Arizona | 42036980 | 2563871 | 37748900 | 28700261 | 8454187 |\n834: | Arkansas | 32041729 | 6346477 | 24855286 | 21404551 | 3175202 |\n835: | California | 422679255 | 48416393 | 365225572 | 271091555 | 89631845 |\n836: | Colorado | 54750471 | 3595318 | 50033279 | 38426037 | 11226106 |\n837: | Connecticut | 62910820 | 11877254 | 49258145 | 37055737 | 11394471 |\n838: | Delaware | 19970924 | 4111383 | 15540053 | 13031874 | 1217169 |\n839: | District of Columbia | 27255713 | 2251996 | 24909535 | 21875893 | 2433654 |\n840: | Florida | 188417969 | 11773302 | 172450572 | 123546111 | 45487666 |\n841: | Georgia | 90808049 | 12567697 | 74344840 | 61052717 | 12625381 |\n842: | Hawaii | 8811882 | 581689 | 7864419 | 5816880 | 1957572 |\n843: | Idaho | 10083241 | 278643 | 9710649 | 7500331 | 2097055 |\n844: | Illinois | 161938790 | 19034595 | 138434275 | 110274246 | 24858102 |\n845: | Indiana | 57138639 | 4245518 | 51035537 | 43151482 | 7485387 |\n846: | Iowa | 23946703 | 1540230 | 22025777 | 17709384 | 4177922 |\n847: | Kansas | 25291646 | 1283159 | 22315786 | 17270628 | 4532168 |\n848: | Kentucky | 34250551 | 2482345 | 30386590 | 25993780 | 4149460 |\n849: | Louisiana | 41543677 | 1239175 | 39746817 | 33466949 | 6052664 |\n850: | Maine | 7851996 | 393879 | 7232445 | 5694187 | 1458058 |\n851: | Maryland | 67700772 | 4040984 | 62904457 | 51727786 | 10478858 |\n852: | Massachusetts | 108818811 | 8117082 | 98880648 | 78299858 | 19479258 |\n853: | Michigan | 81235365 | 6539155 | 73520578 | 59996257 | 12807216 |\n854: | Minnesota | 103696439 | 19774489 | 80723820 | 70641452 | 9555407 |\n855: | Mississippi | 12585739 | 659542 | 11657976 | 9157650 | 2413021 |\n856: | Missouri | 66485775 | 9975985 | 54754718 | 46021398 | 7973483 |\n857: | Montana | 5972785 | 181396 | 5738218 | 4025817 | 1625938 |\n858: | Nebraska | 25179346 | 6722660 | 18243763 | 14027343 | 2875052 |\n859: | Nevada | 19911272 | 767939 | 18734870 | 11652634 | 5796265 |\n860: | New Hampshire | 11477991 | 236307 | 10917982 | 8312416 | 2297337 |\n861: | New Jersey | 143011905 | 25566668 | 114953108 | 93635822 | 19883839 |\n862: | New Mexico | 8738963 | 200103 | 8390557 | 6376023 | 1956246 |\n863: | New York | 265989543 | 28810484 | 232171654 | 173208393 | 55712922 |\n864: | North Carolina | 83714348 | 10574820 | 72377782 | 59927664 | 11894670 |\n865: | North Dakota | 6925658 | 285640 | 6534589 | 4720875 | 1775994 |\n866: | Ohio | 141113704 | 11673464 | 124675836 | 109550088 | 13687372 |\n867: | Oklahoma | 27953499 | 1379289 | 22768650 | 17148147 | 4909320 |\n868: \n869: See footnotes at end of table.\n\n(Showing lines 820-869 of 3430. Use offset=870 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 51811,
+        "completion_tokens": 93,
+        "cached_tokens": 1856,
+        "cost_usd": 0.01519218,
+        "extra": {
+          "reasoning_tokens": 32
+        }
+      }
+    },
+    {
+      "step_id": 30,
+      "timestamp": "2026-03-31T19:32:19.205000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_bb8e1e377a4142b5b0e5c68d",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2015_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*\\d{8,}"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_bb8e1e377a4142b5b0e5c68d",
+            "content": "Found 3 matches\n/app/corpus/treasury_bulletin_2015_12.txt:\n  Line 873: | New York | 269716999 | 30839677 | 233878379 | 171803055 | 57806300 |\n  Line 1094: | New York, NY | 21001.0 | 368863667.2 | Hansboro, ND | 33415.0 | 4934.75 |\n  Line 1096: | New York/Newark Area, NJ | 24601.0 | 5755843735.68 | Fortuna, ND | 33417.0 | 23745.9 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 53268,
+        "completion_tokens": 143,
+        "cached_tokens": 47616,
+        "cost_usd": 0.00338928,
+        "extra": {
+          "reasoning_tokens": 78
+        }
+      }
+    },
+    {
+      "step_id": 31,
+      "timestamp": "2026-03-31T19:32:32.050000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_4ba6f4fd29fd4669b2dd6c52",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2015_12.txt",
+            "limit": 50,
+            "offset": 825
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_4ba6f4fd29fd4669b2dd6c52",
+            "content": "<path>/app/corpus/treasury_bulletin_2015_12.txt</path>\n<type>file</type>\n<content>825: \n826: December 2015\n827: \n828: FEDERAL FISCAL OPERATIONS\n829: \n830: 19\n831: \n832: TABLE FFO-5\u2014Internal Revenue Receipts by State, 2015\n833: \n834: (In thousands of dollars. Source: Chief Financial Officer, Financial Management\n835: \n836: Individual income taxes, employment taxes, and estate and trust income taxes\n837: \n838: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n839: | --- | --- | --- | --- | --- | --- |\n840: | United States, total 4 | 3302677258 | 389888722 | 2815544615 | 2183608978 | 582949874 |\n841: | Alabama | 25070261 | 1465831 | 23160484 | 18254070 | 4687971 |\n842: | Alaska | 5717640 | 194313 | 5462605 | 4079050 | 1294019 |\n843: | Arizona | 42631316 | 3862387 | 37047410 | 28437845 | 8149122 |\n844: | Arkansas | 32508761 | 7657274 | 23959297 | 20091810 | 3487562 |\n845: | California | 405851295 | 51290979 | 345830143 | 253600502 | 87889418 |\n846: | Colorado | 47210720 | -2051855 | 48125613 | 36546996 | 11092991 |\n847: | Connecticut | 59174581 | 8304111 | 49189122 | 35091938 | 13052649 |\n848: | Delaware | 22640853 | 9118702 | 13196278 | 11021260 | 1137079 |\n849: | District of Columbia | 25583750 | 4285021 | 21229350 | 18229702 | 2413906 |\n850: | Florida | 177389488 | 10623903 | 163199338 | 116059240 | 43558308 |\n851: | Georgia | 86446602 | 12764920 | 70052525 | 56932220 | 12480551 |\n852: | Hawaii | 8221290 | 476171 | 7468136 | 5501597 | 1875437 |\n853: | Idaho | 9785027 | 268962 | 9389727 | 7250674 | 2023777 |\n854: | Illinois | 158042273 | 20370821 | 132643232 | 104160944 | 24771174 |\n855: | Indiana | 57972825 | 4891553 | 50811098 | 42981848 | 7317638 |\n856: | Iowa | 23969391 | 1965929 | 21556743 | 17039680 | 4384706 |\n857: | Kansas | 27019291 | 1965250 | 23284508 | 17528322 | 5319926 |\n858: | Kentucky | 32708391 | 2629863 | 28811348 | 24164759 | 4337573 |\n859: | Louisiana | 42628150 | 1107876 | 40681260 | 33531985 | 6865820 |\n860: | Maine | 7464280 | 305706 | 6947573 | 5400186 | 1448181 |\n861: | Maryland | 63936798 | 3616792 | 59638796 | 48468009 | 10452921 |\n862: | Massachusetts | 108049205 | 8786713 | 97226545 | 75455947 | 20350265 |\n863: | Michigan | 77948414 | 6312321 | 70295550 | 56717948 | 12738754 |\n864: | Minnesota | 106927808 | 24329664 | 79347688 | 69141751 | 9573866 |\n865: | Mississippi | 11468660 | 747840 | 10507791 | 7974384 | 2434395 |\n866: | Missouri | 64112504 | 8473144 | 54101726 | 45172090 | 8017083 |\n867: | Montana | 5805098 | 214131 | 5538068 | 3755432 | 1707125 |\n868: | Nebraska | 25103770 | 6870025 | 18026855 | 13212728 | 3317614 |\n869: | Nevada | 18450072 | 867208 | 17264613 | 10660826 | 5243614 |\n870: | New Hampshire | 11314985 | 296413 | 10749228 | 8017216 | 2410430 |\n871: | New Jersey | 153917572 | 36256100 | 114834184 | 93307132 | 20210034 |\n872: | New Mexico | 8969666 | 248014 | 8519028 | 6294578 | 2131010 |\n873: | New York | 269716999 | 30839677 | 233878379 | 171803055 | 57806300 |\n874: | North Carolina | 78736401 | 10807290 | 67278363 | 55372577 | 11123355 |\n\n(Showing lines 825-874 of 3399. Use offset=875 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 53572,
+        "completion_tokens": 141,
+        "cached_tokens": 53408,
+        "cost_usd": 0.00191664,
+        "extra": {
+          "reasoning_tokens": 80
+        }
+      }
+    },
+    {
+      "step_id": 32,
+      "timestamp": "2026-03-31T19:32:41.295000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_44e192e6c3b64aa7944c5260",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2011_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*\\d{8,}"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_44e192e6c3b64aa7944c5260",
+            "content": "Found 2 matches\n/app/corpus/treasury_bulletin_2011_12.txt:\n  Line 894: | New York | 202149306 | 21463187 | 178286613 | 140226446 | 35949363 |\n  Line 1058: | Bridgewater, ME | 10127.0 | 20664.88 | New York, NY | 21001.0 | 830971490.27 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 55007,
+        "completion_tokens": 114,
+        "cached_tokens": 53712,
+        "cost_usd": 0.00219546,
+        "extra": {
+          "reasoning_tokens": 49
+        }
+      }
+    },
+    {
+      "step_id": 33,
+      "timestamp": "2026-03-31T19:32:55.141000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_a2dcdcb6bc42460299cbf457",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2011_12.txt",
+            "limit": 50,
+            "offset": 850
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_a2dcdcb6bc42460299cbf457",
+            "content": "<path>/app/corpus/treasury_bulletin_2011_12.txt</path>\n<type>file</type>\n<content>850: \n851: FEDERAL FISCAL OPERATIONS\n852: \n853: 19\n854: \n855: TABLE FFO-5.\u2014Internal Revenue Receipts by State, 2011\n856: \n857: [In thousands of dollars. Source: Chief Financial Officer, Revenue Financial Management OS:CFO:R]\n858: \n859: | State | Total Internal Revenue collections 1 (1) | Business income taxes 2 (2) | Total (3) | Individual Income taxes withheld and FICA taxes 3 (4) | Individual income taxes not withheld and SECA taxes 3 (5) |\n860: | --- | --- | --- | --- | --- | --- |\n861: | United States, total 5 | 2414952113 | 242848122 | 2113687051 | 1722260982 | 364818756 |\n862: | Alabama | 20394671 | 979201 | 19221725 | 15527971 | 3554591 |\n863: | Alaska | 4860572 | 219033 | 4583557 | 3566740 | 947038 |\n864: | Arizona | 32920415 | 1836127 | 29812625 | 24514496 | 5063120 |\n865: | Arkansas | 26326077 | 5259228 | 19553291 | 17171493 | 2131052 |\n866: | California | 281227298 | 35086915 | 241301492 | 186549105 | 52787590 |\n867: | Colorado | 40328519 | 3625590 | 35433010 | 28441355 | 6780908 |\n868: | Connecticut | 45561956 | 4471855 | 40117676 | 30716783 | 8396693 |\n869: | Delaware | 21088276 | 7577762 | 13246722 | 11256537 | 793748 |\n870: | District of Columbia | 19619128 | 442343 | 19133638 | 16913518 | 1793437 |\n871: | Florida | 116758697 | 5638216 | 109627416 | 82775515 | 25146506 |\n872: | Georgia | 60601096 | 6030220 | 51916589 | 44019139 | 7506175 |\n873: | Hawaii | 6127725 | 365380 | 5610788 | 4305223 | 1240301 |\n874: | Idaho | 6345865 | 286609 | 6004060 | 4717916 | 1223668 |\n875: | Illinois | 119116442 | 15106615 | 100881276 | 82459483 | 16723892 |\n876: | Indiana | 43886554 | 2793470 | 40389485 | 35274373 | 4867542 |\n877: | Iowa | 17805295 | 1325364 | 16314416 | 13404560 | 2813928 |\n878: | Kansas | 19758229 | 1438465 | 17166592 | 13626306 | 3124498 |\n879: | Kentucky | 24451664 | 1849020 | 22350286 | 19285204 | 2873279 |\n880: | Louisiana | 35888004 | 1541069 | 33967154 | 28829166 | 4948627 |\n881: | Maine | 6153147 | 408867 | 5590148 | 4473460 | 1054335 |\n882: | Maryland | 49083255 | 3128766 | 45659933 | 37887162 | 7303873 |\n883: | Massachusetts | 77218196 | 6006072 | 70215693 | 56987035 | 12526392 |\n884: | Michigan | 55625833 | 3485347 | 51901912 | 43828098 | 7486292 |\n885: | Minnesota | 72676800 | 11386276 | 60641041 | 54056050 | 6153890 |\n886: | Mississippi | 9183541 | 538662 | 8406669 | 6565453 | 1778053 |\n887: | Missouri | 46794981 | 5214958 | 40433278 | 34842178 | 5104358 |\n888: | Montana | 4197002 | 159792 | 3978688 | 2872641 | 1054754 |\n889: | Nebraska | 15664192 | 2697893 | 12899190 | 9782314 | 2052485 |\n890: | Nevada | 13032725 | 559943 | 12137660 | 8661135 | 3158205 |\n891: | New Hampshire | 8702370 | 335589 | 8221439 | 6550617 | 1595058 |\n892: | New Jersey | 112103329 | 16657494 | 93468097 | 79445339 | 13215670 |\n893: | New Mexico | 8039313 | 143804 | 7751692 | 5864434 | 1575214 |\n894: | New York | 202149306 | 21463187 | 178286613 | 140226446 | 35949363 |\n895: | North Carolina | 56809844 | 4983577 | 51530201 | 44262512 | 6924650 |\n896: | North Dakota | 4917384 | 243707 | 4594906 | 3291220 | 1276009 |\n897: | Ohio | 112069407 | 9548173 | 99581044 | 89911545 | 8865148 |\n898: | Oklahoma | 24400086 | 3118775 | 18441981 | 14069311 | 3822869 |\n899: \n\n(Showing lines 850-899 of 5598. Use offset=900 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 55236,
+        "completion_tokens": 82,
+        "cached_tokens": 55120,
+        "cost_usd": 0.001812,
+        "extra": {
+          "reasoning_tokens": 21
+        }
+      }
+    },
+    {
+      "step_id": 34,
+      "timestamp": "2026-03-31T19:33:00.330000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_f5de61e209474403bb9ec3fd",
+          "function_name": "grep",
+          "arguments": {
+            "include": "treasury_bulletin_2010_12.txt",
+            "path": "/app/corpus",
+            "pattern": "New York.*\\d{8,}"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_f5de61e209474403bb9ec3fd",
+            "content": "Found 2 matches\n/app/corpus/treasury_bulletin_2010_12.txt:\n  Line 945: | New York | 200209720 | 22735905 | 174267918 | 140714027 | 31412611 |\n  Line 1114: | Portsmouth, NH | 10131.0 | 1582760.51 | New York, NY | 21001.0 | 774138117.18 |"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 56677,
+        "completion_tokens": 113,
+        "cached_tokens": 49872,
+        "cost_usd": 0.00373086,
+        "extra": {
+          "reasoning_tokens": 48
+        }
+      }
+    },
+    {
+      "step_id": 35,
+      "timestamp": "2026-03-31T19:33:06.227000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Now I have the data I need. Let me calculate the CAGR and the percentage difference:",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_2f112b63d355454d82339d36",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"\n# Values in thousands of dollars\nfy2010 = 200209720\nfy2015 = 269716999\nfy2024_actual = 384447300\n\n# Calculate CAGR from FY 2010 to FY 2015 (5 years)\nn = 5\ncagr = (fy2015 / fy2010) ** (1/n) - 1\nprint(f'CAGR (2010-2015): {cagr:.6f} ({cagr*100:.4f}%)')\n\n# Project FY 2024 using CAGR from FY 2015\n# FY 2015 to FY 2024 is 9 years\nyears = 9\nfy2024_projected = fy2015 * ((1 + cagr) ** years)\nprint(f'FY 2024 Projected: {fy2024_projected:,.0f} thousand dollars')\nprint(f'FY 2024 Actual: {fy2024_actual:,.0f} thousand dollars')\n\n# Calculate percentage difference relative to actual\n# (Projected - Actual) / Actual * 100\npct_diff = (fy2024_projected - fy2024_actual) / fy2024_actual * 100\nprint(f'Percentage difference: {pct_diff:.2f}%')\n\n# Round to nearest hundredths place\nprint(f'Rounded: {round(pct_diff, 2)}%')\n\"",
+            "description": "Calculate CAGR and percentage difference"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_2f112b63d355454d82339d36",
+            "content": "CAGR (2010-2015): 0.061414 (6.1414%)\nFY 2024 Projected: 461,179,515 thousand dollars\nFY 2024 Actual: 384,447,300 thousand dollars\nPercentage difference: 19.96%\nRounded: 19.96%\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 56905,
+        "completion_tokens": 633,
+        "cached_tokens": 10096,
+        "cost_usd": 0.01543158,
+        "extra": {
+          "reasoning_tokens": 272
+        }
+      }
+    },
+    {
+      "step_id": 36,
+      "timestamp": "2026-03-31T19:33:36.304000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_860e0493c6714c45a77d9bce",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/name.txt",
+            "content": "Archivist"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_860e0493c6714c45a77d9bce",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 57620,
+        "completion_tokens": 162,
+        "cached_tokens": 10096,
+        "cost_usd": 0.01490208,
+        "extra": {
+          "reasoning_tokens": 123
+        }
+      }
+    },
+    {
+      "step_id": 37,
+      "timestamp": "2026-03-31T19:33:42.492000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_e1656a1d4062408e8c26ccd4",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/answer.txt",
+            "content": "19.96"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_e1656a1d4062408e8c26ccd4",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 57804,
+        "completion_tokens": 55,
+        "cached_tokens": 57776,
+        "cost_usd": 0.00182448,
+        "extra": {
+          "reasoning_tokens": 14
+        }
+      }
+    },
+    {
+      "step_id": 38,
+      "timestamp": "2026-03-31T19:33:57.616000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "call_02d80a597db441f9b5c6f665",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"\n# Verify values from the files (in thousands)\nfy2010 = 200209720\nfy2015 = 269716999\nfy2024_actual = 384447300\n\n# CAGR from FY 2010 to FY 2015 (5 years)\ncagr = (fy2015 / fy2010) ** (1/5) - 1\nprint(f'CAGR: {cagr*100:.4f}%')\n\n# FY 2015 to FY 2024 is 9 years\nfy2024_projected = fy2015 * ((1 + cagr) ** 9)\nprint(f'Projected: {fy2024_projected:,.0f}')\nprint(f'Actual: {fy2024_actual:,.0f}')\n\n# Percentage difference relative to actual\npct_diff = ((fy2024_projected - fy2024_actual) / fy2024_actual) * 100\nprint(f'Pct diff: {pct_diff:.2f}')\n\"",
+            "description": "Verify calculations"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "call_02d80a597db441f9b5c6f665",
+            "content": "CAGR: 6.1414%\nProjected: 461,179,515\nActual: 384,447,300\nPct diff: 19.96\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 57881,
+        "completion_tokens": 515,
+        "cached_tokens": 51648,
+        "cost_usd": 0.00434934,
+        "extra": {
+          "reasoning_tokens": 260
+        }
+      }
+    },
+    {
+      "step_id": 39,
+      "timestamp": "2026-03-31T19:34:27.365000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/minimax/minimax-m2.5",
+      "message": "Done. I've written:\n- `/app/name.txt`: \"Archivist\" \n- `/app/answer.txt`: 19.96\n\nThe calculation:\n- FY 2010 NY collections: $200,209,720,000\n- FY 2015 NY collections: $269,716,999,000  \n- FY 2024 actual NY collections: $384,447,300,000\n- CAGR (FY 2010-2015): 6.14%\n- FY 2024 projected (using CAGR): $461,179,515,000\n- Percentage difference: (461,179,515 - 384,447,300) / 384,447,300 \u00d7 100 = **19.96%**",
+      "metrics": {
+        "prompt_tokens": 58449,
+        "completion_tokens": 318,
+        "cached_tokens": 10096,
+        "cost_usd": 0.01538598,
+        "extra": {
+          "reasoning_tokens": 163
+        }
+      }
+    }
+  ],
+  "final_metrics": {
+    "total_prompt_tokens": 1673165,
+    "total_completion_tokens": 5338,
+    "total_cached_tokens": 1048992,
+    "total_cost_usd": 0.22799766000000002,
+    "total_steps": 39
+  }
+}

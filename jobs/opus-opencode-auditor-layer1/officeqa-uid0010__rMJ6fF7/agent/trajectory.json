@@ -1,0 +1,815 @@
+{
+  "schema_version": "ATIF-v1.6",
+  "session_id": "ses_2c38356d2ffey4UyNtULUbWoIq",
+  "agent": {
+    "name": "opencode",
+    "version": "1.3.6",
+    "model_name": "openrouter/anthropic/claude-opus-4-6"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-03-30T02:04:58.601000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "\n\nI'll start by breaking down this problem and searching for the relevant data.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_019JnVDhRtaKw8mKJh4uBKK6",
+          "function_name": "todowrite",
+          "arguments": {
+            "todos": [
+              {
+                "content": "Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins",
+                "status": "in_progress",
+                "priority": "high"
+              },
+              {
+                "content": "Get USD/JPY exchange rate for March 31, 2025 from Macrotrends",
+                "status": "pending",
+                "priority": "high"
+              },
+              {
+                "content": "Convert USD amount to JPY and write answer",
+                "status": "pending",
+                "priority": "high"
+              }
+            ]
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_019JnVDhRtaKw8mKJh4uBKK6",
+            "content": "[\n  {\n    \"content\": \"Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins\",\n    \"status\": \"in_progress\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Get USD/JPY exchange rate for March 31, 2025 from Macrotrends\",\n    \"status\": \"pending\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Convert USD amount to JPY and write answer\",\n    \"status\": \"pending\",\n    \"priority\": \"high\"\n  }\n]"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 11967,
+        "completion_tokens": 189,
+        "cached_tokens": 10686
+      }
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-03-30T02:05:03.600000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01Ha8GDRn2ebwrt3kYnqkrth",
+          "function_name": "bash",
+          "arguments": {
+            "command": "ls /app/corpus/ | tail -20",
+            "description": "List recent treasury bulletin files"
+          }
+        },
+        {
+          "tool_call_id": "toolu_bdrk_01SesP4572EBYAvbGteNaisY",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "Japanese Yen|JAPANESE YEN|japanese yen",
+            "path": "/app/corpus",
+            "include": "*2025*"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01Ha8GDRn2ebwrt3kYnqkrth",
+            "content": "treasury_bulletin_2020_12.txt\ntreasury_bulletin_2021_03.txt\ntreasury_bulletin_2021_06.txt\ntreasury_bulletin_2021_09.txt\ntreasury_bulletin_2021_12.txt\ntreasury_bulletin_2022_03.txt\ntreasury_bulletin_2022_06.txt\ntreasury_bulletin_2022_09.txt\ntreasury_bulletin_2022_12.txt\ntreasury_bulletin_2023_03.txt\ntreasury_bulletin_2023_06.txt\ntreasury_bulletin_2023_09.txt\ntreasury_bulletin_2023_12.txt\ntreasury_bulletin_2024_03.txt\ntreasury_bulletin_2024_06.txt\ntreasury_bulletin_2024_09.txt\ntreasury_bulletin_2024_12.txt\ntreasury_bulletin_2025_03.txt\ntreasury_bulletin_2025_06.txt\ntreasury_bulletin_2025_09.txt\n"
+          },
+          {
+            "source_call_id": "toolu_bdrk_01SesP4572EBYAvbGteNaisY",
+            "content": "Found 8 matches\n/app/corpus/treasury_bulletin_2025_03.txt:\n  Line 87: | SECTION II\u2014Japanese Yen Positions | nan |\n  Line 2017: SECTION II\u2014Japanese Yen Positions\n  Line 2055: SECTION II\u2014Japanese Yen Positions, continued\n\n/app/corpus/treasury_bulletin_2025_06.txt:\n  Line 88: | SECTION II\u2014Japanese Yen Positions | nan |\n  Line 1934: SECTION II\u2014Japanese Yen Positions\n\n/app/corpus/treasury_bulletin_2025_09.txt:\n  Line 80: | SECTION II\u2014Japanese Yen Positions | nan |\n  Line 1945: SECTION II\u2014Japanese Yen Positions TABLE FCP-II-1\u2014Weekly Report of Major Market Participants\n  Line 1951: SECTION II\u2014Japanese Yen Positions, continued"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 12314,
+        "completion_tokens": 167,
+        "cached_tokens": 11964
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-03-30T02:05:07.252000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "Let me search for the specific \"Foreign Exchange and Securities\" investment data in the 2025 bulletins, checking both the March 2025 bulletin and later ones for revisions.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01Caep3iHi8GpbEM8Sov1CGK",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "Foreign Exchange|foreign exchange|FOREIGN EXCHANGE",
+            "path": "/app/corpus",
+            "include": "*2025*"
+          }
+        },
+        {
+          "tool_call_id": "toolu_bdrk_01XVkjS9jEhsbTiSz8VF3Jes",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "Japanese Yen|japanese yen|JAPANESE YEN",
+            "path": "/app/corpus",
+            "include": "*2024*"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01Caep3iHi8GpbEM8Sov1CGK",
+            "content": "Found 16 matches\n/app/corpus/treasury_bulletin_2025_03.txt:\n  Line 1919: The \"Treasury Bulletin\" reports foreign currency holdings of large foreign exchange market participants. These reports provide information on positions in derivative instruments, such as foreign exchange futures and options that are increasingly used in establishing foreign exchange positions but were not covered in the old reports.\n  Line 1921: The information is based on reports of large foreign exchange market participants on holdings of five major foreign currencies (Canadian dollar, Japanese yen, Swiss franc, pound sterling, and euro) and the U.S. dollar. Positions in the U.S. dollar, which have been collected since January 1999, are intended to approximate \"all other\" currency positions of reporting institutions. U.S.-based businesses file a consolidated report for their domestic and foreign subsidiaries, branches, and agencies. U.S. subsidiaries of foreign entities file only for themselves, not for their foreign parents. Filing is required by law (31 United States Code 5315; 31 Code of Federal Regulations 128, Subpart C).\n  Line 1923: Weekly and monthly reports must be filed throughout the calendar year by major foreign exchange market participants, which are defined as market participants with more than $50 billion equivalent in foreign exchange contracts on the last business day of any calendar quarter during the previous year (end March, June, September, or December). Such contracts include the amounts of foreign exchange spot contracts bought and sold, foreign exchange forward contracts bought and sold, foreign exchange futures bought and sold, and one half the notional amount of foreign exchange options bought and sold.\n  Line 1925: A quarterly report must be filed throughout the calendar year by each foreign exchange market participant that had more than $5 billion equivalent in foreign exchange contracts on the last business day of any quarter the previous year (end March, June, September, or December).\n  Line 1929: Principal exchanged under cross-currency interest rate swaps is reported as part of purchases or sales of foreign exchange. Such principal also was noted separately on monthly and quarterly reports through December 1998, when this practice was discontinued. The net options position, or the net delta-equivalent value of an options position, is an estimate of the relationship between an option's value and an equivalent currency hedge. The delta equivalent value is defined as the product of the first partial derivative of an option valuation formula (with respect to the price of the underlying currency) multiplied by the notional principal of the contract.\n  Line 2436: Table ESF-2 shows net cost from operations for the current quarter and year-to-date. Figures are in U.S. dollars computed according to the accrual method. \"Gains+ or loss -- on foreign exchange\" includes both realized and unrealized gains or losses. \"Adjustment for change in valuation of SDR holdings and allocations\" reflects net gain or loss on revaluation of SDR holdings and allocations for the quarter. \"Gains and Losses on Investments in Special Purpose Vehicles and Loans Receivable\" reflects the revaluation of the assets approved in the federal budget. CARES Act related administrative costs incurred in connection with the loans, and other investments are accrued.\n\n/app/corpus/treasury_bulletin_2025_06.txt:\n  Line 1836: The \"Treasury Bulletin\" reports foreign currency holdings of large foreign exchange market participants. These reports provide information on positions in derivative instruments, such as foreign exchange futures and options that are increasingly used in establishing foreign exchange positions but were not covered in the old reports.\n  Line 1838: The information is based on reports of large foreign exchange market participants on holdings of five major foreign currencies (Canadian dollar, Japanese yen, Swiss franc, pound sterling, and euro) and the U.S. dollar. Positions in the U.S. dollar, which have been collected since January 1999, are intended to approximate \"all other\" currency positions of reporting institutions. U.S.-based businesses file a consolidated report for their domestic and foreign subsidiaries, branches, and agencies. U.S. subsidiaries of foreign entities file only for themselves, not for their foreign parents. Filing is required by law (31 United States Code 5315; 31 Code of Federal Regulations 128, Subpart C).\n  Line 1840: Weekly and monthly reports must be filed throughout the calendar year by major foreign exchange market participants, which are defined as market participants with more than $50 billion equivalent in foreign exchange contracts on the last business day of any calendar quarter during the previous year (end March, June, September, or December). Such contracts include the amounts of foreign exchange spot contracts bought and sold, foreign exchange forward contracts bought and sold, foreign exchange futures bought and sold, and one half the notional amount of foreign exchange options bought and sold.\n  Line 1842: A quarterly report must be filed throughout the calendar year by each foreign exchange market participant that had more than $5 billion equivalent in foreign exchange contracts on the last business day of any quarter the previous year (end March, June, September, or December).\n  Line 1846: Principal exchanged under cross-currency interest rate swaps is reported as part of purchases or sales of foreign exchange. Such principal also was noted separately on monthly and quarterly reports through December 1998, when this practice was discontinued. The net options position, or the net delta-equivalent value of an options position, is an estimate of the relationship between an option\u2019s value and an equivalent currency hedge. The delta-equivalent value is defined as the product of the first partial derivative of an option valuation formula (with respect to the price of the underlying currency) multiplied by the notional principal of the contract.\n\n/app/corpus/treasury_bulletin_2025_09.txt:\n  Line 1823: The \"Treasury Bulletin\" reports foreign currency holdings of large foreign exchange market participants. These reports provide information on positions in derivative instruments, such as foreign exchange futures and options that are increasingly used in establishing foreign exchange positions but were not covered in the old reports.\n  Line 1825: The information is based on reports of large foreign exchange market participants on holdings of five major foreign currencies (Canadian dollar, Japanese yen, Swiss franc, pound sterling, and euro) and the U.S. dollar. Positions in the U.S. dollar, which have been collected since January 1999, are intended to approximate \u201call other\u201d currency positions of reporting institutions. U.S.-based businesses file a consolidated report for their domestic and foreign subsidiaries, branches, and agencies. U.S. subsidiaries of foreign entities file only for themselves, not for their foreign parents. Filing is required by law (31 United States Code 5315; 31 Code of Federal Regulations 128, Subpart C).\n  Line 1827: Weekly and monthly reports must be filed throughout the calendar year by major foreign exchange market participants, which are defined as market participants with more than $50 billion equivalent in foreign exchange contracts on the last business day of any calendar quarter during the previous year (end March, June, September, or December). Such contracts include the amounts of foreign exchange spot contracts bought and sold, foreign exchange forward contracts bought and sold, foreign exchange futures bought and sold, and one half the notional amount of foreign exchange options bought and sold.\n  Line 1829: A quarterly report must be filed throughout the calendar year by each foreign exchange market participant that had more than $5 billion equivalent in foreign exchange contracts on the last business day of any quarter the previous year (end March, June, September, or December).\n  Line 1833: Principal exchanged under cross-currency interest rate swaps is reported as part of purchases or sales of foreign exchange. Such principal also was noted separately on monthly and quarterly reports through December 1998, when this practice was discontinued. The net options position, or the net delta-equivalent value of an options position, is an estimate of the relationship between an option's value and an equivalent currency hedge. The delta equivalent value is defined as the product of the first partial derivative of an option valuation formula (with respect to the price of the underlying currency) multiplied by the notional principal of the contract."
+          },
+          {
+            "source_call_id": "toolu_bdrk_01XVkjS9jEhsbTiSz8VF3Jes",
+            "content": "Found 12 matches\n/app/corpus/treasury_bulletin_2024_12.txt:\n  Line 97: | SECTION II\u2014Japanese Yen Positions | SECTION II\u2014Japanese Yen Positions |\n  Line 2674: SECTION II\u2014Japanese Yen Positions\n  Line 2711: SECTION II\u2014Japanese Yen Positions, continued\n\n/app/corpus/treasury_bulletin_2024_09.txt:\n  Line 78: SECTION II\u2014Japanese Yen Positions\n  Line 1981: SECTION II\u2014Japanese Yen Positions\n  Line 2018: SECTION II\u2014Japanese Yen Positions, continued\n\n/app/corpus/treasury_bulletin_2024_03.txt:\n  Line 96: | SECTION II\u2014Japanese Yen Positions | nan |\n  Line 1942: SECTION II\u2014Japanese Yen Positions\n  Line 1979: SECTION II\u2014Japanese Yen Positions, continued\n\n/app/corpus/treasury_bulletin_2024_06.txt:\n  Line 126: | SECTION II\u2014Japanese Yen Positions | nan |\n  Line 1919: SECTION II\u2014Japanese Yen Positions\n  Line 1956: SECTION II\u2014Japanese Yen Positions, continued"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 12980,
+        "completion_tokens": 226,
+        "cached_tokens": 12313
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-03-30T02:05:12.107000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "Now let me look for the ESF (Exchange Stabilization Fund) tables which typically contain the \"Foreign Exchange and Securities\" investment data, and specifically the Japanese Yen holdings.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01QavnZdJTbyDoqrSCumT15X",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "ESF|Exchange Stabilization Fund|Stabilization Fund",
+            "path": "/app/corpus",
+            "include": "*2025_03*"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01QavnZdJTbyDoqrSCumT15X",
+            "content": "Found 15 matches\n/app/corpus/treasury_bulletin_2025_03.txt:\n  Line 122: | Introduction\u2014Exchange Stabilization Fund | 65 |\n  Line 123: | ESF-1\u2014Balance Sheet | 66 |\n  Line 124: | ESF-2\u2014Statement of Net Cost | 67 |\n  Line 925: | End of fiscal year or month | Total (1) | Airport and Airway Trust Fund (2) | Deposit Insurance Fund (3) | Employees Life Insurance Fund (4) | Exchange Stabilization Fund (5) | Federal Disability Insurance Trust Fund (6) | Federal employees retirement funds (7) | Federal Hospital Insurance Trust Fund (8) | Federal Housing Administration (9) |\n  Line 2422: INTRODUCTION: Exchange Stabilization Fund\n  Line 2424: To stabilize the exchange value of the dollar, the Exchange Stabilization Fund (ESF) was established pursuant to chapter 6, section 10 of the Gold Reserve Act of January 30, 1934, codified at 31 United States Code 5302, which authorized establishment of a Treasury fund to be operated under the exclusive control of the Secretary, with approval of the President.\n  Line 2428: Section 4027 of H.R. 748, the Coronavirus Aid, Relief, and Economic Security Act (CARES Act), enacted on March 27, 2020, as Pub. Law 116-136, appropriated $500 billion to the ESF. The Consolidated Appropriations Act, 2021, the Infrastructure Investment and Jobs Act, 2021 and the Fiscal Responsibility Act, 2023, subsequently rescinded $479 billion $1.4 billion, and $200 million, respectively, of the $500 billion appropriation provided to Treasury.\n  Line 2432: Table ESF-1 presents the assets, liabilities, and net position of the fund. The figures are in U.S. dollars.\n  Line 2436: Table ESF-2 shows net cost from operations for the current quarter and year-to-date. Figures are in U.S. dollars computed according to the accrual method. \"Gains+ or loss -- on foreign exchange\" includes both realized and unrealized gains or losses. \"Adjustment for change in valuation of SDR holdings and allocations\" reflects net gain or loss on revaluation of SDR holdings and allocations for the quarter. \"Gains and Losses on Investments in Special Purpose Vehicles and Loans Receivable\" reflects the revaluation of the assets approved in the federal budget. CARES Act related administrative costs incurred in connection with the loans, and other investments are accrued.\n  Line 2440: TABLE ESF-1\u2014Balances as of Sept. 30, 2024, and Dec. 31, 2024\n  Line 2490: TABLE ESF-2\u2014Statement of Net Cost\n  Line 3743: International Monetary Fund transactions (\u201cExchange Stabilization Fund\u201d, ESF-1)\u2014(IMF) Established by the United Nations, the IMF promotes international trade, stability of exchange, and monetary cooperation. Members are allowed to draw from the fund.\n  Line 3765: Special drawing rights (\"Exchange Stabilization Fund,\" ESF-1)\u2014International assets created by IMF that serve to increase international liquidity and provide additional international reserves. SDRs may be purchased and sold among eligible holders through IMF. (See IMF.)\n  Line 3767: SDR allocations are the counterpart to SDRs issued by IMF based on members' quotas in IMF. Although shown in Exchange Stabilization Fund (ESF) statements as liabilities, they must be redeemed by ESF only in the event of liquidation of, or U.S. withdrawal from, the SDR department of IMF or cancellation of SDRs.\n  Line 3769: SDR certificates are issued to the Federal Reserve System against SDRs when SDRs are legalized as money. Proceeds of monetization are deposited into an ESF account at the Federal Reserve Bank of New York."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 15333,
+        "completion_tokens": 144,
+        "cached_tokens": 12979
+      }
+    },
+    {
+      "step_id": 5,
+      "timestamp": "2026-03-30T02:05:16.134000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01HnnVHhwXKGeSkiWSi3Gehx",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2025_03.txt",
+            "offset": 2430,
+            "limit": 80
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01HnnVHhwXKGeSkiWSi3Gehx",
+            "content": "<path>/app/corpus/treasury_bulletin_2025_03.txt</path>\n<type>file</type>\n<content>2430: Resources of the fund include (a) Fund Balance, which is available to support adjustments to loan and investment subsidy costs, repay borrowing from Treasury for loans and investments and expenditures for administrative expenses in support of the CARES Act, (b) U.S. Government securities (dollar balances), (c) special drawing rights (SDRs), an international reserve asset created by the International Monetary Fund (IMF), (d) foreign currency holdings and (e) Investments in Special Purposes Vehicles. Principal sources of revenue -- or cost -- for the fund are gains-- or losses -- on SDRs and foreign investments, and interest earned on U.S Government, foreign securities, and SDRs.\n2431: \n2432: Table ESF-1 presents the assets, liabilities, and net position of the fund. The figures are in U.S. dollars.\n2433: \n2434: Amounts and transactions pertaining to foreign currencies and SDRs have been converted to U.S. dollars based on current exchange rates computed according to the accrual method of accounting. Investments and loans receivable are reported at fair value. Unexpended Appropriations Funds from Dedicated Collections represents the original capital appropriated to the fund by Congress of $2 billion, minus a subsequent transfer of $1.8 billion to pay for the initial U.S. quota subscription to the International Monetary Fund. Unexpended Appropriations Funds from Other than Dedicated Collections represents the amount appropriated under the CARES Act Sec 4027 minus transfers, expenditures for administrative and subsidy costs, and rescissions resulting from the passage of the Consolidated Appropriations Act, 2021, the Infrastructure Investment and Jobs Act, 2021 and the Fiscal Responsibility Act, 2023. Conversion gains and losses are reflected in the cumulative net income -+ or loss -- account.\n2435: \n2436: Table ESF-2 shows net cost from operations for the current quarter and year-to-date. Figures are in U.S. dollars computed according to the accrual method. \"Gains+ or loss -- on foreign exchange\" includes both realized and unrealized gains or losses. \"Adjustment for change in valuation of SDR holdings and allocations\" reflects net gain or loss on revaluation of SDR holdings and allocations for the quarter. \"Gains and Losses on Investments in Special Purpose Vehicles and Loans Receivable\" reflects the revaluation of the assets approved in the federal budget. CARES Act related administrative costs incurred in connection with the loans, and other investments are accrued.\n2437: \n2438: 66\n2439: \n2440: TABLE ESF-1\u2014Balances as of Sept. 30, 2024, and Dec. 31, 2024\n2441: \n2442: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2443: \n2444: | Assets, liabilities, and net position | Sept. 30, 2024 | Sept. 30, 2024, through Dec. 31, 2024 | Dec. 31, 2024 |\n2445: | --- | --- | --- | --- |\n2446: | Assets | nan | nan | nan |\n2447: | U.S. dollars: | nan | nan | nan |\n2448: | Intra-Governmental: | nan | nan | nan |\n2449: | Fund Balance | 395065 | (254,140) | 140925 |\n2450: | U.S. Government securities | 15376534 | 4675475 | 20052009 |\n2451: | Interest Receivable - Loans and Other Funds | - | 7037 | 7037 |\n2452: | Other Intragovernmental Assets | - | 19000 | 19000 |\n2453: | Total Intra-Governmental | 15771599 | 4447372 | 20218971 |\n2454: | Other Than Intra-Governmental | nan | nan | nan |\n2455: | Special drawing rights (SDR) Holdings | 173985112 | (6,168,463) | 167816649 |\n2456: | Economic Recovery Program Loans Receivable | 198722 | (8,489) | 190233 |\n2457: | Economic Recovery Program Investments | 5984913 | (1,488,994) | 4495919 |\n2458: | Foreign exchange and securities: | nan | nan | nan |\n2459: | European euro | 12216336 | (770,790) | 11445546 |\n2460: | Japanese yen | 6525304 | (582,836) | 5942468 |\n2461: | Total Other Than Intra-Governmental | 198910387 | (9,019,572) | 189890815 |\n2462: | Total assets | 214681986 | (4,572,200) | 210109786 |\n2463: | Liabilities and capital | nan | nan | nan |\n2464: | Intra-Governmental | nan | nan | nan |\n2465: | Debt, including accrued interest payable | 5698388 | (1,481,954) | 4216434 |\n2466: | Due to the General Fund | 118 | 651 | 769 |\n2467: | Other Liabilities | 857826 | (244,128) | 613698 |\n2468: | Total Intra-Governmental | 6556332 | (1,725,431) | 4830901 |\n2469: | Other Than Intra-Governmental: | nan | nan | nan |\n2470: | SDR certificates | 10200000 | 5000000 | 15200000 |\n2471: | SDR allocations | 156778225 | (6,150,156) | 150628069 |\n2472: | Other | - | 5 | 5 |\n2473: | Total Other Than Intra-Governmental | 166978225 | (1,150,151) | 165828074 |\n2474: | Total Liabilities | 173534557 | (2,875,582) | 170658975 |\n2475: | Net Position: | nan | nan | nan |\n2476: | Funds from Dedicated Collections (Consolidated) | 200000 | - | 200000 |\n2477: | Funds from Other than Dedicated Collections (Consolidated) | 22901 | (156) | 22745 |\n2478: | Total Unexpended Appropriations | 222901 | (156) | 222745 |\n2479: | Cumulative Results of Operations | nan | nan | nan |\n2480: | Funds from Dedicated Collections (Consolidated) | 40925061 | (1,695,809) | 39229252 |\n2481: | Funds from Other than Dedicated Collections (Consolidated) | (533) | (653) | (1,186) |\n2482: | Total Cumulative Results of Operations | 40924528 | (1,696,462) | 39228066 |\n2483: | Total Net Position | 41147429 | (1,696,618) | 39450811 |\n2484: | Total Liabilities and Net Position | 214681986 | (4,572,200) | 210109786 |\n2485: \n2486: See footnote on the following page.\n2487: \n2488: 67\n2489: \n2490: TABLE ESF-2\u2014Statement of Net Cost\n2491: \n2492: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management\n2493: \n2494: | Unnamed: 0 | Current quarter Oct. 1, 2024, through Dec. 31, 2024 | Fiscal year to date Oct. 1, 2024 through Dec. 31, 2024 |\n2495: | --- | --- | --- |\n2496: | Exchange Stabilization (+) or net charges (-) on: | nan | nan |\n2497: | Gross Cost | nan | nan |\n2498: | Interest Expense on Special Drawing Rights and Remuneration | 1298093 | 1298093 |\n2499: | International Monetary Fund Annual Assessment and Other | 18 | 18 |\n2500: | Losses on Currency Valuation and Other | nan | nan |\n2501: | Special Drawing Rights Holdings | 6705513 | 6705513 |\n2502: | Special Drawing Rights Allocations | - | - |\n2503: | Foreign Currency and Foreign Currency Denominated Assets | 980105 | 980105 |\n2504: | Other Investment | 619930 | 619930 |\n2505: | Total Losses on Currency Valuation and Other | 8305548 | 8305548 |\n2506: | Total Gross Cost | 9603659 | 9603659 |\n2507: | Less Earned Revenue | nan | nan |\n2508: | Interest Income | nan | nan |\n2509: | Nonmarketable U.S. Treasury Securities | (186,424) | (186,424) |\n\n(Showing lines 2430-2509 of 3788. Use offset=2510 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 16419,
+        "completion_tokens": 101,
+        "cached_tokens": 15332
+      }
+    },
+    {
+      "step_id": 6,
+      "timestamp": "2026-03-30T02:05:19.455000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "I found the ESF-1 table. The March 2025 bulletin shows data as of Dec. 31, 2024. The Japanese yen under \"Foreign exchange and securities\" is $5,942,468 thousand as of Dec. 31, 2024. But I need the value as of March 31, 2025. Let me check later bulletins for data as of March 31, 2025.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01YY8cNt87FD9i2PfjriZRQw",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "ESF-1|Balance Sheet|Balances as of",
+            "path": "/app/corpus",
+            "include": "*2025_06*"
+          }
+        },
+        {
+          "tool_call_id": "toolu_bdrk_019oDwKh15nMNo2qV58TQEhX",
+          "function_name": "grep",
+          "arguments": {
+            "pattern": "ESF-1|Balance Sheet|Balances as of",
+            "path": "/app/corpus",
+            "include": "*2025_09*"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01YY8cNt87FD9i2PfjriZRQw",
+            "content": "Found 5 matches\n/app/corpus/treasury_bulletin_2025_06.txt:\n  Line 110: | ESF-1\u2014Balance Sheet | 69.0 |\n  Line 2344: Table ESF-1 presents the assets, liabilities, and net position of the fund. The figures are in U.S. dollars.\n  Line 2352: TABLE ESF-1\u2014Balances as of Dec. 31, 2024, and Mar. 31, 2025\n  Line 2555: International Monetary Fund transactions (\"Exchange Stabilization Fund\", ESF-1)\u2014(IMF) Established by the United Nations, the IMF promotes international trade, stability of exchange, and monetary cooperation. Members are allowed to draw from the fund.\n  Line 2577: Special drawing rights (\u201cExchange Stabilization Fund,\u201d ESF-1)\u2014International assets created by IMF that serve to increase international liquidity and provide additional international reserves. SDRs may be purchased and sold among eligible holders through IMF. (See IMF.)"
+          },
+          {
+            "source_call_id": "toolu_bdrk_019oDwKh15nMNo2qV58TQEhX",
+            "content": "Found 5 matches\n/app/corpus/treasury_bulletin_2025_09.txt:\n  Line 102: | ESF-1\u2014Balance Sheet | 66.0 |\n  Line 2314: Table ESF-1 presents the assets, liabilities, and net position of the fund. The figures are in U.S. dollars.\n  Line 2322: TABLE ESF-1\u2014Balances as of Mar. 31, 2025, and June 30, 2025\n  Line 2525: International Monetary Fund transactions (\u201cExchange Stabilization Fund\u201d, ESF-1)\u2014(IMF) Established by the United Nations, the IMF promotes international trade, stability of exchange, and monetary cooperation. Members are allowed to draw from the fund.\n  Line 2547: Special drawing rights (\u201cExchange Stabilization Fund,\u201d ESF-1)\u2014International assets created by IMF that serve to increase international liquidity and provide additional international reserves. SDRs may be purchased and sold among eligible holders through IMF. (See IMF.)"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 18800,
+        "completion_tokens": 288,
+        "cached_tokens": 16418
+      }
+    },
+    {
+      "step_id": 7,
+      "timestamp": "2026-03-30T02:05:25.111000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "The June 2025 bulletin has \"Balances as of Dec. 31, 2024, and Mar. 31, 2025\" - this is what I need. And the September 2025 bulletin also has \"Balances as of Mar. 31, 2025, and June 30, 2025\" which would be even more recent (potential revision). Let me check both.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01EuUpDcxXkfMed37uRT7xv8",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2025_06.txt",
+            "offset": 2350,
+            "limit": 60
+          }
+        },
+        {
+          "tool_call_id": "toolu_bdrk_017VGV9Fd9aoM9CfRTbjBAmq",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2025_09.txt",
+            "offset": 2320,
+            "limit": 60
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01EuUpDcxXkfMed37uRT7xv8",
+            "content": "<path>/app/corpus/treasury_bulletin_2025_06.txt</path>\n<type>file</type>\n<content>2350: 69\n2351: \n2352: TABLE ESF-1\u2014Balances as of Dec. 31, 2024, and Mar. 31, 2025\n2353: \n2354: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2355: \n2356: | Assets, liabilities, and net position | Dec. 31, 2024 | Dec. 31, 2024, through Mar. 31, 2025 | Mar. 31, 2025 |\n2357: | --- | --- | --- | --- |\n2358: | Assets | nan | nan | nan |\n2359: | U.S. dollars: | nan | nan | nan |\n2360: | Intra-Governmental: | nan | nan | nan |\n2361: | Fund Balance with Treasury | 140925 | 35573 | 176498 |\n2362: | U.S. Government securities | 20052009 | 16918 | 20068927 |\n2363: | Interest Receivable - Loans and Other Funds | 7037 | 7037 | 14074 |\n2364: | Other Intragovernmental Assets | 19000 | 30 | 19030 |\n2365: | Total Intra-Governmental | 20218971 | 59558 | 20278529 |\n2366: | Other Than Intra-Governmental | nan | nan | nan |\n2367: | Special drawing rights (SDR) Holdings | 167816649 | 3429326 | 171245975 |\n2368: | Economic Recovery Program Loans Receivable | 190233 | (35,848) | 154385 |\n2369: | Economic Recovery Program Investments | 4495919 | 2096 | 4498015 |\n2370: | Foreign exchange and securities: | nan | nan | nan |\n2371: | European euro | 11445546 | 564124 | 12009670 |\n2372: | Japanese yen | 5942468 | 299952 | 6242420 |\n2373: | Total Other Than Intra-Governmental | 189890815 | 4259650 | 194150465 |\n2374: | Total assets | 210109786 | 4319208 | 214428994 |\n2375: | Liabilities and capital | nan | nan | nan |\n2376: | Intra-Governmental | nan | nan | nan |\n2377: | Debt, including accrued interest payable | 4216434 | 9135 | 4225569 |\n2378: | Due to the General Fund | 769 | 425 | 1194 |\n2379: | Other Liabilities | 613698 | (2) | 613696 |\n2380: | Total Intra-Governmental | 4830901 | 9558 | 4840459 |\n2381: | Other Than Intra-Governmental: | nan | nan | nan |\n2382: | SDR certificates | 15200000 | - | 15200000 |\n2383: | SDR allocations | 150628069 | 2764837 | 153392906 |\n2384: | Other | 5 | (5) | - |\n2385: | Total Other Than Intra-Governmental | 165828074 | 2764832 | 168592906 |\n2386: | Total Liabilities | 170658975 | 2774390 | 173433365 |\n2387: | Net Position: | nan | nan | nan |\n2388: | Funds from Dedicated Collections (Consolidated) | 200000 | - | 200000 |\n2389: | Funds from Other than Dedicated Collections (Consolidated) | 22745 | (670) | 22075 |\n2390: | Total Unexpended Appropriations | 222745 | (670) | 222075 |\n2391: | Cumulative Results of Operations: | nan | nan | nan |\n2392: | Funds from Dedicated Collections (Consolidated) | 39229252 | 1545911 | 40775163 |\n2393: | Funds from Other than Dedicated Collections (Consolidated) | (1,186) | (423) | (1,609) |\n2394: | Total Cumulative Results of Operations | 39228066 | 1545488 | 40773554 |\n2395: | Total Net Position | 39450811 | 1544818 | 40995629 |\n2396: | Total Liabilities and Net Position | 210109786 | 4319208 | 214428994 |\n2397: \n2398: See footnote on the following page.\n2399: \n2400: 70\n2401: \n2402: TABLE ESF-2\u2014Statement of Net Cost\n2403: \n2404: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2405: \n2406: | Unnamed: 0 | Current quarter Jan. 1, 2025, through Mar. 31, 2025 | Fiscal year to date Oct. 1, 2024 through Mar. 31, 2025 |\n2407: | --- | --- | --- |\n2408: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: |\n2409: | Gross Cost | nan | nan |\n\n(Showing lines 2350-2409 of 2600. Use offset=2410 to continue.)\n</content>"
+          },
+          {
+            "source_call_id": "toolu_bdrk_017VGV9Fd9aoM9CfRTbjBAmq",
+            "content": "<path>/app/corpus/treasury_bulletin_2025_09.txt</path>\n<type>file</type>\n<content>2320: 66\n2321: \n2322: TABLE ESF-1\u2014Balances as of Mar. 31, 2025, and June 30, 2025\n2323: \n2324: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2325: \n2326: | Assets, liabilities, and net position | Mar. 31, 2025 | March 31, 2025, through June 30, 2025 | June 30, 2025 |\n2327: | --- | --- | --- | --- |\n2328: | Assets | nan | nan | nan |\n2329: | U.S. dollars: | nan | nan | nan |\n2330: | Intra-Governmental: | nan | nan | nan |\n2331: | Fund Balance with Treasury | 176498 | 1442769 | 1619267 |\n2332: | U.S. Government securities | 20068927 | 1712482 | 21781409 |\n2333: | Interest Receivable - Loans and Other Funds | 14074 | (6,128) | 7946 |\n2334: | Other Intragovernmental Assets | 19030 | - | 19030 |\n2335: | Total Intra-Governmental | 20278529 | 3149123 | 23427652 |\n2336: | Other Than Intra-Governmental | nan | nan | nan |\n2337: | Special drawing rights (SDR) Holdings | 171245975 | 4459490 | 175705465 |\n2338: | Economic Recovery Program Loans Receivable | 154385 | (21,188) | 133197 |\n2339: | Economic Recovery Program Investments | 4498015 | (1,416,275) | 3081740 |\n2340: | Foreign exchange and securities: | nan | nan | nan |\n2341: | European euro | 12009670 | 1165047 | 13174717 |\n2342: | Japanese yen | 6242420 | 261099 | 6503519 |\n2343: | Total Other Than Intra-Governmental | 194150465 | 4448173 | 198598638 |\n2344: | Total assets | 214428994 | 7597296 | 222026290 |\n2345: | Liabilities and capital | nan | nan | nan |\n2346: | Intra-Governmental | nan | nan | nan |\n2347: | Debt, including accrued interest payable | 4225569 | -1740 | 4223829 |\n2348: | Due to the General Fund | 1194 | 388 | 1582 |\n2349: | Other Liabilities | 613696 | 1 | 613697 |\n2350: | Total Intra-Governmental | 4840459 | -1351 | 4839108 |\n2351: | Other Than Intra-Governmental: | nan | nan | nan |\n2352: | SDR certificates | 15200000 | - | 15200000 |\n2353: | SDR allocations | 153392906 | 5214537 | 158607443 |\n2354: | Other | - | - | - |\n2355: | Total Other Than Intra-Governmental | 165592906 | 5214537 | 173807443 |\n2356: | Total Liabilities | 173433365 | 5213186 | 178646551 |\n2357: | Net Position: | nan | nan | nan |\n2358: | Funds from Dedicated Collections (Consolidated) | 200000 | - | 200000 |\n2359: | Funds from Other than Dedicated Collections (Consolidated) | 22075 | (3) | 22072 |\n2360: | Total Unexpended Appropriations | 222075 | (3) | 222072 |\n2361: | Cumulative Results of Operations: | nan | nan | nan |\n2362: | Funds from Dedicated Collections (Consolidated) | 40775163 | 2383908 | 43159071 |\n2363: | Funds from Other than Dedicated Collections (Consolidated) | (1,609) | 205 | (1,404) |\n2364: | Total Cumulative Results of Operations | 40773554 | 2384113 | 43157667 |\n2365: | Total Net Position | 40995629 | 2384110 | 43379739 |\n2366: | Total Liabilities and Net Position | 214428994 | 7597296 | 222026290 |\n2367: \n2368: See footnote on the following page.\n2369: \n2370: 67\n2371: \n2372: TABLE ESF-2\u2014Statement of Net Cost\n2373: \n2374: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2375: \n2376: | Unnamed: 0 | Current quarter April 1, 2025, through June 30, 2025 | Fiscal year to date Oct. 1, 2024 through June 30, 2025 |\n2377: | --- | --- | --- |\n2378: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: |\n2379: | Gross Cost | nan | nan |\n\n(Showing lines 2320-2379 of 2568. Use offset=2380 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 19622,
+        "completion_tokens": 275,
+        "cached_tokens": 18799
+      }
+    },
+    {
+      "step_id": 8,
+      "timestamp": "2026-03-30T02:05:30.022000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "Excellent! I now have data from two sources for March 31, 2025:\n\n1. **June 2025 bulletin** (line 2372): Japanese yen = **6,242,420** (thousands of dollars) as of Mar. 31, 2025\n2. **September 2025 bulletin** (line 2342): Japanese yen = **6,242,420** (thousands of dollars) as of Mar. 31, 2025\n\nBoth sources agree: the value is **$6,242,420 thousand** (i.e., $6,242,420,000). The September bulletin confirms this is the settled (not revised) figure.\n\nNow let me check footnotes for both bulletins to make sure there are no unit adjustments.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_018RqM4AbcwcS2r2yTnkzNRA",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2025_06.txt",
+            "offset": 2397,
+            "limit": 30
+          }
+        },
+        {
+          "tool_call_id": "toolu_bdrk_01TnmVR4NYya7XWV52ZSzvvh",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2025_09.txt",
+            "offset": 2367,
+            "limit": 30
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_018RqM4AbcwcS2r2yTnkzNRA",
+            "content": "<path>/app/corpus/treasury_bulletin_2025_06.txt</path>\n<type>file</type>\n<content>2397: \n2398: See footnote on the following page.\n2399: \n2400: 70\n2401: \n2402: TABLE ESF-2\u2014Statement of Net Cost\n2403: \n2404: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2405: \n2406: | Unnamed: 0 | Current quarter Jan. 1, 2025, through Mar. 31, 2025 | Fiscal year to date Oct. 1, 2024 through Mar. 31, 2025 |\n2407: | --- | --- | --- |\n2408: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: |\n2409: | Gross Cost | nan | nan |\n2410: | Interest Expense on Special Drawing Rights and Remuneration | 1174852 | 2472945 |\n2411: | International Monetary Fund Annual Assessment and Other | 17 | 35 |\n2412: | Losses on Currency Valuation and Other | nan | nan |\n2413: | Special Drawing Rights Holdings | 38657 | 6744170 |\n2414: | Special Drawing Rights Allocations | 2865837 | 2865837 |\n2415: | Foreign Currency and Foreign Currency Denominated Assets | 31 | 980136 |\n2416: | Other Investment | 9862 | 629792 |\n2417: | Total Losses on Currency Valuation and Other | 2914387 | 11219935 |\n2418: | Total Gross Cost | 4089256 | 13692915 |\n2419: | Less Earned Revenue | nan | nan |\n2420: | Interest Income | Interest Income | Interest Income |\n2421: | Nonmarketable U.S. Treasury Securities | (216,420) | (402,844) |\n2422: | Foreign Currency and Foreign Currency Denominated Assets | (10,755) | (38,085) |\n2423: | Special Drawing Rights Holdings | (1,310,667) | (2,754,630) |\n2424: | Other Investments | (58,417) | (103,070) |\n2425: | Total Interest Income | (1,596,259) | (3,298,629) |\n2426: | Gains on Currency Valuation and Other | nan | nan |\n\n(Showing lines 2397-2426 of 2600. Use offset=2427 to continue.)\n</content>"
+          },
+          {
+            "source_call_id": "toolu_bdrk_01TnmVR4NYya7XWV52ZSzvvh",
+            "content": "<path>/app/corpus/treasury_bulletin_2025_09.txt</path>\n<type>file</type>\n<content>2367: \n2368: See footnote on the following page.\n2369: \n2370: 67\n2371: \n2372: TABLE ESF-2\u2014Statement of Net Cost\n2373: \n2374: [In thousands of dollars. Source: Office of the Assistant Secretary of the Treasury for Management]\n2375: \n2376: | Unnamed: 0 | Current quarter April 1, 2025, through June 30, 2025 | Fiscal year to date Oct. 1, 2024 through June 30, 2025 |\n2377: | --- | --- | --- |\n2378: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: | Exchange Stabilization (+) or net charges (-) on: |\n2379: | Gross Cost | nan | nan |\n2380: | Interest Expense on Special Drawing Rights and Remuneration | 1165798 | 3638743 |\n2381: | International Monetary Fund Annual Assessment and Other | 260 | 295 |\n2382: | Losses on Currency Valuation and Other | nan | nan |\n2383: | Special Drawing Rights Holdings | - | 6744170 |\n2384: | Special Drawing Rights Allocations | 5230749 | 8096586 |\n2385: | Foreign Currency and Foreign Currency Denominated Assets | 44684 | 1024820 |\n2386: | Other Investment | 41525 | 671317 |\n2387: | Total Losses on Currency Valuation and Other | 5316958 | 16536893 |\n2388: | Total Gross Cost | 6483016 | 20175931 |\n2389: | Less Earned Revenue | nan | nan |\n2390: | Interest Income | nan | nan |\n2391: | Nonmarketable U.S. Treasury Securities | (218,533) | (621,377) |\n2392: | Foreign Currency and Foreign Currency Denominated Assets | (10,464) | (48,549) |\n2393: | Special Drawing Rights Holdings | (1,301,664) | (4,056,294) |\n2394: | Other Investments | (65,486) | (168,556) |\n2395: | Total Interest Income | (1,596,147) | (4,894,776) |\n2396: | Gains on Currency Valuation and Other | nan | nan |\n\n(Showing lines 2367-2396 of 2568. Use offset=2397 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 22789,
+        "completion_tokens": 358,
+        "cached_tokens": 19621
+      }
+    },
+    {
+      "step_id": 9,
+      "timestamp": "2026-03-30T02:05:36.645000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "Let me check the footnotes that were referenced (\"See footnote on the following page\"):",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_017L5LTG4csDZ5NL8UQrcJLY",
+          "function_name": "read",
+          "arguments": {
+            "filePath": "/app/corpus/treasury_bulletin_2025_06.txt",
+            "offset": 2426,
+            "limit": 50
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_017L5LTG4csDZ5NL8UQrcJLY",
+            "content": "<path>/app/corpus/treasury_bulletin_2025_06.txt</path>\n<type>file</type>\n<content>2426: | Gains on Currency Valuation and Other | nan | nan |\n2427: | Special Drawing Rights Holdings | (3,199,395) | (3,199,395) |\n2428: | Special Drawing Rights Allocations | (34,697) | (6,065,733) |\n2429: | Foreign Currency and Foreign Currency Denominated Assets | (310,857) | (390,056) |\n2430: | Other Investments | (493,958) | (589,203) |\n2431: | Total Gains on Currency Valuation and Other | (4,038,907) | (10,244,387) |\n2432: | Total Earned Revenue | (5,635,166) | (13,543,016) |\n2433: | Total Net Cost (Income) of Operations - Exchange Stabilization | (1,545,910) | 149899 |\n2434: | Economic Recovery Program (+) net charges (-) on: | Economic Recovery Program (+) net charges (-) on: | Economic Recovery Program (+) net charges (-) on: |\n2435: | Gross Cost | nan | nan |\n2436: | Interest Expense on Debt | 9135 | 24868 |\n2437: | Administrative Expenses | 666 | 826 |\n2438: | Cost of Investments and Credit Program Receivables | - | - |\n2439: | Total Gross Cost | 9801 | 25694 |\n2440: | Less: Earned Revenue | nan | nan |\n2441: | Interest Income on Uninvested Funds | (7,037) | (14,074) |\n2442: | Interest Income on Credit Program Receivables | (5,329) | (10,496) |\n2443: | Facility Fee Income | - | - |\n2444: | Gains on Investments and Credit Program Receivables | 3230 | (299) |\n2445: | Total Earned Revenue | (9,135) | (24,868) |\n2446: | Total Net Cost (Income) of Operations - Economic Recovery Program | 666 | 826 |\n2447: | Total Net Cost of Operations | (1,545,244) | 150725 |\n2448: \n2449: 1 Beginning July 1974, the International Monetary Fund adopted a technique for valuing the SDRs based on a weighted average of exchange rates for the currencies of selected member countries. The U.S. SDR holdings and allocations are valued on this basis beginning July 1974.\n2450: \n2451: Note\u2014Annual balance sheets for fiscal years 1934 through 1940 appeared in the 1940 \"Annual Report of the Secretary of the Treasury\" and those for succeeding years appeared in subsequent reports through 1980. Quarterly balance sheets beginning with December 31, 1938, have been published in the \"Treasury Bulletin.\" Data from inception to September 30, 1978, may be found on the statements published in the January 1979 \"Treasury Bulletin.\"\n2452: \n2453: Trust Funds\n2454: \n2455: 72\n2456: \n2457: TABLE TF-6A\u2014Highway Trust Fund\n2458: \n2459: The following information is released according to the provisions of the Byrd Amendment [codified at 26 United States Code 9503(d)] and represents data concerning the Highway Trust Fund.\n2460: \n2461: The 48-month revenue estimates for the highway and mass transit accounts, respectively, include the latest estimates received from Treasury's Office of Tax Analysis for excise taxes, net of refunds.\n2462: \n2463: Highway Account\n2464: \n2465: (In billions of dollars. Source: DOT)\n2466: \n2467: | 0 | 1 |\n2468: | --- | --- |\n2469: | Commitments (unobligated balances plus unpaid obligations, fiscal year 2026) | 129.0 |\n2470: | less: | nan |\n2471: | Cash balance (fiscal year 2026) | 42.0 |\n2472: | Unfunded authorizations (fiscal year 2026) | 86.0 |\n2473: | 48-month revenue estimate (fiscal years 2027, 2028, 2029, and 2030) | 156.0 |\n2474: \n2475: Note\u2014Detail may not add due to rounding.\n\n(Showing lines 2426-2475 of 2600. Use offset=2476 to continue.)\n</content>"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 24504,
+        "completion_tokens": 120,
+        "cached_tokens": 22788
+      }
+    },
+    {
+      "step_id": 10,
+      "timestamp": "2026-03-30T02:05:42.634000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "Good. The footnote doesn't affect the Japanese yen figure. The data is confirmed: **$6,242,420 thousand = $6,242,420,000** as of March 31, 2025.\n\nNow let me get the USD/JPY exchange rate for March 31, 2025 from Macrotrends.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01AiSyrNEyTbygzGX5kKJFRW",
+          "function_name": "todowrite",
+          "arguments": {
+            "todos": [
+              {
+                "content": "Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "Get USD/JPY exchange rate for March 31, 2025 from Macrotrends",
+                "status": "in_progress",
+                "priority": "high"
+              },
+              {
+                "content": "Convert USD amount to JPY and write answer",
+                "status": "pending",
+                "priority": "high"
+              }
+            ]
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01AiSyrNEyTbygzGX5kKJFRW",
+            "content": "[\n  {\n    \"content\": \"Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Get USD/JPY exchange rate for March 31, 2025 from Macrotrends\",\n    \"status\": \"in_progress\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Convert USD amount to JPY and write answer\",\n    \"status\": \"pending\",\n    \"priority\": \"high\"\n  }\n]"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 25744,
+        "completion_tokens": 244,
+        "cached_tokens": 24503
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": "2026-03-30T02:05:52.186000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01TAZFeEB6wjCtuzmNVMJAQ7",
+          "function_name": "webfetch",
+          "arguments": {
+            "url": "https://www.macrotrends.net/2550/dollar-yen-exchange-rate-historical-chart",
+            "format": "text"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01TAZFeEB6wjCtuzmNVMJAQ7",
+            "content": "Dollar Yen Exchange Rate - USD JPY (1971-2026)\r\n\t\r\n\t\t\r\n\t\r\n\r\n\t\r\n    \r\n    \r\n\t\r\n\t\r\n\t\t\r\n\t\t\r\n\r\n\r\n    \r\n    \r\n        \r\n\t\t\t\t\t\r\n            \r\n                \r\n            \r\n        \r\n    \t\r\n\r\n\t\r\n\r\n\t\r\n        \r\n            \r\n            \r\n\t\t\t\r\n                \r\n                \r\n\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\tDollar Yen Exchange Rate - USD JPY (1971-2026)\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tMarkets\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tMetals\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tEnergy\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tCommodities\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tInterest Rates\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tExchange Rates\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tEconomy\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURUSD\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDOLLAR INDEX\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGBPUSD\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUSDJPY\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUSDCHF\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAUDUSD\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURCHF\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURGBP\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURJPY\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGBPJPY\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUSDCNY\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tInteractive historical chart showing the daily U.S. Dollar - Japanese Yen (USDJPY) exchange rate back to 1971. The full historical dataset is available for download here: Dollar Yen Exchange Rate - USD JPY | Data | 1971-2026.\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\tView More\r\n\t\t\t\t\t\t\t\r\n\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n                \r\n\t\t\t\t\r\n\r\n\t\t\t\r\n\t\t\t\r\n\r\n\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\r\n\t\t\t\t\r\n\r\n\t\t\t\t\r\n\r\n\r\n    \r\n    \r\n        \r\n\t\t\t&copy; 2010-2026 Macrotrends LLC\r\n            Privacy Policy\r\n            Terms of Service"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 26150,
+        "completion_tokens": 95,
+        "cached_tokens": 25743
+      }
+    },
+    {
+      "step_id": 12,
+      "timestamp": "2026-03-30T02:05:55.618000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "The page didn't return the data table. Let me try to fetch the data download or a different format.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_013Rfs9gaxRs5QVjQB7Lru1u",
+          "function_name": "webfetch",
+          "arguments": {
+            "url": "https://www.macrotrends.net/2550/dollar-yen-exchange-rate-historical-chart",
+            "format": "html"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_013Rfs9gaxRs5QVjQB7Lru1u",
+            "content": "\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n\t<link rel=\"canonical\" href=\"https://www.macrotrends.net/2550/dollar-yen-exchange-rate-historical-chart\" />\r\n\t<title>Dollar Yen Exchange Rate - USD JPY (1971-2026)</title>\r\n\t\r\n\t<link rel=\"icon\" type=\"image/x-icon\" href=\"/production/global_metrics/images/macrotrends-favicon-96.png\">\t\r\n\t<meta name=\"description\" content=\"Interactive historical chart showing the daily U.S. Dollar - Japanese Yen (USDJPY) exchange rate back to 1971.\" />\r\n\r\n\t\r\n    <!-- Bootstrap -->\r\n    <link href=\"/production/assets/css/bootstrap_538.min.css\" rel=\"stylesheet\">\r\n\t\r\n\t\r\n\t\t\r\n\t\t<script type=\"application/ld+json\">\r\n\t\t{\r\n\t\t  \"@context\": \"https://schema.org\",\r\n\t\t  \"@type\": \"WebPage\",\r\n\t\t  \"name\": \"Dollar Yen Exchange Rate - USD JPY (1971-2026)\",\r\n\t\t  \"description\": \"Interactive historical chart showing the daily U.S. Dollar - Japanese Yen (USDJPY) exchange rate back to 1971.\",\r\n\t\t  \"url\": \"https://www.macrotrends.net/2550/dollar-yen-exchange-rate-historical-chart\"\r\n\t\t}\r\n\t\t</script>\t\t\t\r\n\t\r\n\t\r\n\r\n\t\r\n\t<script>\r\n\tdocument.addEventListener(\"DOMContentLoaded\", function () {\r\n\t\tif (window.innerWidth >= 992) { // Only run on desktop (\u2265 992px)\r\n\t\t\t\r\n\t\t\t// Ensure InvestingChannelQueue is initialized\r\n\t\t\twindow.InvestingChannelQueue = window.InvestingChannelQueue || [];\r\n\r\n\t\t\t// Load InvestingChannel script dynamically\r\n\t\t\tvar icScript = document.createElement(\"script\");\r\n\t\t\ticScript.async = true;\r\n\t\t\ticScript.src = \"https://u5.investingchannel.com/static/uat.js\";\r\n\t\t\tdocument.body.appendChild(icScript);\r\n\r\n\t\t\t// Run InvestingChannel UAT script after the main script loads\r\n\t\t\ticScript.onload = function () {\r\n\t\t\t\tInvestingChannelQueue.push(function () {\r\n\t\t\t\t\tInvestingChannel.UAT.Run(\"df17ac1e-cc7f-11e8-82a5-0abbb61c4a6a\");\r\n\t\t\t\t});\r\n\t\t\t};\r\n\t\t}\r\n\t});\r\n\t</script>\t\r\n\r\n\t<!-- Google tag (gtag.js) -->\r\n\t<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-3KL0LYERBH\"></script>\r\n\t<script>\r\n\t  window.dataLayer = window.dataLayer || [];\r\n\t  function gtag(){dataLayer.push(arguments);}\r\n\t  gtag('js', new Date());\r\n\r\n\t  gtag('config', 'G-3KL0LYERBH');\r\n\t</script>\t\t\r\n\t\r\n\r\n\t\r\n\t<style>\r\n\t\r\n\t\t/* Regular 400 - latin */\r\n\t\t@font-face {\r\n\t\t  font-family: 'Roboto';\r\n\t\t  font-style: normal;\r\n\t\t  font-weight: 400;\r\n\t\t  font-display: swap;\r\n\t\t  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');\r\n\t\t  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\r\n\t\t}\r\n\r\n\t\t/* Bold 700 - latin */\r\n\t\t@font-face {\r\n\t\t  font-family: 'Roboto';\r\n\t\t  font-style: normal;\r\n\t\t  font-weight: 700;\r\n\t\t  font-display: swap;\r\n\t\t  src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlfBBc4AMP6lQ.woff2) format('woff2');\r\n\t\t  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\r\n\t\t}\r\n        \r\n\t\t.sticky_fixed {\r\n\t\t\tposition: fixed;\r\n\t\t\ttop: 0;\r\n\t\t\tleft: 0;\r\n\t\t\tz-index: 1000;\r\n\t\t}\t\t\r\n\r\n\t\t.list-group-section {\r\n\r\n\t\t\tfont-weight:bold;\r\n\t\t\ttext-align:center;\r\n\t\t\tborder-bottom:1px solid #dfdfdf;\r\n\t\t\tbackground-color: #dfdfdf;\r\n\t\t\t\r\n\t\t\t}\r\n\r\n\t\t/* Optional: Style for focus and hover states */\r\n\t\t.btn-clear:focus {\r\n\t\t\toutline: none;\r\n\t\t}\t\t\t\r\n\t\t\t\t\r\n\t\t#more {display: none;}\t\t\r\n\r\n\t\t\r\n\t\thtml,body {\r\n\t\t\toverflow-x: hidden !important;\r\n\t\t}\r\n\t\t\r\n\t\tbody{\r\n\t\t\tfont-family: 'Roboto';\r\n\t\t\tcolor: #444; \r\n\t\t\tmargin:0px;\r\n\t\t\tbackground-color: #fff;\r\n\t\t}\r\n\t\t\t\r\n        /* Ensure main content maxes out at 1000px */\r\n        .main-content {\r\n            max-width: 1000px;\r\n            width: 100%;\r\n\t\t\tpadding:0px;\r\n\t\t\t  flex: 1 1 0;\r\n\t\t\t  min-width: 0;\r\n        }\r\n\t\t\r\n\r\n        /* Sidebar stays exactly 340px */\r\n        .sidebar-container {\r\n            min-width: 340px;\r\n        }\r\n\r\n        /* Ad Unit Styling */\r\n        .ad-unit {\r\n            background: #ccc;\r\n            text-align: center;\r\n            display: flex;\r\n            align-items: center;\r\n            justify-content: center;\r\n            font-size: 20px;\r\n            font-weight: bold;\r\n            color: #333;\r\n            margin: 10px auto;\r\n        }\r\n\r\n\t\t#leaderboardTag {\r\n\t\t\theight: 280px; /* Ensure it has a fixed height */\r\n\t\t\tmargin-top: 30px;\r\n\t\t}\r\n\r\n\t\t/* Hide on mobile */\r\n\t\t@media (max-width: 767px) {\r\n\t\t\t#leaderboardTag {\r\n\t\t\t\tdisplay: none;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t/* Keep space but hide content on desktop */\r\n\t\t@media (min-width: 768px) {\r\n\t\t\t#leaderboardTag {\r\n\t\t\t\tvisibility: hidden;\r\n\t\t\t}\r\n\t\t}\r\n\r\n        .ad-728x90 {\r\n            width: 728px;\r\n            height: 90px;\r\n        }\r\n\r\n        /* Header & Footer Background Color */\r\n        .header, .footer {\r\n            background-color: #444 !important;\r\n        }\r\n\r\n        /* Footer styling */\r\n        .footer-nav {\r\n            list-style: none;\r\n            padding: 0;\r\n            margin: 0;\r\n        }\r\n        .footer-nav li {\r\n            display: inline-block;\r\n            margin: 0 10px;\r\n        }\r\n\r\n        @media (max-width: 768px) {\r\n            .footer-nav li {\r\n                display: block;\r\n                text-align: center;\r\n                margin-bottom: 10px;\r\n            }\r\n        }\r\n\t\r\n\r\n\t\t\t#mobile-content {\r\n\t\t\t\t\r\n\t\t\t\tmargin:0px;\r\n\t\t\t\tpadding:0px;\r\n\t\t\t}\r\n\r\n\t\t\th1 {\r\n\t\t\t\t\r\n\t\t\t\tfont-size: 24px;\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t\t\t\r\n\t\t\t#searchResultsTickers {\r\n\t\t\t\tfont-size: 16px;\r\n\t\t\t\tmax-height:250px;\r\n\t\t\t\toverflow-y: auto;\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\tz-index: 1000;\r\n\t\t\t\tbackground-color: #ffffff;\r\n\t\t\t\tbox-shadow: 0 4px 8px rgba(0,0,0,0.1);\r\n\t\t\t}\r\n\r\n\t\t\t#searchResultsMetrics {\r\n\t\t\t\tfont-size: 16px;\r\n\t\t\t\tmax-height: 250px;\r\n\t\t\t\toverflow-y: auto;\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\tz-index: 1000;\r\n\t\t\t\tbackground-color: #ffffff;\r\n\t\t\t\tbox-shadow: 0 4px 8px rgba(0,0,0,0.1);\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.btn-clear {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\ttop: 50%;\r\n\t\t\t\tright: -4px;\r\n\t\t\t\ttransform: translateY(-50%);\r\n\t\t\t\tborder: none;\r\n\t\t\t\tbackground: transparent;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t\tfont-size:26px;\r\n\t\t\t\tcolor:#000;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\tdiv#mobile-scrollmenu {\r\n\t\t\t\tborder: 1px solid #dfdfdf;\r\n\t\t\t\tbackground-color:#F8F8F8;\r\n\t\t\t\toverflow-x: scroll;\r\n\t\t\t\twhite-space: nowrap;\r\n\t\t\t\t-ms-overflow-style: none;  /* IE and Edge */\r\n\t\t\t\tscrollbar-width: none;  /* Firefox */\t\r\n\t\t\t\tmargin-bottom:10px;\r\n\t\t\t\tmargin-left:10px;\r\n\t\t\t\tmargin-right:10px;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\tscroll-padding-left: 100px;\r\n\r\n\t\t\t}\r\n\r\n\t\t\t/* Remove the scrollbar for webkit browsers as well */\r\n\t\t\tdiv#mobile-scrollmenu::-webkit-scrollbar {\r\n\t\t\t\tdisplay: none;\r\n\t\t\t}\r\n\r\n\t\t\tdiv#mobile-scrollmenu a {\r\n\t\t\t\tdisplay: inline-block;\r\n\t\t\t\tfont-size:13px;\r\n\t\t\t\tfont-weight:600;\r\n\t\t\t\tcolor: #337ab7;\r\n\t\t\t\ttext-align: center;\r\n\t\t\t\tpadding: 8px 12px;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\ttext-decoration: none;\r\n\t\t\t}\r\n\r\n\t\t\tdiv#mobile-scrollmenu a:hover {\r\n\t\t\t\ttext-decoration:underline;\r\n\t\t\t}\r\n\r\n\t\t\tdiv#mobile-scrollmenusub {\r\n\t\t\t\tborder: 1px solid #dfdfdf;\r\n\t\t\t\tbackground-color:#F8F8F8;\r\n\t\t\t\toverflow-x: scroll;\r\n\t\t\t\twhite-space: nowrap;\r\n\t\t\t\t-ms-overflow-style: none;  /* IE and Edge */\r\n\t\t\t\tscrollbar-width: none;  /* Firefox */\t\r\n\t\t\t\tmargin-bottom:10px;\r\n\t\t\t\tmargin-left:10px;\r\n\t\t\t\tmargin-right:10px;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\tscroll-padding-left: 100px;\r\n\r\n\t\t\t}\r\n\r\n\r\n\t\t\t/* Remove the scrollbar for webkit browsers as well */\r\n\t\t\tdiv#mobile-scrollmenusub::-webkit-scrollbar {\r\n\t\t\t\tdisplay: none;\r\n\t\t\t}\r\n\r\n\t\t\tdiv#mobile-scrollmenusub a {\r\n\t\t\t\tdisplay: inline-block;\r\n\t\t\t\tfont-size:13px;\r\n\t\t\t\tfont-weight:600;\r\n\t\t\t\tcolor: #337ab7;\r\n\t\t\t\ttext-align: center;\r\n\t\t\t\tpadding: 8px 12px;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\ttext-decoration: none;\r\n\t\t\t}\r\n\r\n\t\t\tdiv#mobile-scrollmenusub a:hover {\r\n\t\t\t\ttext-decoration:underline;\r\n\t\t\t}\t\t\t\r\n\t\t\t\r\n\t\t\t.topnav a:not(:first-child), .dropdown .dropbtn {\r\n\t\t\tdisplay: none;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.topnav a.icon {\r\n\t\t\tfloat: right;\r\n\t\t\tdisplay: block;\r\n\t\t\tfont-size:30px;\r\n\t\t\t}\r\n\r\n\t\t\t.topnav.responsive {position: relative;}\r\n\t\t\t.topnav.responsive a.icon {\r\n\t\t\tposition: absolute;\r\n\t\t\tright: 0;\r\n\t\t\ttop: 0;\r\n\t\t\t}\r\n\t\t\t.topnav.responsive a {\r\n\t\t\tfloat: none;\r\n\t\t\tdisplay: block;\r\n\t\t\ttext-align: left;\r\n\t\t\t}\r\n\t\t\t.topnav.responsive .dropdown {float: none;}\r\n\t\t\t.topnav.responsive .dropdown-content {position: relative;}\r\n\t\t\t.topnav.responsive .dropdown .dropbtn {\r\n\t\t\tdisplay: block;\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: left;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.mobile-description {\r\n\t\t\t\ttext-align: left;\r\n\t\t\t\ttext-justify: auto;\r\n\t\t\t\tpadding:10px;\r\n\t\t\t\tmargin: 20px 10px;\r\n\t\t\t\tbackground-color:#fff;\r\n\t\t\t\tborder: 1px solid #dfdfdf;\r\n\t\t\t\tborder-radius:8px;\r\n\r\n\t\t\t}\r\n\r\n\t\t\t/* Default: for tablets, laptops, desktops */\r\n\t\t\t#description-wrapper {\r\n\t\t\t\tmax-height: none;\r\n\t\t\t\toverflow: visible;\r\n\t\t\t\tpadding: 10px;\r\n\t\t\t\ttransition: max-height 0.3s ease;\r\n\t\t\t}\r\n\r\n\t\t\t#description-wrapper.expanded {\r\n\t\t\t\tmax-height: none;\r\n\t\t\t}\r\n\r\n\t\t\t/* Hide toggle button by default (for larger screens) */\r\n\t\t\t#toggle-button {\r\n\t\t\t\tdisplay: none;\r\n\t\t\t\tmargin: 10px;\r\n\t\t\t\tpadding: 5px 10px;\r\n\t\t\t\tbackground-color: #337ab7;\r\n\t\t\t\tcolor: #fff;\r\n\t\t\t\tborder: none;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t}\r\n\r\n\t\t\t#toggle-button:hover {\r\n\t\t\t\tbackground-color: #337ab7;\r\n\t\t\t}\r\n\r\n\t\t\t/* Mobile-only adjustments */\r\n\t\t\t@media (max-width: 767px) {\r\n\t\t\t\t#description-wrapper {\r\n\t\t\t\t\tmax-height: 150px;\r\n\t\t\t\t\toverflow: hidden;\r\n\t\t\t\t\tpadding: 10px; /* Keep padding on mobile too */\r\n\t\t\t\t}\r\n\r\n\t\t\t\t#description-wrapper.expanded {\r\n\t\t\t\t\tmax-height: none;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t#toggle-button {\r\n\t\t\t\t\tdisplay: inline-block;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t\r\n\r\n\t\t\t\r\n\t\t\t#chart-list-mobile {\r\n\t\t\t\t\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tflex-direction: column;\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t\t\r\n\r\n\t\t\t.chart_panel {\r\n\t\t\t\tflex: 1;\r\n\t\t\t\tmargin: 10px;\r\n\t\t\t\tbackground-color:#fff;\r\n\t\t\t\tborder: 1px solid #dfdfdf;\r\n\t\t\t\tborder-radius:8px;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.chart_panel_header {\r\n\t\t\t\t\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: space-between;\r\n\t\t\t\twidth:100%;\r\n\t\t\t\tbackground-color:#f8f8f8;\r\n\t\t\t\tborder-bottom: 1px solid #dfdfdf;\r\n\t\t\t\tborder-top-left-radius:8px;\r\n\t\t\t\tborder-top-right-radius:8px;\r\n\t\t\t\tpadding:5px 15px;\r\n\t\t\t\tmargin-bottom:0px;\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.chart_title {\r\n\t\t\t\t\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\talign-items: center;\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\tfont-size: 20px;\r\n\t\t\t\tfont-weight:bold;\r\n\t\t\t\tmargin-bottom:0px;\r\n\t\t\t\t\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.chart_tabs {\r\n\t\t\t\t\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\talign-items: center;\t\t\t\t\r\n\t\t\t\tfont-size: 12px;\r\n\t\t\t\tfont-weight:bold;\r\n\t\t\t\t\r\n\t\t\t}\r\n\r\n\t\t\t.tab1 {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\talign-items: center;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t\tpadding: 8px 15px;\r\n\t\t\t\tmargin: 5px 0px 5px 10px;\r\n\t\t\t\tborder-top-left-radius:6px;\r\n\t\t\t\tborder-bottom-left-radius:6px;\r\n\t\t\t\tbackground-color: white;\r\n\t\t\t\tborder: 1px solid #ddd;\r\n\t\t\t\tborder-right: none;\r\n\t\t\t\tflex-grow: 1;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t.tab2 {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\talign-items: center;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t\tpadding: 8px 15px;\r\n\t\t\t\tmargin: 5px 10px 5px 0px;\r\n\t\t\t\tborder-top-right-radius:6px;\r\n\t\t\t\tborder-bottom-right-radius:6px;\r\n\t\t\t\tbackground-color: white;\r\n\t\t\t\tborder: 1px solid #ddd;\r\n\t\t\t\tmargin-right: 5px;\r\n\t\t\t\tflex-grow: 1;\r\n\t\t\t}\t\t\t\r\n\t\t\t\r\n\t\t\t.tab_images {\r\n\t\t\t\t\r\n\t\t\t\twidth:15px;\r\n\t\t\t\tfill: #dfdfdf;\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t}\r\n\r\n\t\t\t/* Lighter gray background on hover */\r\n\t\t\t.tab:hover {\r\n\t\t\t\tbackground-color: #efefef; /* Even lighter gray */\r\n\t\t\t}\r\n\r\n\t\t\t.active-tab {\r\n\t\t\t\tbackground-color: #efefef;\r\n\t\t\t}\t\t\r\n\r\n\t\t\t.chart_block {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\theight: 600px; /* Default height for larger screens */\r\n\t\t\t\tpadding: 20px;\r\n\t\t\t\tmargin: 0px;\r\n\t\t\t\tbackground-color: #fff;\r\n\t\t\t\tborder-radius: 8px;\r\n\t\t\t\ttouch-action: manipulation; /* Next three settings are to improve chart behavior on mobile */\r\n\t\t\t\tuser-select: none;\r\n\t\t\t\t-webkit-user-select: none;\r\n\t\t\t}\r\n\r\n\t\t\t/* Adjust height to 400px for screens smaller than 768px (mobile) */\r\n\t\t\t@media (max-width: 767px) {\r\n\t\t\t\t.chart_block {\r\n\t\t\t\t\theight: 450px;\r\n\t\t\t\t\tpadding: 5px;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.table_block {\r\n\t\t\t\tdisplay: none;\r\n\t\t\t\ttext-align: center;\r\n\t\t\t\theight: 600px;\r\n\t\t\t\tmargin:0px;\r\n\t\t\t\tpadding:20px;\r\n\t\t\t\tbackground-color:#fff;\r\n\t\t\t\tborder-radius:8px;\r\n\t\t\t\toverflow: auto;\r\n\t\t\t}\r\n\r\n\t\t\t/* Adjust height to 400px for screens smaller than 768px (mobile) */\r\n\t\t\t@media (max-width: 767px) {\r\n\t\t\t\t.table_block {\r\n\t\t\t\t\theight: 450px;\r\n\t\t\t\t}\r\n\t\t\t}\t\t\t\r\n\t\t\t\r\n\t\t\t.ad_block_leaderboard{\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\theight: 350px;\t\t\t\t\r\n\t\t\t\tpadding: 20px;\r\n\t\t\t\tbackground-color:#fff;\t\t\t\t\r\n\t\t\t}\r\n\r\n\t\t\t.ad_block_dianomi{\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\theight: 240px;\r\n\t\t\t\tmargin: 20px 30px;\t\t\t\r\n\t\t\t\tbackground-color:#fff;\r\n\t\t\t\ttop:0px;\t\t\t\t\r\n\t\t\t}\r\n\t\t\t\r\n\t\t\t/* Adjust Dianomi ad block height for laptop and desktop screens */\r\n\t\t\t@media (min-width: 768px) {\r\n\t\t\t\t.ad_block_dianomi {\r\n\t\t\t\t\tjustify-content: center;\r\n\t\t\t\t\theight: 175px;\r\n\t\t\t\t\tmargin: 20px 30px;\t\t\t\r\n\t\t\t\t\tbackground-color:#fff;\r\n\t\t\t\t\ttop:0px;\t\t\t\t\r\n\t\t\t\t}\t\t\t\t\r\n\t\t\t}\t\t\t\r\n\r\n\t\t\t.ad_block_ic{\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: center;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 250px;\t\t\t\t\r\n\t\t\t\tmargin: 10px auto;\t\r\n\t\t\t\tpadding-top:0px;\r\n\t\t\t\tbackground-color:#fff;\r\n\t\t\t\ttop:0px;\r\n\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t.related_charts_container {\r\n\t\t\t\tmin-height: 400px;\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\tjustify-content: center;  /* Center horizontally */\r\n\t\t\t\talign-items: center;      /* Optional: vertical centering */\r\n\t\t\t\twidth: 100%;\r\n\t\t\t}\r\n\r\n\t\t\t.related_charts_block {\r\n\t\t\t\ttext-align: left;\r\n\t\t\t\tpadding: 10px 30px 30px 30px;\r\n\t\t\t\tmargin: 30px 10px 60px 10px;\r\n\t\t\t\tbackground-color: #fff;\r\n\t\t\t\tborder: 1px solid #dfdfdf;\r\n\t\t\t\tborder-radius: 8px;\r\n\t\t\t\twidth: 100%;              /* Full width by default */\r\n\t\t\t}\r\n\r\n\t\t\t/* Desktop only: constrain width */\r\n\t\t\t@media (min-width: 768px) {\r\n\t\t\t\t.related_charts_block {\r\n\t\t\t\t\tmax-width: 600px;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.historical_data_table {\r\n\t\t\t  width: 100%;\r\n\t\t\t  border-collapse: collapse;\r\n\t\t\t  margin-bottom: 0;\r\n\t\t\t}\r\n\r\n\t\t\t.historical_data_table th,\r\n\t\t\t.historical_data_table td {\r\n\t\t\t  padding: 10px;\r\n\t\t\t  font-size: 16px;\r\n\t\t\t  text-align: left;\r\n\t\t\t}\r\n\r\n\t\t\t.historical_data_table th {\r\n\t\t\t  font-weight: bold;\r\n\t\t\t  background-color: #f8f8f8;\r\n\t\t\t  border-bottom: 1px solid #dfdfdf;\r\n\t\t\t}\r\n\r\n\t\t\t.historical_data_table tr:nth-child(even) {\r\n\t\t\t  background-color: #f9f9f9;\r\n\t\t\t}\r\n\r\n\t\t\t\r\n\t\t\t\r\n\r\n\t</style>\r\n\t\r\n</head>\r\n<body>\r\n\r\n\r\n    <!-- Header with Responsive Navbar -->\r\n    <header class=\"header text-white px-3\">\r\n        <nav class=\"navbar navbar-expand-lg navbar-dark container\">\r\n\t\t\t<a class=\"logo\" href=\"/\" title=\"MacroTrends Home Page\"><img alt=\"Macrotrends Logo\" width=\"193\" height=\"30\" src=\"/assets/images/logo_bright1.png\"/></a>\t\t\r\n            <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\">\r\n                <span class=\"navbar-toggler-icon\"></span>\r\n            </button>\r\n        </nav>\r\n    </header>\t\r\n\r\n\t<div id=\"leaderboardTag\" class=\"col-xs-12\"></div>\r\n\r\n\t<script>\r\n\tdocument.addEventListener(\"DOMContentLoaded\", function () {\r\n\t\tif (window.innerWidth < 1024) {\r\n\t\t\tdocument.getElementById(\"leaderboardTag\")?.remove();\r\n\t\t\treturn;\r\n\t\t}\r\n\r\n\t\tconst leaderboardDiv = document.getElementById(\"leaderboardTag\");\r\n\t\tif (!leaderboardDiv) return;\r\n\r\n\t\t// Show immediately\r\n\t\tleaderboardDiv.style.visibility = \"visible\";\r\n\r\n\t\t// Create context div\r\n\t\tconst contextDiv = document.createElement(\"div\");\r\n\t\tcontextDiv.className = \"dianomi_context\";\r\n\t\tcontextDiv.setAttribute(\"data-dianomi-context-id\", \"468\");\r\n\t\tleaderboardDiv.appendChild(contextDiv);\r\n\r\n\t\t// Load Dianomi script\r\n\t\tconst script = document.createElement(\"script\");\r\n\t\tscript.async = true;\r\n\t\tscript.src = \"https://www.dianomi.com/js/contextfeed.js\";\r\n\t\tdocument.body.appendChild(script);\r\n\t});\r\n\r\n\t</script>\r\n\r\n\r\n\r\n\r\n    <!-- Main Layout -->\r\n    <div class=\"container-fluid mt-3\">\r\n        <div class=\"row justify-content-center\">\r\n            \r\n            <!-- Wrapping div to keep content + sidebar aligned -->\r\n\t\t\t<div class=\"d-flex flex-column flex-lg-row align-items-start mx-auto\" style=\"max-width: 1340px; padding: 0 10px;\">\r\n                <!-- Main Content -->\r\n                <div class=\"main-content flex-grow-1\">\r\n\t\t\t\t\r\n\t\t\t\t\t<div id=\"mobile-content\" class=\"flex-grow-1\">\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<!--<div style=\"width:300px;height:20px;margin:30px auto; background-color:#fff;\"></div>-->\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div style=\"margin:30px 15px 20px 15px;\">\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<h2 style=\"margin-left:0px; font-weight:600; color:#444;\">Dollar Yen Exchange Rate - USD JPY (1971-2026)</h2>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t</div>\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t<div id=\"scrollbar\">\r\n\r\n\t\t\t\t\t\t<div id=\"mobile-scrollmenu\">\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab1\" href=\"/1319/dow-jones-100-year-historical-chart\">Markets</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab2\" href=\"/1333/historical-gold-prices-100-year-chart\">Metals</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab3\" href=\"/1369/crude-oil-price-history-chart\">Energy</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab4\" href=\"/2532/corn-prices-historical-chart-data\">Commodities</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab5\" href=\"/2016/10-year-treasury-bond-rate-yield-chart\">Interest Rates</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab6\" href=\"/2548/euro-dollar-exchange-rate-historical-chart\">Exchange Rates</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t<a id=\"mobile-tab7\" href=\"/2497/historical-inflation-rate-by-year\">Economy</a>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div id=\"mobile-scrollmenusub\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-euro-dollar-exchange-rate-historical-chart\" href=\"/2548/euro-dollar-exchange-rate-historical-chart\">EURUSD</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-us-dollar-index-historical-chart\" href=\"/1329/us-dollar-index-historical-chart\">DOLLAR INDEX</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-pound-dollar-exchange-rate-historical-chart\" href=\"/2549/pound-dollar-exchange-rate-historical-chart\">GBPUSD</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-dollar-yen-exchange-rate-historical-chart\" href=\"/2550/dollar-yen-exchange-rate-historical-chart\">USDJPY</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-us-dollar-swiss-franc-exchange-rate-historical-chart\" href=\"/2558/us-dollar-swiss-franc-exchange-rate-historical-chart\">USDCHF</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-australian-us-dollar-exchange-rate-historical-chart\" href=\"/2551/australian-us-dollar-exchange-rate-historical-chart\">AUDUSD</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-euro-swiss-franc-exchange-rate-historical-chart\" href=\"/2552/euro-swiss-franc-exchange-rate-historical-chart\">EURCHF</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-euro-british-pound-exchange-rate-historical-chart\" href=\"/2553/euro-british-pound-exchange-rate-historical-chart\">EURGBP</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-euro-japanese-yen-exchange-rate-historical-chart\" href=\"/2554/euro-japanese-yen-exchange-rate-historical-chart\">EURJPY</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-pound-japanese-yen-exchange-rate-historical-chart\" href=\"/2556/pound-japanese-yen-exchange-rate-historical-chart\">GBPJPY</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a id=\"mobile-us-dollar-yuan-exchange-rate-historical-chart\" href=\"/2575/us-dollar-yuan-exchange-rate-historical-chart\">USDCNY</a>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t</div>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<!--<div class=\"lazyload ad_block\"><iframe id=\"dianomi_leaderboard\" WIDTH=\"100%\" HEIGHT=\"350\"  frameBorder=\"0\" src=\"//www.dianomi.com/smartads.epl?id=4058\"></iframe></div><br>-->\r\n\r\n\t\t\t\t\t\t<div class=\"mobile-description\">\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t<div class=\"description-wrapper\" id=\"description-wrapper\">\r\n\t\t\t\t\t\t\t\t<div class=\"description-content\">\r\n\t\t\t\t\t\t\t\t\t<span style=\"color:#444; line-height: 1.8;\">Interactive historical chart showing the daily U.S. Dollar - Japanese Yen (USDJPY) exchange rate back to 1971. The full historical dataset is available for download here: <a style='color:#337ab7' href='https://www.macrotrends.net/datasets/2550/dollar-yen-exchange-rate-historical-chart'>Dollar Yen Exchange Rate - USD JPY | Data | 1971-2026</a>.</span>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<div class=\"gradient-overlay d-flex justify-content-center align-items-center\">\r\n\t\t\t\t\t\t\t\t<button id=\"toggle-button\" class=\"btn btn-primary\" onclick=\"toggleContent()\">View More</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"ad_block_dianomi d-lg-none\">\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t<script type=\"text/javascript\" id=\"dianomi_context_script\" src=\"https://www.dianomi.com/js/contextfeed.js\" async></script>\r\n\t\t\t\t\t\t\t<div class=\"dianomi_context\" data-dianomi-context-id=\"2234\"></div>\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t</div>\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<div class=\"container text-center d-none d-lg-block\" style=\"min-height:100px;\">\r\n\t\t\t\t\t\t\t<!-- 728x90 Ad Unit -->\r\n\t\t\t\t\t\t\t\t\t<div id=\"IC_d_728x90_1\" style=\"margin:20px 20px; min-height:90px;\"></div>\r\n\t\t\t\t\t\t</div>\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t<div id=\"chart-list-mobile\">\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\t\t\t\t<script>\r\n\t\t\t\t\twindow.relatedPages = [];\r\n\t\t\t\t\t</script>\r\n\r\n\r\n\r\n\t\t\t\t<div id=\"related-pages\" style=\"min-height: 100px;\"></div>\r\n\t\t\t\t\t\r\n                \r\n\t\t\t\t</div>\r\n\r\n\t\t\t<!-- Right Sidebar (Only on Desktop) -->\r\n\t\t\t<div class=\"d-none d-lg-block sidebar-container bg-white text-dark\" style=\"margin-top:70px; width: 320px;\">\r\n\r\n\t\t\t\t<div style=\"margin-top:0px; margin-bottom:0px; min-height:260px;\">\r\n\t\t\t\t\t<div id=\"IC_d_300x250_1\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t\t<!-- Sticky Ad Container -->\r\n\t\t\t\t<div class=\"stickyContainer\" style=\"position: sticky; top: 20px; width:320px;\">\r\n\t\t\t\t\t\r\n\t\t\t\t\t<!-- Dianomi Ad Parent Div -->\r\n\t\t\t\t\t<div id=\"dianomiParent\" style=\"margin-top:30px; min-height:750px;\">\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t<!-- Pre-created divs for Dianomi Ads -->\r\n\t\t\t\t\t\t<div id=\"dianomiCustomAd\" class=\"dianomi_context\" data-dianomi-context-id=\"470\"></div>\r\n\r\n\t\t\t\t\t\t<div id=\"IC_d_300x250_2\"></div>\r\n\t\t\t\t\t</div>\r\n\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<script>\r\n\t\t\t\tdocument.addEventListener(\"DOMContentLoaded\", function () {\r\n\t\t\t\t  if (window.innerWidth >= 1024) { // Only run on desktop (\u2265768px)\r\n\t\t\t\t\t// IDs of the two ad divs\r\n\t\t\t\t\tvar adUnitIds = ['dianomiCustomAd'];\r\n\r\n\t\t\t\t\tadUnitIds.forEach(function(id) {\r\n\t\t\t\t\t  var adDiv = document.getElementById(id);\r\n\t\t\t\t\t  if (adDiv) {\r\n\t\t\t\t\t\t// Create and append the Dianomi script for each div\r\n\t\t\t\t\t\tvar dianomiScript = document.createElement(\"script\");\r\n\t\t\t\t\t\tdianomiScript.type = \"text/javascript\";\r\n\t\t\t\t\t\tdianomiScript.src = \"https://www.dianomi.com/js/contextfeed.js\";\r\n\t\t\t\t\t\tadDiv.appendChild(dianomiScript);\r\n\t\t\t\t\t  }\r\n\t\t\t\t\t});\r\n\t\t\t\t  }\r\n\t\t\t\t});\r\n\t\t\t\t</script>\r\n\r\n\r\n\t\t\t</div>\r\n\r\n\r\n\r\n\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n\t\r\n\t<!--This is the div for the IC OOP ad-->\r\n\t<div id=\"IC_d_OOP_1\" style=\"width:1px;height:1px;\"></div>\r\n\r\n\r\n    <!-- Footer with Responsive Navigation -->\r\n    <footer class=\"footer text-white text-center py-3 mt-3 px-3\">\r\n        <ul class=\"footer-nav\">\r\n\t\t\t<li><span>&copy; 2010-2026 Macrotrends LLC</span></li>\r\n            <li><a class=\"text-white\" href=\"/privacy\">Privacy Policy</a></li>\r\n            <li><a class=\"text-white\" href=\"/terms\">Terms of Service</a></li>\r\n\r\n        </ul>\r\n    </footer>\r\n\t\r\n    <script>\r\n\r\n//Prevents the show more button from displaying if not needed\t\r\ndocument.addEventListener('DOMContentLoaded', function () {\r\n    const wrapper = document.getElementById('description-wrapper');\r\n    const button = document.getElementById('toggle-button');\r\n\r\n    // Hide the button if the content isn't overflowing\r\n    if (wrapper.scrollHeight <= wrapper.clientHeight + 1) {\r\n        button.style.display = 'none';\r\n    }\r\n});\r\n\t\r\n\r\n//Function for rendering the related pages table without blocking\r\nfunction renderRelatedPages() {\r\n  var related = window.relatedPages;\r\n  if (!related || !related.length) return;\r\n\r\n  var container = document.getElementById('related-pages');\r\n  if (!container) return;\r\n\r\n  var html = '';\r\n  html += '<div class=\"related_charts_container\" style=\"margin-bottom: 0px;\">';\r\n  html += '<div class=\"related_charts_block\" style=\"background-color:#fff; margin: 30px 10px; padding:10px;\">';\r\n  html += '<table class=\"historical_data_table table table-striped\">';\r\n  html += '<thead><tr><th style=\"text-align:center;\">Related Charts</th></tr></thead>';\r\n  html += '<tbody>';\r\n\r\n  for (var i = 0; i < related.length; i++) {\r\n    var page = related[i];\r\n    var id = encodeURIComponent(page.id);\r\n    var slug = encodeURIComponent(page.slug);\r\n    var title = page.title || \"\";\r\n\r\n    // Remove anything after the first \" - \"\r\n    var displayTitle = title;\r\n\r\n    var url = '/' + id + '/' + slug;\r\n    html += '<tr><td><a href=\"' + url + '\">' + displayTitle + '</a></td></tr>';\r\n  }\r\n\r\n  html += '</tbody>';\r\n  html += '</table></div></div>';\r\n\r\n  container.innerHTML = html;\r\n}\r\n\r\n\r\n\r\nfunction runWhenIdleOrReady(callback) {\r\n  if (document.readyState === 'complete' || document.readyState === 'interactive') {\r\n    if ('requestIdleCallback' in window) {\r\n      requestIdleCallback(callback);\r\n    } else {\r\n      setTimeout(callback, 0);\r\n    }\r\n  } else {\r\n    window.addEventListener('DOMContentLoaded', function () {\r\n      if ('requestIdleCallback' in window) {\r\n        requestIdleCallback(callback);\r\n      } else {\r\n        setTimeout(callback, 0);\r\n      }\r\n    });\r\n  }\r\n}\r\n\r\nrunWhenIdleOrReady(renderRelatedPages);\r\n\r\n\r\n\t\r\n//Make the right sidebar sticky on scroll\r\ndocument.addEventListener('DOMContentLoaded', function () {\r\n  // Only run on desktops (>=768px)\r\n  if (window.innerWidth < 768) return;\r\n\r\n  var stickyElem = document.querySelector('.stickyContainer');\r\n  if (!stickyElem) return;\r\n\r\n  var offset = 0; // desired top offset when sticky\r\n  var stickyTop = stickyElem.getBoundingClientRect().top + window.pageYOffset;\r\n\r\n  window.addEventListener('scroll', function () {\r\n\tif (window.pageYOffset > stickyTop - offset) {\r\n\t  stickyElem.style.position = 'fixed';\r\n\t  stickyElem.style.marginRight = '-20px';\r\n\t  stickyElem.style.top = offset + 'px';\r\n\t} else {\r\n\t  stickyElem.style.position = 'relative';\r\n\t  stickyElem.style.top = 'initial';\r\n\t}\r\n  });\r\n});\r\n\r\n\t\r\n\t\r\n\tfunction toggleContent() {\r\n\t\tvar contentWrapper = document.getElementById('description-wrapper');\r\n\t\tvar toggleButton = document.getElementById('toggle-button');\r\n\r\n\t\tif (contentWrapper.classList.contains('expanded')) {\r\n\t\t\tcontentWrapper.classList.remove('expanded');\r\n\t\t\ttoggleButton.textContent = 'View More';\r\n\t\t} else {\r\n\t\t\tcontentWrapper.classList.add('expanded');\r\n\t\t\ttoggleButton.textContent = 'View Less';\r\n\t\t}\r\n\t}\t\r\n\t\r\n\tfunction scrollToActiveTab(targetTab, navID) {\r\n\t  // Get the navigation container and target tab elements\r\n\t  var out = document.querySelector(navID);\r\n\t  var tar = out.querySelector(targetTab);\r\n\r\n\t  if (!out || !tar) return; // Early return if elements are not found\r\n\r\n\t  var x = out.clientWidth; // Width of the navigation container\r\n\t  var y = tar.offsetWidth; // Width of the target tab, excluding margin\r\n\t  var z = Array.from(out.querySelectorAll('a')).indexOf(tar); // Index of the target tab\r\n\t  var q = 0;\r\n\r\n\t  // Calculate the sum of widths of all elements before the target tab\r\n\t  var m = out.querySelectorAll('a');\r\n\t  for (var i = 0; i < z; i++) {\r\n\t\tq += m[i].offsetWidth; // Sum the width of each preceding tab\r\n\t  }\r\n\r\n\t  // Scroll the container\r\n\t  out.scrollLeft = Math.max(0, q - (x - y) / 2);\r\n\r\n\t  // Modify the tab to show active\r\n\t  tar.style.backgroundColor = \"#337ab7\";\r\n\t  tar.style.color = \"white\";\r\n\t}\r\n\r\n\r\n\tscrollToActiveTab('#mobile-tab6', '#mobile-scrollmenu');\r\n\tscrollToActiveTab('#mobile-dollar-yen-exchange-rate-historical-chart' , '#mobile-scrollmenusub');\t\r\n\r\n\t\r\n\t\r\n    var frequencies = {\"chart_list\":{\"Historical Chart\":\"DAILYEXCHANGERATE\",\"Annual Average\":\"ANNUALAVG\",\"Annual Change\":\"ANNUALVALUECHANGE\"}};\r\n\r\n\r\n    var parentContainer = document.getElementById(\"chart-list-mobile\");\r\n                  \r\n\r\n    Object.entries(frequencies.chart_list).forEach(function([key, value], index) {\r\n\t\t\r\n        // Create and append the parent chart div\r\n        var chartPanel = document.createElement(\"div\");\r\n        chartPanel.id = \"chartPanel\" + (index + 1); // Append counter to make it unique\r\n        chartPanel.className = \"chart_panel\";\r\n        parentContainer.appendChild(chartPanel);\r\n\r\n\t\t// Create and append the panel header element\r\n        var panelHeaderContainer = document.createElement(\"div\");\r\n        panelHeaderContainer.className = \"chart_panel_header\";\r\n        chartPanel.appendChild(panelHeaderContainer);\r\n\r\n        // Create and append the h3 element for the title\r\n        var titleH2 = document.createElement(\"h2\");\r\n        titleH2.className = \"chart_title\";\r\n        titleH2.textContent = key; // Concatenate chart_title, \"|\", and key\r\n        panelHeaderContainer.appendChild(titleH2);\r\n\t\t        \r\n        // Create and append the tabs element\r\n        var tabsContainer = document.createElement(\"div\");\r\n        tabsContainer.className = \"chart_tabs\";\r\n        panelHeaderContainer.appendChild(tabsContainer);\r\n\r\n        // Create and append the tabs subelement\r\n        var tab1 = document.createElement(\"div\");\r\n\t\ttab1.classList.add('tab', 'tab1', 'active-tab');\r\n\t\ttab1.setAttribute('data-target1', 'chartContainer' + (index + 1));\r\n\t\ttab1.setAttribute('data-target2', 'tableContainer' + (index + 1));\r\n        tabsContainer.appendChild(tab1);\r\n\t\t\r\n        // Add chart image to Tab 1\r\n\t\tvar tab1Img = document.createElement('img');\r\n\t\ttab1Img.src = '/production/global_metrics/images/bar-chart-fill.svg';\r\n\t\ttab1Img.width = 15; // Set the width (in pixels)\r\n\t\ttab1Img.height = 15; // Set the height (in pixels)\r\n\t\ttab1Img.alt = 'Click on chart icon to view chart';\t\t\r\n\t\ttab1Img.className = 'tab_images'; // Example: Adding a CSS class\r\n        tab1.appendChild(tab1Img);\r\n\t\t\r\n\t\t// Create and append the tabs subelement\r\n        var tab2 = document.createElement(\"div\");\r\n\t\ttab2.classList.add('tab', 'tab2');\r\n\t\ttab2.setAttribute('data-target1', 'tableContainer' + (index + 1));\r\n\t\ttab2.setAttribute('data-target2', 'chartContainer' + (index + 1));\r\n        tabsContainer.appendChild(tab2);\r\n\t\t\r\n         // Add table image to Tab 2\r\n\t\tvar tab2Img = document.createElement('img');\r\n\t\ttab2Img.src = '/production/global_metrics/images/table.svg';\r\n\t\ttab2Img.width = 15; // Set the width (in pixels)\r\n\t\ttab2Img.height = 15; // Set the height (in pixels)\r\n\t\ttab2Img.alt = 'Click on table icon to view table';\t\t\r\n\t\ttab2Img.className = 'tab_images'; // Example: Adding a CSS class\r\n        tab2.appendChild(tab2Img);\t\t\r\n\t\t\r\n        // Create and append the chart div\r\n        var chartDiv = document.createElement(\"div\");\r\n\t\tchartDiv.classList.add('lazyload', 'chart_block', 'tab_content');\r\n        chartDiv.id = \"chartContainer\" + (index + 1); // Append counter to make it unique\r\n        chartDiv.setAttribute(\"data-type\", \"chart\");\r\n        chartDiv.setAttribute(\"data-tableid\", \"tableContainer\" + (index + 1));\r\n        chartDiv.setAttribute(\"data-frequency\", value); // Use value for data-frequency\r\n        chartPanel.appendChild(chartDiv);\r\n\r\n        // Create and append the table div\r\n        var tableDiv = document.createElement(\"div\");\r\n\t\ttableDiv.classList.add('lazyload', 'table_block', 'tab_content');\r\n        tableDiv.id = \"tableContainer\" + (index + 1); // Append counter to make it unique\r\n        tableDiv.setAttribute(\"data-type\", \"table\");\r\n        tableDiv.setAttribute(\"data-frequency\", value); // Put frequency in as an attribute\r\n        tableDiv.setAttribute(\"data-title\", key);  // Put title in as an attribute\r\n        chartPanel.appendChild(tableDiv);\r\n\r\n\t\tchartDiv.style.display = 'flex';\r\n\t\ttableDiv.style.display = 'none';\t\t\t\r\n\r\n        // Create and set content for advertiserDiv based on device type\r\n        // var advertiserDiv = document.createElement(\"div\");\r\n        // advertiserDiv.className = \"lazyload ad_block_ic\";\r\n        // advertiserDiv.id = \"IC_d_300x250_\" + (index + 1);\r\n        // advertiserDiv.setAttribute(\"data-type\", \"investing_channel\");\r\n        // parentContainer.appendChild(advertiserDiv); \r\n\t\t\r\n\t\t//Display different Dianomi unit based on position\t\r\n\t\tif(index == 0) {\r\n\t\t\tvar dianomiUnit = \"4004\";\r\n\t\t\tvar DianomiClassName = \"lazyload ad_block_dianomi\";\r\n\t\t\t} else if (index == 1){\r\n\t\t\tvar dianomiUnit = \"4005\";\r\n\t\t\tvar DianomiClassName = \"lazyload ad_block_dianomi\";\r\n\t\t\t} else if (index == 2){\r\n\t\t\tvar dianomiUnit = \"4006\";\r\n\t\t\tvar DianomiClassName = \"lazyload ad_block_dianomi\";\r\n\t\t\t} else if (index == 3){\r\n\t\t\tvar dianomiUnit = \"4007\";\r\n\t\t\tvar DianomiClassName = \"lazyload ad_block_dianomi\";\r\n\t\t\t}\r\n\t\t\t\r\n        // Create and set content for advertiserDiv based on device type\r\n        var advertiserDiv = document.createElement(\"div\");\r\n        advertiserDiv.className = DianomiClassName;\r\n        advertiserDiv.id = \"dianomi_300x300_\" + (index + 1);\r\n        advertiserDiv.setAttribute(\"data-type\", \"dianomi\");\r\n\t\t\t\r\n\t\t\t\t\r\n\t\tadvertiserDiv.setAttribute(\"data-advertiser\", dianomiUnit);\r\n        parentContainer.appendChild(advertiserDiv);  \t\t\r\n    })\r\n    </script>\t\t\r\n\t\r\n\r\n<script>\r\n\r\n\tdocument.querySelectorAll('.tab').forEach(tab => {\r\n\t\ttab.addEventListener('click', function() {\r\n\t\t\tlet container = this.closest('.chart_panel'); // Adjusted to the correct container class\r\n\t\t\tlet contentToShow = container.querySelector('#' + this.getAttribute('data-target1'));\r\n\t\t\tlet contentToHide = container.querySelector('#' + this.getAttribute('data-target2'));\r\n\t\t\t\r\n\t\t\t// Remove active-tab class from all tabs in this container\r\n\t\t\tcontainer.querySelectorAll('.tab').forEach(tab => {\r\n\t\t\t\ttab.classList.remove('active-tab');\r\n\t\t\t});\r\n\r\n\t\t\t// Hide and show content\r\n\t\t\tcontentToHide.style.display = 'none';\r\n\t\t\tcontentToShow.style.display = 'flex'; // Ensure this matches your intended display style\r\n\t\t\tthis.classList.add('active-tab');\r\n\t\t});\r\n\t});\r\n\r\n\t\r\n\tdocument.addEventListener('DOMContentLoaded', (event) => {\r\n\t  // Function to be called when a button is clicked\r\n\t  function buttonClicked(event) {\r\n\t\t// event.target is the clicked element\r\n\t\t// event.target.dataset contains all the data attributes of the element\r\n\t\tconst tableTarget = event.target.dataset.target;\r\n        const container = document.getElementById(tableTarget);\r\n        container.classList.toggle('expanded');\r\n        \r\n        // Update button text based on the state\r\n        this.textContent = container.classList.contains('expanded') ? 'View Less' : 'View More';\r\n\r\n\t  }\r\n\t  \r\n\t  // Select all buttons with the class 'my-button' and add a click event listener to each\r\n\t  document.querySelectorAll('.toggleButton').forEach(button => {\r\n\t\tbutton.addEventListener('click', buttonClicked);\r\n\t  });\r\n\t});\t\r\n\t\r\n</script>\r\n\r\n\t<script>\r\n\t/* Toggle between adding and removing the \"responsive\" class to topnav when the user clicks on the icon */\r\n\tfunction showMobileMenu() {\r\n\t  var x = document.getElementById(\"topNav\");\r\n\t  if (x.className === \"topnav\") {\r\n\t\tx.className += \" responsive\";\r\n\t  } else {\r\n\t\tx.className = \"topnav\";\r\n\t  }\r\n\t}\r\n\t\r\n\t\r\n/* \t\r\n\t// When the user scrolls the page, execute myFunction\r\n\twindow.onscroll = function() {navbarSticky()};\r\n\r\n\t// Get the navbar\r\n\tvar navbar = document.getElementById(\"top-nav-search-bar\");\r\n\r\n\t// Get the offset position of the navbar\r\n\tvar sticky = navbar.offsetTop;\r\n\r\n\t// Add the sticky class to the navbar when you reach its scroll position. Remove \"sticky\" when you leave the scroll position\r\n\tfunction navbarSticky() {\r\n\t  if (window.pageYOffset >= sticky) {\r\n\t\tnavbar.classList.add(\"sticky\")\r\n\t\tnavbar.classList.add(\"-webkit-sticky\")\r\n\t  } else {\r\n\t\tnavbar.classList.remove(\"sticky\");\r\n\t\tnavbar.classList.remove(\"-webkit-sticky\");\r\n\t  }\r\n\t} */\r\n\r\n/* document.addEventListener('DOMContentLoaded', function() {\r\n  // When the event DOMContentLoaded occurs, it is safe to access the DOM\r\n\r\n  // When the user scrolls the page, execute myFunction \r\n  window.addEventListener('scroll', myFunctionForSticky);\r\n\r\n  // Get the navbar\r\n  var navbar = document.getElementById(\"sticky-sidebar\");\r\n\r\n  // Get the offset position of the navbar\r\n  var sticky = navbar.offsetTop;\r\n\r\n  // Add the sticky class to the navbar when you reach its scroll position. \r\n  // Remove \"sticky\" when you leave the scroll position\r\n\r\n  function myFunctionForSticky() {\r\n    if (window.pageYOffset >= sticky) {\r\n      console.log(\"window.pageYOffset >= sticky\");\r\n    } else {\r\n      console.log(\"Not window.pageYOffset >= sticky\");\r\n    }\r\n    if (window.pageYOffset >= sticky) {\r\n      navbar.classList.add(\"sticky\");\r\n    } else {\r\n      navbar.classList.remove(\"sticky\");\r\n    }\r\n  }\r\n})\t */\r\n\r\n\t\r\n\t</script>\t\t\r\n\r\n<script>\r\n\r\n\tlet highchartsLoaded = false;\r\n\tlet highchartsLoading = false;\r\n\tlet highchartsQueue = [];\r\n\r\n\tfunction loadHighcharts(callback) {\r\n\t  if (highchartsLoaded) return callback();\r\n\t  highchartsQueue.push(callback);\r\n\r\n\t  if (!highchartsLoading) {\r\n\t\thighchartsLoading = true;\r\n\r\n\t\tconst scripts = [\r\n\t\t  '/assets/javascript/highstock.js',\r\n\t\t  '/assets/javascript/exporting.js',\r\n\t\t  '/assets/javascript/export-data.js',\r\n\t\t  '/assets/javascript/accessibility.js'\r\n\t\t];\r\n\r\n\t\tconst loadNext = (index) => {\r\n\t\t  if (index >= scripts.length) {\r\n\t\t\thighchartsLoaded = true;\r\n\t\t\thighchartsQueue.forEach(cb => cb());\r\n\t\t\thighchartsQueue = [];\r\n\t\t\treturn;\r\n\t\t  }\r\n\r\n\t\t  const script = document.createElement('script');\r\n\t\t  script.src = scripts[index];\r\n\t\t  script.async = true;\r\n\t\t  script.onload = () => loadNext(index + 1);\r\n\t\t  script.onerror = () => console.error(`Failed to load: ${scripts[index]}`);\r\n\t\t  document.head.appendChild(script);\r\n\t\t};\r\n\r\n\t\tloadNext(0);\r\n\t  }\r\n\t}\r\n\r\n\r\nif (!!window.IntersectionObserver) {\r\n    // IntersectionObserver callback\r\n    const handleIntersect = (entries, observer) => {\r\n        entries.forEach(entry => {\r\n            if (entry.isIntersecting) {\r\n                const el = entry.target;\r\n\r\n                // Use requestIdleCallback if available\r\n                const loadAsync = window.requestIdleCallback || function (cb) { setTimeout(cb, 0); };\r\n\r\n                loadAsync(() => {\r\n                    if (el.dataset.type === 'chart') {\r\n                        const targetID = el.id;\r\n                        const frequency = el.dataset.frequency;\r\n                        const tableID = el.dataset.tableid;\r\n\r\n                        loadHighcharts(() => {\r\n                            generateChart('2550', '164', frequency, targetID, tableID);\r\n                        });\r\n\r\n                        el.dataset.loaded = 'true';\r\n                    } else if (el.dataset.type === 'dianomi') {\r\n                        const newScript = document.createElement(\"script\");\r\n                        newScript.id = \"dianomi_context_script\";\r\n                        newScript.src = \"https://www.dianomi.com/js/contextfeed.js\";\r\n                        el.appendChild(newScript);\r\n\r\n                        const advertiserID = el.dataset.advertiser;\r\n                        el.innerHTML += \"<div class='dianomi_context' data-dianomi-context-id='\" + advertiserID + \"'></div>\";\r\n                        el.dataset.loaded = 'true';\r\n                    }\r\n\r\n                    // Delay unobserve to avoid premature removal\r\n                    setTimeout(() => observer.unobserve(el), 100);\r\n                });\r\n            }\r\n        });\r\n    };\r\n\r\n    // Create the observer\r\n    const observer = new IntersectionObserver(handleIntersect, {\r\n        rootMargin: \"300px 0px\",\r\n        threshold: 0\r\n    });\r\n\r\n    // Start observing lazyload elements\r\n    document.querySelectorAll('.lazyload').forEach(div => observer.observe(div));\r\n\r\n    // Fallback: check for anything missed after initial page load\r\n    window.addEventListener('load', () => {\r\n        setTimeout(() => {\r\n            document.querySelectorAll('.lazyload').forEach(el => {\r\n                if (!el.dataset.loaded && el.dataset.type === 'chart') {\r\n                    loadHighcharts(() => {\r\n                        generateChart('2550', '164', el.dataset.frequency, el.id, el.dataset.tableid);\r\n                    });\r\n                }\r\n                // Optionally repeat for other ad types if needed\r\n            });\r\n        }, 3000);\r\n    });\r\n}\r\n\r\n\r\n\r\n\r\nfunction generateChart(pageID, template, chartFrequency, targetDivID, tableID) {\r\n\t\t\r\n\tvar highchartsURL = '/economic-data/' + pageID + '/' + chartFrequency;\r\n\t\r\n\tfetch(highchartsURL)\r\n\t  .then(response => {\r\n\t\tif (!response.ok) {\r\n\t\t  throw new Error(`HTTP error: ${response.status}`);\r\n\t\t}\r\n\t\treturn response.json();\r\n\t  })\r\n\t  .then(remoteData => {\r\n\t\t\t\t\r\n\t\tvar data = remoteData.data;\r\n\t\tvar fieldName = remoteData.metadata.name;\r\n\t\tvar tableHeaderName = remoteData.metadata,tableHeaderName;\r\n\t\tvar chartType = remoteData.metadata.chartType;\t\r\n\t\tvar mobileChartType = remoteData.metadata.mobileChartType;\t\r\n\t\tvar lineWidth = remoteData.metadata.lineWidth;\t\r\n\t\tvar yAxisCurrency = remoteData.metadata.currency;\t\t\r\n\t\tvar yAxisRightLabel = remoteData.metadata.label;\t\t\r\n\t\tvar toolTipDecimals = remoteData.metadata.decimals;\r\n\t\tvar positiveColor = remoteData.metadata.positiveColor;\r\n\t\tvar negativeColor = remoteData.metadata.negativeColor;\r\n\t\tvar tooltipDateFormat = remoteData.metadata.tooltipDateFormat;\t\r\n\t\tvar chartScale = remoteData.metadata.chartScale;\t\t\t\r\n\t\tvar defaultChartFrequency = remoteData.metadata.defaultChartFrequency\r\n\t\tvar seriesUnits = remoteData.metadata.seriesUnits\r\n\t\t\r\n\t\tif(defaultChartFrequency == 'D' || chartFrequency == 'INDEXDAILY' || chartFrequency == 'D' || chartFrequency == 'INDEXMONTHLY' || chartFrequency == 'INDEXMONTHLYINFLATION') {\r\n\r\n\t\t\tvar navigatorEnabled = true;\t\r\n\t\t\tvar scrollbarEnabled = true;\t\r\n\t\t\t\r\n\t\t\t\r\n\t\t} else {\r\n\t\t\t\r\n\t\t\tvar navigatorEnabled = false;\t\r\n\t\t\tvar scrollbarEnabled = false;\t\t\t\t\r\n\t\t\t\r\n\t\t}\r\n\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t// split the data set into ohlc and volume\r\n\t\tvar chartData = [],\r\n\t\t\tdataLength = data.length,\r\n\r\n\t\t\ti = 0;\r\n\t\t\tfor (i; i < dataLength; i += 1) {\r\n\t\t\t\tchartData.push([\r\n\t\t\t\t\tdata[i][0], // the date\r\n\t\t\t\t\tdata[i][1], // the value\r\n\t\t\t\t]);\t\t\r\n\t\t\t}\r\n\t\t\t\r\n\t\t//console.log(JSON.stringify(percentChange));\r\n\t\t\r\n\t\tHighcharts.setOptions({\r\n\t\t\tlang: {\r\n\t\t\t\tthousandsSep: ',',\r\n\t\t\t\tdecimalPoint: '.',\r\n\t\t\t\tnumericSymbols: []\r\n\t\t\t}\r\n\t\t});\t\r\n\r\n\t\t// Set different range selector buttons depending on the type of chart\r\n\t\tlet rangeSelectorButtons;\r\n\t\tlet rangeOptionSelected;\r\n\r\n\t\tif (template == 1 && chartFrequency == 'D') {\r\n\t\t  rangeSelectorButtons = [\r\n\t\t\t{ type: 'year', count: 1, text: '1Y' },\r\n\t\t\t{ type: 'year', count: 5, text: '5Y' },\r\n\t\t\t{ type: 'year', count: 10, text: '10Y' },\r\n\t\t\t{ type: 'year', count: 20, text: '20Y' },\r\n\t\t\t{ type: 'year', count: 30, text: '30Y' },\r\n\t\t\t{ type: 'all', text: 'All' }\r\n\t\t  ];\r\n\t\t  rangeOptionSelected = 6;\r\n\t\t} else {\r\n\t\t  // Extract date range\r\n\t\t  const startDate = new Date(chartData[0][0]);\r\n\t\t  const endDate = new Date(chartData[chartData.length - 1][0]);\r\n\r\n\t\t  // Calculate total span in years\r\n\t\t  const totalYears = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24 * 365.25));\r\n\r\n\t\t  rangeSelectorButtons = [];\r\n\t\t  \r\n\t\t  if(defaultChartFrequency == 'D' || chartFrequency == 'DAILYEXCHANGERATE' || chartFrequency == 'D' || chartFrequency == '10YD' ||  chartFrequency == 'INDEXDAILY') {\r\n\t\t\t\r\n\t\t\t  rangeSelectorButtons.push({ type: 'ytd', count: 1, text: 'YTD' })\r\n\t\t\t  if (totalYears >= 1) rangeSelectorButtons.push({ type: 'year', count: 1, text: '1Y' });\r\n\t\t\t  if (totalYears >= 5) rangeSelectorButtons.push({ type: 'year', count: 5, text: '5Y' });\r\n\t\t\t  if (totalYears >= 10) rangeSelectorButtons.push({ type: 'year', count: 10, text: '10Y' });\r\n\t\t\t  if (totalYears >= 20) rangeSelectorButtons.push({ type: 'year', count: 20, text: '20Y' });\r\n\t\t  \r\n\t\t} else {\r\n\t\t\t\r\n\t\t\t  if (totalYears >= 5) rangeSelectorButtons.push({ type: 'year', count: 5, text: '5Y' });\r\n\t\t\t  if (totalYears >= 10) rangeSelectorButtons.push({ type: 'year', count: 10, text: '10Y' });\r\n\t\t\t  if (totalYears >= 20) rangeSelectorButtons.push({ type: 'year', count: 20, text: '20Y' });\r\n\t\t\t  if (totalYears >= 30) rangeSelectorButtons.push({ type: 'year', count: 30, text: '30Y' });\r\n\t\t\t  if (totalYears >= 50) rangeSelectorButtons.push({ type: 'year', count: 50, text: '50Y' });\r\n\t\t  \r\n\t\t}\r\n\r\n\t\t  rangeSelectorButtons.push({ type: 'all', text: 'All' });\r\n\r\n\t\t  // Select the last option (usually 'All')\r\n\t\t  rangeOptionSelected = rangeSelectorButtons.length - 1;\r\n\t\t}\r\n\r\n\t\t\r\n\r\n\r\n\t\t// create the chart\r\n\t\tchart = Highcharts.stockChart(targetDivID, {\r\n\t\t\t\r\n\t\t\tchart: {\t\t\t\r\n\t\t\t\tstyledMode: false,\r\n\t\t\t\tanimation: false,\r\n\t\t\t\tzoomType: 'x', // Enables drag-to-zoom on X axis\r\n\t\t\t\tstyle: {\r\n\t\t\t\t\t\r\n\t\t\t\t\tfontFamily: 'Roboto, Sans-Serif'\r\n\t\t\t\t\t\r\n\t\t\t\t},\r\n\t\t\t\tzooming: {\r\n\t\t\t\t\tmouseWheel: false\r\n\t\t\t\t},\r\n\t\t\t\tevents: {\r\nload: function () {\r\n    const chart = this;\r\n\r\n    const buttonWidth = 50;\r\n    const buttonHeight = 35;\r\n    const topOffset = 0;\r\n    const rightOffset = 5;\r\n\r\n    // Create group\r\n    const dataGroup = chart.renderer.g()\r\n        .attr({ zIndex: 3 })\r\n        .translate(chart.chartWidth - buttonWidth - rightOffset, topOffset)\r\n        .add();\r\n\r\n    // Background rectangle\r\n    chart.renderer.rect(0, 0, buttonWidth, buttonHeight, 5)\r\n        .attr({\r\n            fill: '#efefef',\r\n            stroke: '#ddd',\r\n            cursor: 'pointer'\r\n        })\r\n        .add(dataGroup);\r\n\r\n    // Icon\r\n    chart.renderer.image('/production/global_metrics/images/cloud-download.svg', 15, 8, 20, 20)\r\n        .attr({ cursor: 'pointer' })\r\n        .add(dataGroup);\r\n\r\n    // Tooltip title\r\n    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');\r\n    title.textContent = 'Download Data';\r\n    dataGroup.element.appendChild(title);\r\n\r\n    // Click handler\r\n    dataGroup.on('click', function () {\r\n        chart.downloadCSV();\r\n    });\r\n}\r\n\r\n\r\n\t\t\t\t}\r\n\t\t\t\r\n\t\t\t},\r\n\t\t\tcredits: {\r\n\t\t\t\tenabled: false // Disable credits to remove \"Highcharts\" label\r\n\t\t\t},\t\t\t\t\t\t\t\r\n\t\t\tthreshold: null,\r\n\t\t\tnavigator: {\r\n\t\t\t\tenabled: navigatorEnabled\r\n\t\t\t},\t\t\t\r\n\t\t\tscrollbar: {\r\n\t\t\t\tenabled: scrollbarEnabled\r\n\t\t\t},\t\t\t\r\n\t\t\tloading: {\r\n\t\t\t\tstyle: {\r\n\t\t\t\t\tbackgroundColor: 'silver'\r\n\t\t\t\t},\r\n\t\t\t\tlabelStyle: {\r\n\t\t\t\t\tcolor: 'white'\r\n\t\t\t\t}\r\n\t\t\t},\r\n\r\n\t\t\trangeSelector: {\r\n\t\t\t\ttitle: {\r\n\t\t\t\t\ttext: 'Zoom:'\r\n\t\t\t\t},\r\n\t\t\t\tallButtonsEnabled: true,\r\n\t\t\t\tinputEnabled: false, // Hide date input\r\n\t\t\t\tdropdown: 'never', // Change to `null` if needed\r\n\t\t\t\tbuttons: rangeSelectorButtons,\r\n\t\t\t\tbuttonTheme: {\r\n\t\t\t\t\twidth: 35\r\n\t\t\t\t},\r\n\t\t\t\tselected: rangeOptionSelected \r\n\t\t\t},\t\r\n\t\t\t\r\n\t\t\txAxis: [{\r\n\t\t\t  labels: {\r\n\t\t\t\tstyle: {\r\n\t\t\t\t  fontSize: 14\r\n\t\t\t\t},\r\n\t\t\t\tdateTimeLabelFormats: {\r\n\t\t\t\t  millisecond: '%H:%M:%S.%L',\r\n\t\t\t\t  second: '%H:%M:%S',\r\n\t\t\t\t  minute: '%H:%M',\r\n\t\t\t\t  hour: '%H:%M',\r\n\t\t\t\t  day: '%e. %b',\r\n\t\t\t\t  week: '%e. %b',\r\n\t\t\t\t  month: '%b %Y',\r\n\t\t\t\t  year: '%Y'\r\n\t\t\t\t}\r\n\t\t\t  }\r\n\t\t\t}],\r\n\t\t\r\n\t\t\tyAxis: [{\r\n\t\t\t  type: chartScale,\r\n\t\t\t  opposite: true, // Explicitly ensures the axis is on the left\r\n\t\t\t\tlabels: {\r\n\t\t\t\t  align: 'left',\r\n\t\t\t\t  x: 10,\r\n\t\t\t\t\tformatter: function () {\r\n\t\t\t\t\t  const currency = yAxisCurrency || '';\r\n\t\t\t\t\t  const rightLabel = yAxisRightLabel || '';\r\n\t\t\t\t\t  const val = this.value;\r\n\t\t\t\t\t  let formatted;\r\n\r\n\t\t\t\t\t  if (Math.abs(val) >= 1e12) {\r\n\t\t\t\t\t\tformatted = (val / 1e12).toFixed(3).replace(/\\.?0+$/, '') + 'T';\r\n\t\t\t\t\t  } else if (Math.abs(val) >= 1e9) {\r\n\t\t\t\t\t\tformatted = (val / 1e9).toFixed(2).replace(/\\.?0+$/, '') + 'B';\r\n\t\t\t\t\t  } else if (Math.abs(val) >= 1e6) {\r\n\t\t\t\t\t\tformatted = (val / 1e6).toFixed(1).replace(/\\.?0+$/, '') + 'M';\r\n\t\t\t\t\t  } else if (Math.abs(val) >= 1e3) {\r\n\t\t\t\t\t\tformatted = (val / 1e3).toFixed(1).replace(/\\.?0+$/, '') + 'K';\r\n\t\t\t\t\t  } else {\r\n\t\t\t\t\t\tformatted = val.toString();\r\n\t\t\t\t\t  }\r\n\r\n\t\t\t\t\t  return currency + formatted + rightLabel;\r\n\t\t\t\t\t},\r\n\t\t\t\t  style: {\r\n\t\t\t\t\tfontSize: '14px',\r\n\t\t\t\t\tcolor: '#000'\r\n\t\t\t\t  }\r\n\t\t\t\t},\r\n\t\t\t  title: {\r\n\t\t\t\trotation: 270,          // Horizontal title\r\n\t\t\t\tx: 0,\r\n\t\t\t\ty: -10,\r\n\t\t\t\tstyle: {\r\n\t\t\t\t  fontSize: '16px',\r\n\t\t\t\t  color: '#000'\r\n\t\t\t\t}\r\n\t\t\t  },\r\n\t\t\t  lineWidth: 1,\r\n\t\t\t  gridLineWidth: 1,\r\n\t\t\t  min: null,\r\n\t\t\t  max: null,\r\n\t\t\t  startOnTick: false,\r\n\t\t\t  endOnTick: false,\r\n\t\t\t  resize: {\r\n\t\t\t\tenabled: true\r\n\t\t\t  }\r\n\t\t\t}],\r\n\t\t\ttooltip: {\r\n\t\t\t  split: true,\r\n\t\t\t  useHTML: true,\r\n\t\t\t  formatter: function () {\r\n\t\t\t\tconst point = this.points?.[0];\r\n\t\t\t\tif (!point) return '';\r\n\r\n\t\t\t\tconst value = point.y;\r\n\t\t\t\tlet formattedValue;\r\n\r\n\t\t\t\t// Dynamic date format\r\n\t\t\t\tlet dateFormat;\r\n\t\t\t\tif (defaultChartFrequency == 'D' || chartFrequency === 'DAILYEXCHANGERATE' ||chartFrequency === 'D' || chartFrequency === '10YD' || chartFrequency === 'INDEXDAILY') {\r\n\t\t\t\t  const grouping = point.series?.currentDataGrouping?.unitName;\r\n\t\t\t\t  dateFormat =\r\n\t\t\t\t\tgrouping === 'year' ? '%Y' :\r\n\t\t\t\t\tgrouping === 'month' ? '%b %Y' :\r\n\t\t\t\t\tgrouping === 'week' ? '%b %e, %Y' :\r\n\t\t\t\t\tgrouping === 'day' ? '%b %e, %Y' :\r\n\t\t\t\t\t'%b %e, %Y';\r\n\t\t\t\t} else if (defaultChartFrequency === 'A') {\r\n\t\t\t\t\t\r\n\t\t\t\t  dateFormat = '%Y';\r\n\t\t\t\t  \r\n\t\t\t\t} else {\r\n\t\t\t\t  dateFormat = tooltipDateFormat;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t// Metadata\r\n\t\t\t\tconst metadata = point.series.chart.options.metadata || {};\r\n\t\t\t\tconst currency = metadata.currency || yAxisCurrency || '';\r\n\t\t\t\tconst label = metadata.label || '';\r\n\t\t\t\tconst rightLabel = yAxisRightLabel || '';\r\n\r\n\t\t\t\tconst absIntPart = Math.floor(Math.abs(value));\r\n\t\t\t\tconst isRawValueLarge = absIntPart >= 100000;\r\n\r\n\t\t\t\tif(chartFrequency == 'INDEXMONTHLY' || chartFrequency == 'INDEXMONTHLYINFLATION' || chartFrequency == '10YD' || chartFrequency == 'INDEXANNUALAVG') {\r\n\t\t\t\t\t\r\n\r\n\t\t\t\t\tformattedValue = currency + Highcharts.numberFormat(value, 2) + label;\t\t\t\t\t\r\n\r\n\t\t\t\t} else if(chartFrequency == 'DAILYEXCHANGERATE') {\r\n\r\n\t\t\t\t\tformattedValue = Highcharts.numberFormat(value, 4);\t\t\t\t\t\r\n\r\n\t\t\t\t} else if (label == '%') {\r\n\t\t\t\t  // Percent: 2 decimals\r\n\t\t\t\t  formattedValue = Highcharts.numberFormat(value, 2) + '%';\r\n\r\n\t\t\t\t} else {\r\n\t\t\t\t  const absVal = Math.abs(value);\r\n\t\t\t\t  const symbol = currency || ''; // '$', '\u20ac', or empty\r\n\t\t\t\t  const isCurrency = symbol !== '';\r\n\r\n\t\t\t\t  if (absVal >= 1e12) {\r\n\t\t\t\t\tformattedValue = symbol + (value / 1e12).toFixed(3) + 'T';\r\n\t\t\t\t  } else if (absVal >= 1e9) {\r\n\t\t\t\t\tformattedValue = symbol + (value / 1e9).toFixed(3) + 'B';\r\n\t\t\t\t  } else if (absVal >= 1e6) {\r\n\t\t\t\t\tformattedValue = symbol + (value / 1e6).toFixed(3) + 'M';\r\n\t\t\t\t  } else if (absVal >= 1e3 && isCurrency) {\r\n\t\t\t\t\t// Only format thousands with symbol\r\n\t\t\t\t\tformattedValue = symbol + Highcharts.numberFormat(value, 0, '.', ',');\r\n\t\t\t\t  } else if (absVal >= 1e3) {\r\n\t\t\t\t\t// For non-currency: 1,234 without symbol\r\n\t\t\t\t\tformattedValue = Highcharts.numberFormat(value, 0, '.', ',');\r\n\t\t\t\t  } else {\r\n\t\t\t\t\t// Use dynamic decimals if not large\r\n\t\t\t\t\tlet dynamicDecimals;\r\n\t\t\t\t\tif (absIntPart === 0) {\r\n\t\t\t\t\t  dynamicDecimals = 3;\r\n\t\t\t\t\t} else {\r\n\t\t\t\t\t  dynamicDecimals = 2;\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\r\n\t\t\t\t\tformattedValue =\r\n\t\t\t\t\t  (isCurrency ? symbol : (yAxisCurrency || '')) +\r\n\t\t\t\t\t  Highcharts.numberFormat(value, dynamicDecimals) +\r\n\t\t\t\t\t  (isCurrency ? '' : (rightLabel || ''));\r\n\t\t\t\t  }\r\n\t\t\t\t}\r\n\r\n\r\n\t\t\t\treturn [\r\n\t\t\t\t  '<b>' + Highcharts.dateFormat(dateFormat, this.x) + '</b>'\r\n\n...17238 bytes truncated...\n\nThe tool call succeeded but the output was truncated. Full output saved to: /root/.local/share/opencode/tool-output/tool_d3c7d9751001bdT174S6hA8igd\nUse the Task tool to have explore agent process this file with Grep and Read (with offset/limit). Do NOT read the full file yourself - delegate to save context."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 26742,
+        "completion_tokens": 118,
+        "cached_tokens": 26149
+      }
+    },
+    {
+      "step_id": 13,
+      "timestamp": "2026-03-30T02:05:59.453000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "The HTML page is JavaScript-rendered - the actual data is fetched dynamically. Let me try fetching the data API endpoint directly.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_016VDGMkpbRavHh4znmHgDYT",
+          "function_name": "webfetch",
+          "arguments": {
+            "url": "https://www.macrotrends.net/economic-data/2550/DAILYEXCHANGERATE",
+            "format": "text"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_016VDGMkpbRavHh4znmHgDYT",
+            "content": ""
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 43467,
+        "completion_tokens": 122,
+        "cached_tokens": 26741
+      }
+    },
+    {
+      "step_id": 14,
+      "timestamp": "2026-03-30T02:06:03.877000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "That returned empty. Let me try other approaches to get the exchange rate data.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01NXC8CfgxUGfRWRSWkNnP9t",
+          "function_name": "webfetch",
+          "arguments": {
+            "url": "https://www.macrotrends.net/datasets/2550/dollar-yen-exchange-rate-historical-chart",
+            "format": "text"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01NXC8CfgxUGfRWRSWkNnP9t",
+            "content": "Dollar Yen Exchange Rate - USD JPY | Historical Chart | Data | 1971-2026\r\n\t\r\n\t\t\r\n\t\r\n\r\n\t\r\n    \r\n    \r\n\t\r\n\t\r\n\t\t\r\n\t\r\n\t\r\n\r\n\r\n    \r\n    \r\n        \r\n\t\t\t\t\t\r\n            \r\n                \r\n            \r\n        \r\n    \t\r\n\r\n\t\r\n\r\n\t\r\n        \r\n            \r\n            \r\n\t\t\t\r\n                \r\n                \r\n\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\tDollar Yen Exchange Rate - USD JPY | Historical Chart | Data | 1971-2026\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tMarkets\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tMetals\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tEnergy\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tCommodities\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tInterest Rates\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tExchange Rates\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tEconomy\r\n\r\n\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURUSD\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDOLLAR INDEX\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGBPUSD\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUSDJPY\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUSDCHF\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAUDUSD\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURCHF\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURGBP\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tEURJPY\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGBPJPY\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tUSDCNY\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\tDollar Yen Exchange Rate - USD JPY - Historical chart and current data through 2026.\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\tView More\r\n\t\t\t\t\t\t\t\r\n\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n\r\n\r\n\r\n\r\n\r\n\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n                \r\n\t\t\t\t\r\n\r\n\t\t\t\r\n\t\t\t\r\n\r\n\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\r\n\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\r\n\r\n\t\t\t\t\r\n\r\n\t\t\t\t\r\n\r\n\r\n    \r\n    \r\n        \r\n\t\t\t&copy; 2010-2026 Macrotrends LLC\r\n            Privacy Policy\r\n            Terms of Service"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 43601,
+        "completion_tokens": 114,
+        "cached_tokens": 43466
+      }
+    },
+    {
+      "step_id": 15,
+      "timestamp": "2026-03-30T02:06:07.455000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "The data tables are loaded via JavaScript. Let me try a different URL pattern to get the raw data.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01VEMt6pjtnyY4hLRyLpWBNb",
+          "function_name": "webfetch",
+          "arguments": {
+            "url": "https://www.macrotrends.net/assets/php/chart_iframe.php?id=2550&url=dollar-yen-exchange-rate-historical-chart",
+            "format": "html"
+          }
+        }
+      ],
+      "metrics": {
+        "prompt_tokens": 44185,
+        "completion_tokens": 131,
+        "cached_tokens": 43600
+      }
+    },
+    {
+      "step_id": 16,
+      "timestamp": "2026-03-30T02:06:11.993000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01LitCKH7nbkuV8N54x6Var9",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"\nimport urllib.request\nimport json\n\n# Try the API endpoint used by the JavaScript on the page\nurl = 'https://www.macrotrends.net/economic-data/2550/DAILYEXCHANGERATE'\nreq = urllib.request.Request(url, headers={\n    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',\n    'Accept': 'application/json',\n    'Referer': 'https://www.macrotrends.net/2550/dollar-yen-exchange-rate-historical-chart'\n})\nresp = urllib.request.urlopen(req)\ndata = resp.read().decode('utf-8')\nprint(data[:5000])\n\"\n",
+            "description": "Fetch Macrotrends API for USD/JPY data",
+            "timeout": 30000
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01LitCKH7nbkuV8N54x6Var9",
+            "content": "{\"data\":[[31795200000,357.73],[31881600000,357.81],[31968000000,357.86],[32054400000,357.87],[32140800000,357.82],[32400000000,357.95],[32486400000,358.06],[32572800000,358.44],[32659200000,358.4],[32745600000,358.4],[33004800000,358.29],[33091200000,358.35],[33177600000,358.4],[33264000000,358.27],[33350400000,357.9],[33609600000,357.73],[33696000000,357.78],[33782400000,357.79],[33868800000,357.83],[33955200000,357.72],[34214400000,357.67],[34300800000,357.55],[34387200000,357.54],[34473600000,357.51],[34560000000,357.53],[34819200000,357.49],[34905600000,357.5],[34992000000,357.5],[35078400000,357.5],[35510400000,357.53],[35596800000,357.53],[35683200000,357.53],[35769600000,357.56],[36028800000,357.6],[36115200000,357.55],[36201600000,357.6],[36288000000,357.56],[36374400000,357.56],[36633600000,357.63],[36720000000,357.56],[36806400000,357.49],[36892800000,357.45],[36979200000,357.59],[37238400000,357.55],[37324800000,357.46],[37411200000,357.59],[37497600000,357.56],[37584000000,357.58],[37843200000,357.54],[37929600000,357.49],[38016000000,357.53],[38102400000,357.56],[38188800000,357.56],[38448000000,357.44],[38534400000,357.53],[38620800000,357.53],[38707200000,357.47],[38793600000,357.47],[39052800000,357.44],[39139200000,357.49],[39225600000,357.42],[39312000000,357.49],[39398400000,357.53],[39657600000,357.5],[39744000000,357.46],[39830400000,357.55],[39916800000,357.55],[40003200000,357.5],[40262400000,357.5],[40348800000,357.62],[40435200000,357.58],[40521600000,357.5],[40608000000,357.54],[40867200000,357.49],[40953600000,357.49],[41040000000,357.49],[41126400000,357.49],[41212800000,357.49],[41472000000,357.5],[41558400000,357.49],[41644800000,357.5],[41731200000,357.41],[41817600000,357.4],[42076800000,357.41],[42163200000,357.4],[42249600000,357.4],[42336000000,357.41],[42422400000,357.41],[42681600000,357.14],[42768000000,357.44],[42854400000,357.53],[42940800000,357.49],[43027200000,357.49],[43286400000,357.4],[43372800000,357.44],[43459200000,357.4],[43545600000,357.46],[43632000000,357.4],[43891200000,357.4],[43977600000,357.4],[44064000000,357.44],[44150400000,357.4],[44236800000,357.4],[44582400000,357.46],[44668800000,357.4],[44755200000,357.46],[44841600000,357.4],[45100800000,357.4],[45187200000,357.4],[45273600000,357.4],[45360000000,357.4],[45446400000,357.4],[45705600000,357.4],[45792000000,357.46],[45878400000,357.46],[45964800000,357.46],[46051200000,357.4],[46310400000,357.4],[46396800000,357.4],[46483200000,357.4],[46569600000,357.4],[46656000000,357.4],[46915200000,357.37],[47001600000,357.39],[47088000000,357.4],[47174400000,357.4],[47260800000,357.4],[47606400000,357.45],[47692800000,357.46],[47779200000,357.46],[47865600000,357.4],[48124800000,357.41],[48211200000,357.44],[48297600000,357.4],[48384000000,357.4],[48470400000,357.4],[48729600000,357.39],[48816000000,357.39],[48902400000,357.4],[48988800000,357.37],[49075200000,357.36],[49334400000,357.4],[49420800000,357.37],[49507200000,357.4],[49593600000,357.4],[49680000000,357.39],[49939200000,357.41],[50025600000,357.37],[50112000000,357.37],[50198400000,357.37],[50284800000,357.37],[50544000000,357.35],[50630400000,357.39],[50716800000,357.35],[50803200000,357.4],[50889600000,357.35],[52444800000,339.85],[52531200000,341.01],[52617600000,338.98],[52704000000,340.14],[53049600000,339.79],[53136000000,339.39],[53222400000,339.07],[53308800000,338.81],[53568000000,338.98],[53654400000,338.24],[53740800000,338.41],[53827200000,337.84],[53913600000,337.95],[54172800000,337.27],[54259200000,337.34],[54345600000,337.44],[54432000000,337.27],[54518400000,336.98],[54777600000,336.25],[54864000000,336.36],[54950400000,335.57],[55036800000,335.35],[55123200000,333.39],[55382400000,333.17],[55468800000,333.14],[55555200000,332.65],[55641600000,332.61],[55728000000,332.37],[56073600000,330.52],[56160000000,331.4],[56246400000,330.85],[56332800000,330.58],[56592000000,329.6],[56678400000,330.85],[56764800000,331.07],[56851200000,330.79],[56937600000,330.36],[57283200000,329],[57369600000,329.54],[57456000000,329.71],[57542400000,329.5],[57801600000,329.45],[57974400000,329.5],[58060800000,330.87],[58147200000,329.16],[58406400000,329.22],[58492800000,329.16],[58579200000,329.11],[58665600000,329.11],[58752000000,329.49],[59011200000,328.73],[59097600000,328.62],[59184000000,328.8],[59270400000,328.68],[59356800000,328.4],[59616000000,328.41],[59702400000,328.19],[59788800000,328.04],[59961600000,327.6],[60220800000,327.06],[60307200000,327.44],[60393600000,327.6],[60480000000,326],[60566400000,325.1],[60825600000,326.53],[60912000000,323.62],[60998400000,323.5],[61084800000,323.52],[61171200000,323.1],[61430400000,322.79],[61516800000,322.58],[61603200000,321.54],[61689600000,320],[61776000000,320.36],[62121600000,314.98],[62208000000,314.96],[62294400000,315.01],[62380800000,315.21],[62640000000,314.96],[62726400000,315.01],[62812800000,315.21],[62899200000,315.01],[62985600000,315.01],[63244800000,314.86],[63331200000,314.96],[\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 44336,
+        "completion_tokens": 312,
+        "cached_tokens": 44184
+      }
+    },
+    {
+      "step_id": 17,
+      "timestamp": "2026-03-30T02:06:17.072000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "I have the data. Now let me find the specific rate for March 31, 2025.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01HZ9B9XG7UP54wTnrMTBu1L",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"\nimport urllib.request\nimport json\nfrom datetime import datetime\n\nurl = 'https://www.macrotrends.net/economic-data/2550/DAILYEXCHANGERATE'\nreq = urllib.request.Request(url, headers={\n    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',\n    'Accept': 'application/json',\n    'Referer': 'https://www.macrotrends.net/2550/dollar-yen-exchange-rate-historical-chart'\n})\nresp = urllib.request.urlopen(req)\ndata_raw = resp.read().decode('utf-8')\ndata = json.loads(data_raw)\n\n# Find the exchange rate near March 31, 2025\n# Timestamps are in milliseconds since epoch\ntarget_date = datetime(2025, 3, 31)\ntarget_ts = target_date.timestamp() * 1000\n\nprint(f'Target timestamp: {target_ts}')\nprint(f'Target date: {target_date}')\n\n# Find closest entries around March 31, 2025\nentries = data['data']\nprint(f'Total entries: {len(entries)}')\n\n# Look for entries near the target date\nclosest = None\nclosest_diff = float('inf')\nnearby_entries = []\n\nfor entry in entries:\n    ts, value = entry[0], entry[1]\n    diff = abs(ts - target_ts)\n    dt = datetime.utcfromtimestamp(ts / 1000)\n    \n    # Show entries within 7 days of March 31, 2025\n    if abs(ts - target_ts) < 7 * 24 * 3600 * 1000:\n        nearby_entries.append((dt, value, ts))\n    \n    if diff < closest_diff:\n        closest_diff = diff\n        closest = (dt, value, ts)\n\nprint(f'\\nClosest entry: {closest[0]} -> {closest[1]}')\nprint(f'\\nEntries near March 31, 2025:')\nfor dt, val, ts in sorted(nearby_entries):\n    marker = ' <-- TARGET' if dt.date() == target_date.date() else ''\n    print(f'  {dt.strftime(\\\"%Y-%m-%d\\\")} ({dt.strftime(\\\"%A\\\")}): {val}{marker}')\n\"\n",
+            "description": "Find USD/JPY rate for March 31, 2025",
+            "timeout": 30000
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01HZ9B9XG7UP54wTnrMTBu1L",
+            "content": "<string>:36: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\nTarget timestamp: 1743379200000.0\nTarget date: 2025-03-31 00:00:00\nTotal entries: 14512\n\nClosest entry: 2025-03-31 00:00:00 -> 149.918\n\nEntries near March 31, 2025:\n  2025-03-25 (Tuesday): 149.9525\n  2025-03-26 (Wednesday): 150.4765\n  2025-03-27 (Thursday): 150.868\n  2025-03-28 (Friday): 149.841\n  2025-03-29 (Saturday): 149.845\n  2025-03-30 (Sunday): 149.5825\n  2025-03-31 (Monday): 149.918 <-- TARGET\n  2025-04-01 (Tuesday): 149.7895\n  2025-04-02 (Wednesday): 147.9105\n  2025-04-03 (Thursday): 146.237\n  2025-04-04 (Friday): 146.975\n  2025-04-05 (Saturday): 146.961\n  2025-04-06 (Sunday): 145.301\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 46828,
+        "completion_tokens": 735,
+        "cached_tokens": 44335
+      }
+    },
+    {
+      "step_id": 18,
+      "timestamp": "2026-03-30T02:06:28.003000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "I have the exchange rate. The USD/JPY rate on March 31, 2025 from Macrotrends is **149.918**.\n\nNow let me compute the final answer.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01RY46x8bJrtP1Re1f33uPZS",
+          "function_name": "todowrite",
+          "arguments": {
+            "todos": [
+              {
+                "content": "Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "Get USD/JPY exchange rate for March 31, 2025 from Macrotrends",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "Convert USD amount to JPY and write answer",
+                "status": "in_progress",
+                "priority": "high"
+              }
+            ]
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01RY46x8bJrtP1Re1f33uPZS",
+            "content": "[\n  {\n    \"content\": \"Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Get USD/JPY exchange rate for March 31, 2025 from Macrotrends\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Convert USD amount to JPY and write answer\",\n    \"status\": \"in_progress\",\n    \"priority\": \"high\"\n  }\n]"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 47928,
+        "completion_tokens": 210,
+        "cached_tokens": 46827
+      }
+    },
+    {
+      "step_id": 19,
+      "timestamp": "2026-03-30T02:06:33.737000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01K452N7tveBE1WpXZXr2caa",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"\n# Data from Treasury Bulletin (June 2025 issue, confirmed by September 2025 issue)\n# Japanese yen under 'Foreign exchange and securities' as of March 31, 2025\n# In thousands of dollars\nyen_in_thousands_usd = 6242420\n\n# Convert to actual dollars\nyen_in_usd = yen_in_thousands_usd * 1000\nprint(f'USD amount: \\${yen_in_usd:,.0f}')\n\n# USD/JPY exchange rate from Macrotrends for March 31, 2025\nusd_jpy_rate = 149.918\nprint(f'USD/JPY rate: {usd_jpy_rate}')\n\n# Convert USD to JPY\nyen_amount = yen_in_usd * usd_jpy_rate\nprint(f'JPY amount (full precision): {yen_amount}')\nprint(f'JPY amount (rounded to nearest whole yen): {round(yen_amount)}')\nprint(f'JPY amount (no commas): {round(yen_amount)}')\n\"\n",
+            "description": "Convert USD to JPY calculation"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01K452N7tveBE1WpXZXr2caa",
+            "content": "USD amount: $6,242,420,000\nUSD/JPY rate: 149.918\nJPY amount (full precision): 935851121560.0\nJPY amount (rounded to nearest whole yen): 935851121560\nJPY amount (no commas): 935851121560\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 48300,
+        "completion_tokens": 349,
+        "cached_tokens": 47927
+      }
+    },
+    {
+      "step_id": 20,
+      "timestamp": "2026-03-30T02:06:41.919000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "Let me verify this calculation once more and also verify I'm using the correct data by checking if the September bulletin has any revision to the March 31 figure.",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01PUv5A8fXiYMWov2rhRAaNQ",
+          "function_name": "bash",
+          "arguments": {
+            "command": "python3 -c \"\n# Double-check: September 2025 bulletin shows Mar. 31, 2025 Japanese yen = 6,242,420 (thousands)\n# This matches the June 2025 bulletin exactly (no revision)\n\n# Verify calculation\nusd_thousands = 6242420\nusd_actual = usd_thousands * 1000  # 6,242,420,000 dollars\nrate = 149.918  # USD/JPY on March 31, 2025 from Macrotrends\n\njpy = usd_actual * rate\nprint(f'6,242,420 (thousands USD) = \\${usd_actual:,}')\nprint(f'Rate: 1 USD = {rate} JPY')\nprint(f'Result: {usd_actual} * {rate} = {jpy}')\nprint(f'Rounded: {round(jpy)}')\n\"\n",
+            "description": "Verify final calculation"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01PUv5A8fXiYMWov2rhRAaNQ",
+            "content": "6,242,420 (thousands USD) = $6,242,420,000\nRate: 1 USD = 149.918 JPY\nResult: 6242420000 * 149.918 = 935851121560.0\nRounded: 935851121560\n"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 48730,
+        "completion_tokens": 326,
+        "cached_tokens": 48299
+      }
+    },
+    {
+      "step_id": 21,
+      "timestamp": "2026-03-30T02:06:50.012000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_018mJ8tqLB24upCJBhVyDUKg",
+          "function_name": "write",
+          "arguments": {
+            "filePath": "/app/answer.txt",
+            "content": "935851121560"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_018mJ8tqLB24upCJBhVyDUKg",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49135,
+        "completion_tokens": 77,
+        "cached_tokens": 48729
+      }
+    },
+    {
+      "step_id": 22,
+      "timestamp": "2026-03-30T02:06:55.250000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "toolu_bdrk_01XB8bftoDt6CNk1KV9jW2Jy",
+          "function_name": "todowrite",
+          "arguments": {
+            "todos": [
+              {
+                "content": "Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "Get USD/JPY exchange rate for March 31, 2025 from Macrotrends",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "Convert USD amount to JPY and write answer",
+                "status": "completed",
+                "priority": "high"
+              }
+            ]
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "toolu_bdrk_01XB8bftoDt6CNk1KV9jW2Jy",
+            "content": "[\n  {\n    \"content\": \"Find the U.S. Treasury investment in Japanese Yen as of March 31, 2025 from Treasury Bulletins\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Get USD/JPY exchange rate for March 31, 2025 from Macrotrends\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"Convert USD amount to JPY and write answer\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  }\n]"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 49228,
+        "completion_tokens": 165,
+        "cached_tokens": 49134
+      }
+    },
+    {
+      "step_id": 23,
+      "timestamp": "2026-03-30T02:07:03.821000+00:00",
+      "source": "agent",
+      "model_name": "openrouter/anthropic/claude-opus-4-6",
+      "message": "**Answer: 935851121560**\n\nHere's the breakdown:\n\n1. **Treasury data**: From ESF-1 (Exchange Stabilization Fund Balance Sheet) in the June 2025 bulletin (`treasury_bulletin_2025_06.txt:2372`), the Japanese yen investment under \"Foreign exchange and securities\" as of March 31, 2025 = **6,242,420 thousand dollars** ($6,242,420,000). This figure was confirmed unchanged (no revision) in the September 2025 bulletin (`treasury_bulletin_2025_09.txt:2342`).\n\n2. **Exchange rate**: From Macrotrends USDJPY daily data, the rate on March 31, 2025 = **149.918 JPY per USD**.\n\n3. **Conversion**: $6,242,420,000 \u00d7 149.918 = **935,851,121,560 JPY** (rounded to nearest whole yen).",
+      "metrics": {
+        "prompt_tokens": 49553,
+        "completion_tokens": 224,
+        "cached_tokens": 49227
+      }
+    }
+  ],
+  "final_metrics": {
+    "total_prompt_tokens": 748655,
+    "total_completion_tokens": 5090,
+    "total_cached_tokens": 709764,
+    "total_steps": 23
+  }
+}

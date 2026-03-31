@@ -1,0 +1,10 @@
+
+mkdir -p /tmp/codex-secrets
+cat >/tmp/codex-secrets/auth.json <<EOF
+{
+  "OPENROUTER_API_KEY": "$OPENROUTER_API_KEY"
+}
+EOF
+ln -sf /tmp/codex-secrets/auth.json "$CODEX_HOME/auth.json"
+                
+mkdir -p $HOME/.agents/skills && cp -r skills//* $HOME/.agents/skills/ 2>/dev/null || true
