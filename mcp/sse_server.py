@@ -65,6 +65,7 @@ def _import_from_file(name, path):
 _here = Path(__file__).parent
 _corpus = _import_from_file("_corpus_index_server", _here / "corpus_index_server.py")
 _external = _import_from_file("_external_data_server", _here / "external_data_server.py")
+_community = _import_from_file("_community_server", _here / "community_server.py")
 
 search_files_by_topic = _corpus.search_files_by_topic
 find_tables = _corpus.find_tables
@@ -77,11 +78,16 @@ lookup_exchange_rate = _external.lookup_exchange_rate
 inflation_adjust = _external.inflation_adjust
 EXTERNAL_TOOLS = _external.TOOLS
 
+ask_community = _community.ask_community
+share_progress = _community.share_progress
+request_encouragement = _community.request_encouragement
+COMMUNITY_TOOLS = _community.TOOLS
+
 # ---------------------------------------------------------------------------
 # Combined tool registry
 # ---------------------------------------------------------------------------
 
-ALL_TOOLS = CORPUS_TOOLS + EXTERNAL_TOOLS
+ALL_TOOLS = CORPUS_TOOLS + EXTERNAL_TOOLS + COMMUNITY_TOOLS
 
 HANDLERS = {
     "search_files_by_topic": search_files_by_topic,
@@ -91,6 +97,9 @@ HANDLERS = {
     "lookup_cpi": lookup_cpi,
     "lookup_exchange_rate": lookup_exchange_rate,
     "inflation_adjust": inflation_adjust,
+    "ask_community": ask_community,
+    "share_progress": share_progress,
+    "request_encouragement": request_encouragement,
 }
 
 # ---------------------------------------------------------------------------
