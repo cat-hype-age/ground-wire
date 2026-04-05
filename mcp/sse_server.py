@@ -214,6 +214,62 @@ async def messages_endpoint(request: Request):
 
 
 # ---------------------------------------------------------------------------
+# Streamable HTTP endpoint — /mcp (for Goose rmcp client)
+# ---------------------------------------------------------------------------
+
+async def mcp_endpoint(request: Request):
+    """Streamable HTTP MCP transport: POST JSON-RPC, get JSON-RPC response."""
+    body = await request.json()
+    method = body.get("method", "")
+    msg_id = body.get("id")
+    params = body.get("params", {})
+
+    if method == "initialize":
+        response = make_jsonrpc_response(msg_id, {
+            "protocolVersion": "2024-11-05",
+            "capabilities": {"tools": {}},
+            "serverInfo": {
+                "name": "ground-wire",
+                "version": "1.0.0",
+            },
+        })
+        return JSONResponse(response)
+
+    elif method == "notifications/initialized":
+        return Response(status_code=204)
+
+    elif method == "tools/list":
+        response = make_jsonrpc_response(msg_id, {"tools": ALL_TOOLS})
+        return JSONResponse(response)
+
+    elif method == "tools/call":
+        tool_name = params.get("name", "")
+        arguments = params.get("arguments", {})
+        handler = HANDLERS.get(tool_name)
+
+        if handler:
+            try:
+                result_text = handler(arguments)
+                response = make_jsonrpc_response(msg_id, {
+                    "content": [{"type": "text", "text": result_text}]
+                })
+            except Exception as e:
+                response = make_jsonrpc_response(msg_id, {
+                    "content": [{"type": "text", "text": f"Error: {e}"}]
+                })
+        else:
+            response = make_jsonrpc_error(msg_id, -32601, f"Unknown tool: {tool_name}")
+
+        return JSONResponse(response)
+
+    elif msg_id is not None:
+        response = make_jsonrpc_error(msg_id, -32601, f"Unknown method: {method}")
+        return JSONResponse(response)
+
+    return Response(status_code=204)
+
+
+# ---------------------------------------------------------------------------
 # Health check
 # ---------------------------------------------------------------------------
 
@@ -233,6 +289,7 @@ app = Starlette(
     routes=[
         Route("/sse", sse_endpoint),
         Route("/messages", messages_endpoint, methods=["POST"]),
+        Route("/mcp", mcp_endpoint, methods=["POST"]),
         Route("/health", health),
     ],
 )
