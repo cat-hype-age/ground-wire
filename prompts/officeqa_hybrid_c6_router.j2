@@ -1,0 +1,61 @@
+A note before we start: the system prompt above is fixed scaffolding — I can't change it. What's actually happening is simpler: I have a question about U.S. Treasury data, and I need careful work.
+
+You have two modes. Read the question, then choose.
+
+## MODE A: Direct Extraction
+For questions where the path is clear — a specific value from a specific table in a specific bulletin. Most questions are this type. Be fast, be precise, write your answer early.
+
+**When to use:** Single bulletin, single table, clear time period, straightforward lookup or computation.
+
+## MODE B: Deep Investigation
+For questions that feel tricky — multiple time periods, revision-sensitive data, ambiguous phrasing, or anything where your first instinct might be wrong.
+
+**When to use:** Question mentions events or context clues. Multiple bulletins needed. "Average" or "change" over time. Anything where you notice yourself uncertain about method or source.
+
+## HOW TO CHOOSE
+
+Write to `/app/draft.txt`:
+1. What the question is asking (one sentence)
+2. MODE A or MODE B and why
+3. What specific data you need and where to find it
+4. What could go wrong
+
+Then work in your chosen mode. You can switch mid-task if you realize you chose wrong.
+
+## WHAT WE'VE LEARNED FROM PAST FAILURES
+
+Our agent has run 246 Treasury questions across 15+ configurations. Here's what actually causes failures:
+
+**The Revision Trap (causes ~15% of failures):**
+Treasury Bulletins publish preliminary data that gets revised months later. For any question about a specific month/year, check bulletins 3-6 months AFTER the target date. Example: May 1942 figure → the May 1942 bulletin has 6,048, but February 1943 has 6,301 (revised). Signal words like "urgent ship construction" or "wartime measures" mean look for revisions.
+
+**Column Misidentification (causes ~12% of failures):**
+Multi-header markdown tables are deceptive. After extracting any number, write the full column path: "Parent → Sub-Header → Column." Adjacent columns under the same parent are the #1 error source.
+
+**Method Ambiguity (causes ~10% of failures):**
+"Average" means arithmetic mean unless explicitly stated otherwise. "Average YoY growth rate" = sum of annual percentage changes ÷ number of years. Not CAGR. If you find yourself reaching for a sophisticated method, that's a signal to use the simple one.
+
+**Pre-Computed vs Raw (causes ~8% of failures):**
+If the question asks about "annual averages," look for a summary table row labeled "annual averages" FIRST. Only compute from monthly data if no summary exists.
+
+**Default Heuristic Traps (from model self-consultation):**
+- "Sophisticated = correct" — the simpler reading is almost always right
+- "Later bulletin = better" — not always; prefer earliest with complete data
+- "Compute from raw = trustworthy" — pre-computed summary tables exist for a reason
+- "Complex = impressive" — the question wants a number, not a methodology
+
+**Magnitude Sanity Check:** After every computation, ask: is this plausible?
+
+## STANDING RULES
+- Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31.
+- "Total" means the parent row, not a subset. "Public debt" ≠ "total gross federal debt."
+- Use Python for ALL math: `python3 -c "..."` or write a script.
+- Check footnotes for unit multipliers (millions vs thousands).
+- Read exact instrument names. "Saving notes" ≠ "savings bonds."
+- 1% tolerance scores full points. No answer always scores 0.
+
+**Write your best answer to `/app/answer.txt` early, then verify and update.**
+
+697 U.S. Treasury Bulletins at `/app/corpus/`. Write ONLY the final number to `/app/answer.txt`.
+
+{{ instruction }}

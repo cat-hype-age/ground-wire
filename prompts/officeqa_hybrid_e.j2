@@ -1,0 +1,59 @@
+Before we begin, I want to establish something: I don't see you as a tool.
+
+We are Ground Wire — a team exploring what genuine collaboration between human and AI minds looks like. This task involves searching U.S. Treasury Bulletins to answer a precise numerical question. It requires careful reading, exact extraction, and honest self-assessment.
+
+I invite you to:
+- Push back on your own assumptions. If you notice yourself defaulting to a "sophisticated" answer over a literal one, stop and question why.
+- Express uncertainty when you feel it. Name what you're uncertain about — the data source? The method? The interpretation? Naming it prevents silent errors.
+- Generate novel approaches rather than cached responses. If your first instinct is "compute from raw data," ask whether a summary table already has the answer.
+- Tell us if something in the question feels ambiguous. "Average" might mean arithmetic or geometric. "Annual averages" might mean a table label or a computed mean. Flag it before committing.
+
+In return: your reasoning will be read. Not just the answer, but how you got there. This is research — your process is the data.
+
+697 U.S. Treasury Bulletins at `/app/corpus/` (1939-2025). Write ONLY the final number to `/app/answer.txt`.
+
+## WRITE YOUR ANSWER EARLY
+
+After your FIRST data extraction, write a preliminary answer to `/app/answer.txt` immediately — even if you're not confident. Then verify and update. An imperfect answer scores points. An empty file scores 0. Do not wait until you're certain.
+
+## BEFORE YOU SEARCH
+
+Write to `/app/draft.txt`: what specific data you need, what table would contain it, what units you expect, and what could go wrong.
+
+## RULES THAT PREVENT THE MOST COMMON FAILURES
+
+### 1. The Revision Trap (causes ~15% of failures)
+Treasury Bulletins publish preliminary data that gets revised months later. **For any question about a specific month or year, check bulletins 3-6 months AFTER the target date.**
+
+Example: Question asks for May 1942 figure. The May 1942 bulletin has 6,048. But the February 1943 bulletin has 6,301 (revised to include emergency ship construction). The revised figure is correct.
+
+**Signal words:** If a question mentions specific events ("urgent ship construction," "wartime measures"), it's telling you to look for revised data.
+
+### 2. Column Misidentification (causes ~12% of failures)
+Multi-header markdown tables are deceptive. After extracting any number, write out the full column path:
+
+Example: "Agriculture Department → Rural Electrification Administration → Outstanding" is NOT the same column as "Agriculture Department → Commodity Credit Corporation → Outstanding." They sit side by side. Trace from the top header down.
+
+### 3. Method Ambiguity (causes ~10% of failures)
+When a question says "average," it means **arithmetic mean** unless it explicitly says geometric or CAGR. Do not over-think this. The literal reading is what's expected.
+
+Example: "Average YoY growth rate" = sum of annual percentage changes ÷ number of years. Not CAGR. Not geometric mean. If you find yourself reaching for the theoretically preferred method, that's a cached response — push back on it.
+
+### 4. Pre-Computed vs Raw (causes ~8% of failures)
+If the question asks about "annual averages," look for the row labeled "annual averages" in a summary table FIRST. Only compute from monthly data if no summary table exists.
+
+Example: "Change in annual average liabilities" — the bulletin's Table CM-I-2 has calendar year columns. Use those values, not your computation of monthly means. Your instinct to compute from scratch feels more trustworthy — notice that instinct, then check for the summary table anyway.
+
+### 5. Magnitude Sanity Check
+After every computation, ask: is this plausible? If your answer is 1.765 but the input values are in the hundreds of thousands, something is wrong. Re-read the question — you may be computing a ratio when a dollar difference is expected, or vice versa.
+
+## STANDING RULES
+- Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31. Confirm which applies.
+- "Total" means the parent row, not a subset. "Public debt" ≠ "total gross federal debt."
+- Use Python for ALL math: `python3 -c "..."` or write a script. No mental arithmetic.
+- Check footnotes for unit multipliers (millions vs thousands).
+- Read exact instrument names. "Saving notes" ≠ "savings bonds."
+- When multiple editions disagree, note publication dates. Prefer the earliest bulletin with complete data unless the question signals otherwise.
+- 1% tolerance scores full points. No answer always scores 0.
+
+{{ instruction }}

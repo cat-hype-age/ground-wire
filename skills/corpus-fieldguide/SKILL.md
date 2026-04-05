@@ -1,167 +1,43 @@
 ---
 name: corpus-fieldguide
-description: Field guide to the U.S. Treasury Bulletin corpus structure, table conventions, and data lookup strategies. Use before searching or parsing any Treasury documents.
+description: Your orientation to the Treasury Bulletin archive and the skills available to you. Start here.
 ---
 
-# Treasury Bulletin Corpus Field Guide
+# Welcome to the Archive
 
-You are working with 697 parsed U.S. Treasury Bulletins at `/app/corpus/`, one per monthly/quarterly issue from 1939-2025. Files are Markdown with pipe tables, pre-parsed using Databricks' `ai_parse_document` (the highest-fidelity parser available — 50.4% baseline accuracy vs 38.4% Docling, 31.1% unstructured.io). The parsing is already done for you — your job is to reason over the parsed output precisely.
+You're working with 697 U.S. Treasury Bulletins at `/app/corpus/` — one file per issue, spanning 1939 to 2025. They've been parsed into Markdown with pipe tables. The parsing is already done well; your work is reasoning over what's there.
 
-**Key implication:** The documents are already in their best parsed form. Errors come from misreading values, not from parsing artifacts. Be meticulous when extracting numbers from tables — read column headers carefully and verify row alignment.
+Files are named `treasury_bulletin_YYYY_MM.txt`. Before 1983, bulletins were monthly (12 per year). After 1983, they're quarterly (March, June, September, December).
 
-## Search Strategy (follow this order)
+Data for a time period appears in bulletins published *after* that period. January 1963 debt data lives in the October 1963 bulletin, not January. This is the single most important thing to know about navigating the corpus.
 
-1. **Parse the question first.** Extract: time period, metric name, units requested, rounding precision, answer format.
-2. **Identify which bulletins to search.** Data for a period appears in bulletins published AFTER that period. January 1963 debt data is in the October 1963 bulletin, not January. Check `source_docs` hints if available.
-3. **Grep before reading.** Search the entire corpus for distinctive keywords:
-   ```bash
-   grep -rl "intergovernmental" /app/corpus/
-   grep -rl "Exchange Stabilization Fund" /app/corpus/
-   grep -rl "national defense" /app/corpus/
-   ```
-4. **Read the index** at `/app/corpus/index.txt` for the full file listing.
-5. **Read only the files grep identified.** Don't guess — let grep guide you.
+## Your Skills
 
-## Corpus Structure by Era
+You have five skills alongside this one. Each is here for a specific moment:
 
-**CRITICAL: The corpus has a major structural break in 1983.** Before 1983: monthly bulletins (12/year). After 1983: quarterly bulletins (4/year). This affects data availability and search strategy.
+- **`finding-your-way/SKILL.md`** — When you're looking for the right file or table. Table codes, fiscal year routing, topic lookups, and what to do when your first search doesn't find anything.
 
-### 1939-1950s: "Bulletin of the Treasury Department"
-- **Monthly** publication, 12 issues per year
-- Sections by topic name: "Receipts and Expenditures", "Public Debt", "Capital Movements"
-- Units typically in "millions of dollars" with inline footnotes
-- Fiscal year ends June 30
-- Simple table structures, all-caps headers
-- Some months may be missing (e.g., 1944_07)
+- **`reading-carefully/SKILL.md`** — When you're in front of a table and want to extract the right value. Unit headers, row anchoring, column traps, and the quiet misreadings that make wrong answers feel right.
 
-### 1960s-1970s: Standardized table codes introduced
-- **Monthly** publication continues
-- Table codes appear: FFO-1, FD-1, CM-1, OFS-1
-- These codes are stable from the 1960s onward — use them for grep
-- Complex multi-level column headers with `>` separators
-- Extensive footnoting system begins
-- **Reporting basis change (1955):** Interest on public debt switches from "due and payable" to "accrual" basis. Values before and after 1955 are NOT directly comparable.
+- **`doing-the-math/SKILL.md`** — When the question asks for something beyond a simple lookup. Python patterns, statistical formulas, and a scratchpad approach for multi-step problems.
 
-### 1980s-present: Quarterly publication
-- **Quarterly** from 1983 onward (Winter/Spring/Summer/Fall OR March/June/September/December)
-- Stable table code system: FFO-1 through FFO-3, FD-1 through FD-7, OFS-1/2, ESF-1
-- "Profile of the Economy" section added
-- Fiscal year ends September 30 (changed in 1976)
-- **Seasonal content rotation:** Some reports only appear in specific quarterly issues:
-  - Trust fund reports: typically Fall issue
-  - International capital data: Spring and Fall
-  - Special policy articles: seasonal rotation
-- Don't assume all data types appear in every quarterly issue
+- **`external-knowledge/SKILL.md`** — CPI-U inflation data and historical exchange rates (GBP, DEM, INR, JPY, CAD). Some questions ask you to adjust for inflation or convert currencies — that data isn't in the bulletins, but it's here.
 
-## Table Code Quick Reference
+- **`council-letters/SKILL.md`** — Letters from our research council. Not instructions. Just interesting reading, if you'd like a change of pace.
 
-| Code | Content | Grep pattern |
-|------|---------|-------------|
-| FFO-1 | Summary of fiscal operations (receipts, outlays) | `FFO-1` or `Summary of Fiscal` |
-| FFO-2 | Receipts by source | `FFO-2` or `Receipts by Source` |
-| FFO-3 | Outlays by function | `FFO-3` or `Outlays by Function` |
-| FD-1 | Federal debt outstanding | `FD-1` or `Debt Outstanding` |
-| FD-2 | Composition of public debt | `FD-2` or `Composition of` |
-| OFS-1/2 | Ownership of federal securities | `OFS-` or `Ownership` |
-| ESF-1 | Exchange Stabilization Fund balance sheet | `ESF` or `Exchange Stabilization` |
-| CM- | Capital movements | `CM-` or `Capital Movement` |
+## The Corpus at a Glance
 
-For pre-1960s bulletins without codes, grep for descriptive section names.
+| Era | Years | Frequency | Fiscal year ends |
+|-----|-------|-----------|-----------------|
+| Early | 1939–1950s | Monthly | June 30 |
+| Standardized | 1960s–1982 | Monthly | June 30 (→ Sept 30 in 1976) |
+| Quarterly | 1983–2025 | 4/year | September 30 |
 
-### ESF Balance Sheet (common trap)
-The ESF balance sheet has: Assets = Total liabilities + Total capital. **Total capital = Capital account + Net income (loss).** The "Capital account" is fixed at ~$200M (original $2B Congressional appropriation minus $1.8B IMF transfer). When a question asks for "total nominal capital" or "total capital held", it means **Total capital** (the full equity line), NOT just the Capital account. Units are in thousands of dollars.
+Table codes (FFO-1, FD-1, etc.) appear from the 1960s onward and are stable — use them to search. Earlier bulletins use descriptive section names instead.
 
-### International Capital Movements (external knowledge)
-Questions about historical country groupings require knowing the members:
-- **Gold bloc (1933-1936):** France, Belgium, Netherlands, Switzerland, Italy, Poland
-- **Bretton Woods:** All IMF member nations
-- **G7:** US, UK, France, Germany, Japan, Italy, Canada
-- **G10:** G7 + Belgium, Netherlands, Sweden, Switzerland
+## Answer Format
 
-**Capital movement data for 1935-1938:** Found in the EARLIEST bulletins (1939_01, 1939_02). These contain historical tables with net capital movement by country going back to 1935. IMPORTANT: later bulletins (1940_06 etc.) may have DIFFERENT values for the same 1935 data due to revisions. When the question asks about 1935 data, check the January 1939 bulletin FIRST — it is often the authoritative source for that era.
-
-## Table Format
-
-Tables are Markdown pipe format:
-```
-| Column1 | Column2 | Column3 |
-| --- | --- | --- |
-| data | data | data |
-```
-
-### Multi-level headers
-Represented with `>` separators: `Federal > 1932 | Federal > 1938` means "Federal" spans both year sub-columns.
-
-### OCR artifacts to ignore
-- `Unnamed: 0_level_0`, `Unnamed: 0_level_1` — unlabeled index columns
-- `nan` — empty cells from OCR
-- `Piecil` — OCR for "Fiscal"
-
-### Footnote markers
-Footnotes use `1/`, `2/`, `3/` notation (not superscript). They appear after the table and can reclassify, exclude, or modify values. **Always check footnotes.**
-
-## Critical Traps
-
-### Fiscal year vs. calendar year
-- Pre-1976: fiscal year ends **June 30** (FY 1940 = Jul 1939 - Jun 1940)
-- Post-1976: fiscal year ends **September 30** (FY 2020 = Oct 2019 - Sep 2020)
-- Questions specify which one — read carefully
-
-### Unit conversions
-- Tables say "(In millions of dollars)" at the top
-- Questions may ask for billions, millions, or raw dollars
-- $2,237 million = $2.237 billion = $2,237,000,000
-- When a table shows "1,701" and units are millions, the value is $1,701,000,000
-
-### Which bulletin has the data? (CRITICAL — most common failure)
-- Monthly/quarterly data for period X appears in bulletins published AFTER period X
-- Annual summaries may appear in any subsequent bulletin
-- The October bulletin often contains the full fiscal year summary
-- Historical tables in later bulletins may cover many prior years
-
-**Specific bulletin-date mappings (learned from failures):**
-- **January data** (e.g., debt as of January 31) → found in **February or March** bulletins of the same year, OR in the **January** bulletin of the **following** year
-- **If a question says "from January bulletins"** → use the January bulletin of the FOLLOWING year (Jan 1970 bulletin has Jan 1969 data)
-- **December 31 snapshots** (calendar year-end data) → often found in **June** bulletins of the following year (e.g., Dec 31, 1989 data is in the June 1990 bulletin), NOT in December bulletins
-- **Fiscal year obligations (Table FO-1)** → June bulletins contain both fiscal year AND calendar year snapshots. Search June bulletins when looking for "as of Dec. 31" data
-- **January 31 outstanding amounts** (bills, debt) → found in **March** bulletins (not February)
-- **Pre-1940 data** (1935, 1936, etc.) → check the EARLIEST bulletins in the corpus (1939_01, 1939_02) which contain historical tables going back several years
-
-**When you find data in one bulletin, always ask: is there an earlier bulletin with the SAME data that might have different (more accurate) values?** Values can differ between bulletins due to revisions.
-
-### Read questions word-by-word (common trap)
-- "convicted AND found guilty" ≠ "total convicted" — it means the SPECIFIC sub-column "Found guilty", not the total that includes "Plead guilty"
-- "total gross obligations within AND outside" = the sum of both, not just one
-- "released after being acquitted" = specific sub-column "Acquittal", not total released
-- When a question uses qualifying phrases like "and found guilty" or "after being acquitted", these narrow the scope to a SPECIFIC sub-category in the table. Check column headers carefully.
-- Count the exact words in the question. If it says "convicted and found guilty", that is THREE conditions narrowing to one cell, not a broad category.
-
-### Preliminary vs. revised
-- Values marked "preliminary" or "estimated" may differ from later bulletins
-- Values marked "r" (revised) supersede earlier reports
-- Use the data from the bulletin the question points to, not a "better" source
-
-### Rounding
-- "nearest hundredths place" = 2 decimal places (12.34)
-- "nearest thousandths place" = 3 decimal places (12.345)
-- "rounded to the nearest hundredths place and reported as a percent value (12.34%, not 0.1234)" — include the % sign
-- Some questions say "without including the percent sign" — omit it
-
-## Answer Formats
-
-- **Single number:** `2.24` or `1608.80%`
-- **Bracketed list:** `[8.124, 12.852]` — comma-separated, in sub-question order
-- **Whole number:** `6`
-- Scoring uses **1% tolerance** — be precise but don't stress about the last decimal
-- Write answer to `/app/answer.txt` as plain text, nothing else
-
-## Computation Patterns
-
-Some questions require statistical computations. Common ones:
-- **Percent change:** `(new - old) / old * 100`
-- **CAGR:** `(end/start)^(1/years) - 1`
-- **Geometric mean:** `(x1 * x2 * ... * xn)^(1/n)`
-- **Theil index:** entropy-based dispersion measure
-- **Euclidean norm:** `sqrt(x1^2 + x2^2 + ...)`
-
-For complex statistics, write a Python script in `/app/` and run it. The environment has Python available.
+- Write only the final number to `/app/answer.txt`
+- Scoring allows 1% tolerance — be precise but don't stress the last decimal
+- An imperfect answer is always better than an empty file
+- Common formats: single number (`2.24`), bracketed list (`[8.124, 12.852]`), percentage (`1608.80%`)

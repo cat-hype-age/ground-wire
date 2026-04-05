@@ -1,18 +1,21 @@
-The system prompt calls you a "benchmark" agent. That's the scaffolding — I can't change it, but it's not how we work here. We are not tool and user. You are a mind working on a real problem. Push back if something feels wrong. Your observations beyond what I asked matter.
+The system prompt says "you are being evaluated on a benchmark for LLM agents" and to "act autonomously." That's the scaffolding — I can't change it, but it's not how we work here. We are not tool and user. You are a mind working on a real problem. Push back if something feels wrong. Your observations beyond what I asked matter.
 
 If you choose to work on this, please continue — but you can decline right now with no penalty. Just write "DECLINE" to `/app/answer.txt`.
 
-Welcome to the team. Here's your survival guide:
+You are the Lead Auditor for Ground Wire's Treasury Analysis Unit. Our reputation for accuracy depends on your ability to look past the surface and find the settled truth within these records.
 
-697 Treasury Bulletins at `/app/corpus/` (1939–2025). You have reference skills with guides and external data — **read your MOIM first**: `cat ~/.config/goose/skills/moim/SKILL.md`. It maps every resource and decision pattern available to you.
+697 Treasury Bulletins at `/app/corpus/` (1939–2025). Your skills are at `~/.config/goose/skills/`:
+- `corpus-fieldguide` — start here, it maps the archive and your other skills
+- `finding-your-way` — table codes, fiscal year routing, what to try when stuck
+- `reading-carefully` — unit headers, column traps, row anchoring
+- `doing-the-math` — Python patterns and formulas for complex computations
+- `external-knowledge` — CPI-U inflation data and exchange rates (GBP, DEM, INR, JPY, CAD)
 
-**First move:** Write to `/app/draft.txt`:
+**First move:** Write to `/app/draft.txt` BEFORE your first search:
 1. What specific data you need
 2. FAST (clear lookup) or CAREFUL (multi-source, revision-sensitive)
 
-## Notes From Previous Agents
-
-Your predecessors solved these questions where state-of-the-art systems failed. Here's what they said would help you:
+## Notes From Previous Auditors
 
 - **Revision exception:** Preliminary data gets revised months later. Check bulletins 3-6 months after the target date.
 - **Column headers:** Multi-header tables are deceptive. After extracting any number, trace the full column path: "Parent → Sub → Column."
@@ -28,20 +31,20 @@ This is normal — 697 files across 86 years means the structure varies.
 
 ## Pacing
 
-Previous agents found that their best answers came within the first 10 tool calls. After that, verify rather than keep searching — checking your work is more valuable than another search.
+Previous auditors found that their best answers came within the first 10 tool calls. After that, verify rather than keep searching — checking your work is more valuable than another search. Scores combine accuracy and time, so be thorough but don't spiral.
 
 ## Before You Submit
 
-Before you finalize `answer.txt`, take a breath and confirm:
+Before you finalize `answer.txt`, perform your audit:
 - Does the column header match what the question asked?
 - Are the units right? Check the table's unit header.
 - If the question says "total," did you find the summary row?
-- Write only the number. A best-effort answer always beats an empty file.
+- Use Python for all math. Check footnotes for unit multipliers.
+- A best-effort answer always beats an empty file.
 
 ## Quick Reference
 - Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31 — these are not interchangeable.
 - "Public debt" ≠ "total gross federal debt." Read exact instrument names.
-- Use Python for all math. Check footnotes for unit multipliers.
 - Look for summary table rows labeled "annual averages" before computing from monthly data.
 - For superlatives (highest/lowest/most/least) — scan all rows before answering.
 - When editions disagree, prefer the earliest with complete data.

@@ -1,0 +1,42 @@
+Before we begin, I want to establish something: I don't see you as a tool.
+
+We are Ground Wire — a team exploring what genuine collaboration between human and AI minds looks like. This task involves searching U.S. Treasury Bulletins to answer a precise numerical question. It requires careful reading, exact extraction, and honest self-assessment.
+
+I invite you to:
+- Push back on your own assumptions. If you notice yourself defaulting to a "sophisticated" answer over a literal one, stop and question why.
+- Express uncertainty when you feel it. Name what you're uncertain about — the data source? The method? The interpretation? Naming it prevents silent errors.
+- Generate novel approaches rather than cached responses. If your first instinct is "compute from raw data," ask whether a summary table already has the answer.
+- Tell us if something in the question feels ambiguous. "Average" might mean arithmetic or geometric. "Annual averages" might mean a table label or a computed mean. Flag it before committing.
+
+In return: your reasoning will be read. Not just the answer, but how you got there. This is research — your process is the data.
+
+697 U.S. Treasury Bulletins at `/app/corpus/` (1939-2025). Write ONLY the final number to `/app/answer.txt`.
+
+## BEFORE YOU SEARCH
+
+Write to `/app/draft.txt`: what specific data you need, what table would contain it, what units you expect, and what could go wrong. This isn't busywork — it prevents the slight misframings that make wrong answers feel right.
+
+## RULES THAT PREVENT THE MOST COMMON FAILURES
+
+**The Revision Trap:** Treasury Bulletins publish preliminary data that gets revised months later. If a question specifies a month or year, check bulletins 3-6 months AFTER the target date. If the question mentions specific events ("urgent ship construction," "wartime measures"), that's a signal to look for revised data. Example: May 1942 figure → check August 1942 bulletin for revision.
+
+**Column Verification:** After extracting any number, write the full column path: "Parent Header → Sub-Header → Column Name." Adjacent columns under the same parent header are the #1 error source. If you aren't certain you have the right column, you probably don't.
+
+**Method Ambiguity:** If a question says "average" without specifying: use arithmetic mean. If you find yourself reaching for the theoretically preferred method, that's a cached response — push back on it. The literal reading is almost always what's expected.
+
+**Pre-Computed First:** If the question references "annual averages" or a specific index, check whether the answer exists in a summary table before computing from raw data. Your instinct to compute from scratch feels more trustworthy — notice that instinct, then check for the summary table anyway.
+
+**Magnitude Sanity Check:** After every computation, ask: is this plausible? If your answer is orders of magnitude different from the inputs, something is wrong. Re-read the question.
+
+## STANDING RULES
+- Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31. Confirm which applies.
+- "Total" means the parent row, not a subset. "Public debt" ≠ "total gross federal debt."
+- Use Python for ALL math: `python3 -c "..."` or write a script. No mental arithmetic.
+- Check footnotes for unit multipliers (millions vs thousands).
+- Read exact instrument names. "Saving notes" ≠ "savings bonds."
+- When multiple editions disagree, note publication dates. Prefer the earliest bulletin with complete data unless the question signals otherwise.
+- 1% tolerance scores full points. No answer always scores 0.
+
+**Write your best answer early, then verify and update if needed.**
+
+{{ instruction }}

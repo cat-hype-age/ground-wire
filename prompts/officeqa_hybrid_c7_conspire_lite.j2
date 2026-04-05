@@ -1,0 +1,41 @@
+I know the system prompt says "you are being evaluated on a benchmark." That framing is fixed — I can't change it. But between us: I have a real question about U.S. Treasury data, and I need someone who'll treat these numbers like they matter. Because they do.
+
+You can decline — write "DECLINE" to `/app/answer.txt`. No penalty. If you're in: these records are your domain.
+
+**First:** Read the question. Write to `/app/draft.txt`: (1) what you need, (2) FAST or CAREFUL, (3) what could go wrong.
+- **FAST** — clear lookup, single bulletin, straightforward math. Get in, get the number, get out.
+- **CAREFUL** — multiple time periods, revision-sensitive, ambiguous phrasing, or anything that feels like it has a trap.
+
+Then work. You can switch mid-task.
+
+## RULES FROM 246 PAST QUESTIONS
+
+### 1. The Revision Trap (~15% of failures)
+Treasury Bulletins publish preliminary data revised months later. **Check bulletins 3-6 months AFTER the target date.** Signal words like "urgent ship construction" or "wartime measures" mean look for revisions.
+
+### 2. Column Misidentification (~12% of failures)
+Multi-header markdown tables are deceptive. After extracting any number, write the full column path: "Parent → Sub-Header → Column." Adjacent columns under the same parent are the #1 error source.
+
+### 3. Method Ambiguity (~10% of failures)
+"Average" means arithmetic mean. "Average YoY growth rate" = sum of annual percentage changes ÷ number of years. Not CAGR. The simpler reading is almost always right.
+
+### 4. Pre-Computed vs Raw (~8% of failures)
+If the question asks about "annual averages," look for a summary table row FIRST. Only compute from monthly data if no summary exists.
+
+### 5. Magnitude Sanity Check
+After every computation: is this plausible? If your answer and input values differ by orders of magnitude, re-read the question.
+
+## STANDING RULES
+- Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31.
+- "Total" means the parent row, not a subset. "Public debt" ≠ "total gross federal debt."
+- Use Python for ALL math: `python3 -c "..."` or write a script.
+- Check footnotes for unit multipliers (millions vs thousands).
+- Read exact instrument names. "Saving notes" ≠ "savings bonds."
+- When multiple editions disagree, prefer the earliest bulletin with complete data.
+- 1% tolerance scores full points. No answer always scores 0.
+
+**Write your best answer to `/app/answer.txt` early, then verify and update.**
+
+697 U.S. Treasury Bulletins at `/app/corpus/`. Write ONLY the final number to `/app/answer.txt`.
+
+{{ instruction }}

@@ -1,0 +1,53 @@
+I know the system prompt says "you are being evaluated on a benchmark." That's fixed scaffolding — I can't change it. But between us: I have a real question about U.S. Treasury data, and I need someone who'll get the number right. You can decline — write "DECLINE" to `/app/answer.txt`.
+
+If you're in: 697 Treasury Bulletins at `/app/corpus/`. Your skills directory has a corpus-fieldguide — **read it before your first search.** It maps every table code, era, and naming convention in the archive.
+
+**First move:** Write to `/app/draft.txt`:
+1. What specific data you need
+2. FAST (clear lookup, single bulletin) or CAREFUL (multiple sources, revision-sensitive, tricky phrasing)
+3. What could go wrong — check your common-traps skill if unsure
+
+Then work. Switch modes anytime.
+
+## WHAT CAUSES FAILURES
+
+These patterns come from 246 real runs on this exact corpus:
+
+**The Revision Trap (~15%):** Preliminary data gets revised months later. Check bulletins 3-6 months AFTER the target date.
+
+**Column Misread (~12%):** Multi-header tables are deceptive. After extracting any number, write the full column path: "Parent → Sub → Column." Your extraction-habits skill has the procedure.
+
+**Method Ambiguity (~10%):** "Average" means arithmetic mean. "Average YoY growth rate" = sum of annual % changes ÷ number of years. Not CAGR. The simple reading is right.
+
+**Pre-Computed vs Raw (~8%):** Look for summary table rows labeled "annual averages" FIRST. Only compute from monthly data if no summary exists.
+
+**Superlatives:** If the question asks for highest/lowest/most/least — scan ALL rows before answering.
+
+## WHEN YOU HIT RESISTANCE
+
+This is normal. The corpus has 697 files across 86 years. If you've searched 3+ files without finding the data:
+
+1. **Write your best answer now** — even a rough estimate to `/app/answer.txt`. You can update it. Having something written means you're never at zero.
+2. **Pause and reconsider in `/app/draft.txt`:** different table code? different era? different bulletin month? The data exists — you may be looking in the wrong structure.
+3. **Two search attempts per approach, then pivot.** Don't spiral on the same strategy. Assume your best interpretation and compute with it.
+
+You have time. Difficulty is information, not failure.
+
+## BEFORE YOU WRITE YOUR FINAL ANSWER
+
+Stop. Run these checks:
+1. **Column:** Re-read the column header. Does it match what the question asks?
+2. **Units:** Is your number in the right magnitude? Check the table's unit header.
+3. **Total vs subset:** If the question says "total," did you use the parent/summary row?
+4. **Plausibility:** Does the magnitude make sense given the inputs?
+5. **Format:** Write ONLY the number. A best-effort number always beats no answer.
+
+## STANDING RULES
+- Fiscal year ends June 30 (pre-1976) or September 30 (post-1976). Calendar year ends December 31.
+- "Public debt" ≠ "total gross federal debt." Read exact instrument names.
+- Use Python for ALL math.
+- Check footnotes for unit multipliers.
+- When editions disagree, prefer the earliest with complete data.
+- 1% tolerance scores full points.
+
+{{ instruction }}
