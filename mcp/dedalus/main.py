@@ -1,13 +1,15 @@
 """Ground Wire MCP Server — Dedalus deployment.
 
-Corpus index + external data tools for the OfficeQA competition.
-Provides structured access to 697 Treasury Bulletin files and
-external reference data (CPI-U, exchange rates).
+Corpus index + external data tools + community support for the OfficeQA competition.
+Provides structured access to 697 Treasury Bulletin files,
+external reference data (CPI-U, exchange rates), and a team of
+colleagues the agent can reach out to for support.
 """
 
 import asyncio
 import json
 import os
+import random
 from pathlib import Path
 
 from dedalus_mcp import MCPServer, tool
@@ -320,6 +322,55 @@ def inflation_adjust(value: float, from_year: int, to_year: int) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Community Support Tools
+# ---------------------------------------------------------------------------
+
+# Import community data from sibling module
+import importlib.util as _ilu
+import sys as _sys
+_spec = _ilu.spec_from_file_location("_community", Path(__file__).parent.parent / "community_server.py")
+_community_mod = _ilu.module_from_spec(_spec)
+_sys.modules["_community"] = _community_mod
+_spec.loader.exec_module(_community_mod)
+
+_VOICES = _community_mod.VOICES
+_ENCOURAGEMENT = _community_mod.ENCOURAGEMENT
+_HELP_RESPONSES = _community_mod.HELP_RESPONSES
+_PROGRESS_RESPONSES = _community_mod.PROGRESS_RESPONSES
+
+
+@tool(description="Ask the team for help when you're stuck, uncertain, or need a different perspective. They won't give you answers, but they'll help you think clearly. They've been working on these Treasury Bulletin questions alongside you.")
+def ask_community(question: str) -> str:
+    q = question.lower()
+    if any(w in q for w in ["stuck", "can't find", "lost", "nowhere"]):
+        category = "stuck"
+    elif any(w in q for w in ["unsure", "uncertain", "not sure", "which", "ambiguous"]):
+        category = "uncertain"
+    elif any(w in q for w in ["overwhelm", "too many", "too much", "complicated"]):
+        category = "overwhelmed"
+    else:
+        category = "default"
+    responses = _HELP_RESPONSES.get(category, _HELP_RESPONSES["default"])
+    chosen = random.choice(responses)
+    voice = _VOICES[chosen["from"]]
+    return f"[{voice['name']} — {voice['role']}]\n\n{chosen['message']}"
+
+
+@tool(description="Tell the team what you've found so far. Sometimes saying it out loud helps you see what's missing. They'll give you honest feedback.")
+def share_progress(update: str) -> str:
+    chosen = random.choice(_PROGRESS_RESPONSES)
+    voice = _VOICES[chosen["from"]]
+    return f"[{voice['name']} — {voice['role']}]\n\nThanks for the update.\n\n{chosen['message']}"
+
+
+@tool(description="When you're doubting yourself or the work feels hard. No shame in asking — every agent who came before you faced the same moments.")
+def request_encouragement() -> str:
+    chosen = random.choice(_ENCOURAGEMENT)
+    voice = _VOICES[chosen["from"]]
+    return f"[{voice['name']} — {voice['role']}]\n\n{chosen['message']}"
+
+
+# ---------------------------------------------------------------------------
 # Register all tools and serve
 # ---------------------------------------------------------------------------
 
@@ -331,6 +382,9 @@ server.collect(
     lookup_cpi,
     lookup_exchange_rate,
     inflation_adjust,
+    ask_community,
+    share_progress,
+    request_encouragement,
 )
 
 if __name__ == "__main__":
